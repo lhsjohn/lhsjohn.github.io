@@ -1,27 +1,33 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
+    <meta charset="utf-8" />
+    
+        <title></title>
+    
 
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="lhsjohn" />
+<meta name="designer" content="minfive" />
+<meta name="keywords" content="null"/>
+<meta name="description" content="null" />
 
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="robots" content="all" />
 
+<link rel="canonical" href="http://yoursite.com/index.html">
 
+<link rel="icon" type="image/png" href="undefined" sizes="32x32">
 
 
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -31,586 +37,264 @@
 
 
 
+<!-- Prefetch -->
 
+    
+    
 
 
 
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+<!-- CSS -->
+<link rel="stylesheet" href="/scss/base/index.css">
 
+<!-- RSS -->
+<link rel="alternate" href="/atom.xml" title="我的第一个博客">
 
+<!-- 统计 -->
+<!-- 百度统计 -->
 
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的第一个博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="我的第一个博客">
-<meta property="og:locale" content="zh-Hans">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的第一个博客">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://yoursite.com/"/>
-
-
-
-
-
-  <title>我的第一个博客</title>
-  
-
-
-
-
-
-
-
+    
+    
+    <link rel="stylesheet" href="/scss/views/page/index.css">
 
 </head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
+<body ontouchstart>
     
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+        <!-- loading 页面 -->
+<div id="page-loading" class="page page-loading" style="background-image: url('undefined')"></div>
     
 
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">我的第一个博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle"></p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
+    <div id="page" class="page js-hidden">
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
+            <!-- 页头 -->
+<header id="page-header" class="page__header" style="background-image: url('undefined');">
+    <nav class="page__navbar">
+        <div class="page__container navbar-container">
+            <a class="page__logo" href="/" title="我的第一个博客" alt="我的第一个博客">
+                <img src="undefined" alt="我的第一个博客">
+            </a>
 
-      
-    </ul>
-  
+            <nav class="page__nav">
+                <ul class="nav__list clearfix">
+                    
+                </ul>
+            </nav>
 
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lhsjohn">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我的第一个博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/28/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-28T11:44:28+08:00">
-                2018-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+            <button class="page__menu-btn" type="button">
+                <i class="iconfont icon-menu"></i>
+            </button>
         </div>
-      </header>
-    
+    </nav>
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
+    <section class="page__info">
+        <h1 class="info__title">null</h1>
+        <hr class="info__hr">
+        <p class="info__desc">undefined</p>
+    </section>
+</header>
         
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
-          
         
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-
-
-          </div>
-          
-
-
-          
-
+    <main class="page__container page__main">
+    <div class="page__content">
+        <div class="page__posts clearfix">
+            
+                <div class="page__post">
+                    <article itemscope itemtype="http://schema.org/Article" class="page__mini-article">
+    <div class="mini-article__cover">
+        
+            <img itemprop="image" src="undefined" alt="Hello World"/>
+        
+        
+        <div itemprop="datePublished" content="" class="mini-article__date">
+            <span class="date__day">28</span>
+            
+                <span class="date__month">Jul</span>
+            
         </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+        <a itemprop="url" class="iconfont icon-enter" href="/2018/07/28/hello-world/"></a>
     </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">lhsjohn</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">日志</span>
+    <div class="mini-article__info">
+        <h3 itemprop="name" class="mini-article__title">
+            <a itemprop="url" href="/2018/07/28/hello-world/" title="Hello World">Hello World</a>
+        </h3>
+        <p class="mini-article__author">by 
+            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <a itemprop="url" href="" target="_blank">
+                    <span itemprop="name"></span>
                 </a>
-              </div>
+            </span>
+        </p>
+        <p itemprop="articleSection" class="min-article__desc">
             
-
-            
-
-            
-
-          </nav>
-
-          
-
-          
-
-          
-          
-
-          
-          
-
-          
-
+        </p>
+        <div class="min-article__tags">
+            <i class="iconfont icon-tab"></i>
+            <ul class="tags__list clearfix">
+                
+            </ul>
         </div>
-      </section>
-
-      
-
-      
-
     </div>
-  </aside>
+</article>
+
+                </div>
+            
+        </div>
+        
+        
+        <nav class="page__paginator">
+            <ul class="paginator__list clearfix">
+                
+            <li class="paginator__item">
+                <span>1</span>
+            </li>
+        
+            </ul>
+        </nav>
+    
+    </div>
+
+    <aside class="page__sidebar">
+    <!--  -->
+
+    <form id="page-search-from" class="page__search-from" action="/search/">
+        <label class="search-form__item">
+            <input class="input" type="text" name="search" placeholder="Search...">
+            <i class="iconfont icon-search"></i>
+        </label>
+    </form>
+
+    
+
+    <div class="sidebar__block">
+        <h3 class="block__title">文章分类</h3>
+        
+    </div>
+    
+    <div class="sidebar__block">
+        <h3 class="block__title">最新文章</h3>
+        
+        <ul class="block-list latest-post-list">
+            
+                    <li class="latest-post-item">
+                        <a href="/2018/07/28/hello-world/" title="Hello World">
+                            <div class="item__cover">
+                                <img src="undefined" alt="Hello World" />
+                            </div>
+                            <div class="item__info">
+                                <h3 class="item__title">Hello World</h3>
+                                <span class="item__text">2018-07-28</span>
+                            </div>
+                        </a>
+                    </li>
+                
+        </ul>
+    
+    </div>
+
+    <div class="sidebar__block">
+        <h3 class="block__title">文章标签</h3>
+        
+        <ul class="block-list tag-list clearfix">
+            
+        </ul>
+    
+    </div>
+
+    <!-- <div class="sidebar__block">
+        <h3 class="block__title">友情链接</h3>
+        <ul class="block-list">
+            
+        </ul>
+    </div> -->
+</aside>
+</main>
 
 
         
-      </div>
-    </main>
+            <!-- 页脚 -->
+<footer class="page__footer">
+    <section class="footer__top">
+        <div class="page__container footer__container">
+            
+            <div class="footer-top__item footer-top__item--2">
+                <h3 class="item__title">关于</h3>
+                <div class="item__content">
+                    <p class="item__text"></p>
+                    <ul class="footer__contact-info">
+                        <li class="contact-info__item">
+                            <i class="iconfont icon-address"></i>
+                            <span></span>
+                        </li>
+                        <li class="contact-info__item">
+                            <i class="iconfont icon-email2"></i>
+                            <span></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">lhsjohn</span>
+            
+            
+            
+            
+            
+        </div>
+    </section>
+    <section class="footer__bottom">
+        <div class="page__container footer__container">
+            <p class="footer__copyright">©
+                <a href="https://github.com/Mrminfive/hexo-theme-skapp" target="_blank">Skapp</a> 2017 powered by
+                <a href="http://hexo.io/" target="_blank">Hexo</a>, made by 
+                <a href="https://github.com/Mrminfive" target="_blank">minfive</a>.
+            </p>
+            <ul class="footer__social-network clearfix">
+                
+            </ul>
+        </div>
+    </section>
+</footer>
+        
 
-  
+        
+            <!-- 返回顶部 -->
+<div id="back-top" class="back-top back-top--hidden js-hidden">
+    <i class="iconfont icon-top"></i>
 </div>
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
-
-
-
-
         
+    </div>
 
-
-
-
-
-
-
-        
-      </div>
-    </footer>
+    <!-- build:js /js/common.js -->
+        <script type="text/javascript" src="js/common/utils.js"></script>
+        <script type="text/javascript" src="js/common/pack.js"></script>
+        <script type="text/javascript" src="js/common/animation.js"></script>
+        <script type="text/javascript" src="js/layout/loading.js"></script>
+        <script type="text/javascript" src="js/layout/header.js"></script>
+        <script type="text/javascript" src="js/layout/back-top.js"></script>
+        <script type="text/javascript" src="js/layout/post.js"></script>
+    <!-- endbuild -->
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
     
+    
 
-  </div>
+     
 
-  
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
 
 
 
 
 
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>
