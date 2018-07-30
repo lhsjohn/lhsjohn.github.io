@@ -84,38 +84,8 @@
 </ul>
 <h1 id="策略模式的实例："><a href="#策略模式的实例：" class="headerlink" title="策略模式的实例："></a>策略模式的实例：</h1><p>  下面举一个Duck类的实例来说明策略模式</p>
 <p>   Duck(鸭子)类是所有类的基类</p>
-<pre><code>{% codeblock lang:java %}
-
-    Public abstract class Duck {
-
-    //为行为接口类型声明两个引用变量，所有鸭子子类(在同一个package中)都继承它们。
-  
-    FlyBehavior flyBehavior;
-  
-    QuackBehavior quackBehavior;
-   
-    Public Duck() {}
-
-    Public abstract void display();
-   
-      Public void performFly(){
-      //委托给行为类
-      flyBehavior.fly();
-    }
-
-    Public void performQuack(){
-     quackBehavior.quack();
-    }
-
-    Public void swim(){
-    System.out.println(“所有的鸭子都会游泳”);
-    }
-    
-    
-}
-
-  {% endcodeblock %}
-</code></pre><p>##飞行行为接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    Public <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Duck</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//为行为接口类型声明两个引用变量，所有鸭子子类(在同一个package中)都继承它们。</span></span><br><span class="line">  </span><br><span class="line">    FlyBehavior flyBehavior;</span><br><span class="line">  </span><br><span class="line">    QuackBehavior quackBehavior;</span><br><span class="line">   </span><br><span class="line">    <span class="function">Public <span class="title">Duck</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">Public <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>;</span><br><span class="line">   </span><br><span class="line">      <span class="function">Public <span class="keyword">void</span> <span class="title">performFly</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="comment">//委托给行为类</span></span><br><span class="line">      flyBehavior.fly();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">Public <span class="keyword">void</span> <span class="title">performQuack</span><span class="params">()</span></span>&#123;</span><br><span class="line">     quackBehavior.quack();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">Public <span class="keyword">void</span> <span class="title">swim</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(“所有的鸭子都会游泳”);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>##飞行行为接口</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">FlyBehavior</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"><span class="comment">//这是飞行类的实现，适用于会飞的鸭子</span></span><br><span class="line">Public <span class="class"><span class="keyword">class</span> <span class="title">FlyWithWings</span> <span class="keyword">implements</span> <span class="title">FlyBehavior</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">Public <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(“I’m flying!!”);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这也是飞行类的实现，给不会飞的鸭子用，如橡皮鸭等</span></span><br><span class="line">Public <span class="class"><span class="keyword">class</span> <span class="title">FlyNoWay</span> <span class="keyword">implements</span> <span class="title">FlyBehavior</span></span>&#123;</span><br><span class="line"></span><br><span class="line">     <span class="function">Public <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>&#123;</span><br><span class="line">     System.out.println(“我不会飞”);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br></pre></td></tr></table></figure>
 <pre><code>##  QuackBehavior 接口及其实现
