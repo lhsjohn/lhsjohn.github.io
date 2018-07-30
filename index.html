@@ -17,7 +17,7 @@
   
     <meta property="og:image" content=""/>
   
-
+  <link rel="stylesheet" href="https://oindk07nf.qnssl.com/atom-one-dark.css" media="screen" type="text/css">
   <link href="/favicon.png" rel="icon">
   <link rel="alternate" href="/atom.xml" title="lhsjohn的博客" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
@@ -48,6 +48,128 @@
 </header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-07-30T15:08:21.000Z"><a href="/2018/07/30/设计模式思考(一)-----策略模式/">2018-07-30</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/07/30/设计模式思考(一)-----策略模式/">设计模式的思考(一)-策略模式</a></h1>
+  
+
+      
+</span>
+  阅读量<span id="busuanzi_value_page_pv"></span>
+</span>
+    </header>
+    <div class="entry">
+      
+        <h1 id="策略模式的定义："><a href="#策略模式的定义：" class="headerlink" title="策略模式的定义："></a>策略模式的定义：</h1><p>策略模式定义了算法族，分别封装起来，让它们之间可以相互替换，此模式让算法的变化独立于使用算法的客户。</p>
+<h2 id="OO基础"><a href="#OO基础" class="headerlink" title="OO基础"></a>OO基础</h2><ul>
+<li>抽象</li>
+<li>封装</li>
+<li>多态</li>
+<li>继承</li>
+</ul>
+<h2 id="OO原则"><a href="#OO原则" class="headerlink" title="OO原则"></a>OO原则</h2><ul>
+<li>封装变化</li>
+<li>多用组合，少用继承</li>
+<li>针对接口编程，不针对实现编程</li>
+</ul>
+<h2 id="OO模式"><a href="#OO模式" class="headerlink" title="OO模式"></a>OO模式</h2><ul>
+<li>本篇介绍的是策略模式</li>
+</ul>
+<h1 id="策略模式的实例："><a href="#策略模式的实例：" class="headerlink" title="策略模式的实例："></a>策略模式的实例：</h1><p>  下面举一个Duck类的实例来说明策略模式</p>
+<p>   Duck(鸭子)类是所有类的基类</p>
+<pre><code>{% codeblock lang:java %}
+
+    Public abstract class Duck {
+
+    //为行为接口类型声明两个引用变量，所有鸭子子类(在同一个package中)都继承它们。
+  
+    FlyBehavior flyBehavior;
+  
+    QuackBehavior quackBehavior;
+   
+    Public Duck() {}
+
+    Public abstract void display();
+   
+      Public void performFly(){
+      //委托给行为类
+      flyBehavior.fly();
+    }
+
+    Public void performQuack(){
+     quackBehavior.quack();
+    }
+
+    Public void swim(){
+    System.out.println(“所有的鸭子都会游泳”);
+    }
+    
+    
+}
+
+  {% endcodeblock %}
+</code></pre><p>##飞行行为接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">FlyBehavior</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"><span class="comment">//这是飞行类的实现，适用于会飞的鸭子</span></span><br><span class="line">Public <span class="class"><span class="keyword">class</span> <span class="title">FlyWithWings</span> <span class="keyword">implements</span> <span class="title">FlyBehavior</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">Public <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(“I’m flying!!”);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这也是飞行类的实现，给不会飞的鸭子用，如橡皮鸭等</span></span><br><span class="line">Public <span class="class"><span class="keyword">class</span> <span class="title">FlyNoWay</span> <span class="keyword">implements</span> <span class="title">FlyBehavior</span></span>&#123;</span><br><span class="line"></span><br><span class="line">     <span class="function">Public <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>&#123;</span><br><span class="line">     System.out.println(“我不会飞”);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<pre><code>##QuackBehavior 接口及其实现
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;%</span><br><span class="line">      Public interface QuackBehavior &#123;</span><br><span class="line">         Public void quack();</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     Public class Quack implements QuackBehavior&#123;</span><br><span class="line">      Public void quack()&#123;</span><br><span class="line">         System.out.println(“Quack”);</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Public class MuteQuack implements QuackBehavior&#123;</span><br><span class="line">     Public void quack()&#123;</span><br><span class="line">         System.out.println(“&lt;&lt; Silence &gt;&gt;”);</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Public class Squeak implements QuackBehavior&#123;</span><br><span class="line">     Public void quack() &#123;</span><br><span class="line">        System.out.println(“Squeak”);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>##下面我们给这些Duck动态设定行为<br>##在Duck 类中加入两个新的方法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">   Public void setFlyBehavior (FlyBehavior fb)</span><br><span class="line"> &#123; </span><br><span class="line">      flyBehavior=fb;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Public void setQuackBehavior (QuackBehavior qb)</span><br><span class="line"> &#123;</span><br><span class="line">       quackBehavior =qb;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<pre><code>##创建一个新的鸭子,模型鸭。
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  Public class ModelDuck extends Duck&#123;</span><br><span class="line">   </span><br><span class="line">    Public ModelDuck()&#123;</span><br><span class="line">        flyBehavior =new FlyNoWay();</span><br><span class="line">        quackBehavior=new Quack();</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">    Public void display()&#123;</span><br><span class="line">      System.out.println(“我是模型鸭”);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>##建立一个新的FlyBehavior 类型
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> Public class FlyRocketPowered implements FlyBehavior &#123;</span><br><span class="line">    Public void fly()&#123;</span><br><span class="line">       System.out.println(“我是火箭驱动飞行的”);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>##测试类进行测试
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  Public class TestDuck()&#123;</span><br><span class="line">    Public static void main(String[] args)&#123;</span><br><span class="line">          Duck model=new ModelDuck(); </span><br><span class="line">       //第一次调用performFly()会被委托给flyBehavior对象，也就是FlyNoWay的实例，该对象</span><br><span class="line">       //是在模型鸭构造器中设置的</span><br><span class="line">         Model.performFly();</span><br><span class="line">       //这里调用继承来的setter方法，给它指定特定的飞行行为</span><br><span class="line">          Model.setFlyBehavior(new FlyRocketPowered());</span><br><span class="line">          Model.performFly();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>##测试结果
+###控制台输出
+ 我不会飞
+ 我是火箭驱动飞行的
+</code></pre><p>   下面是相关类和接口的关系图</p>
+<p>   <img src="/images/2018-07-30.png" alt=""></p>
+<p>   收集的一些写的有关策略模式的比较好的博客</p>
+<p>  1.【设计模式–spring源码中使用策略模式（Strategy Pattern)】</p>
+<pre><code>https://blog.csdn.net/lzwglory/article/details/51822442
+</code></pre><p>  2.【策略模式和Spring的结合在项目中的应用】</p>
+<pre><code>https://blog.csdn.net/zlts000/article/details/54754789
+</code></pre><p>  3.【设计模式（一）策略模式】</p>
+<pre><code>https://www.cnblogs.com/jenkinschan/p/5645300.html
+</code></pre><p>  4.【深度剖析策略模式（包括该模式在JDK中的应用）】</p>
+<pre><code>https://www.cnblogs.com/lewis0077/p/5133812.html
+
+
+
+
+作者：lhsjohn
+版权声明: 感谢您的阅读，本文由lhsjohn&apos;s blog版权所有。 如若转载，请注明出处。
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+    
+</article>
+  
+
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -147,45 +269,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-07-28T15:47:01.000Z"><a href="/2018/07/28/青春/">2018-07-28</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2018/07/28/青春/">青春</a></h1>
-  
-
-      
-</span>
-  阅读量<span id="busuanzi_value_page_pv"></span>
-</span>
-    </header>
-    <div class="entry">
-      
-        <p> 青春不是年华，而是心境，青春不是桃面、丹唇、柔膝，而是深沉的意志、恢弘的想象、炽热的感情；青春是生命的深泉在涌流。青春气贯长虹，勇锐盖过怯弱，进取压倒苟安。如此锐气，二十后生有之，六旬男子则更多见。年岁有加，并非垂老；理想丢弃，方堕暮年。岁月悠悠，衰微只及肌肤，热忱抛却，颓唐必至灵魂。忧烦、惶恐、丧失自信，定使心灵扭曲，一起如灰。无论年届花甲，抑或二八芳龄，心中皆有生命之欢乐，奇迹之诱惑，孩童般天真久盛不衰。人的心灵应如浩渺瀚海，只要不断接受美好、希望、欢乐、勇气和力量的信号，你无不青春永驻，风华长存。一旦心海枯竭，锐气便被冰雪覆盖，玩世不恭、自暴自弃油然而生，即便年方二十，实已垂垂老矣，然则只要虚怀若谷，让喜悦达观、仁爱充盈期间，你就有望在八十高龄告别尘寰时仍觉年轻。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-    
-</article>
-  
-
-
-
-
 
 <nav id="pagination">
   
@@ -209,7 +292,11 @@
   
     <li><a href="/categories/Diary/">Diary</a><small>3</small></li>
   
+    <li><a href="/categories/设计模式/java/">java</a><small>1</small></li>
+  
     <li><a href="/categories/观后感/">观后感</a><small>1</small></li>
+  
+    <li><a href="/categories/设计模式/">设计模式</a><small>1</small></li>
   
     <li><a href="/categories/随笔/">随笔</a><small>1</small></li>
   
@@ -221,7 +308,7 @@
 <div class="widget tagcloud">
   <h3 class="title">Tag Cloud</h3>
   <div class="entry">
-    <a href="/tags/Python环境搭建/" style="font-size: 10px;">Python环境搭建</a> <a href="/tags/喜剧/" style="font-size: 10px;">喜剧</a> <a href="/tags/影评/" style="font-size: 10px;">影评</a> <a href="/tags/心得/" style="font-size: 20px;">心得</a> <a href="/tags/技术/" style="font-size: 15px;">技术</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/杂谈/" style="font-size: 15px;">杂谈</a>
+    <a href="/tags/Python环境搭建/" style="font-size: 10px;">Python环境搭建</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/喜剧/" style="font-size: 10px;">喜剧</a> <a href="/tags/影评/" style="font-size: 10px;">影评</a> <a href="/tags/心得/" style="font-size: 20px;">心得</a> <a href="/tags/技术/" style="font-size: 15px;">技术</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/杂谈/" style="font-size: 15px;">杂谈</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
   </div>
 </div>
 
