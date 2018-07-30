@@ -54,6 +54,65 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2018-07-30T18:27:21.000Z"><a href="/2018/07/31/urllib2爬虫初级/">2018-07-31</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/07/31/urllib2爬虫初级/">urllib2爬虫初级</a></h1>
+  
+
+      
+</span>
+  阅读量<span id="busuanzi_value_page_pv"></span>
+</span>
+    </header>
+    <div class="entry">
+      
+        <p>最近由于项目需要，难得需要获取网络上的一些数据，手动获取的话效率又太低，所以最近想要接触一下爬虫。<br>因为有一小部分java开发的经验，所以入门python并不是特别困难，大概看了半天的官方文档后，决定采用python爬虫来获取相关的数据。</p>
+<p>python 现在已经有了几个比较成熟的爬虫框架，如scrapy等，由于刚开始接触python以及python爬虫，我决定从比较底层的urllib2 入手。</p>
+<p>爬虫，简单说来就是通过程序模拟浏览器请求站点的行为，把站点返回的HTML代码/JSON数据/二进制数据（图片、视频） 爬到本地，进而提取自己需要的数据，存放起来使用。</p>
+<p>我使用爬虫的目的很简单，就是获取数据。</p>
+<p>爬虫的一般流程为<br>1.发起请求 也就是模仿浏览器，发送一个Request，一般包含请求头和请求体的部分。<br>2.获取响应的内容<br>3.解析内容<br>4.保存数据(可以存在mysql这种关系型数据库中，但现在非常火的分布式爬虫经常使用redis、mogodb等非关系型数据库，极大提高了数据处理的性能)</p>
+<p>同时推荐一个比较好用的抓包工具Fiddler</p>
+<p>还有谷歌的代理请求插件Proxy SwitchyOmega</p>
+<p>初级练习爬虫的话基本上都是结合着这两个工具来的</p>
+<p>然后自己就跟着做了一个用url2初级爬虫的练习，可以爬取百度贴吧的一些信息，并保存下来为html文件<br>（刚开始入门，并没有考虑到反 反爬虫）</p>
+<p>下面安利一波代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># -*- coding:utf-8 -*-</span><br><span class="line"></span><br><span class="line">import urllib</span><br><span class="line">import urllib2</span><br><span class="line"></span><br><span class="line">def loadPage(url, filename):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">        作用：根据url发送请求，获取服务器响应文件</span><br><span class="line">        url: 需要爬取的url地址</span><br><span class="line">        filename : 处理的文件名</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    print &quot;正在下载 &quot; + filename</span><br><span class="line">    headers = &#123;&quot;User-Agent&quot; : &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11&quot;&#125;</span><br><span class="line"></span><br><span class="line">    request = urllib2.Request(url, headers = headers)</span><br><span class="line">    return urllib2.urlopen(request).read()</span><br><span class="line"></span><br><span class="line">def writePage(html, filename):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">        作用：将html内容写入到本地</span><br><span class="line">        html：服务器相应文件内容</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    print &quot;正在保存 &quot; + filename</span><br><span class="line">    # 文件写入</span><br><span class="line">    with open(filename, &quot;w&quot;) as f:</span><br><span class="line">        f.write(html)</span><br><span class="line">    print &quot;-&quot; * 30</span><br><span class="line"></span><br><span class="line">def tiebaSpider(url, beginPage, endPage):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">        作用：贴吧爬虫调度器，负责组合处理每个页面的url</span><br><span class="line">        url : 贴吧url的前部分</span><br><span class="line">        beginPage : 起始页</span><br><span class="line">        endPage : 结束页</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    for page in range(beginPage, endPage + 1):</span><br><span class="line">        pn = (page - 1) * 50</span><br><span class="line">        filename = &quot;the&quot; + str(page) + &quot;.html&quot;</span><br><span class="line">        fullurl = url + &quot;&amp;pn=&quot; + str(pn)</span><br><span class="line">        #print fullurl</span><br><span class="line">        html = loadPage(fullurl, filename)</span><br><span class="line">        #print html</span><br><span class="line">        writePage(html, filename)</span><br><span class="line">        print &quot;谢谢使用&quot;</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    kw = raw_input(&quot;请输入需要爬取的贴吧名:&quot;)</span><br><span class="line">    beginPage = int(raw_input(&quot;请输入起始页：&quot;))</span><br><span class="line">    endPage = int(raw_input(&quot;请输入结束页：&quot;))</span><br><span class="line"></span><br><span class="line">    url = &quot;http://tieba.baidu.com/f?&quot;</span><br><span class="line">    key = urllib.urlencode(&#123;&quot;kw&quot;: kw&#125;)</span><br><span class="line">    fullurl = url + key</span><br><span class="line">    </span><br><span class="line">    tiebaSpider(fullurl, beginPage, endPage)</span><br></pre></td></tr></table></figure>
+<p>下面是运行的效果<br>首先你要输入你想要爬取的关键信息，例如我想爬python吧的一些内容，我就直接输入python了。<br>接下来输入要爬取的页码的范围，例如这里我输入的是1-1,即我只爬取第一页。<br><img src="/images/2018-07-31-1.png" alt=""></p>
+<p>爬取成功之后便会生成一个html文件，里面便存放了你所要爬取的内容。</p>
+<p><img src="/images/2018-07-31-2.png" alt=""></p>
+<p>然后一个简单的贴吧爬虫就完成了。。。</p>
+<p>再次强调这里使用的是最基本的爬虫，并没有考虑到个别网站的反爬虫措施，也没有分布式的存储，仅仅是通过一个小程序完成爬虫原理的小入门。</p>
+<p>当然java也有比较成熟的爬虫封装，例如使用HttpClient的jar包等来实现基本的http操作。</p>
+<p>但比较而来，python的爬虫更为简洁，而java爬虫比较好维护。</p>
+<p>总而言之，爬虫之路还有走很久，一些东西需要自己不断摸索，<br>只苦逼做项目数据也得自己来搞 orz</p>
+<p>太肝了，做完这个记录就滚去睡觉吧</p>
+<p>作者：lhsjohn</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+    
+</article>
+  
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2018-07-30T15:08:21.000Z"><a href="/2018/07/30/设计模式思考(一)-----策略模式(1)/">2018-07-30</a></time>
       
       
@@ -91,9 +150,9 @@
  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"><span class="comment">//这是飞行类的实现，适用于会飞的鸭子</span></span><br><span class="line">Public <span class="class"><span class="keyword">class</span> <span class="title">FlyWithWings</span> <span class="keyword">implements</span> <span class="title">FlyBehavior</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">Public <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(“I’m flying!!”);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这也是飞行类的实现，给不会飞的鸭子用，如橡皮鸭等</span></span><br><span class="line">Public <span class="class"><span class="keyword">class</span> <span class="title">FlyNoWay</span> <span class="keyword">implements</span> <span class="title">FlyBehavior</span></span>&#123;</span><br><span class="line"></span><br><span class="line">     <span class="function">Public <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>&#123;</span><br><span class="line">     System.out.println(“我不会飞”);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br></pre></td></tr></table></figure>
 <pre><code>##  QuackBehavior 接口及其实现
 </code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<pre><code> Public interface QuackBehavior {
-       Public void quack();
-  }
+<pre><code>  Public interface QuackBehavior {
+     Public void quack();
+ }
 
 
  Public class Quack implements QuackBehavior{
@@ -101,8 +160,6 @@
      System.out.println(“Quack”);
    }
 }
-
-
 
 Public class MuteQuack implements QuackBehavior{
  Public void quack(){
@@ -115,16 +172,23 @@ Public class Squeak implements QuackBehavior{
     System.out.println(“Squeak”);
  }
 </code></pre><p> }</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">     Public interface QuackBehavior &#123;</span><br><span class="line">        Public void quack();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    Public class Quack implements QuackBehavior&#123;</span><br><span class="line">     Public void quack()&#123;</span><br><span class="line">        System.out.println(“Quack”);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   Public class MuteQuack implements QuackBehavior&#123;</span><br><span class="line">    Public void quack()&#123;</span><br><span class="line">        System.out.println(“&lt;&lt; Silence &gt;&gt;”);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   Public class Squeak implements QuackBehavior&#123;</span><br><span class="line">    Public void quack() &#123;</span><br><span class="line">       System.out.println(“Squeak”);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<pre><code>##下面我们给这些Duck动态设定行为
-##在Duck 类中加入两个新的方法
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">   Public void setFlyBehavior (FlyBehavior fb)</span><br><span class="line"> &#123; </span><br><span class="line">      flyBehavior=fb;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Public void setQuackBehavior (QuackBehavior qb)</span><br><span class="line"> &#123;</span><br><span class="line">       quackBehavior =qb;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<pre><code>##创建一个新的鸭子,模型鸭。
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  Public class ModelDuck extends Duck&#123;</span><br><span class="line">   </span><br><span class="line">    Public ModelDuck()&#123;</span><br><span class="line">        flyBehavior =new FlyNoWay();</span><br><span class="line">        quackBehavior=new Quack();</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">    Public void display()&#123;</span><br><span class="line">      System.out.println(“我是模型鸭”);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<pre><code>##建立一个新的FlyBehavior 类型
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> Public class FlyRocketPowered implements FlyBehavior &#123;</span><br><span class="line">    Public void fly()&#123;</span><br><span class="line">       System.out.println(“我是火箭驱动飞行的”);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<pre><code>##测试类进行测试
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  Public class TestDuck()&#123;</span><br><span class="line">    Public static void main(String[] args)&#123;</span><br><span class="line">          Duck model=new ModelDuck(); </span><br><span class="line">       //第一次调用performFly()会被委托给flyBehavior对象，也就是FlyNoWay的实例，该对象</span><br><span class="line">       //是在模型鸭构造器中设置的</span><br><span class="line">         Model.performFly();</span><br><span class="line">       //这里调用继承来的setter方法，给它指定特定的飞行行为</span><br><span class="line">          Model.setFlyBehavior(new FlyRocketPowered());</span><br><span class="line">          Model.performFly();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##下面我们给这些Duck动态设定行为</span><br><span class="line">##在Duck 类中加入两个新的方法</span><br></pre></td></tr></table></figure>
+<p>   Public void setFlyBehavior (FlyBehavior fb)<br> {<br>      flyBehavior=fb;<br> }</p>
+<p>Public void setQuackBehavior (QuackBehavior qb)<br> {<br>       quackBehavior =qb;<br> }<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">##创建一个新的鸭子,模型鸭。</span><br></pre></td></tr></table></figure></p>
+<p>   Public class ModelDuck extends Duck{</p>
+<pre><code> Public ModelDuck(){
+     flyBehavior =new FlyNoWay();
+     quackBehavior=new Quack();
+}
+
+ Public void display(){
+   System.out.println(“我是模型鸭”);
+}
+</code></pre><p> }</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">##建立一个新的FlyBehavior 类型</span><br></pre></td></tr></table></figure>
+<p>  Public class FlyRocketPowered implements FlyBehavior {<br>     Public void fly(){<br>        System.out.println(“我是火箭驱动飞行的”);<br>     }<br> }</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">##测试类进行测试</span><br></pre></td></tr></table></figure>
+<p>   Public class TestDuck(){<br>     Public static void main(String[] args){<br>           Duck model=new ModelDuck();<br>        //第一次调用performFly()会被委托给flyBehavior对象，也就是FlyNoWay的实例，该对象<br>        //是在模型鸭构造器中设置的<br>          Model.performFly();<br>        //这里调用继承来的setter方法，给它指定特定的飞行行为<br>           Model.setFlyBehavior(new FlyRocketPowered());<br>           Model.performFly();<br>    }<br> }<br><code>`</code></p>
 <h2 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h2><h3 id="控制台输出"><a href="#控制台输出" class="headerlink" title="控制台输出"></a>控制台输出</h3><pre><code>我不会飞
 我是火箭驱动飞行的
 </code></pre><p>   下面是相关类和接口的关系图</p>
@@ -208,54 +272,6 @@ Public class Squeak implements QuackBehavior{
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-07-29T03:34:09.000Z"><a href="/2018/07/29/Windows下Eclipse搭建python环境/">2018-07-29</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2018/07/29/Windows下Eclipse搭建python环境/">Windows下Eclipse搭建python环境</a></h1>
-  
-
-      
-</span>
-  阅读量<span id="busuanzi_value_page_pv"></span>
-</span>
-    </header>
-    <div class="entry">
-      
-        <p>在Eclipse上安装和搭建Python开发环境需要以下五步完成：</p>
-<p>1.下载最新的Eclipse安装包,我是基于Python版本python-3.6.4。python-3.6.4要求的Eclipse高版本，我选择了最新的Eclipse版本：eclipse-java-oxygen-2-win32-x86_64.zip<br>下载eclipse-java-oxygen-2-win32-x86_64.zip，<br>可以到Eclipse官方网站：<a href="https://www.eclipse.org/downloads/eclipse-packages/" target="_blank" rel="noopener">https://www.eclipse.org/downloads/eclipse-packages/</a><br>在这个页面选择版本系列：Eclipse IDE for Java Developers</p>
-<p>2.配置Eclipse开发环境。<br>我下载的是zip包，解压到一个目录E:\developer\eclipse：</p>
-<p>3.在Eclipse中添加Python的开发部署软件系统。<br>Eclipse -&gt; Help -&gt; Install New SoftWare -&gt; Add ，在弹出的框添加如图所示的内容：</p>
-<p><img src="/images/python1.jpg" alt=""></p>
-<p>然后选中python IDE一路next等待下载安装完毕</p>
-<p>4.下载最新的Python SDK开发包。<br>Python最新的开发包在官方网站可以下载，链接：<a href="https://www.python.org/downloads/release" target="_blank" rel="noopener">https://www.python.org/downloads/release</a><br>把zip压缩包下载完成后解压到一个文件目录下，比如：</p>
-<p>5.此时开始正式写Python代码，写一个经典的hello world。<br>Eclipse中，选择File -&gt; New -&gt; Other，然后会弹出一系列代码项目选择项，选择PyDev Project，然后点击Next。<br>以上配置完成后，就可以正式写Python代码了。新建一个File -&gt; New -&gt; Other -&gt; PyDev Project，然后选中该项目，鼠标右键 -&gt; New -&gt; PyDev Module，在弹出的框中写好包名和Name</p>
-<p><img src="/images/python2.png" alt=""></p>
-<p>然后点击左上角的绿色按钮，选中Hello Test.py<br>就可以看到成功运行出helloWorld了</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-    
-</article>
-  
-
-
-
-
 
 <nav id="pagination">
   
@@ -281,7 +297,13 @@ Public class Squeak implements QuackBehavior{
   
     <li><a href="/categories/设计模式/java/">java</a><small>1</small></li>
   
+    <li><a href="/categories/爬虫/python/">python</a><small>1</small></li>
+  
+    <li><a href="/categories/爬虫/python/学习/">学习</a><small>1</small></li>
+  
     <li><a href="/categories/设计模式/java/学习/">学习</a><small>1</small></li>
+  
+    <li><a href="/categories/爬虫/">爬虫</a><small>1</small></li>
   
     <li><a href="/categories/观后感/">观后感</a><small>1</small></li>
   
@@ -297,7 +319,7 @@ Public class Squeak implements QuackBehavior{
 <div class="widget tagcloud">
   <h3 class="title">Tag Cloud</h3>
   <div class="entry">
-    <a href="/tags/Python环境搭建/" style="font-size: 10px;">Python环境搭建</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/喜剧/" style="font-size: 10px;">喜剧</a> <a href="/tags/影评/" style="font-size: 10px;">影评</a> <a href="/tags/心得/" style="font-size: 20px;">心得</a> <a href="/tags/技术/" style="font-size: 15px;">技术</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/杂谈/" style="font-size: 15px;">杂谈</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    <a href="/tags/Python环境搭建/" style="font-size: 10px;">Python环境搭建</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/喜剧/" style="font-size: 10px;">喜剧</a> <a href="/tags/影评/" style="font-size: 10px;">影评</a> <a href="/tags/心得/" style="font-size: 20px;">心得</a> <a href="/tags/技术/" style="font-size: 15px;">技术</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/杂谈/" style="font-size: 15px;">杂谈</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
   </div>
 </div>
 
