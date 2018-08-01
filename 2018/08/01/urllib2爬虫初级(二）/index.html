@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>urllib2爬虫初级(二) | lhsjohn的博客</title>
+  <meta name="author" content="lhsjohn">
+  
+  <meta name="description" content="好记性不如烂键盘">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="urllib2爬虫初级(二)"/>
+  <meta property="og:site_name" content="lhsjohn的博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+  <link rel="stylesheet" href="https://oindk07nf.qnssl.com/atom-one-dark.css" media="screen" type="text/css">
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="lhsjohn的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">lhsjohn的博客</a></h1>
+  <h2><a href="/">对未来的真正慷慨，是把一切献给现在</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="//">首页</a></li>
+    
+      <li><a href="//archives">归档</a></li>
+    
+      <li><a href="//about">关于</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-08-01T09:05:21.000Z"><a href="/2018/08/01/urllib2爬虫初级(二）/">2018-08-01</a></time>
+      
+      
+  
+    <h1 class="title">urllib2爬虫初级(二)</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>昨天用urllib模拟GET请求爬取了百度贴吧的一些内容，<br>但是现在网络上还有很多数据是通过POST请求获得的，更复杂的情况<br>是你要面临着如ajax的一些动态加载的数据，你所要获取的数据不能仅仅限于你在浏览器网页里看到的数据，所以在这里有几个处理的方法。</p>
+<h1 id="POST请求发送"><a href="#POST请求发送" class="headerlink" title="POST请求发送"></a>POST请求发送</h1><p>Request请求对象的里有data参数，它就是用在POST里的，我们要传送的数据就是这个参数data，data是一个字典，里面要匹配键值对</p>
+<p>下面是流行的一个比较火的学习案例，通过POST请求模拟有道词典的翻译(之所以选择有道词典，是因为有些翻译词典发起的请求是GET的，这就很狗血了)</p>
+<p>首先开启了我Chrome浏览器中的代理插件，要模仿有道词典翻译的工作我们需要得到有关的url以及data数据</p>
+<p>这些数据的获取是我们通过抓包获取的</p>
+<p>之前的博客写过我现在用的是Fiddler 来抓包的，功能还算比较强大用起来还是挺舒服的。</p>
+<p>输入“我爱python” 的文字进行翻译，点击翻译按钮来发起一个请求，如下</p>
+<p><img src="/images/2018-08-01-1.png" alt=""></p>
+<p>下面是我抓到的包</p>
+<p><img src="/images/2018-08-01-2.png" alt=""></p>
+<p>于是接下来我们可以用来模拟发送POST请求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:UTF-8 -*-</span><br><span class="line">import urllib</span><br><span class="line">import urllib2</span><br><span class="line"></span><br><span class="line">url=&quot;http://fanyi.youdao.com/translate?smartresult=dict&amp;smartresult=rule &quot;</span><br><span class="line">key =raw_input(&quot;请输入需要翻译的文字:&quot;)</span><br><span class="line">headers=&#123;&quot;User-Agent&quot;:&quot;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36&quot; &#125;</span><br><span class="line">formdata=&#123;</span><br><span class="line">&quot;i&quot;:key,</span><br><span class="line">&quot;from&quot;:&quot;AUTO&quot;,</span><br><span class="line">&quot;to&quot;:&quot;AUTO&quot;,</span><br><span class="line">&quot;smartresult&quot;:&quot;dict&quot;,</span><br><span class="line">&quot;client&quot;:&quot;fanyideskweb&quot;,</span><br><span class="line">&quot;salt&quot;:&quot;1533109653036&quot;,</span><br><span class="line">&quot;sign&quot;:&quot;2ad8507b8a10dda31e7c0c1bcd3eef8d&quot;,</span><br><span class="line">&quot;doctype&quot;:&quot;json&quot;,</span><br><span class="line">&quot;version&quot;:&quot;2.1&quot;,</span><br><span class="line">&quot;keyfrom&quot;:&quot;fanyi.web&quot;,</span><br><span class="line">&quot;action&quot;:&quot;FY_BY_CLICKBUTTION&quot;,</span><br><span class="line">&quot;typoResult&quot;:&quot;false&quot;   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">data= urllib.urlencode(formdata)</span><br><span class="line">request=urllib2.Request(url,data=data,headers=headers)</span><br><span class="line">print urllib2.urlopen(request).read()</span><br></pre></td></tr></table></figure>
+<p>其中的formdata就是我们抓包抓取的请求体里面的内容，请求体里面是以”&amp;”的形式分割的，在这里我们将数据提取出来转化成字典的形式，建立一个字典formdata.</p>
+<p>还有要注意的一点，也是一个坑</p>
+<p>请求url中的translate_o 需要写成translate才行，否则会报错，也不知道为什么，就是一个坑</p>
+<p>运行程序，输入要翻译的文字，系统会输出一个Json格式的字符串<br><img src="/images/2018-08-01-3.png" alt=""></p>
+<p>拿着个json字符串去解析，便可以看到我们想要的结果。<br>有很多在线json解析的工具和网站<br>我这里用的是<br><a href="http://www.json.cn" target="_blank" rel="noopener">www.json.cn</a></p>
+<p>解析出来的结果如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;type&quot;:&quot;ZH_CN2EN&quot;,</span><br><span class="line">    &quot;errorCode&quot;:0,</span><br><span class="line">    &quot;elapsedTime&quot;:1,</span><br><span class="line">    &quot;translateResult&quot;:[</span><br><span class="line">        [</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;src&quot;:&quot;我爱python&quot;,</span><br><span class="line">                &quot;tgt&quot;:&quot;I love the python&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样我们就完成了一个post请求的发送</p>
+<h1 id="处理Ajax加载的情况"><a href="#处理Ajax加载的情况" class="headerlink" title="处理Ajax加载的情况"></a>处理Ajax加载的情况</h1><p>刚才我们爬取的页面是一个静态页面，所见及所得，但如果我们要爬取的是一个动态加载的页面呢？<br>例如豆瓣电影网，在显示电影列表时就是根据你鼠标滑轮的滑动来加载的，如果你不往下滑动，下面的数据是不会有的。</p>
+<p>但是我们只要记得，AJAX一般返回的是JSON,直接对AJAX地址进行post或get，就返回JSON数据了。</p>
+<p>下面我们就拿一个例子来获取这种情况下的数据</p>
+<p>下面我们就爬一下豆瓣的网站吧</p>
+<p>作为爬虫的玩家，我们首先要关注的应该是数据的来源。</p>
+<p>那么，我们开始了</p>
+<p>像上一个例子一样，首先我们抓取了它的Url,抽取里面的数据建立字典，发送POST请求便可以获取我们想要的数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:UTF-8 -*-</span><br><span class="line">import urllib</span><br><span class="line">import urllib2</span><br><span class="line"></span><br><span class="line">url=&quot;https://movie.douban.com/j/new_search_subjects?sort=T&amp;range=0,10&amp;tags=&amp;start=80&quot;</span><br><span class="line">formdata=&#123;</span><br><span class="line">    &quot;sort&quot;:&quot;T&quot;,</span><br><span class="line">    &quot;range&quot;:&quot;0,10&quot;,</span><br><span class="line">    &quot;tags&quot;:&quot;&quot;,    </span><br><span class="line">    &quot;start&quot;:&quot;80&quot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">headers=&#123;&quot;User-Agent&quot;:&quot;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36&quot;&#125;</span><br><span class="line"></span><br><span class="line">data=urllib.urlencode(formdata)</span><br><span class="line"></span><br><span class="line">request=urllib2.Request(url,data=data,headers=headers)</span><br><span class="line"></span><br><span class="line">print urllib2.urlopen(request).read()</span><br></pre></td></tr></table></figure>
+<p>有些参数是我们可以手动去指定的，例如上面代码的range 、start等，这样我们就可以根据自己的需要来获取我们需要的数据的范围了</p>
+<p>抓取的结果如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">&quot;data&quot;:[</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;directors&quot;:[</span><br><span class="line">                &quot;宁浩&quot;</span><br><span class="line">            ],</span><br><span class="line">            &quot;rate&quot;:&quot;8.3&quot;,</span><br><span class="line">            &quot;cover_x&quot;:578,</span><br><span class="line">            &quot;star&quot;:&quot;40&quot;,</span><br><span class="line">            &quot;title&quot;:&quot;疯狂的石头&quot;,</span><br><span class="line">            &quot;url&quot;:&quot;https://movie.douban.com/subject/1862151/&quot;,</span><br><span class="line">            &quot;casts&quot;:[</span><br><span class="line">                &quot;郭涛&quot;,</span><br><span class="line">                &quot;刘桦&quot;,</span><br><span class="line">                &quot;连晋&quot;,</span><br><span class="line">                &quot;黄渤&quot;,</span><br><span class="line">                &quot;徐峥&quot;</span><br><span class="line">            ],</span><br><span class="line">            &quot;cover&quot;:&quot;https://img3.doubanio.com/view/photo/s_ratio_poster/public/p712241453.jpg&quot;,</span><br><span class="line">            &quot;id&quot;:&quot;1862151&quot;,</span><br><span class="line">            &quot;cover_y&quot;:764</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;directors&quot;:[</span><br><span class="line">                &quot;大卫·芬奇&quot;</span><br><span class="line">            ],</span><br><span class="line">            &quot;rate&quot;:&quot;8.7&quot;,</span><br><span class="line">            &quot;cover_x&quot;:1400,</span><br><span class="line">            &quot;star&quot;:&quot;45&quot;,</span><br><span class="line">            &quot;title&quot;:&quot;消失的爱人&quot;,</span><br><span class="line">            &quot;url&quot;:&quot;https://movie.douban.com/subject/21318488/&quot;,</span><br><span class="line">            &quot;casts&quot;:[</span><br><span class="line">                &quot;本·阿弗莱克&quot;,</span><br><span class="line">                &quot;裴淳华&quot;,</span><br><span class="line">                &quot;尼尔·帕特里克·哈里斯&quot;,</span><br><span class="line">                &quot;凯莉·库恩&quot;,</span><br><span class="line">                &quot;泰勒·派瑞&quot;</span><br><span class="line">            ],</span><br><span class="line">            &quot;cover&quot;:&quot;https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2221768894.jpg&quot;,</span><br><span class="line">            &quot;id&quot;:&quot;21318488&quot;,</span><br><span class="line">            &quot;cover_y&quot;:2100</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;directors&quot;:[</span><br><span class="line">                &quot;彼得·杰克逊&quot;</span><br><span class="line">            ],</span><br><span class="line">            &quot;rate&quot;:&quot;8.9&quot;,</span><br><span class="line">            &quot;cover_x&quot;:1098,</span><br><span class="line">            &quot;star&quot;:&quot;45&quot;,</span><br><span class="line">            &quot;title&quot;:&quot;指环王1：魔戒再现&quot;,</span><br><span class="line">            &quot;url&quot;:&quot;https://movie.douban.com/subject/1291571/&quot;,</span><br><span class="line">            &quot;casts&quot;:[</span><br><span class="line">                &quot;伊莱贾·伍德&quot;,</span><br><span class="line">                &quot;西恩·奥斯汀&quot;,</span><br><span class="line">                &quot;伊恩·麦克莱恩&quot;,</span><br><span class="line">                &quot;维果·莫腾森&quot;,</span><br><span class="line">                &quot;奥兰多·布鲁姆&quot;</span><br><span class="line">            ],</span><br><span class="line">            &quot;cover&quot;:&quot;https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1354436051.jpg&quot;,</span><br><span class="line">            &quot;id&quot;:&quot;1291571&quot;,</span><br><span class="line">            &quot;cover_y&quot;:1500</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;directors&quot;:[</span><br><span class="line">                &quot;陈可辛&quot;</span><br><span class="line">            ],</span><br><span class="line">            &quot;rate&quot;:&quot;7.6&quot;,</span><br><span class="line">            &quot;cover_x&quot;:1017,</span><br><span class="line">            &quot;star&quot;:&quot;40&quot;,</span><br><span class="line">            &quot;title&quot;:&quot;中国合伙人&quot;,</span><br><span class="line">            &quot;url&quot;:&quot;https://movie.douban.com/subject/11529526/&quot;,</span><br><span class="line">            &quot;casts&quot;:[</span><br><span class="line">                &quot;黄晓明&quot;,</span><br><span class="line">                &quot;邓超&quot;,</span><br><span class="line">                &quot;佟大为&quot;,</span><br><span class="line">                &quot;杜鹃&quot;</span><br><span class="line">            ],</span><br><span class="line">            &quot;cover&quot;:&quot;https://img1.doubanio.com/view/photo/s_ratio_poster/public/p1959304567.jpg&quot;,</span><br><span class="line">            &quot;id&quot;:&quot;11529526&quot;,</span><br><span class="line">            &quot;cover_y&quot;:1500</span><br><span class="line">        &#125;</span><br><span class="line">        .............等等等</span><br><span class="line">    ]</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>这样抓取一个ajax加载的页面也完成了</p>
+<h1 id="还有一个比较常用的操作是我们可以用cooike模拟用户登录"><a href="#还有一个比较常用的操作是我们可以用cooike模拟用户登录" class="headerlink" title="还有一个比较常用的操作是我们可以用cooike模拟用户登录"></a>还有一个比较常用的操作是我们可以用cooike模拟用户登录</h1><p>我们知道，有些网站是需要我们登录过后才可以去访问的，没有登录的用户即便是输入了url地址，也会再次给你重定向到登陆的界面，这样你就不可能看到登录之后的数据了</p>
+<p>要想用cooike模拟登录，我们只需要在请求头里面加入cooike的值就行了。<br>至于怎么获取cooike的值，有很多的处理办法，目前只是用的最笨的那种，即抓包获取。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import urllib2</span><br><span class="line"></span><br><span class="line">url = &quot;http://www.renren.com/410043129/profile&quot;</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    &quot;Host&quot; : &quot;www.renren.com&quot;,</span><br><span class="line">    &quot;Connection&quot; : &quot;keep-alive&quot;,</span><br><span class="line">    #&quot;Upgrade-Insecure-Requests&quot; : &quot;1&quot;,</span><br><span class="line">    &quot;User-Agent&quot; : &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36&quot;,</span><br><span class="line">    &quot;Accept&quot; : &quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&quot;,</span><br><span class="line">    &quot;Referer&quot; : &quot;http://www.renren.com/SysHome.do&quot;,</span><br><span class="line">    #&quot;Accept-Encoding&quot; : &quot;gzip, deflate, sdch&quot;,</span><br><span class="line">    &quot;Cookie&quot; : &quot;anonymid=ixrna3fysufnwv; _r01_=1; depovince=GW; jebe_key=f6fb270b-d06d-42e6-8b53-e67c3156aa7e%7Cc13c37f53bca9e1e7132d4b58ce00fa3%7C1484060607478%7C1%7C1484400895379; jebe_key=f6fb270b-d06d-42e6-8b53-e67c3156aa7e%7Cc13c37f53bca9e1e7132d4b58ce00fa3%7C1484060607478%7C1%7C1484400890914; JSESSIONID=abcX8s_OqSGsYeRg5vHMv; jebecookies=0c5f9b0d-03d8-4e6a-b7a9-3845d04a9870|||||; ick_login=8a429d6c-78b4-4e79-8fd5-33323cd9e2bc; _de=BF09EE3A28DED52E6B65F6A4705D973F1383380866D39FF5; p=0cedb18d0982741d12ffc9a0d93670e09; ap=327550029; first_login_flag=1; ln_uact=mr_mao_hacker@163.com; ln_hurl=http://hdn.xnimg.cn/photos/hdn521/20140529/1055/h_main_9A3Z_e0c300019f6a195a.jpg; t=56c0c522b5b068fdee708aeb1056ee819; societyguester=56c0c522b5b068fdee708aeb1056ee819; id=327550029; xnsid=5ea75bd6; loginfrom=syshome&quot;,</span><br><span class="line">    &quot;Accept-Language&quot; : &quot;zh-CN,zh;q=0.8,en;q=0.6&quot;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">request = urllib2.Request(url, headers = headers)</span><br><span class="line"></span><br><span class="line">response = urllib2.urlopen(request)</span><br><span class="line"></span><br><span class="line">print response.read()</span><br></pre></td></tr></table></figure>
+<p>这样就可以模拟登录，访问登录后的界面了（这个是网上整理的demo,登进去的也不是我的页面）</p>
+<p>以上就是用urllib2进行初级爬虫的一些总结，完成这些也远远算不上入门，总的来说，要做好一个比较漂亮的爬虫程序，还是需要一个不断积累的过程。</p>
+<p>除了最后一个不能确定，前面的代码都是可以运行的。</p>
+<p>今天的程序到此结束，大功告成！</p>
+<p>作者：lhsjohn</p>
+
+      
+    </div>
+	 阅读量<span id="busuanzi_value_page_pv"></span>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/爬虫/">爬虫</a>, <a href="/categories/爬虫/python/">python</a>, <a href="/categories/爬虫/python/学习/">学习</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/爬虫/">爬虫</a>, <a href="/tags/python/">python</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+
+      <div class="clearfix"></div>
+	  
+    </footer>
+	
+
+  </div>
+</article>
+
+
+
+
+<nav id="pagination" >
+    
+    
+    <a href="/2018/07/31/设计模式思考(二)-----观察者模式/" class="alignright next" >Next</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<!-- 多说评论框 start -->
+ <div class="ds-thread" data-thread-key="/2018/08/01/urllib2爬虫初级(二）/" data-title="urllib2爬虫初级(二)" data-url="https://www.lhsblog.cn/2018/08/01/urllib2爬虫初级(二）/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"szcx"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+<section id="comment">
+</section>
+
+
+
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:www.lhsblog.cn">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Diary/">Diary</a><small>3</small></li>
+  
+    <li><a href="/categories/设计模式/java/">java</a><small>2</small></li>
+  
+    <li><a href="/categories/爬虫/python/">python</a><small>2</small></li>
+  
+    <li><a href="/categories/爬虫/python/学习/">学习</a><small>2</small></li>
+  
+    <li><a href="/categories/设计模式/java/学习/">学习</a><small>2</small></li>
+  
+    <li><a href="/categories/爬虫/">爬虫</a><small>2</small></li>
+  
+    <li><a href="/categories/观后感/">观后感</a><small>1</small></li>
+  
+    <li><a href="/categories/设计模式/">设计模式</a><small>2</small></li>
+  
+    <li><a href="/categories/随笔/">随笔</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/Python环境搭建/" style="font-size: 10px;">Python环境搭建</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/喜剧/" style="font-size: 10px;">喜剧</a> <a href="/tags/影评/" style="font-size: 10px;">影评</a> <a href="/tags/心得/" style="font-size: 20px;">心得</a> <a href="/tags/技术/" style="font-size: 15px;">技术</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/杂谈/" style="font-size: 15px;">杂谈</a> <a href="/tags/爬虫/" style="font-size: 15px;">爬虫</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a>
+  </div>
+</div>
+
+
+  
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=6445624710&verifier=dabbb540&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2018 lhsjohn
+  
+</div>
+<div class="clearfix"></div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
