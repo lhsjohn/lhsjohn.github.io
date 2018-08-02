@@ -54,6 +54,104 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2018-08-02T14:09:03.000Z"><a href="/2018/08/02/设计模式思考(三)-----装饰者模式/">2018-08-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/08/02/设计模式思考(三)-----装饰者模式/">设计模式思考(三)-----装饰者模式</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="装饰者模式的定义"><a href="#装饰者模式的定义" class="headerlink" title="装饰者模式的定义"></a>装饰者模式的定义</h1><p>装饰者模式动态地将责任附加到对象上，若要扩展功能，装饰者提供了比继承更有弹性的替代方案。</p>
+<p>可以这么说：“装饰者模式给爱用继承的人一个全新的眼界”</p>
+<p>下面来看一个装饰者模式的使用案例</p>
+<p>对于一家咖啡店的订单系统，起初所有种类咖啡的类都是继承自饮料类的(Beverage),其中饮料类是一个抽象的类，内有description的实例变量，用来描述所做的饮料，有cost()方法来返回价钱。</p>
+<p>但是我们都知道，咖啡的种类有很多很多种，加入的调料也不尽相同，比如说我们可以定制摩卡咖啡，奶泡咖啡等，且这些调料的价钱也是不尽相同的，或许我们最初想法是再将咖啡的种类根据调料来进行划分，派生出更多的子类出来，但是这种做法是不明智的，咖啡的种类有成千上百种，调料也有成千上百种，照这个思想进行下去的话，岂不是要派生出一大堆类出来，这对于系统的维护来说也将是一个棘手的事情。</p>
+<p>那么，有没有其他的解决方案呢？</p>
+<p>答案是肯定的，在这里就是需要用到一个经典的设计模式——装饰者模式。</p>
+<p>在这个例子中，我们要以饮料为主体，然后在运行时以调料来装饰饮料。举个栗子，如果顾客想要一杯摩卡和奶泡深焙咖啡，我们要做的事情有</p>
+<p>1.拿一个深焙咖啡(DarkRoast)对象</p>
+<p>2.以摩卡(Mocha)对象装饰它</p>
+<p>3.以奶泡(Whip)对象装饰它</p>
+<p>4.调用cost()方法，并依赖委托将调料的价钱加上去</p>
+<p>以装饰者构造饮料订单</p>
+<p>1.以DarkRoast对象开始，DarkRoast对象继承自Beverage，并且有一个用来计算饮料价钱的cost()方法。</p>
+<p>2.顾客想要摩卡(Mocha)，所以建立一个Mocha对象，并用它将DarkRoast对象包起来，Mocha对象是一个装饰者，它的类型反映了它所装饰的对象，在本例中，也就是Beverage, 也就是说两者的类型一致。所以Mocha也有一个cost()方法，通过多态，也可以把Mocha包裹的任何Beverage当成是Beverage，因为Mocha是Berverage的子类型。</p>
+<p>3.顾客也想要奶泡(Whip),所以需要建立一个Whip装饰者，并用它将Mocha对象包起来。</p>
+<p>4.现在，顾客开始结账了。通过调用最外圈装饰者(Whip)的cost()就可以了。Whip的cost()会先委托它装饰的对象，在这里也就是Mocha，计算出价钱，然后再加上奶泡的价钱。<br>(这种包裹关系你可以理解成食堂里的鸡蛋，鸡蛋壳包着鸡蛋清，鸡蛋清里面又有鸡蛋黄，但它们都是鸡蛋)</p>
+<p>现在我们可以做一个简单的总结了</p>
+<p>1.装饰者和被装饰对象有着相同的超类型。</p>
+<p>2.你可以用一个或者多个装饰者包装一个对象</p>
+<p>3.因为装饰者和被装饰的对象有着共同的超类型，所以在任何需要原始对象(被包装的)场合，可以用装饰过的对象代替它。</p>
+<p>4.装饰者可以在所委托被装饰者的行为之前与/或之后，加上自己的行为，来达到特定的目的。</p>
+<p>5.对象可以在任何时候被装饰，所以可以在运行时动态地、不限量地用你喜欢的装饰者来装饰对象。</p>
+<p>下面是装饰者模式的类图</p>
+<p><img src="/images/2018-08-02.png" alt=""></p>
+<p>下面上代码，把设计转化成代码</p>
+<p>先从Berverage类下手</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">Public <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Beverage</span></span>&#123;</span><br><span class="line">    String description=”Unknow Beverage “;</span><br><span class="line"></span><br><span class="line"><span class="function">Public String <span class="title">getDescription</span><span class="params">()</span></span>&#123;</span><br><span class="line">   </span><br><span class="line">     Return description;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Public <span class="keyword">abstract</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+<p>  下面让我们来实现Condiment(调料)抽象类，也就是装饰者类</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">Public <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">CondimentDecorator</span> <span class="keyword">extends</span> <span class="title">Beverage</span></span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="function">Public <span class="keyword">abstract</span> String <span class="title">getDescription</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<p>现在我们有了基类，接下来是实现一些饮料，写一些饮料的代码</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Public <span class="class"><span class="keyword">class</span> <span class="title">Espresso</span> <span class="keyword">extends</span> <span class="title">Beverage</span></span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="function">Public <span class="title">Espresso</span><span class="params">()</span></span>&#123;</span><br><span class="line">       Description=”Espresso”;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">Public <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span></span>&#123;</span><br><span class="line">       Return <span class="number">1.99</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Public <span class="class"><span class="keyword">class</span> <span class="title">HouseBlend</span> <span class="keyword">extends</span> <span class="title">Beverage</span></span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="function">Public <span class="title">HouseBlend</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Description=”House Blend Coffee”;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> <span class="function">Public <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Return <span class="number">0.89</span>;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<p> 写调料的代码</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line"> Public <span class="class"><span class="keyword">class</span> <span class="title">Mocha</span> <span class="keyword">extends</span> <span class="title">CondimentDecorator</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    Beverage beverage;</span><br><span class="line"></span><br><span class="line">    <span class="function">Public <span class="title">Mocha</span><span class="params">(Beverage beverage)</span></span>&#123;</span><br><span class="line">       <span class="keyword">this</span>.beverage=beverage;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">Public String <span class="title">getDescription</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> beverage.getDescription() +”, Mocha”;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">Public <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0.20</span>+beverage.cost();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+<p>   最后，是测试代码</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">Public <span class="class"><span class="keyword">class</span> <span class="title">CoffeeOrders</span></span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="function">Public <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line"> Beverage beverage=<span class="keyword">new</span> Espresso();</span><br><span class="line"> System.out.println(beverage.getDescription() +” $“+beverage.cost());</span><br><span class="line"></span><br><span class="line"> Beverage beverage2=<span class="keyword">new</span> HouseBlend();</span><br><span class="line"> beverage2 =<span class="keyword">new</span> Mocha(beverage2);    <span class="comment">//用Mocha装饰它</span></span><br><span class="line"> beverage2 =<span class="keyword">new</span> Mocha(beverage2); <span class="comment">//用第二个Mocha装饰它</span></span><br><span class="line"> beverage2 =<span class="keyword">new</span> Whip(beverage2);</span><br><span class="line"> System.out.println(beverage2.getDescription()+” $ ”+ beverage2.cost());</span><br><span class="line">   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+<p>  输出结果为</p>
+<p> Espresso $ 1.99</p>
+<p> House Blend Coffee ,Mocha, Mocha, Whip $1.29</p>
+<p> 这样所有的代码就算完成了，总结说来，我们还应该记住一个新的设计原则<br> 即“类应该对扩展开放，对修改关闭”</p>
+<p> jdk中也有很多地方用到了装饰者设计模式， 例如JAVA I/O 中的API很多就采取了这种模式</p>
+<p> 下面是收集的一些比较好的有关于装饰者者模式的博文</p>
+<ol>
+<li>设计模式–装饰者模式思考</li>
+</ol>
+<p><a href="https://mrdear.cn/2018/03/08/experience/design_patterns--decorator_model/" target="_blank" rel="noopener">https://mrdear.cn/2018/03/08/experience/design_patterns--decorator_model/</a></p>
+<ol start="2">
+<li>JDK中的设计模式之装饰者模式</li>
+</ol>
+<p><a href="https://blog.csdn.net/kangkanglou/article/details/78744970" target="_blank" rel="noopener">https://blog.csdn.net/kangkanglou/article/details/78744970</a></p>
+<ol start="3">
+<li>Spring容器装饰者模式应用之实现业务类与服务类自由组合的解决方案</li>
+</ol>
+<p><a href="https://blog.csdn.net/a1314517love/article/details/47705327" target="_blank" rel="noopener">https://blog.csdn.net/a1314517love/article/details/47705327</a></p>
+<p>作者:lhsjohn</p>
+
+      
+    </div>
+	 阅读量<span id="busuanzi_value_page_pv"></span>
+    <footer>
+      
+        
+        
+
+      
+
+      <div class="clearfix"></div>
+	  
+    </footer>
+	
+
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2018-08-01T09:05:21.000Z"><a href="/2018/08/01/urllib2爬虫初级(二）/">2018-08-01</a></time>
       
       
@@ -213,70 +311,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-07-30T18:27:21.000Z"><a href="/2018/07/31/urllib2爬虫初级/">2018-07-31</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2018/07/31/urllib2爬虫初级/">urllib2爬虫初级 (一)</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>最近由于项目需要，难得需要获取网络上的一些数据，手动获取的话效率又太低，所以最近想要接触一下爬虫。<br>因为有一小部分java开发的经验，所以入门python并不是特别困难，大概看了半天的官方文档后，决定采用python爬虫来获取相关的数据。</p>
-<p>python 现在已经有了几个比较成熟的爬虫框架，如scrapy等，由于刚开始接触python以及python爬虫，我决定从比较底层的urllib2 入手。</p>
-<p>爬虫，简单说来就是通过程序模拟浏览器请求站点的行为，把站点返回的HTML代码/JSON数据/二进制数据（图片、视频） 爬到本地，进而提取自己需要的数据，存放起来使用。</p>
-<p>我使用爬虫的目的很简单，就是获取数据。</p>
-<p>爬虫的一般流程为<br>1.发起请求 也就是模仿浏览器，发送一个Request，一般包含请求头和请求体的部分。<br>2.获取响应的内容<br>3.解析内容<br>4.保存数据(可以存在mysql这种关系型数据库中，但现在非常火的分布式爬虫经常使用redis、mogodb等非关系型数据库，极大提高了数据处理的性能)</p>
-<p>同时推荐一个比较好用的抓包工具Fiddler</p>
-<p>还有谷歌的代理请求插件Proxy SwitchyOmega</p>
-<p>初级练习爬虫的话基本上都是结合着这两个工具来的</p>
-<p>然后自己就跟着做了一个用url2初级爬虫的练习，可以爬取百度贴吧的一些信息，并保存下来为html文件<br>（刚开始入门，并没有考虑到反 反爬虫）</p>
-<p>下面安利一波代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># -*- coding:utf-8 -*-</span><br><span class="line"></span><br><span class="line">import urllib</span><br><span class="line">import urllib2</span><br><span class="line"></span><br><span class="line">def loadPage(url, filename):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">        作用：根据url发送请求，获取服务器响应文件</span><br><span class="line">        url: 需要爬取的url地址</span><br><span class="line">        filename : 处理的文件名</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    print &quot;正在下载 &quot; + filename</span><br><span class="line">    headers = &#123;&quot;User-Agent&quot; : &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11&quot;&#125;</span><br><span class="line"></span><br><span class="line">    request = urllib2.Request(url, headers = headers)</span><br><span class="line">    return urllib2.urlopen(request).read()</span><br><span class="line"></span><br><span class="line">def writePage(html, filename):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">        作用：将html内容写入到本地</span><br><span class="line">        html：服务器相应文件内容</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    print &quot;正在保存 &quot; + filename</span><br><span class="line">    # 文件写入</span><br><span class="line">    with open(filename, &quot;w&quot;) as f:</span><br><span class="line">        f.write(html)</span><br><span class="line">    print &quot;-&quot; * 30</span><br><span class="line"></span><br><span class="line">def tiebaSpider(url, beginPage, endPage):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">        作用：贴吧爬虫调度器，负责组合处理每个页面的url</span><br><span class="line">        url : 贴吧url的前部分</span><br><span class="line">        beginPage : 起始页</span><br><span class="line">        endPage : 结束页</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    for page in range(beginPage, endPage + 1):</span><br><span class="line">        pn = (page - 1) * 50</span><br><span class="line">        filename = &quot;the&quot; + str(page) + &quot;.html&quot;</span><br><span class="line">        fullurl = url + &quot;&amp;pn=&quot; + str(pn)</span><br><span class="line">        #print fullurl</span><br><span class="line">        html = loadPage(fullurl, filename)</span><br><span class="line">        #print html</span><br><span class="line">        writePage(html, filename)</span><br><span class="line">        print &quot;谢谢使用&quot;</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    kw = raw_input(&quot;请输入需要爬取的贴吧名:&quot;)</span><br><span class="line">    beginPage = int(raw_input(&quot;请输入起始页：&quot;))</span><br><span class="line">    endPage = int(raw_input(&quot;请输入结束页：&quot;))</span><br><span class="line"></span><br><span class="line">    url = &quot;http://tieba.baidu.com/f?&quot;</span><br><span class="line">    key = urllib.urlencode(&#123;&quot;kw&quot;: kw&#125;)</span><br><span class="line">    fullurl = url + key</span><br><span class="line">    </span><br><span class="line">    tiebaSpider(fullurl, beginPage, endPage)</span><br></pre></td></tr></table></figure>
-<p>下面是运行的效果<br>首先你要输入你想要爬取的关键信息，例如我想爬python吧的一些内容，我就直接输入python了。<br>接下来输入要爬取的页码的范围，例如这里我输入的是1-1,即我只爬取第一页。<br><img src="/images/2018-07-31-1.png" alt=""></p>
-<p>爬取成功之后便会生成一个html文件，里面便存放了你所要爬取的内容。</p>
-<p><img src="/images/2018-07-31-2.png" alt=""></p>
-<p>然后一个简单的贴吧爬虫就完成了。。。</p>
-<p>再次强调这里使用的是最基本的爬虫，并没有考虑到个别网站的反爬虫措施，也没有分布式的存储，仅仅是通过一个小程序完成爬虫原理的小入门。</p>
-<p>当然java也有比较成熟的爬虫封装，例如使用HttpClient的jar包等来实现基本的http操作。</p>
-<p>但比较而来，python的爬虫更为简洁，而java爬虫比较好维护。</p>
-<p>总而言之，爬虫之路还有走很久，一些东西需要自己不断摸索，<br>只苦逼做项目数据也得自己来搞 orz</p>
-<p>太肝了，做完这个记录就滚去睡觉吧</p>
-<p>作者：lhsjohn</p>
-
-      
-    </div>
-	 阅读量<span id="busuanzi_value_page_pv"></span>
-    <footer>
-      
-        
-        
-
-      
-
-      <div class="clearfix"></div>
-	  
-    </footer>
-	
-
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
 
 <nav id="pagination">
   
@@ -300,17 +334,17 @@
   
     <li><a href="/categories/Diary/">Diary</a><small>3</small></li>
   
-    <li><a href="/categories/设计模式/java/">java</a><small>2</small></li>
+    <li><a href="/categories/设计模式/java/">java</a><small>3</small></li>
   
     <li><a href="/categories/爬虫/python/">python</a><small>2</small></li>
   
-    <li><a href="/categories/设计模式/java/学习/">学习</a><small>2</small></li>
+    <li><a href="/categories/设计模式/java/学习/">学习</a><small>3</small></li>
   
     <li><a href="/categories/爬虫/">爬虫</a><small>2</small></li>
   
     <li><a href="/categories/观后感/">观后感</a><small>1</small></li>
   
-    <li><a href="/categories/设计模式/">设计模式</a><small>2</small></li>
+    <li><a href="/categories/设计模式/">设计模式</a><small>3</small></li>
   
     <li><a href="/categories/随笔/">随笔</a><small>1</small></li>
   
@@ -322,7 +356,7 @@
 <div class="widget tagcloud">
   <h3 class="title">Tag Cloud</h3>
   <div class="entry">
-    <a href="/tags/Python环境搭建/" style="font-size: 10px;">Python环境搭建</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/喜剧/" style="font-size: 10px;">喜剧</a> <a href="/tags/影评/" style="font-size: 10px;">影评</a> <a href="/tags/心得/" style="font-size: 20px;">心得</a> <a href="/tags/技术/" style="font-size: 15px;">技术</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/杂谈/" style="font-size: 15px;">杂谈</a> <a href="/tags/爬虫/" style="font-size: 15px;">爬虫</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a>
+    <a href="/tags/Python环境搭建/" style="font-size: 10px;">Python环境搭建</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/喜剧/" style="font-size: 10px;">喜剧</a> <a href="/tags/影评/" style="font-size: 10px;">影评</a> <a href="/tags/心得/" style="font-size: 20px;">心得</a> <a href="/tags/技术/" style="font-size: 15px;">技术</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/杂谈/" style="font-size: 15px;">杂谈</a> <a href="/tags/爬虫/" style="font-size: 15px;">爬虫</a> <a href="/tags/设计模式/" style="font-size: 20px;">设计模式</a>
   </div>
 </div>
 
