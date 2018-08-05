@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>threadqiushi.py | lhsjohn的博客</title>
+  <meta name="author" content="lhsjohn">
+  
+  <meta name="description" content="好记性不如烂键盘">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="threadqiushi.py"/>
+  <meta property="og:site_name" content="lhsjohn的博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+  <link rel="stylesheet" href="https://oindk07nf.qnssl.com/atom-one-dark.css" media="screen" type="text/css">
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="lhsjohn的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">lhsjohn的博客</a></h1>
+  <h2><a href="/">对未来的真正慷慨，是把一切献给现在</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="//">首页</a></li>
+    
+      <li><a href="//archives">归档</a></li>
+    
+      <li><a href="//about">关于</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-08-05T16:36:03.000Z"><a href="/2018/08/06/threadqiushi.py/">2018-08-06</a></time>
+      
+      
+  
+    <h1 class="title">threadqiushi.py</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># -*- coding:utf-8 -*-</span><br><span class="line"></span><br><span class="line"># 使用了线程库</span><br><span class="line">import threading</span><br><span class="line"># 队列</span><br><span class="line">from Queue import Queue</span><br><span class="line"># 解析库</span><br><span class="line">from lxml import etree</span><br><span class="line"># 请求处理</span><br><span class="line">import requests</span><br><span class="line"># json处理</span><br><span class="line">import json</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">class ThreadCrawl(threading.Thread):</span><br><span class="line">    def __init__(self, threadName, pageQueue, dataQueue):</span><br><span class="line">        #threading.Thread.__init__(self)</span><br><span class="line">        # 调用父类初始化方法</span><br><span class="line">        super(ThreadCrawl, self).__init__()</span><br><span class="line">        # 线程名</span><br><span class="line">        self.threadName = threadName</span><br><span class="line">        # 页码队列</span><br><span class="line">        self.pageQueue = pageQueue</span><br><span class="line">        # 数据队列</span><br><span class="line">        self.dataQueue = dataQueue</span><br><span class="line">        # 请求报头</span><br><span class="line">        self.headers = &#123;&quot;User-Agent&quot; : &quot;Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0;&quot;&#125;</span><br><span class="line"></span><br><span class="line">    def run(self):</span><br><span class="line">        print &quot;启动 &quot; + self.threadName</span><br><span class="line">        while not CRAWL_EXIT:</span><br><span class="line">            try:</span><br><span class="line">                # 取出一个数字，先进先出</span><br><span class="line">                # 可选参数block，默认值为True</span><br><span class="line">                #1. 如果对列为空，block为True的话，不会结束，会进入阻塞状态，直到队列有新的数据</span><br><span class="line">                #2. 如果队列为空，block为False的话，就弹出一个Queue.empty()异常，</span><br><span class="line">                page = self.pageQueue.get(False)</span><br><span class="line">                url = &quot;http://www.qiushibaike.com/8hr/page/&quot; + str(page) +&quot;/&quot;</span><br><span class="line">                #print url</span><br><span class="line">                content = requests.get(url, headers = self.headers).text</span><br><span class="line">                time.sleep(1)</span><br><span class="line">                self.dataQueue.put(content)</span><br><span class="line">                #print len(content)</span><br><span class="line">            except:</span><br><span class="line">                pass</span><br><span class="line">        print &quot;结束 &quot; + self.threadName</span><br><span class="line"></span><br><span class="line">class ThreadParse(threading.Thread):</span><br><span class="line">    def __init__(self, threadName, dataQueue, filename, lock):</span><br><span class="line">        super(ThreadParse, self).__init__()</span><br><span class="line">        # 线程名</span><br><span class="line">        self.threadName = threadName</span><br><span class="line">        # 数据队列</span><br><span class="line">        self.dataQueue = dataQueue</span><br><span class="line">        # 保存解析后数据的文件名</span><br><span class="line">        self.filename = filename</span><br><span class="line">        # 锁</span><br><span class="line">        self.lock = lock</span><br><span class="line"></span><br><span class="line">    def run(self):</span><br><span class="line">        print &quot;启动&quot; + self.threadName</span><br><span class="line">        while not PARSE_EXIT:</span><br><span class="line">            try:</span><br><span class="line">                html = self.dataQueue.get(False)</span><br><span class="line">                self.parse(html)</span><br><span class="line">            except:</span><br><span class="line">                pass</span><br><span class="line">        print &quot;退出&quot; + self.threadName</span><br><span class="line"></span><br><span class="line">    def parse(self, html):</span><br><span class="line">        # 解析为HTML DOM</span><br><span class="line">        html = etree.HTML(html)</span><br><span class="line"></span><br><span class="line">        node_list = html.xpath(&apos;//div[contains(@id, &quot;qiushi_tag&quot;)]&apos;)</span><br><span class="line"></span><br><span class="line">        for node in node_list:</span><br><span class="line">            # xpath返回的列表，这个列表就这一个参数，用索引方式取出来，用户名</span><br><span class="line">            username = node.xpath(&apos;./div/a/@title&apos;)[0]</span><br><span class="line">            # 图片连接</span><br><span class="line">            image = node.xpath(&apos;.//div[@class=&quot;thumb&quot;]//@src&apos;)#[0]</span><br><span class="line">            # 取出标签下的内容,段子内容</span><br><span class="line">            content = node.xpath(&apos;.//div[@class=&quot;content&quot;]/span&apos;)[0].text</span><br><span class="line">            # 取出标签里包含的内容，点赞</span><br><span class="line">            zan = node.xpath(&apos;.//i&apos;)[0].text</span><br><span class="line">            # 评论</span><br><span class="line">            comments = node.xpath(&apos;.//i&apos;)[1].text</span><br><span class="line"></span><br><span class="line">            items = &#123;</span><br><span class="line">                &quot;username&quot; : username,</span><br><span class="line">                &quot;image&quot; : image,</span><br><span class="line">                &quot;content&quot; : content,</span><br><span class="line">                &quot;zan&quot; : zan,</span><br><span class="line">                &quot;comments&quot; : comments</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            # with 后面有两个必须执行的操作：__enter__ 和 _exit__</span><br><span class="line">            # 不管里面的操作结果如何，都会执行打开、关闭</span><br><span class="line">            # 打开锁、处理内容、释放锁</span><br><span class="line">            with self.lock:</span><br><span class="line">                # 写入存储的解析后的数据</span><br><span class="line">                self.filename.write(json.dumps(items, ensure_ascii = False).encode(&quot;utf-8&quot;) + &quot;\n&quot;)</span><br><span class="line"></span><br><span class="line">CRAWL_EXIT = False</span><br><span class="line">PARSE_EXIT = False</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    # 页码的队列，表示20个页面</span><br><span class="line">    pageQueue = Queue(20)</span><br><span class="line">    # 放入1~10的数字，先进先出</span><br><span class="line">    for i in range(1, 21):</span><br><span class="line">        pageQueue.put(i)</span><br><span class="line"></span><br><span class="line">    # 采集结果(每页的HTML源码)的数据队列，参数为空表示不限制</span><br><span class="line">    dataQueue = Queue()</span><br><span class="line"></span><br><span class="line">    filename = open(&quot;duanzi.json&quot;, &quot;a&quot;)</span><br><span class="line">    # 创建锁</span><br><span class="line">    lock = threading.Lock()</span><br><span class="line"></span><br><span class="line">    # 三个采集线程的名字</span><br><span class="line">    crawlList = [&quot;采集线程1号&quot;, &quot;采集线程2号&quot;, &quot;采集线程3号&quot;]</span><br><span class="line">    # 存储三个采集线程的列表集合</span><br><span class="line">    threadcrawl = []</span><br><span class="line">    for threadName in crawlList:</span><br><span class="line">        thread = ThreadCrawl(threadName, pageQueue, dataQueue)</span><br><span class="line">        thread.start()</span><br><span class="line">        threadcrawl.append(thread)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    # 三个解析线程的名字</span><br><span class="line">    parseList = [&quot;解析线程1号&quot;,&quot;解析线程2号&quot;,&quot;解析线程3号&quot;]</span><br><span class="line">    # 存储三个解析线程</span><br><span class="line">    threadparse = []</span><br><span class="line">    for threadName in parseList:</span><br><span class="line">        thread = ThreadParse(threadName, dataQueue, filename, lock)</span><br><span class="line">        thread.start()</span><br><span class="line">        threadparse.append(thread)</span><br><span class="line"></span><br><span class="line">    # 等待pageQueue队列为空，也就是等待之前的操作执行完毕</span><br><span class="line">    while not pageQueue.empty():</span><br><span class="line">        pass</span><br><span class="line"></span><br><span class="line">    # 如果pageQueue为空，采集线程退出循环</span><br><span class="line">    global CRAWL_EXIT</span><br><span class="line">    CRAWL_EXIT = True</span><br><span class="line"></span><br><span class="line">    print &quot;pageQueue为空&quot;</span><br><span class="line"></span><br><span class="line">    for thread in threadcrawl:</span><br><span class="line">        thread.join()</span><br><span class="line">        print &quot;1&quot;</span><br><span class="line"></span><br><span class="line">    while not dataQueue.empty():</span><br><span class="line">        pass</span><br><span class="line"></span><br><span class="line">    global PARSE_EXIT</span><br><span class="line">    PARSE_EXIT = True</span><br><span class="line"></span><br><span class="line">    for thread in threadparse:</span><br><span class="line">        thread.join()</span><br><span class="line">        print &quot;2&quot;</span><br><span class="line"></span><br><span class="line">    with lock:</span><br><span class="line">        # 关闭文件</span><br><span class="line">        filename.close()</span><br><span class="line">    print &quot;谢谢使用！&quot;</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+	 阅读量<span id="busuanzi_value_page_pv"></span>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/爬虫/">爬虫</a>, <a href="/categories/爬虫/python/">python</a>, <a href="/categories/爬虫/python/学习/">学习</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/爬虫/">爬虫</a>, <a href="/tags/python/">python</a>, <a href="/tags/多线程/">多线程</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+
+      <div class="clearfix"></div>
+	  
+    </footer>
+	
+
+  </div>
+</article>
+
+
+
+
+<nav id="pagination" >
+    
+    
+    <a href="/2018/08/05/生活带有主观性二刷《当幸福来敲门》/" class="alignright next" >Next</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<!-- 多说评论框 start -->
+ <div class="ds-thread" data-thread-key="/2018/08/06/threadqiushi.py/" data-title="threadqiushi.py" data-url="https://www.lhsblog.cn/2018/08/06/threadqiushi.py/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"szcx"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+<section id="comment">
+</section>
+
+
+
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:www.lhsblog.cn">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Diary/">Diary</a><small>3</small></li>
+  
+    <li><a href="/categories/设计模式/java/">java</a><small>3</small></li>
+  
+    <li><a href="/categories/爬虫/python/">python</a><small>4</small></li>
+  
+    <li><a href="/categories/爬虫/python/学习/">学习</a><small>2</small></li>
+  
+    <li><a href="/categories/设计模式/java/学习/">学习</a><small>3</small></li>
+  
+    <li><a href="/categories/爬虫/">爬虫</a><small>4</small></li>
+  
+    <li><a href="/categories/观后感/">观后感</a><small>2</small></li>
+  
+    <li><a href="/categories/设计模式/">设计模式</a><small>3</small></li>
+  
+    <li><a href="/categories/随笔/">随笔</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/Python环境搭建/" style="font-size: 10px;">Python环境搭建</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/励志/" style="font-size: 10px;">励志</a> <a href="/tags/喜剧/" style="font-size: 10px;">喜剧</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/影评/" style="font-size: 12.5px;">影评</a> <a href="/tags/心得/" style="font-size: 15px;">心得</a> <a href="/tags/技术/" style="font-size: 12.5px;">技术</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/杂谈/" style="font-size: 15px;">杂谈</a> <a href="/tags/爬虫/" style="font-size: 17.5px;">爬虫</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a>
+  </div>
+</div>
+
+
+  
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=6445624710&verifier=dabbb540&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2018 lhsjohn
+  
+</div>
+<div class="clearfix"></div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
