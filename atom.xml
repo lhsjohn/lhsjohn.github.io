@@ -56,9 +56,9 @@
       <category term="ActiveMQ" scheme="https://www.lhsblog.cn/categories/ActiveMQ/"/>
     
     
-      <category term="ActiveMQ" scheme="https://www.lhsblog.cn/tags/ActiveMQ/"/>
-    
       <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
+    
+      <category term="ActiveMQ" scheme="https://www.lhsblog.cn/tags/ActiveMQ/"/>
     
   </entry>
   
@@ -84,9 +84,9 @@
     </summary>
     
     
-      <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
-    
       <category term="solr+zookeeper" scheme="https://www.lhsblog.cn/tags/solr-zookeeper/"/>
+    
+      <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
     
       <category term="linux" scheme="https://www.lhsblog.cn/tags/linux/"/>
     
@@ -564,9 +564,9 @@
       <category term="Diary" scheme="https://www.lhsblog.cn/categories/Diary/"/>
     
     
-      <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
-    
       <category term="心得" scheme="https://www.lhsblog.cn/tags/%E5%BF%83%E5%BE%97/"/>
+    
+      <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
     
       <category term="技术" scheme="https://www.lhsblog.cn/tags/%E6%8A%80%E6%9C%AF/"/>
     
