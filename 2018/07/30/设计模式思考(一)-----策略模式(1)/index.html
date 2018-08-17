@@ -511,9 +511,9 @@ Public class Squeak implements QuackBehavior{
     System.out.println(“Squeak”);
  }
 </code></pre><p> }</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##下面我们给这些Duck动态设定行为</span><br><span class="line">##在Duck 类中加入两个新的方法</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#下面我们给这些Duck动态设定行为</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#在Duck 类中加入两个新的方法</span></span></span><br></pre></td></tr></table></figure>
 <p>   Public void setFlyBehavior (FlyBehavior fb)<br> {<br>      flyBehavior=fb;<br> }</p>
-<p>Public void setQuackBehavior (QuackBehavior qb)<br> {<br>       quackBehavior =qb;<br> }<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">##创建一个新的鸭子,模型鸭。</span><br></pre></td></tr></table></figure></p>
+<p>Public void setQuackBehavior (QuackBehavior qb)<br> {<br>       quackBehavior =qb;<br> }<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#创建一个新的鸭子,模型鸭。</span></span></span><br></pre></td></tr></table></figure></p>
 <p>   Public class ModelDuck extends Duck{</p>
 <pre><code> Public ModelDuck(){
      flyBehavior =new FlyNoWay();
@@ -524,9 +524,9 @@ Public class Squeak implements QuackBehavior{
    System.out.println(“我是模型鸭”);
 }
 </code></pre><p> }</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">##建立一个新的FlyBehavior 类型</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#建立一个新的FlyBehavior 类型</span></span></span><br></pre></td></tr></table></figure>
 <p>  Public class FlyRocketPowered implements FlyBehavior {<br>     Public void fly(){<br>        System.out.println(“我是火箭驱动飞行的”);<br>     }<br> }</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">##测试类进行测试</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#测试类进行测试</span></span></span><br></pre></td></tr></table></figure>
 <p>   Public class TestDuck(){<br>     Public static void main(String[] args){<br>           Duck model=new ModelDuck();<br>        //第一次调用performFly()会被委托给flyBehavior对象，也就是FlyNoWay的实例，该对象<br>        //是在模型鸭构造器中设置的<br>          Model.performFly();<br>        //这里调用继承来的setter方法，给它指定特定的飞行行为<br>           Model.setFlyBehavior(new FlyRocketPowered());<br>           Model.performFly();<br>    }<br> }<br><code>`</code></p>
 <h2 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h2><h3 id="控制台输出"><a href="#控制台输出" class="headerlink" title="控制台输出"></a>控制台输出</h3><pre><code>我不会飞
 我是火箭驱动飞行的
@@ -708,10 +708,10 @@ var jiathis_config={
               
               
               <div class="site-state-item site-state-tags">
-                
+                <a href="/tags/index.html">
                   <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">tags</span>
-                
+                </a>
               </div>
             
 
