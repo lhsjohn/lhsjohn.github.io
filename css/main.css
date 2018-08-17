@@ -88,7 +88,6 @@ figure {
   margin: 1em 40px;
 }
 hr {
-  -moz-box-sizing: content-box;
   box-sizing: content-box;
   height: 0;
 }
@@ -147,9 +146,7 @@ input[type="number"]::-webkit-outer-spin-button {
   height: auto;
 }
 input[type="search"] {
-  -webkit-appearance: textfield; /* 1 */
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box; /* 2 */
+  -webkit-appearance: textfield; /* 1 */ /* 2 */
   box-sizing: content-box;
 }
 input[type="search"]::-webkit-search-cancel-button,
@@ -178,6 +175,10 @@ table {
 td,
 th {
   padding: 0;
+}
+::-moz-selection {
+  background: #262a30;
+  color: #fff;
 }
 ::selection {
   background: #262a30;
@@ -867,6 +868,7 @@ pre .javascript .function {
 .post-body .tabs ul.nav-tabs {
   margin: 0;
   padding: 0;
+  display: -ms-flexbox;
   display: flex;
   margin-bottom: -1px;
 }
@@ -1245,11 +1247,6 @@ pre .javascript .function {
 .post-sticky-flag {
   display: inline-block;
   font-size: 16px;
-  -ms-transform: rotate(30deg);
-  -webkit-transform: rotate(30deg);
-  -moz-transform: rotate(30deg);
-  -ms-transform: rotate(30deg);
-  -o-transform: rotate(30deg);
   transform: rotate(30deg);
 }
 .use-motion .post-block,
@@ -1265,6 +1262,16 @@ pre .javascript .function {
 }
 .use-motion .collection-title {
   opacity: 0;
+}
+.post-body p a {
+  color: #0593d3;
+  border-bottom: none;
+  border-bottom: 1px solid #0593d3;
+}
+.post-body p a:hover {
+  color: #fc6423;
+  border-bottom: none;
+  border-bottom: 1px solid #fc6423;
 }
 .posts-expand {
   padding-top: 40px;
@@ -1474,10 +1481,6 @@ pre .javascript .function {
   left: 0;
   background-color: #000;
   visibility: hidden;
-  -webkit-transform: scaleX(0);
-  -moz-transform: scaleX(0);
-  -ms-transform: scaleX(0);
-  -o-transform: scaleX(0);
   transform: scaleX(0);
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
@@ -1485,10 +1488,6 @@ pre .javascript .function {
 }
 .posts-expand .post-title-link:hover::before {
   visibility: visible;
-  -webkit-transform: scaleX(1);
-  -moz-transform: scaleX(1);
-  -ms-transform: scaleX(1);
-  -o-transform: scaleX(1);
   transform: scaleX(1);
 }
 .posts-expand .post-title-link .fa {
@@ -1822,7 +1821,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #58dded;
+  background: #cdffff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2337,11 +2336,6 @@ pre .javascript .function {
   position: absolute;
   left: 50%;
   top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   color: #ccc;
 }
@@ -2496,10 +2490,6 @@ pre .javascript .function {
   padding: 15px 0 15px 10px;
 }
 #schedule ul#event-list li.event-now h2.event-summary:before {
-  -webkit-transform: scale(1.2);
-  -moz-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  -o-transform: scale(1.2);
   transform: scale(1.2);
   color: #fff;
   animation: dot-flash 1s alternate infinite ease-in-out;
@@ -2507,75 +2497,13 @@ pre .javascript .function {
 #schedule ul#event-list li.event-now * {
   color: #fff !important;
 }
-@-moz-keyframes dot-flash {
-  from {
-    opacity: 1;
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    -o-transform: scale(1.1);
-    transform: scale(1.1);
-  }
-  to {
-    opacity: 0;
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    -o-transform: scale(1);
-    transform: scale(1);
-  }
-}
-@-webkit-keyframes dot-flash {
-  from {
-    opacity: 1;
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    -o-transform: scale(1.1);
-    transform: scale(1.1);
-  }
-  to {
-    opacity: 0;
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    -o-transform: scale(1);
-    transform: scale(1);
-  }
-}
-@-o-keyframes dot-flash {
-  from {
-    opacity: 1;
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    -o-transform: scale(1.1);
-    transform: scale(1.1);
-  }
-  to {
-    opacity: 0;
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    -o-transform: scale(1);
-    transform: scale(1);
-  }
-}
 @keyframes dot-flash {
   from {
     opacity: 1;
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    -o-transform: scale(1.1);
     transform: scale(1.1);
   }
   to {
     opacity: 0;
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    -o-transform: scale(1);
     transform: scale(1);
   }
 }
