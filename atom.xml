@@ -86,9 +86,9 @@
     
       <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
     
-      <category term="solr+zookeeper" scheme="https://www.lhsblog.cn/tags/solr-zookeeper/"/>
-    
       <category term="linux" scheme="https://www.lhsblog.cn/tags/linux/"/>
+    
+      <category term="solr+zookeeper" scheme="https://www.lhsblog.cn/tags/solr-zookeeper/"/>
     
   </entry>
   
@@ -129,9 +129,9 @@
     
       <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
     
-      <category term="linux" scheme="https://www.lhsblog.cn/tags/linux/"/>
-    
       <category term="fastdfs" scheme="https://www.lhsblog.cn/tags/fastdfs/"/>
+    
+      <category term="linux" scheme="https://www.lhsblog.cn/tags/linux/"/>
     
   </entry>
   
