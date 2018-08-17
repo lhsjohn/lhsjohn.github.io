@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/header.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java,linux,fastdfs," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="lhsjohn的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="FastDFS是C语言开发，建议在linux上运行，下面使用Centos6.4作为安装环境。安装FastDFS需要先将官网下载的源码进行编译，编译依赖gcc环境，如果没有gcc环境，需要安装gcc：yum install gcc-c++ 安装libeventFastDFS依赖libevent库，需要安装： yum -y install libevent 安装libfastcommonlibfast">
+<meta name="keywords" content="java,linux,fastdfs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="fastdfs">
+<meta property="og:url" content="https://www.lhsblog.cn/2018/08/11/fastdfs/index.html">
+<meta property="og:site_name" content="lhsjohn的博客">
+<meta property="og:description" content="FastDFS是C语言开发，建议在linux上运行，下面使用Centos6.4作为安装环境。安装FastDFS需要先将官网下载的源码进行编译，编译依赖gcc环境，如果没有gcc环境，需要安装gcc：yum install gcc-c++ 安装libeventFastDFS依赖libevent库，需要安装： yum -y install libevent 安装libfastcommonlibfast">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2018-08-17T10:08:27.498Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="fastdfs">
+<meta name="twitter:description" content="FastDFS是C语言开发，建议在linux上运行，下面使用Centos6.4作为安装环境。安装FastDFS需要先将官网下载的源码进行编译，编译依赖gcc环境，如果没有gcc环境，需要安装gcc：yum install gcc-c++ 安装libeventFastDFS依赖libevent库，需要安装： yum -y install libevent 安装libfastcommonlibfast">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":10,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.lhsblog.cn/2018/08/11/fastdfs/"/>
+
+
+
+
+
+  <title>fastdfs | lhsjohn的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lhsjohn的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">对未来的真正慷慨，是把一切献给现在</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于我">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lhsblog.cn/2018/08/11/fastdfs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lhsjohn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lhsjohn的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">fastdfs</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-11T11:17:16+08:00">
+                2018-08-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/fastdfs/" itemprop="url" rel="index">
+                    <span itemprop="name">fastdfs</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+         
+     <span class="post-meta-divider">|</span>
+     <span id="busuanzi_value_page_pv"></span>次阅读
+        
+		  
+		  
+		  
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>FastDFS是C语言开发，建议在linux上运行，下面使用Centos6.4作为安装环境。<br>安装FastDFS需要先将官网下载的源码进行编译，编译依赖gcc环境，如果没有gcc环境，需要安装gcc：yum install gcc-c++</p>
+<h2 id="安装libevent"><a href="#安装libevent" class="headerlink" title="安装libevent"></a>安装libevent</h2><p>FastDFS依赖libevent库，需要安装：</p>
+<p>yum -y install libevent</p>
+<h2 id="安装libfastcommon"><a href="#安装libfastcommon" class="headerlink" title="安装libfastcommon"></a>安装libfastcommon</h2><p>libfastcommon是FastDFS官方提供的，libfastcommon包含了FastDFS运行所需要的一些基础库。<br>将libfastcommonV1.0.7.tar.gz拷贝至/usr/local/下</p>
+<p>cd /usr/local</p>
+<p>tar -zxvf  libfastcommonV1.0.7.tar.gz</p>
+<p>cd libfastcommon-1.0.7<br>./make.sh</p>
+<p>./make.sh install</p>
+<p>注意：libfastcommon安装好后会自动将库文件拷贝至/usr/lib64下，由于FastDFS程序引用usr/lib目录所以需要将/usr/lib64下的库文件拷贝至/usr/lib下。</p>
+<h2 id="tracker编译安装"><a href="#tracker编译安装" class="headerlink" title="tracker编译安装"></a>tracker编译安装</h2><p>将FastDFS_v5.05.tar.gz拷贝至/usr/local/下</p>
+<p>tar -zxvf FastDFS_v5.05.tar.gz</p>
+<p>cd FastDFS</p>
+<p>./make.sh</p>
+<p>./make.sh install</p>
+<p>安装成功将安装目录下的conf下的文件拷贝到/etc/fdfs/下。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>安装成功后进入/etc/fdfs目录：<br>拷贝一份新的tracker配置文件：</p>
+<p>cp tracker.conf.sample tracker.conf</p>
+<p>修改tracker.conf<br>vi tracker.conf<br>base_path=/home/yuqing/FastDFS<br>改为：<br>base_path=/home/FastDFS</p>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>/usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf restart<br>启动的日志显示先停止5619进程（实际环境不是5619）</p>
+<h2 id="设置开机启动"><a href="#设置开机启动" class="headerlink" title="设置开机启动"></a>设置开机启动</h2><a id="more"></a>
+<p>vim /etc/rc.d/rc.local</p>
+<p>将运行命令行添加进文件：/usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf restart</p>
+<p>下面安装FastDFS-storage</p>
+<h2 id="安装libevent-1"><a href="#安装libevent-1" class="headerlink" title="安装libevent"></a>安装libevent</h2><p>同tracker</p>
+<h2 id="安装libfastcommon-1"><a href="#安装libfastcommon-1" class="headerlink" title="安装libfastcommon"></a>安装libfastcommon</h2><p>同tracker</p>
+<h2 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h2><p>安装成功后进入/etc/fdfs目录：</p>
+<p>拷贝一份新的storage配置文件：<br>cp storage.conf.sample storage.conf</p>
+<p>修改storage.conf</p>
+<p>vi storage.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">修改storage.conf</span><br><span class="line">vi storage.conf</span><br><span class="line">group_name=group1</span><br><span class="line">base_path=/home/yuqing/FastDFS改为：base_path=/home/FastDFS</span><br><span class="line">store_path0=/home/yuqing/FastDFS改为：store_path0=/home/FastDFS/fdfs_storage</span><br><span class="line">#如果有多个挂载磁盘则定义多个store_path，如下</span><br><span class="line">#store_path1=.....</span><br><span class="line">#store_path2=......</span><br><span class="line">tracker_server=192.168.101.3:22122   #配置tracker服务器:IP</span><br><span class="line">#如果有多个则配置多个tracker</span><br><span class="line">tracker_server=192.168.101.4:22122</span><br></pre></td></tr></table></figure>
+<h2 id="启动-1"><a href="#启动-1" class="headerlink" title="启动"></a>启动</h2><p>/usr/bin/fdfs_storaged /etc/fdfs/storage.conf restart</p>
+<p>设置开机启动</p>
+<p> vim /etc/rc.d/rc.local</p>
+<p> 将运行命令行添加进文件：/usr/bin/fdfs_storaged /etc/fdfs/storage.conf restart</p>
+<h2 id="tracker-conf"><a href="#tracker-conf" class="headerlink" title="tracker.conf"></a>tracker.conf</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br></pre></td><td class="code"><pre><span class="line">1 基本配置</span><br><span class="line">disable</span><br><span class="line">#func：配置是否生效</span><br><span class="line">#valu：true、false</span><br><span class="line">disable=false</span><br><span class="line">bind_addr</span><br><span class="line">#func：绑定IP</span><br><span class="line">#valu：IP地址</span><br><span class="line">bind_addr=192.168.6.102</span><br><span class="line">port</span><br><span class="line">#func：服务端口</span><br><span class="line">#valu：端口整数值</span><br><span class="line">port=22122</span><br><span class="line">connect_timeout</span><br><span class="line">#func：连接超时</span><br><span class="line">#valu：秒单位正整数值</span><br><span class="line">connect_timeout=30</span><br><span class="line">network_timeout</span><br><span class="line">#func：网络超时</span><br><span class="line">#valu：秒单位正整数值</span><br><span class="line">network_timeout=60</span><br><span class="line">base_path</span><br><span class="line">#func：Tracker数据/日志目录地址</span><br><span class="line">#valu：路径</span><br><span class="line">base_path=/home/michael/fdfs/base4tracker</span><br><span class="line">max_connections</span><br><span class="line">#func：最大连接数</span><br><span class="line">#valu：正整数值</span><br><span class="line">max_connections=256</span><br><span class="line">work_threads</span><br><span class="line">#func：线程数，通常设置CPU数</span><br><span class="line">#valu：正整数值</span><br><span class="line">work_threads=4</span><br><span class="line">store_lookup</span><br><span class="line">#func：上传文件的选组方式。</span><br><span class="line">#valu：0、1或2。</span><br><span class="line"># 0：表示轮询</span><br><span class="line"># 1：表示指定组</span><br><span class="line"># 2：表示存储负载均衡（选择剩余空间最大的组）</span><br><span class="line">store_lookup=2</span><br><span class="line">store_group</span><br><span class="line">#func：指定上传的组，如果在应用层指定了具体的组，那么这个参数将不会起效。另外如果store_lookup如果是0或2，则此参数无效。</span><br><span class="line">#valu：group1等</span><br><span class="line">store_group=group1</span><br><span class="line">store_server</span><br><span class="line">#func：上传服务器的选择方式。(一个文件被上传后，这个storage server就相当于这个文件的storage server源，会对同组的storage server推送这个文件达到同步效果)</span><br><span class="line">#valu：0、1或2</span><br><span class="line"># 0: 轮询方式（默认）</span><br><span class="line"># 1: 根据ip 地址进行排序选择第一个服务器（IP地址最小者）</span><br><span class="line"># 2: 根据优先级进行排序（上传优先级由storage server来设置，参数名为upload_priority），优先级值越小优先级越高。</span><br><span class="line">store_server=0</span><br><span class="line">store_path</span><br><span class="line">#func：上传路径的选择方式。storage server可以有多个存放文件的base path（可以理解为多个磁盘）。</span><br><span class="line">#valu：</span><br><span class="line"># 0: 轮流方式，多个目录依次存放文件</span><br><span class="line"># 2: 存储负载均衡。选择剩余空间最大的目录存放文件（注意：剩余磁盘空间是动态的，因此存储到的目录或磁盘可能也是变化的）</span><br><span class="line">store_path=0</span><br><span class="line">download_server</span><br><span class="line">#func：下载服务器的选择方式。</span><br><span class="line">#valu：</span><br><span class="line"># 0：轮询（默认）</span><br><span class="line"># 1：IP最小者</span><br><span class="line"># 2：优先级排序（值最小的，优先级最高。）</span><br><span class="line">download_server=0</span><br><span class="line">reserved_storage_space</span><br><span class="line">#func：保留空间值。如果某个组中的某个服务器的剩余自由空间小于设定值，则文件不会被上传到这个组。</span><br><span class="line">#valu：</span><br><span class="line"># G or g for gigabyte</span><br><span class="line"># M or m for megabyte</span><br><span class="line"># K or k for kilobyte</span><br><span class="line">reserved_storage_space=1GB</span><br><span class="line">log_level</span><br><span class="line">#func：日志级别</span><br><span class="line">#valu：</span><br><span class="line"># emerg for emergency</span><br><span class="line"># alert</span><br><span class="line"># crit for critical</span><br><span class="line"># error</span><br><span class="line"># warn for warning</span><br><span class="line"># notice</span><br><span class="line"># info for information</span><br><span class="line"># debug for debugging</span><br><span class="line">log_level=info</span><br><span class="line">run_by_group / run_by_user</span><br><span class="line">#func：指定运行该程序的用户组</span><br><span class="line">#valu：用户组名或空</span><br><span class="line">run_by_group=</span><br><span class="line"></span><br><span class="line">#func：</span><br><span class="line">#valu：</span><br><span class="line">run_by_user=</span><br><span class="line">allow_hosts</span><br><span class="line">#func：可以连接到tracker server的ip范围。可设定多个值。</span><br><span class="line">#valu</span><br><span class="line">allow_hosts=</span><br><span class="line">check_active_interval</span><br><span class="line">#func：检测 storage server 存活的时间隔，单位为秒。</span><br><span class="line">#      storage server定期向tracker server 发心跳，</span><br><span class="line">#      如果tracker server在一个check_active_interval内还没有收到storage server的一次心跳，</span><br><span class="line">#      那边将认为该storage server已经下线。所以本参数值必须大于storage server配置的心跳时间间隔。</span><br><span class="line">#      通常配置为storage server心跳时间间隔的2倍或3倍。</span><br><span class="line">check_active_interval=120</span><br><span class="line">thread_stack_size</span><br><span class="line">#func：设定线程栈的大小。 线程栈越大，一个线程占用的系统资源就越多。</span><br><span class="line">#      如果要启动更多的线程（V1.x对应的参数为max_connections，V2.0为work_threads），可以适当降低本参数值。</span><br><span class="line">#valu：如64KB，默认值为64，tracker server线程栈不应小于64KB</span><br><span class="line">thread_stack_size=64KB</span><br><span class="line">storage_ip_changed_auto_adjust</span><br><span class="line">#func：这个参数控制当storage server IP地址改变时，集群是否自动调整。注：只有在storage server进程重启时才完成自动调整。</span><br><span class="line">#valu：true或false</span><br><span class="line">storage_ip_changed_auto_adjust=true</span><br><span class="line">2 同步</span><br><span class="line">storage_sync_file_max_delay</span><br><span class="line">#func：同组storage服务器之间同步的最大延迟时间。存储服务器之间同步文件的最大延迟时间，根据实际情况进行调整</span><br><span class="line">#valu：秒为单位，默认值为1天（24*3600）</span><br><span class="line">#sinc：v2.0</span><br><span class="line">storage_sync_file_max_delay=86400</span><br><span class="line">storage_sync_file_max_time</span><br><span class="line">#func：存储服务器同步一个文件需要消耗的最大时间，缺省为300s，即5分钟。</span><br><span class="line">#sinc：v2.0</span><br><span class="line">storage_sync_file_max_time=300</span><br><span class="line">sync_log_buff_interval</span><br><span class="line">#func：同步或刷新日志信息到硬盘的时间间隔。注意：tracker server 的日志不是时时写硬盘的，而是先写内存。</span><br><span class="line">#valu：以秒为单位</span><br><span class="line">sync_log_buff_interval=10</span><br><span class="line">3 trunk 和 slot</span><br><span class="line">#func：是否使用trunk文件来存储几个小文件</span><br><span class="line">#valu：true或false</span><br><span class="line">#sinc：v3.0</span><br><span class="line">use_trunk_file=false</span><br><span class="line"></span><br><span class="line">#func：最小slot大小</span><br><span class="line">#valu：&lt;= 4KB，默认为256字节</span><br><span class="line">#sinc：v3.0</span><br><span class="line">slot_min_size=256</span><br><span class="line"></span><br><span class="line">#func：最大slot大小</span><br><span class="line">#valu：&gt;= slot_min_size，当小于这个值的时候就存储到trunk file中。默认为16MB。</span><br><span class="line">#sinc：v3.0</span><br><span class="line">slot_max_size=16MB</span><br><span class="line"></span><br><span class="line">#func：trunk file的size</span><br><span class="line">#valu：&gt;= 4MB，默认为64MB</span><br><span class="line">#sinc：v3.0</span><br><span class="line">trunk_file_size=64MB</span><br><span class="line">4 HTTP 相关</span><br><span class="line">是否启用 HTTP</span><br><span class="line">#func：HTTP是否生效</span><br><span class="line">#valu：true或false</span><br><span class="line">http.disabled=false</span><br><span class="line">HTTP 服务器端口号</span><br><span class="line">#func：tracker server上的http port</span><br><span class="line">#valu：</span><br><span class="line">#note：只有http.disabled=false时才生效</span><br><span class="line">http.server_port=7271</span><br><span class="line">检查Storage存活状态的间隔时间（心跳检测）</span><br><span class="line">#func：检查storage http server存活的间隔时间</span><br><span class="line">#valu：单位为秒</span><br><span class="line">#note：只有http.disabled=false时才生效</span><br><span class="line">http.check_alive_interval=30</span><br><span class="line">心跳检测使用的协议方式</span><br><span class="line">#func：检查storage http server存活的方式</span><br><span class="line">#valu：</span><br><span class="line"># tcp：连接到storage server的http端口，不进行request和response。</span><br><span class="line"># http：storage check alive url must return http status 200.</span><br><span class="line">#note：只有http.disabled=false时才生效</span><br><span class="line">http.check_alive_type=tcp</span><br><span class="line">检查 Storage 状态的 URI</span><br><span class="line">#func：检查storage http server是否alive的uri/url</span><br><span class="line">#note：只有http.disabled=false时才生效</span><br><span class="line">http.check_alive_uri=/status.html</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/fastdfs/" rel="tag"># fastdfs</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/08/Pom文件/" rel="next" title="Pom文件">
+                <i class="fa fa-chevron-left"></i> Pom文件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/14/SolrCloud，一个分布式搜索方案/" rel="prev" title="SolrCloud，一个分布式搜索方案">
+                SolrCloud，一个分布式搜索方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="lhsjohn" />
+            
+              <p class="site-author-name" itemprop="name">lhsjohn</p>
+              <p class="site-description motion-element" itemprop="description">对未来的真正慷慨，是把一切献给现在</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lhsjohn</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+<div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+<!-- 页面点击小红心 -->
+ <script type="text/javascript" src="/js/src/clicklove.js"></script>
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
