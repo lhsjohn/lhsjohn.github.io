@@ -53,13 +53,13 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/header.jpg?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpg?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpg?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -91,7 +91,7 @@
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https://www.lhsblog.cn/images/2018-07-31-1.png">
 <meta property="og:image" content="https://www.lhsblog.cn/images/2018-07-31-2.png">
-<meta property="og:updated_time" content="2018-08-01T10:10:08.704Z">
+<meta property="og:updated_time" content="2018-08-17T10:09:45.727Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="urllib2爬虫初级 (一)">
 <meta name="twitter:description" content="最近由于项目需要，难得需要获取网络上的一些数据，手动获取的话效率又太低，所以最近想要接触一下爬虫。因为有一小部分java开发的经验，所以入门python并不是特别困难，大概看了半天的官方文档后，决定采用python爬虫来获取相关的数据。 python 现在已经有了几个比较成熟的爬虫框架，如scrapy等，由于刚开始接触python以及python爬虫，我决定从比较底层的urllib2 入手。 爬虫">
@@ -105,7 +105,7 @@
     root: '/',
     scheme: 'Mist',
     version: '5.1.4',
-    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -186,52 +186,52 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
+        <li class="menu-item menu-item-首页">
           <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-about">
+        <li class="menu-item menu-item-关于我">
           <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            About
+            关于我
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-tags">
+        <li class="menu-item menu-item-标签">
           <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            Tags
+            标签
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-categories">
+        <li class="menu-item menu-item-分类">
           <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            Categories
+            分类
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-归档">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -417,7 +417,7 @@
 <p>还有谷歌的代理请求插件Proxy SwitchyOmega</p>
 <p>初级练习爬虫的话基本上都是结合着这两个工具来的</p>
 <p>然后自己就跟着做了一个用url2初级爬虫的练习，可以爬取百度贴吧的一些信息，并保存下来为html文件<br>（刚开始入门，并没有考虑到反 反爬虫）</p>
-<p>下面安利一波代码</p>
+<p>下面安利一波代码<br><a id="more"></a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># -*- coding:utf-8 -*-</span><br><span class="line"></span><br><span class="line">import urllib</span><br><span class="line">import urllib2</span><br><span class="line"></span><br><span class="line">def loadPage(url, filename):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">        作用：根据url发送请求，获取服务器响应文件</span><br><span class="line">        url: 需要爬取的url地址</span><br><span class="line">        filename : 处理的文件名</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    print &quot;正在下载 &quot; + filename</span><br><span class="line">    headers = &#123;&quot;User-Agent&quot; : &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11&quot;&#125;</span><br><span class="line"></span><br><span class="line">    request = urllib2.Request(url, headers = headers)</span><br><span class="line">    return urllib2.urlopen(request).read()</span><br><span class="line"></span><br><span class="line">def writePage(html, filename):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">        作用：将html内容写入到本地</span><br><span class="line">        html：服务器相应文件内容</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    print &quot;正在保存 &quot; + filename</span><br><span class="line">    # 文件写入</span><br><span class="line">    with open(filename, &quot;w&quot;) as f:</span><br><span class="line">        f.write(html)</span><br><span class="line">    print &quot;-&quot; * 30</span><br><span class="line"></span><br><span class="line">def tiebaSpider(url, beginPage, endPage):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">        作用：贴吧爬虫调度器，负责组合处理每个页面的url</span><br><span class="line">        url : 贴吧url的前部分</span><br><span class="line">        beginPage : 起始页</span><br><span class="line">        endPage : 结束页</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    for page in range(beginPage, endPage + 1):</span><br><span class="line">        pn = (page - 1) * 50</span><br><span class="line">        filename = &quot;the&quot; + str(page) + &quot;.html&quot;</span><br><span class="line">        fullurl = url + &quot;&amp;pn=&quot; + str(pn)</span><br><span class="line">        #print fullurl</span><br><span class="line">        html = loadPage(fullurl, filename)</span><br><span class="line">        #print html</span><br><span class="line">        writePage(html, filename)</span><br><span class="line">        print &quot;谢谢使用&quot;</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    kw = raw_input(&quot;请输入需要爬取的贴吧名:&quot;)</span><br><span class="line">    beginPage = int(raw_input(&quot;请输入起始页：&quot;))</span><br><span class="line">    endPage = int(raw_input(&quot;请输入结束页：&quot;))</span><br><span class="line"></span><br><span class="line">    url = &quot;http://tieba.baidu.com/f?&quot;</span><br><span class="line">    key = urllib.urlencode(&#123;&quot;kw&quot;: kw&#125;)</span><br><span class="line">    fullurl = url + key</span><br><span class="line">    </span><br><span class="line">    tiebaSpider(fullurl, beginPage, endPage)</span><br></pre></td></tr></table></figure>
 <p>下面是运行的效果<br>首先你要输入你想要爬取的关键信息，例如我想爬python吧的一些内容，我就直接输入python了。<br>接下来输入要爬取的页码的范围，例如这里我输入的是1-1,即我只爬取第一页。<br><img src="/images/2018-07-31-1.png" alt=""></p>
 <p>爬取成功之后便会生成一个html文件，里面便存放了你所要爬取的内容。</p>
@@ -543,7 +543,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives">
               
                   <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">posts</span>

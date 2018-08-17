@@ -53,13 +53,13 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/header.jpg?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpg?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpg?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="java,linux,solr+zookeeper," />
+  <meta name="keywords" content="solr+zookeeper,java,linux," />
 
 
 
@@ -82,7 +82,7 @@
 
 
 <meta name="description" content="最近搞分布式搜索服务的实现，一直受到性能的瓶颈制约，单机版的solr服务对于少数用户体验还可以，但是涉及到几千的并发的时候，难免会造成性能的突然下降。 下面是一套利用solr和zookeeper实现的分布式搜索架构方案 Solr集群的系统架构   三个Solr实例（ 每个实例包括两个Core），组成一个SolrCloud。  索引集合包括两个Shard（shard1和shard2），shard1和">
-<meta name="keywords" content="java,linux,solr+zookeeper">
+<meta name="keywords" content="solr+zookeeper,java,linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SolrCloud，一个分布式搜索方案">
 <meta property="og:url" content="https://www.lhsblog.cn/2018/08/14/SolrCloud，一个分布式搜索方案/index.html">
@@ -91,7 +91,7 @@
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https://www.lhsblog.cn/images/2018-08-14-1.png">
 <meta property="og:image" content="https://www.lhsblog.cn/images/2018-08-14-2.png">
-<meta property="og:updated_time" content="2018-08-14T15:25:10.423Z">
+<meta property="og:updated_time" content="2018-08-17T10:09:11.202Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SolrCloud，一个分布式搜索方案">
 <meta name="twitter:description" content="最近搞分布式搜索服务的实现，一直受到性能的瓶颈制约，单机版的solr服务对于少数用户体验还可以，但是涉及到几千的并发的时候，难免会造成性能的突然下降。 下面是一套利用solr和zookeeper实现的分布式搜索架构方案 Solr集群的系统架构   三个Solr实例（ 每个实例包括两个Core），组成一个SolrCloud。  索引集合包括两个Shard（shard1和shard2），shard1和">
@@ -105,7 +105,7 @@
     root: '/',
     scheme: 'Mist',
     version: '5.1.4',
-    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -186,52 +186,52 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
+        <li class="menu-item menu-item-首页">
           <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-about">
+        <li class="menu-item menu-item-关于我">
           <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            About
+            关于我
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-tags">
+        <li class="menu-item menu-item-标签">
           <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            Tags
+            标签
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-categories">
+        <li class="menu-item menu-item-分类">
           <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            Categories
+            分类
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-归档">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -384,6 +384,7 @@
 <p> 每个Core是Solr中一个独立运行单位，提供 索引和搜索服务。一个shard需要由一个Core或多个Core组成。由于collection由多个shard组成所以collection一般由多个core组成。</p>
 <p> Master是master-slave结构中的主结点（通常说主服务器），Slave是master-slave结构中的从结点（通常说从服务器或备服务器）。同一个Shard下master和slave存储的数据是一致的，这是为了达到高可用目的。</p>
 <p> Collection的逻辑分片。每个Shard被化成一个或者多个replication，通过选举确定哪个是Leader。</p>
+ <a id="more"></a>
 <h1 id="下面是我的实现方案"><a href="#下面是我的实现方案" class="headerlink" title="下面是我的实现方案"></a>下面是我的实现方案</h1><p> <img src="/images/2018-08-14-2.png" alt=""></p>
 <p>下面是大体的实现步骤</p>
 <p>第一步：创建四个tomcat实例。每个tomcat运行在不同的端口。8180、8280、8380、8480</p>
@@ -426,11 +427,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/solr-zookeeper/" rel="tag"># solr+zookeeper</a>
+          
             <a href="/tags/java/" rel="tag"># java</a>
           
             <a href="/tags/linux/" rel="tag"># linux</a>
-          
-            <a href="/tags/solr-zookeeper/" rel="tag"># solr+zookeeper</a>
           
         </div>
       
@@ -525,7 +526,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives">
               
                   <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">posts</span>

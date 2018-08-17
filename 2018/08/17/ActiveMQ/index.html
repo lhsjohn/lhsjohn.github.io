@@ -53,13 +53,13 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/header.jpg?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpg?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpg?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="ActiveMQ,java," />
+  <meta name="keywords" content="java,ActiveMQ," />
 
 
 
@@ -82,7 +82,7 @@
 
 
 <meta name="description" content="What is ActiveMQ?   ActiveMQ 是Apache出品，最流行的，能力强劲的开源消息总线。ActiveMQ 是一个完全支持JMS1.1和J2EE 1.4规范的 JMS Provider实现,尽管JMS规范出台已经是很久的事情了,但是JMS在当今的J2EE应用中间仍然扮演着特殊的地位。主要特点：  多种语言和协议编写客户端。语言: Java, C, C++, C#, Ruby,">
-<meta name="keywords" content="ActiveMQ,java">
+<meta name="keywords" content="java,ActiveMQ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ActiveMQ">
 <meta property="og:url" content="https://www.lhsblog.cn/2018/08/17/ActiveMQ/index.html">
@@ -90,7 +90,7 @@
 <meta property="og:description" content="What is ActiveMQ?   ActiveMQ 是Apache出品，最流行的，能力强劲的开源消息总线。ActiveMQ 是一个完全支持JMS1.1和J2EE 1.4规范的 JMS Provider实现,尽管JMS规范出台已经是很久的事情了,但是JMS在当今的J2EE应用中间仍然扮演着特殊的地位。主要特点：  多种语言和协议编写客户端。语言: Java, C, C++, C#, Ruby,">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https://www.lhsblog.cn/images/2018-08-17.png">
-<meta property="og:updated_time" content="2018-08-17T07:41:40.935Z">
+<meta property="og:updated_time" content="2018-08-17T10:08:08.725Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ActiveMQ">
 <meta name="twitter:description" content="What is ActiveMQ?   ActiveMQ 是Apache出品，最流行的，能力强劲的开源消息总线。ActiveMQ 是一个完全支持JMS1.1和J2EE 1.4规范的 JMS Provider实现,尽管JMS规范出台已经是很久的事情了,但是JMS在当今的J2EE应用中间仍然扮演着特殊的地位。主要特点：  多种语言和协议编写客户端。语言: Java, C, C++, C#, Ruby,">
@@ -104,7 +104,7 @@
     root: '/',
     scheme: 'Mist',
     version: '5.1.4',
-    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -185,52 +185,52 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
+        <li class="menu-item menu-item-首页">
           <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-about">
+        <li class="menu-item menu-item-关于我">
           <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            About
+            关于我
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-tags">
+        <li class="menu-item menu-item-标签">
           <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            Tags
+            标签
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-categories">
+        <li class="menu-item menu-item-分类">
           <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            Categories
+            分类
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-归档">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -421,6 +421,7 @@
 <li>　　· BytesMessage–一个字节的数据流</li>
 </ol>
 <p> <img src="/images/2018-08-17.png" alt=""></p>
+  <a id="more"></a>
 <h1 id="使用测试-未整合Spring"><a href="#使用测试-未整合Spring" class="headerlink" title="使用测试(未整合Spring)"></a>使用测试(未整合Spring)</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public void testQueueProducer() throws Exception &#123;</span><br><span class="line">	// 1.创建一个连接工厂对象,需要指定服务的ip以及端口</span><br><span class="line">	ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(&quot;tcp://192.168.1.128:61616&quot;);</span><br><span class="line">	// 2.使用工厂对象来创建一个Connection对象</span><br><span class="line">	Connection connection = connectionFactory.createConnection();</span><br><span class="line">	// 3.开启连接，调用Connection对象的start方法</span><br><span class="line">	connection.start();</span><br><span class="line">	// 4.创建一个Session对象</span><br><span class="line">	// 第一个参数:是否开启事务。如果true开启事务，第二个无意义。一般不开启false</span><br><span class="line">	// 第二个参数：如果不开启事务。应答模式，一般是自动应答或者手动应答</span><br><span class="line">	Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);</span><br><span class="line">	// 5.使用Session对象创建一个Destination对象。两种形式queue、topic</span><br><span class="line">	Queue queue = session.createQueue(&quot;spring-queue&quot;);</span><br><span class="line">	// 6.使用Session对象创建一个Producer对象</span><br><span class="line">	MessageProducer producer = session.createProducer(queue);</span><br><span class="line">	// 7.创建一个Message对象，可以使用TextMessage。</span><br><span class="line">	/*</span><br><span class="line">	 * TextMessage textMessage=new ActiveMQTextMessage();</span><br><span class="line">	 * textMessage.setText(&quot;hello Activemq&quot;);</span><br><span class="line">	 */</span><br><span class="line">	TextMessage textMessage = session.createTextMessage(&quot;hello Activemq&quot;);</span><br><span class="line">	// 8.发送消息</span><br><span class="line">	producer.send(textMessage);</span><br><span class="line">	// 9.关闭资源</span><br><span class="line">	producer.close();</span><br><span class="line">	session.close();</span><br><span class="line">	connection.close();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public void testQueueConsumer() throws Exception &#123;</span><br><span class="line">	// 创建一个ConnectionFactory对象连接MQ服务器</span><br><span class="line">	ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(&quot;tcp://192.168.1.128:61616&quot;);</span><br><span class="line">	// 创建一个连接对象</span><br><span class="line">	Connection connection = connectionFactory.createConnection();</span><br><span class="line">	// 开启连接</span><br><span class="line">	connection.start();</span><br><span class="line">	// 使用Connection对象创建一个Session对象</span><br><span class="line">	Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);</span><br><span class="line">	// 创建一个Destinatiion对象，queue对象</span><br><span class="line">	Queue queue = session.createQueue(&quot;spring-queue&quot;);</span><br><span class="line">	// 使用Session对象创建一个消费者对象</span><br><span class="line">	MessageConsumer consumer = session.createConsumer(queue);</span><br><span class="line">	// 接收消息</span><br><span class="line">	consumer.setMessageListener(new MessageListener() &#123;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public void onMessage(Message message) &#123;</span><br><span class="line">			// 打印结果</span><br><span class="line">			TextMessage textMessage = (TextMessage) message;</span><br><span class="line">			String text;</span><br><span class="line"></span><br><span class="line">			try &#123;</span><br><span class="line">				text = textMessage.getText();</span><br><span class="line">				System.out.println(text);</span><br><span class="line">			&#125; catch (JMSException e) &#123;</span><br><span class="line"></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	// 等待接收消息</span><br><span class="line">	System.in.read();</span><br><span class="line">	// 关闭资源</span><br><span class="line">	consumer.close();</span><br><span class="line">	session.close();</span><br><span class="line">	connection.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public void testTopicProducer() throws Exception &#123;</span><br><span class="line">	// 1.创建一个连接工厂对象,需要指定服务的ip以及端口</span><br><span class="line">	ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(&quot;tcp://192.168.1.128:61616&quot;);</span><br><span class="line">	// 2.使用工厂对象来创建一个Connection对象</span><br><span class="line">	Connection connection = connectionFactory.createConnection();</span><br><span class="line">	// 3.开启连接，调用Connection对象的start方法</span><br><span class="line">	connection.start();</span><br><span class="line">	// 4.创建一个Session对象</span><br><span class="line">	// 第一个参数:是否开启事务。如果true开启事务，第二个无意义。一般不开启false</span><br><span class="line">	// 第二个参数：如果不开启事务。应答模式，一般是自动应答或者手动应答</span><br><span class="line">	Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);</span><br><span class="line">	// 5.使用Session对象创建一个Destination对象。两种形式queue、topic</span><br><span class="line">	Topic topic = session.createTopic(&quot;test-topic&quot;);</span><br><span class="line">	// 6.使用Session对象创建一个Producer对象</span><br><span class="line">	MessageProducer producer = session.createProducer(topic);</span><br><span class="line">	// 7.创建一个Message对象，可以使用TextMessage。</span><br><span class="line">	/*</span><br><span class="line">	 * TextMessage textMessage=new ActiveMQTextMessage();</span><br><span class="line">	 * textMessage.setText(&quot;hello Activemq&quot;);</span><br><span class="line">	 */</span><br><span class="line">	TextMessage textMessage = session.createTextMessage(&quot;topicMessage&quot;);</span><br><span class="line">	// 8.发送消息</span><br><span class="line">	producer.send(textMessage);</span><br><span class="line">	// 9.关闭资源</span><br><span class="line">	producer.close();</span><br><span class="line">	session.close();</span><br><span class="line">	connection.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public void testTopicConsumer() throws Exception &#123;</span><br><span class="line">	// 创建一个ConnectionFactory对象连接MQ服务器</span><br><span class="line">	ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(&quot;tcp://192.168.1.128:61616&quot;);</span><br><span class="line">	// 创建一个连接对象</span><br><span class="line">	Connection connection = connectionFactory.createConnection();</span><br><span class="line">	// 开启连接</span><br><span class="line">	connection.start();</span><br><span class="line">	// 使用Connection对象创建一个Session对象</span><br><span class="line">	Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);</span><br><span class="line">	// 创建一个Destinatiion对象，queue对象</span><br><span class="line">	Topic topic = session.createTopic(&quot;test-topic&quot;);</span><br><span class="line">	// 使用Session对象创建一个消费者对象</span><br><span class="line">	MessageConsumer consumer = session.createConsumer(topic);</span><br><span class="line">	// 接收消息</span><br><span class="line">	consumer.setMessageListener(new MessageListener() &#123;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public void onMessage(Message message) &#123;</span><br><span class="line">			// 打印结果</span><br><span class="line">			TextMessage textMessage = (TextMessage) message;</span><br><span class="line">			String text;</span><br><span class="line"></span><br><span class="line">			try &#123;</span><br><span class="line">				text = textMessage.getText();</span><br><span class="line">				System.out.println(text);</span><br><span class="line">			&#125; catch (JMSException e) &#123;</span><br><span class="line"></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">     </span><br><span class="line">	System.out.println(&quot;topic 消费者3已经启动&quot;);</span><br><span class="line">	// 等待接收消息</span><br><span class="line">	System.in.read();</span><br><span class="line">	// 关闭资源</span><br><span class="line">	consumer.close();</span><br><span class="line">	session.close();</span><br><span class="line">	connection.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>作者：lhsjohn</p>
 
@@ -440,9 +441,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ActiveMQ/" rel="tag"># ActiveMQ</a>
-          
             <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/ActiveMQ/" rel="tag"># ActiveMQ</a>
           
         </div>
       
@@ -533,7 +534,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives">
               
                   <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">posts</span>

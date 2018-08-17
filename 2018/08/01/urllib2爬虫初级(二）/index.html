@@ -53,13 +53,13 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/header.jpg?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpg?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpg?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://www.lhsblog.cn/images/2018-08-01-1.png">
 <meta property="og:image" content="https://www.lhsblog.cn/images/2018-08-01-2.png">
 <meta property="og:image" content="https://www.lhsblog.cn/images/2018-08-01-3.png">
-<meta property="og:updated_time" content="2018-08-01T10:10:03.310Z">
+<meta property="og:updated_time" content="2018-08-17T10:09:33.111Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="urllib2爬虫初级 (二)">
 <meta name="twitter:description" content="昨天用urllib模拟GET请求爬取了百度贴吧的一些内容，但是现在网络上还有很多数据是通过POST请求获得的，更复杂的情况是你要面临着如ajax的一些动态加载的数据，你所要获取的数据不能仅仅限于你在浏览器网页里看到的数据，所以在这里有几个处理的方法。 POST请求发送Request请求对象的里有data参数，它就是用在POST里的，我们要传送的数据就是这个参数data，data是一个字典，里面要匹">
@@ -106,7 +106,7 @@
     root: '/',
     scheme: 'Mist',
     version: '5.1.4',
-    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -187,52 +187,52 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
+        <li class="menu-item menu-item-首页">
           <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-about">
+        <li class="menu-item menu-item-关于我">
           <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            About
+            关于我
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-tags">
+        <li class="menu-item menu-item-标签">
           <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            Tags
+            标签
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-categories">
+        <li class="menu-item menu-item-分类">
           <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            Categories
+            分类
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-归档">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -416,7 +416,7 @@
 <p>这些数据的获取是我们通过抓包获取的</p>
 <p>之前的博客写过我现在用的是Fiddler 来抓包的，功能还算比较强大用起来还是挺舒服的。</p>
 <p>输入“我爱python” 的文字进行翻译，点击翻译按钮来发起一个请求，如下</p>
-<p><img src="/images/2018-08-01-1.png" alt=""></p>
+<p><img src="/images/2018-08-01-1.png" alt=""><br><a id="more"></a></p>
 <p>下面是我抓到的包</p>
 <p><img src="/images/2018-08-01-2.png" alt=""></p>
 <p>于是接下来我们可以用来模拟发送POST请求</p>
@@ -562,7 +562,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives">
               
                   <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">posts</span>

@@ -53,13 +53,13 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/header.jpg?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpg?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpg?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -91,7 +91,7 @@
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https://www.lhsblog.cn/images/2018-07-31-3.png">
 <meta property="og:image" content="https://www.lhsblog.cn/images/2018-07-31-4.png">
-<meta property="og:updated_time" content="2018-08-02T14:57:12.418Z">
+<meta property="og:updated_time" content="2018-08-17T10:10:08.797Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式思考(二)观察者模式">
 <meta name="twitter:description" content="观察者模式的定义： 观察者模式定义了对象的一对多依赖，这样一来，让一个对象改变状态时，它的所有依赖者都会收到通知并且会自动更新。 观察者模式的实例： 实例：建立一个气象站应用，利用WeatherData对象取得数据，并更新三个布告板：当前状况、气象统计和天气预报，当WeatherObject对象获得最新的测量数据时，三种布告板必须实时更新。  其实观察者模式可以从订报的角度来理解。  拿报纸的订阅">
@@ -105,7 +105,7 @@
     root: '/',
     scheme: 'Mist',
     version: '5.1.4',
-    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -186,52 +186,52 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
+        <li class="menu-item menu-item-首页">
           <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-about">
+        <li class="menu-item menu-item-关于我">
           <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            About
+            关于我
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-tags">
+        <li class="menu-item menu-item-标签">
           <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            Tags
+            标签
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-categories">
+        <li class="menu-item menu-item-分类">
           <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            Categories
+            分类
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-归档">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -435,6 +435,7 @@
 <h1 id="定义观察者模式，类图"><a href="#定义观察者模式，类图" class="headerlink" title="定义观察者模式，类图"></a>定义观察者模式，类图</h1><p> <img src="/images/2018-07-31-3.png" alt=""></p>
 <p> 任何时候我们都可以增加新的观察者，因为主题唯一依赖的东西是一个实现了Observer接口的对象列表。所以我们可以随时增加观察者。事实上，在运行时我们可以用新的观察者取代现有的观察者，主题不会受到任何影响。同样的也可以在任何时候删除某些观察者。</p>
 <p> 有新类型的观察者出现时，主题的代码不需要修改。加入我们有个新的具体类需要当观察者，我们不需要为了兼容新类型而修改主题的代码，所有要做的就是在新的类里实现此观察者接口，然后注册为观察者即可。主题不在乎别的，它只会发送通知给所有实现了观察者接口的对象。</p>
+ <a id="more"></a>
 <p>这里体现了我们的一个设计原则，即为了交互对象之间的松耦合设计而努力。<br>松耦合的设计之所以能让我们建立有弹性的OO系统，能够应对变化，是因为对象之间的相互依赖降到了最低。</p>
 <p>基于以上的原则，我们可以得出我们对于该气象站的设计图：</p>
 <p> <img src="/images/2018-07-31-4.png" alt=""></p>
@@ -573,7 +574,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives">
               
                   <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">posts</span>

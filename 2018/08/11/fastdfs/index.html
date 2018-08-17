@@ -53,13 +53,13 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/header.jpg?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpg?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpg?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="java,fastdfs,linux," />
+  <meta name="keywords" content="java,linux,fastdfs," />
 
 
 
@@ -82,14 +82,14 @@
 
 
 <meta name="description" content="FastDFS是C语言开发，建议在linux上运行，下面使用Centos6.4作为安装环境。安装FastDFS需要先将官网下载的源码进行编译，编译依赖gcc环境，如果没有gcc环境，需要安装gcc：yum install gcc-c++ 安装libeventFastDFS依赖libevent库，需要安装： yum -y install libevent 安装libfastcommonlibfast">
-<meta name="keywords" content="java,fastdfs,linux">
+<meta name="keywords" content="java,linux,fastdfs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="fastdfs">
 <meta property="og:url" content="https://www.lhsblog.cn/2018/08/11/fastdfs/index.html">
 <meta property="og:site_name" content="lhsjohn的博客">
 <meta property="og:description" content="FastDFS是C语言开发，建议在linux上运行，下面使用Centos6.4作为安装环境。安装FastDFS需要先将官网下载的源码进行编译，编译依赖gcc环境，如果没有gcc环境，需要安装gcc：yum install gcc-c++ 安装libeventFastDFS依赖libevent库，需要安装： yum -y install libevent 安装libfastcommonlibfast">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-08-12T00:13:54.947Z">
+<meta property="og:updated_time" content="2018-08-17T10:08:27.498Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="fastdfs">
 <meta name="twitter:description" content="FastDFS是C语言开发，建议在linux上运行，下面使用Centos6.4作为安装环境。安装FastDFS需要先将官网下载的源码进行编译，编译依赖gcc环境，如果没有gcc环境，需要安装gcc：yum install gcc-c++ 安装libeventFastDFS依赖libevent库，需要安装： yum -y install libevent 安装libfastcommonlibfast">
@@ -102,7 +102,7 @@
     root: '/',
     scheme: 'Mist',
     version: '5.1.4',
-    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -183,52 +183,52 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
+        <li class="menu-item menu-item-首页">
           <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-about">
+        <li class="menu-item menu-item-关于我">
           <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            About
+            关于我
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-tags">
+        <li class="menu-item menu-item-标签">
           <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            Tags
+            标签
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-categories">
+        <li class="menu-item menu-item-分类">
           <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            Categories
+            分类
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-归档">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -413,7 +413,8 @@
 <p>cp tracker.conf.sample tracker.conf</p>
 <p>修改tracker.conf<br>vi tracker.conf<br>base_path=/home/yuqing/FastDFS<br>改为：<br>base_path=/home/FastDFS</p>
 <h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>/usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf restart<br>启动的日志显示先停止5619进程（实际环境不是5619）</p>
-<h2 id="设置开机启动"><a href="#设置开机启动" class="headerlink" title="设置开机启动"></a>设置开机启动</h2><p>vim /etc/rc.d/rc.local</p>
+<h2 id="设置开机启动"><a href="#设置开机启动" class="headerlink" title="设置开机启动"></a>设置开机启动</h2><a id="more"></a>
+<p>vim /etc/rc.d/rc.local</p>
 <p>将运行命令行添加进文件：/usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf restart</p>
 <p>下面安装FastDFS-storage</p>
 <h2 id="安装libevent-1"><a href="#安装libevent-1" class="headerlink" title="安装libevent"></a>安装libevent</h2><p>同tracker</p>
@@ -447,9 +448,9 @@
           
             <a href="/tags/java/" rel="tag"># java</a>
           
-            <a href="/tags/fastdfs/" rel="tag"># fastdfs</a>
-          
             <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/fastdfs/" rel="tag"># fastdfs</a>
           
         </div>
       
@@ -544,7 +545,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives">
               
                   <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">posts</span>

@@ -53,13 +53,13 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/header.jpg?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpg?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpg?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -90,7 +90,7 @@
 <meta property="og:description" content="单件模式的定义确保一个类只有一个实例，并提供一个全局访问点。 类图 1.其中uniqueInstance 变量持有唯一的单间实例 2.getInstance()方法是静态的，这意味着它是一个类方法，所以可以在代码的任何地方使用Singleton.getnstance()访问它。这样和访问全局变量一样，只是多了一个优点：单件可以延迟实例化。 3.单件模式的类也可以是一般的类，具有一般的数据和方法。">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https://www.lhsblog.cn/images/2018-08-07-1.jpg">
-<meta property="og:updated_time" content="2018-08-07T09:51:39.945Z">
+<meta property="og:updated_time" content="2018-08-17T10:10:24.095Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式思考(四)-----单件模式">
 <meta name="twitter:description" content="单件模式的定义确保一个类只有一个实例，并提供一个全局访问点。 类图 1.其中uniqueInstance 变量持有唯一的单间实例 2.getInstance()方法是静态的，这意味着它是一个类方法，所以可以在代码的任何地方使用Singleton.getnstance()访问它。这样和访问全局变量一样，只是多了一个优点：单件可以延迟实例化。 3.单件模式的类也可以是一般的类，具有一般的数据和方法。">
@@ -104,7 +104,7 @@
     root: '/',
     scheme: 'Mist',
     version: '5.1.4',
-    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -185,52 +185,52 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
+        <li class="menu-item menu-item-首页">
           <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-about">
+        <li class="menu-item menu-item-关于我">
           <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            About
+            关于我
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-tags">
+        <li class="menu-item menu-item-标签">
           <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            Tags
+            标签
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-categories">
+        <li class="menu-item menu-item-分类">
           <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            Categories
+            分类
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-归档">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -424,6 +424,7 @@
 <p>2.getInstance()方法是静态的，这意味着它是一个类方法，所以可以在代码的任何地方使用Singleton.getnstance()访问它。这样和访问全局变量一样，只是多了一个优点：单件可以延迟实例化。</p>
 <p>3.单件模式的类也可以是一般的类，具有一般的数据和方法。</p>
 <p>下面是一个单件模式的经典实现：</p>
+<a id="more"></a>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"><span class="function">Public class <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//利用一个静态变量来记录Singleton类的唯一实例</span></span><br><span class="line">Private <span class="keyword">static</span> Singleton uniqueInstance;</span><br><span class="line"><span class="comment">//这里是用到的其他的有用的实例化的变量</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//把构造器类设置为私有的，只有自Singleton类内才可以调用构造器</span></span><br><span class="line"><span class="function">Private <span class="title">Singleton</span><span class="params">()</span> </span>&#123; &#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//用getInstance()方法实例化对象，并返回这个对象的实例</span></span><br><span class="line"> <span class="function">Public <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">    If(uniqueInstance==<span class="keyword">null</span>) &#123;  </span><br><span class="line">       uniqueInstance=<span class="keyword">new</span> Singleton();</span><br><span class="line"> &#125;</span><br><span class="line">     Return uniqueInstance;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这里是其他有用的方法</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
 <p> 单件模式的多线程之伤</p>
 <p> 现在我们知道，绝大多数的应用程序都是多线程的，那么我们如果采用上面经典的单例模式的实现化，遇到多线程情况，就会遇到很大的麻烦了</p>
@@ -557,7 +558,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives">
               
                   <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">posts</span>
