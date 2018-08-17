@@ -56,9 +56,9 @@
       <category term="ActiveMQ" scheme="https://www.lhsblog.cn/categories/ActiveMQ/"/>
     
     
-      <category term="ActiveMQ" scheme="https://www.lhsblog.cn/tags/ActiveMQ/"/>
-    
       <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
+    
+      <category term="ActiveMQ" scheme="https://www.lhsblog.cn/tags/ActiveMQ/"/>
     
   </entry>
   
@@ -157,9 +157,9 @@
       <category term="Spring" scheme="https://www.lhsblog.cn/categories/Spring/"/>
     
     
-      <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
-    
       <category term="Spring" scheme="https://www.lhsblog.cn/tags/Spring/"/>
+    
+      <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
     
   </entry>
   
