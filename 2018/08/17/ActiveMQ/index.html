@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>lhsjohn的博客</title>
+  <title>ActiveMQ | lhsjohn的博客</title>
   <meta name="author" content="lhsjohn">
   
   <meta name="description" content="好记性不如烂键盘">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="ActiveMQ"/>
   <meta property="og:site_name" content="lhsjohn的博客"/>
 
   
@@ -53,33 +53,17 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2018-08-17T07:36:41.121Z"><a href="/2018/08/17/ActiveMQ/">2018-08-17</a></time>
+        <time datetime="2018-08-17T07:41:03.000Z"><a href="/2018/08/17/ActiveMQ/">2018-08-17</a></time>
       
       
   
-    <h1 class="title"></h1>
+    <h1 class="title">ActiveMQ</h1>
   
 
     </header>
     <div class="entry">
       
-        <hr>
-<p>title: ActiveMQ</p>
-<p>date: 2018-08-17 15:17:16</p>
-<p>categories:</p>
-<ul>
-<li>ActiveMQ</li>
-<li>java</li>
-<li>学习</li>
-</ul>
-<p>tags:</p>
-<ul>
-<li>ActiveMQ</li>
-<li>java</li>
-</ul>
-<hr>
-<p> <img src="/images/2018-08-17.png" alt=""></p>
-<h1 id="What-is-ActiveMQ"><a href="#What-is-ActiveMQ" class="headerlink" title="What is ActiveMQ?"></a>What is ActiveMQ?</h1><p>   ActiveMQ 是Apache出品，最流行的，能力强劲的开源消息总线。ActiveMQ 是一个完全支持JMS1.1和J2EE 1.4规范的 JMS Provider实现,尽管JMS规范出台已经是很久的事情了,但是JMS在当今的J2EE应用中间仍然扮演着特殊的地位。<br>主要特点：</p>
+        <h1 id="What-is-ActiveMQ"><a href="#What-is-ActiveMQ" class="headerlink" title="What is ActiveMQ?"></a>What is ActiveMQ?</h1><p>   ActiveMQ 是Apache出品，最流行的，能力强劲的开源消息总线。ActiveMQ 是一个完全支持JMS1.1和J2EE 1.4规范的 JMS Provider实现,尽管JMS规范出台已经是很久的事情了,但是JMS在当今的J2EE应用中间仍然扮演着特殊的地位。<br>主要特点：</p>
 <ol>
 <li>多种语言和协议编写客户端。语言: Java, C, C++, C#, Ruby, Perl, Python, PHP。应用协议: OpenWire,Stomp REST,WS Notification,XMPP,AMQP</li>
 <li>完全支持JMS1.1和J2EE 1.4规范 (持久化,XA消息,事务)</li>
@@ -103,6 +87,7 @@
 <li>　　· ObjectMessage–一个序列化的 Java对象</li>
 <li>　　· BytesMessage–一个字节的数据流</li>
 </ol>
+<p> <img src="/images/2018-08-17.png" alt=""></p>
 <h1 id="使用测试-未整合Spring"><a href="#使用测试-未整合Spring" class="headerlink" title="使用测试(未整合Spring)"></a>使用测试(未整合Spring)</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public void testQueueProducer() throws Exception &#123;</span><br><span class="line">	// 1.创建一个连接工厂对象,需要指定服务的ip以及端口</span><br><span class="line">	ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(&quot;tcp://192.168.1.128:61616&quot;);</span><br><span class="line">	// 2.使用工厂对象来创建一个Connection对象</span><br><span class="line">	Connection connection = connectionFactory.createConnection();</span><br><span class="line">	// 3.开启连接，调用Connection对象的start方法</span><br><span class="line">	connection.start();</span><br><span class="line">	// 4.创建一个Session对象</span><br><span class="line">	// 第一个参数:是否开启事务。如果true开启事务，第二个无意义。一般不开启false</span><br><span class="line">	// 第二个参数：如果不开启事务。应答模式，一般是自动应答或者手动应答</span><br><span class="line">	Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);</span><br><span class="line">	// 5.使用Session对象创建一个Destination对象。两种形式queue、topic</span><br><span class="line">	Queue queue = session.createQueue(&quot;spring-queue&quot;);</span><br><span class="line">	// 6.使用Session对象创建一个Producer对象</span><br><span class="line">	MessageProducer producer = session.createProducer(queue);</span><br><span class="line">	// 7.创建一个Message对象，可以使用TextMessage。</span><br><span class="line">	/*</span><br><span class="line">	 * TextMessage textMessage=new ActiveMQTextMessage();</span><br><span class="line">	 * textMessage.setText(&quot;hello Activemq&quot;);</span><br><span class="line">	 */</span><br><span class="line">	TextMessage textMessage = session.createTextMessage(&quot;hello Activemq&quot;);</span><br><span class="line">	// 8.发送消息</span><br><span class="line">	producer.send(textMessage);</span><br><span class="line">	// 9.关闭资源</span><br><span class="line">	producer.close();</span><br><span class="line">	session.close();</span><br><span class="line">	connection.close();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public void testQueueConsumer() throws Exception &#123;</span><br><span class="line">	// 创建一个ConnectionFactory对象连接MQ服务器</span><br><span class="line">	ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(&quot;tcp://192.168.1.128:61616&quot;);</span><br><span class="line">	// 创建一个连接对象</span><br><span class="line">	Connection connection = connectionFactory.createConnection();</span><br><span class="line">	// 开启连接</span><br><span class="line">	connection.start();</span><br><span class="line">	// 使用Connection对象创建一个Session对象</span><br><span class="line">	Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);</span><br><span class="line">	// 创建一个Destinatiion对象，queue对象</span><br><span class="line">	Queue queue = session.createQueue(&quot;spring-queue&quot;);</span><br><span class="line">	// 使用Session对象创建一个消费者对象</span><br><span class="line">	MessageConsumer consumer = session.createConsumer(queue);</span><br><span class="line">	// 接收消息</span><br><span class="line">	consumer.setMessageListener(new MessageListener() &#123;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public void onMessage(Message message) &#123;</span><br><span class="line">			// 打印结果</span><br><span class="line">			TextMessage textMessage = (TextMessage) message;</span><br><span class="line">			String text;</span><br><span class="line"></span><br><span class="line">			try &#123;</span><br><span class="line">				text = textMessage.getText();</span><br><span class="line">				System.out.println(text);</span><br><span class="line">			&#125; catch (JMSException e) &#123;</span><br><span class="line"></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	// 等待接收消息</span><br><span class="line">	System.in.read();</span><br><span class="line">	// 关闭资源</span><br><span class="line">	consumer.close();</span><br><span class="line">	session.close();</span><br><span class="line">	connection.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public void testTopicProducer() throws Exception &#123;</span><br><span class="line">	// 1.创建一个连接工厂对象,需要指定服务的ip以及端口</span><br><span class="line">	ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(&quot;tcp://192.168.1.128:61616&quot;);</span><br><span class="line">	// 2.使用工厂对象来创建一个Connection对象</span><br><span class="line">	Connection connection = connectionFactory.createConnection();</span><br><span class="line">	// 3.开启连接，调用Connection对象的start方法</span><br><span class="line">	connection.start();</span><br><span class="line">	// 4.创建一个Session对象</span><br><span class="line">	// 第一个参数:是否开启事务。如果true开启事务，第二个无意义。一般不开启false</span><br><span class="line">	// 第二个参数：如果不开启事务。应答模式，一般是自动应答或者手动应答</span><br><span class="line">	Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);</span><br><span class="line">	// 5.使用Session对象创建一个Destination对象。两种形式queue、topic</span><br><span class="line">	Topic topic = session.createTopic(&quot;test-topic&quot;);</span><br><span class="line">	// 6.使用Session对象创建一个Producer对象</span><br><span class="line">	MessageProducer producer = session.createProducer(topic);</span><br><span class="line">	// 7.创建一个Message对象，可以使用TextMessage。</span><br><span class="line">	/*</span><br><span class="line">	 * TextMessage textMessage=new ActiveMQTextMessage();</span><br><span class="line">	 * textMessage.setText(&quot;hello Activemq&quot;);</span><br><span class="line">	 */</span><br><span class="line">	TextMessage textMessage = session.createTextMessage(&quot;topicMessage&quot;);</span><br><span class="line">	// 8.发送消息</span><br><span class="line">	producer.send(textMessage);</span><br><span class="line">	// 9.关闭资源</span><br><span class="line">	producer.close();</span><br><span class="line">	session.close();</span><br><span class="line">	connection.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public void testTopicConsumer() throws Exception &#123;</span><br><span class="line">	// 创建一个ConnectionFactory对象连接MQ服务器</span><br><span class="line">	ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(&quot;tcp://192.168.1.128:61616&quot;);</span><br><span class="line">	// 创建一个连接对象</span><br><span class="line">	Connection connection = connectionFactory.createConnection();</span><br><span class="line">	// 开启连接</span><br><span class="line">	connection.start();</span><br><span class="line">	// 使用Connection对象创建一个Session对象</span><br><span class="line">	Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);</span><br><span class="line">	// 创建一个Destinatiion对象，queue对象</span><br><span class="line">	Topic topic = session.createTopic(&quot;test-topic&quot;);</span><br><span class="line">	// 使用Session对象创建一个消费者对象</span><br><span class="line">	MessageConsumer consumer = session.createConsumer(topic);</span><br><span class="line">	// 接收消息</span><br><span class="line">	consumer.setMessageListener(new MessageListener() &#123;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public void onMessage(Message message) &#123;</span><br><span class="line">			// 打印结果</span><br><span class="line">			TextMessage textMessage = (TextMessage) message;</span><br><span class="line">			String text;</span><br><span class="line"></span><br><span class="line">			try &#123;</span><br><span class="line">				text = textMessage.getText();</span><br><span class="line">				System.out.println(text);</span><br><span class="line">			&#125; catch (JMSException e) &#123;</span><br><span class="line"></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">     </span><br><span class="line">	System.out.println(&quot;topic 消费者3已经启动&quot;);</span><br><span class="line">	// 等待接收消息</span><br><span class="line">	System.in.read();</span><br><span class="line">	// 关闭资源</span><br><span class="line">	consumer.close();</span><br><span class="line">	session.close();</span><br><span class="line">	connection.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>作者：lhsjohn</p>
 
@@ -112,7 +97,17 @@
     <footer>
       
         
+  
+  <div class="categories">
+    <a href="/categories/ActiveMQ/">ActiveMQ</a>
+  </div>
+
         
+  
+  <div class="tags">
+    <a href="/tags/java/">java</a>, <a href="/tags/ActiveMQ/">ActiveMQ</a>
+  </div>
+
         
   <div class="addthis addthis_toolbox addthis_default_style">
     
@@ -153,7 +148,7 @@
 </nav>
 
 <!-- 多说评论框 start -->
- <div class="ds-thread" data-thread-key="/2018/08/17/ActiveMQ/" data-title="" data-url="https://www.lhsblog.cn/2018/08/17/ActiveMQ/"></div>
+ <div class="ds-thread" data-thread-key="/2018/08/17/ActiveMQ/" data-title="ActiveMQ" data-url="https://www.lhsblog.cn/2018/08/17/ActiveMQ/"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -190,6 +185,8 @@ var duoshuoQuery = {short_name:"szcx"};
   <h3 class="title">Categories</h3>
   <ul class="entry">
   
+    <li><a href="/categories/ActiveMQ/">ActiveMQ</a><small>1</small></li>
+  
     <li><a href="/categories/Diary/">Diary</a><small>3</small></li>
   
     <li><a href="/categories/Spring/">Spring</a><small>1</small></li>
@@ -200,9 +197,9 @@ var duoshuoQuery = {short_name:"szcx"};
   
     <li><a href="/categories/爬虫/python/">python</a><small>4</small></li>
   
-    <li><a href="/categories/设计模式/java/学习/">学习</a><small>4</small></li>
-  
     <li><a href="/categories/爬虫/python/学习/">学习</a><small>2</small></li>
+  
+    <li><a href="/categories/设计模式/java/学习/">学习</a><small>4</small></li>
   
     <li><a href="/categories/段子/">段子</a><small>1</small></li>
   
@@ -222,7 +219,7 @@ var duoshuoQuery = {short_name:"szcx"};
 <div class="widget tagcloud">
   <h3 class="title">Tag Cloud</h3>
   <div class="entry">
-    <a href="/tags/Python环境搭建/" style="font-size: 10px;">Python环境搭建</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/fastdfs/" style="font-size: 10px;">fastdfs</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/linux/" style="font-size: 12px;">linux</a> <a href="/tags/python/" style="font-size: 18px;">python</a> <a href="/tags/solr-zookeeper/" style="font-size: 10px;">solr+zookeeper</a> <a href="/tags/励志/" style="font-size: 10px;">励志</a> <a href="/tags/喜剧/" style="font-size: 10px;">喜剧</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/影评/" style="font-size: 12px;">影评</a> <a href="/tags/心得/" style="font-size: 14px;">心得</a> <a href="/tags/技术/" style="font-size: 12px;">技术</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/杂谈/" style="font-size: 14px;">杂谈</a> <a href="/tags/段子/" style="font-size: 10px;">段子</a> <a href="/tags/爬虫/" style="font-size: 16px;">爬虫</a> <a href="/tags/设计模式/" style="font-size: 16px;">设计模式</a>
+    <a href="/tags/ActiveMQ/" style="font-size: 10px;">ActiveMQ</a> <a href="/tags/Python环境搭建/" style="font-size: 10px;">Python环境搭建</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/fastdfs/" style="font-size: 10px;">fastdfs</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/linux/" style="font-size: 12px;">linux</a> <a href="/tags/python/" style="font-size: 18px;">python</a> <a href="/tags/solr-zookeeper/" style="font-size: 10px;">solr+zookeeper</a> <a href="/tags/励志/" style="font-size: 10px;">励志</a> <a href="/tags/喜剧/" style="font-size: 10px;">喜剧</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/影评/" style="font-size: 12px;">影评</a> <a href="/tags/心得/" style="font-size: 14px;">心得</a> <a href="/tags/技术/" style="font-size: 12px;">技术</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/杂谈/" style="font-size: 14px;">杂谈</a> <a href="/tags/段子/" style="font-size: 10px;">段子</a> <a href="/tags/爬虫/" style="font-size: 16px;">爬虫</a> <a href="/tags/设计模式/" style="font-size: 16px;">设计模式</a>
   </div>
 </div>
 
