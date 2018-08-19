@@ -72,7 +72,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="java,SSO单点登录," />
 
 
 
@@ -85,17 +85,21 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
 
 
 
-<meta name="description" content="对未来的真正慷慨，是把一切献给现在">
-<meta name="keywords" content="1+1=1">
-<meta property="og:type" content="website">
-<meta property="og:title" content="lhsjohn的博客">
-<meta property="og:url" content="https://www.lhsblog.cn/tags/杂文/index.html">
+<meta name="description" content="集群环境下的登录    在集群环境下可能会出现要求用户多次登录的情况(配置了负载均衡后无法实现Session共享)  解决方案   1.可以配置tomcat集群,配置tomcatSession复制，节点数不要超过5个   2.可以使用Session服务器，保存Session信息，模拟Session.    单点登录系统是使用redis模拟Session,实现Session的统一管理">
+<meta name="keywords" content="java,SSO单点登录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSO单点登录">
+<meta property="og:url" content="https://www.lhsblog.cn/2018/08/19/SSO单点登录处理/index.html">
 <meta property="og:site_name" content="lhsjohn的博客">
-<meta property="og:description" content="对未来的真正慷慨，是把一切献给现在">
+<meta property="og:description" content="集群环境下的登录    在集群环境下可能会出现要求用户多次登录的情况(配置了负载均衡后无法实现Session共享)  解决方案   1.可以配置tomcat集群,配置tomcatSession复制，节点数不要超过5个   2.可以使用Session服务器，保存Session信息，模拟Session.    单点登录系统是使用redis模拟Session,实现Session的统一管理">
 <meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="https://www.lhsblog.cn/images/2018-08-19-1.png">
+<meta property="og:image" content="https://www.lhsblog.cn/images/2018-08-19-2.png">
+<meta property="og:updated_time" content="2018-08-19T11:08:17.066Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="lhsjohn的博客">
-<meta name="twitter:description" content="对未来的真正慷慨，是把一切献给现在">
+<meta name="twitter:title" content="SSO单点登录">
+<meta name="twitter:description" content="集群环境下的登录    在集群环境下可能会出现要求用户多次登录的情况(配置了负载均衡后无法实现Session共享)  解决方案   1.可以配置tomcat集群,配置tomcatSession复制，节点数不要超过5个   2.可以使用Session服务器，保存Session信息，模拟Session.    单点登录系统是使用redis模拟Session,实现Session的统一管理">
+<meta name="twitter:image" content="https://www.lhsblog.cn/images/2018-08-19-1.png">
 
 
 
@@ -125,13 +129,13 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
 
 
 
-  <link rel="canonical" href="https://www.lhsblog.cn/tags/杂文/"/>
+  <link rel="canonical" href="https://www.lhsblog.cn/2018/08/19/SSO单点登录处理/"/>
 
 
 
 
 
-  <title>Tag: 杂文 | lhsjohn的博客</title>
+  <title>SSO单点登录 | lhsjohn的博客</title>
   
 
 
@@ -150,7 +154,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
     
   
 
-  <div class="container sidebar-position-right ">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband">
 	</div>
 		<a href="https://github.com/lhsjohn"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
@@ -290,54 +294,254 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>杂文<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lhsblog.cn/2018/08/19/SSO单点登录处理/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lhsjohn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lhsjohn的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/07/28/青春/" itemprop="url">
-              
-                <span itemprop="name">青春</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">SSO单点登录</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-28T23:47:01+08:00"
-              content="2018-07-28" >
-          07-28
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-19T19:00:03+08:00">
+                2018-08-19
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SSO单点登录/" itemprop="url" rel="index">
+                    <span itemprop="name">SSO单点登录</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/19/SSO单点登录处理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/08/19/SSO单点登录处理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+         
+     <span class="post-meta-divider">|</span>
+     <span id="busuanzi_value_page_pv"></span>次阅读
+        
+		  
+		  
+		  
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  251
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>集群环境下的登录</p>
+<p> <img src="/images/2018-08-19-1.png" alt=""></p>
+<p> 在集群环境下可能会出现要求用户多次登录的情况(配置了负载均衡后无法实现Session共享)</p>
+<p> 解决方案<br>   1.可以配置tomcat集群,配置tomcatSession复制，节点数不要超过5个<br>   2.可以使用Session服务器，保存Session信息，模拟Session.</p>
+<p>   单点登录系统是使用redis模拟Session,实现Session的统一管理</p>
+  <a id="more"></a>
+<p>  登录的处理流程：</p>
+<p>1、登录页面提交用户名密码。</p>
+<p>2、登录成功后生成token。Token相当于原来的jsessionid，字符串，可以使用uuid。</p>
+<p>3、把用户信息保存到redis。Key就是token，value就是TbUser对象转换成json。</p>
+<p>4、使用String类型保存Session信息。可以使用“前缀:token”为key</p>
+<p>5、设置key的过期时间。模拟Session的过期时间。一般半个小时。</p>
+<p>6、把token写入cookie中。<br>7、Cookie需要跨域,可以使用工具类。</p>
+<p>8、Cookie的有效期。关闭浏览器失效。</p>
+<p>9、登录成功。</p>
+<p><img src="/images/2018-08-19-2.png" alt=""></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/SSO单点登录/" rel="tag"># SSO单点登录</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/17/ActiveMQ/" rel="next" title="ActiveMQ">
+                <i class="fa fa-chevron-left"></i> ActiveMQ
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+        <!--MOB SHARE BEGIN-->
+<div class="-mob-share-ui-button -mob-share-open">分享</div>
+<div class="-mob-share-ui" style="display: none">
+<ul class="-mob-share-list">
+<li class="-mob-share-weibo"><p>新浪微博</p></li>
+<li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
+<li class="-mob-share-qzone"><p>QQ空间</p></li>
+<li class="-mob-share-qq"><p>QQ好友</p></li>
+<li class="-mob-share-renren"><p>人人网</p></li>
+<li class="-mob-share-kaixin"><p>开心网</p></li>
+<li class="-mob-share-douban"><p>豆瓣</p></li>
+<li class="-mob-share-facebook"><p>Facebook</p></li>
+<li class="-mob-share-twitter"><p>Twitter</p></li>
+</ul>
+<div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=276e66346840e"></script>
+<!--MOB SHARE END-->  
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -345,6 +549,13 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -636,6 +847,10 @@ show_date_time();
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

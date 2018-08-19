@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.lhsblog.cn/"/>
-  <updated>2018-08-17T10:08:08.725Z</updated>
+  <updated>2018-08-19T11:08:17.066Z</updated>
   <id>https://www.lhsblog.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SSO单点登录</title>
+    <link href="https://www.lhsblog.cn/2018/08/19/SSO%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E5%A4%84%E7%90%86/"/>
+    <id>https://www.lhsblog.cn/2018/08/19/SSO单点登录处理/</id>
+    <published>2018-08-19T11:00:03.000Z</published>
+    <updated>2018-08-19T11:08:17.066Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;集群环境下的登录&lt;/p&gt;
+&lt;p&gt; &lt;img src=&quot;/images/2018-08-19-1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt; 在集群环境下可能会出现要求用户多次登录的情况(配置了负载均衡后无法实现Session共享)&lt;/p&gt;
+&lt;p&gt; 解决方案&lt;br&gt;   1.可以配置tomcat集群,配置tomcatSession复制，节点数不要超过5个&lt;br&gt;   2.可以使用Session服务器，保存Session信息，模拟Session.&lt;/p&gt;
+&lt;p&gt;   单点登录系统是使用redis模拟Session,实现Session的统一管理&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="SSO单点登录" scheme="https://www.lhsblog.cn/categories/SSO%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
+    
+    
+      <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
+    
+      <category term="SSO单点登录" scheme="https://www.lhsblog.cn/tags/SSO%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
+    
+  </entry>
   
   <entry>
     <title>ActiveMQ</title>
@@ -56,9 +82,9 @@
       <category term="ActiveMQ" scheme="https://www.lhsblog.cn/categories/ActiveMQ/"/>
     
     
-      <category term="ActiveMQ" scheme="https://www.lhsblog.cn/tags/ActiveMQ/"/>
-    
       <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
+    
+      <category term="ActiveMQ" scheme="https://www.lhsblog.cn/tags/ActiveMQ/"/>
     
   </entry>
   
@@ -157,9 +183,9 @@
       <category term="Spring" scheme="https://www.lhsblog.cn/categories/Spring/"/>
     
     
-      <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
-    
       <category term="Spring" scheme="https://www.lhsblog.cn/tags/Spring/"/>
+    
+      <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
     
   </entry>
   
@@ -247,9 +273,9 @@
       <category term="学习" scheme="https://www.lhsblog.cn/categories/%E7%88%AC%E8%99%AB/python/%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
-    
       <category term="爬虫" scheme="https://www.lhsblog.cn/tags/%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
     
       <category term="多线程" scheme="https://www.lhsblog.cn/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
@@ -322,9 +348,9 @@
       <category term="学习" scheme="https://www.lhsblog.cn/categories/%E7%88%AC%E8%99%AB/python/%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
-    
       <category term="爬虫" scheme="https://www.lhsblog.cn/tags/%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
     
   </entry>
   
@@ -390,9 +416,9 @@
       <category term="python" scheme="https://www.lhsblog.cn/categories/%E7%88%AC%E8%99%AB/python/"/>
     
     
-      <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
-    
       <category term="爬虫" scheme="https://www.lhsblog.cn/tags/%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
     
   </entry>
   
@@ -464,9 +490,9 @@
       <category term="python" scheme="https://www.lhsblog.cn/categories/%E7%88%AC%E8%99%AB/python/"/>
     
     
-      <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
-    
       <category term="爬虫" scheme="https://www.lhsblog.cn/tags/%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
     
   </entry>
   
@@ -566,11 +592,11 @@
     
       <category term="心得" scheme="https://www.lhsblog.cn/tags/%E5%BF%83%E5%BE%97/"/>
     
+      <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
+    
       <category term="技术" scheme="https://www.lhsblog.cn/tags/%E6%8A%80%E6%9C%AF/"/>
     
       <category term="Python环境搭建" scheme="https://www.lhsblog.cn/tags/Python%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
-    
-      <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
     
   </entry>
   

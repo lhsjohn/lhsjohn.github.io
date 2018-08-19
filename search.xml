@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[SSO单点登录]]></title>
+    <url>%2F2018%2F08%2F19%2FSSO%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E5%A4%84%E7%90%86%2F</url>
+    <content type="text"><![CDATA[集群环境下的登录 在集群环境下可能会出现要求用户多次登录的情况(配置了负载均衡后无法实现Session共享) 解决方案 1.可以配置tomcat集群,配置tomcatSession复制，节点数不要超过5个 2.可以使用Session服务器，保存Session信息，模拟Session. 单点登录系统是使用redis模拟Session,实现Session的统一管理 登录的处理流程： 1、登录页面提交用户名密码。 2、登录成功后生成token。Token相当于原来的jsessionid，字符串，可以使用uuid。 3、把用户信息保存到redis。Key就是token，value就是TbUser对象转换成json。 4、使用String类型保存Session信息。可以使用“前缀:token”为key 5、设置key的过期时间。模拟Session的过期时间。一般半个小时。 6、把token写入cookie中。7、Cookie需要跨域,可以使用工具类。 8、Cookie的有效期。关闭浏览器失效。 9、登录成功。]]></content>
+      <categories>
+        <category>SSO单点登录</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>SSO单点登录</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[ActiveMQ]]></title>
     <url>%2F2018%2F08%2F17%2FActiveMQ%2F</url>
     <content type="text"><![CDATA[What is ActiveMQ? ActiveMQ 是Apache出品，最流行的，能力强劲的开源消息总线。ActiveMQ 是一个完全支持JMS1.1和J2EE 1.4规范的 JMS Provider实现,尽管JMS规范出台已经是很久的事情了,但是JMS在当今的J2EE应用中间仍然扮演着特殊的地位。主要特点： 多种语言和协议编写客户端。语言: Java, C, C++, C#, Ruby, Perl, Python, PHP。应用协议: OpenWire,Stomp REST,WS Notification,XMPP,AMQP 完全支持JMS1.1和J2EE 1.4规范 (持久化,XA消息,事务) 对Spring的支持,ActiveMQ可以很容易内嵌到使用Spring的系统里面去,而且也支持Spring2.0的特性 通过了常见J2EE服务器(如 Geronimo,JBoss 4, GlassFish,WebLogic)的测试,其中通过JCA 1.5 resource adaptors的配置,可以让ActiveMQ可以自动的部署到任何兼容J2EE 1.4 商业服务器上 支持多种传送协议:in-VM,TCP,SSL,NIO,UDP,JGroups,JXTA 支持通过JDBC和journal提供高速的消息持久化 从设计上保证了高性能的集群,客户端-服务器,点对点 支持Ajax 支持与Axis的整合 可以很容易得调用内嵌JMS provider,进行测试 ActiveMQ的消息形式对于消息的传递有两种类型： 一种是点对点的，即一个生产者和一个消费者一一对应； 另一种是发布/订阅模式，即一个生产者产生消息并进行发送后，可以由多个消费者进行接收。 JMS定义了五种不同的消息正文格式，以及调用的消息类型，允许你发送并接收以一些不同形式的数据，提供现有消息格式的一些级别的兼容性。 · StreamMessage – Java原始值的数据流 · MapMessage–一套名称-值对 · TextMessage–一个字符串对象 · ObjectMessage–一个序列化的 Java对象 · BytesMessage–一个字节的数据流 使用测试(未整合Spring)123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143public void testQueueProducer() throws Exception &#123; // 1.创建一个连接工厂对象,需要指定服务的ip以及端口 ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://192.168.1.128:61616"); // 2.使用工厂对象来创建一个Connection对象 Connection connection = connectionFactory.createConnection(); // 3.开启连接，调用Connection对象的start方法 connection.start(); // 4.创建一个Session对象 // 第一个参数:是否开启事务。如果true开启事务，第二个无意义。一般不开启false // 第二个参数：如果不开启事务。应答模式，一般是自动应答或者手动应答 Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE); // 5.使用Session对象创建一个Destination对象。两种形式queue、topic Queue queue = session.createQueue("spring-queue"); // 6.使用Session对象创建一个Producer对象 MessageProducer producer = session.createProducer(queue); // 7.创建一个Message对象，可以使用TextMessage。 /* * TextMessage textMessage=new ActiveMQTextMessage(); * textMessage.setText("hello Activemq"); */ TextMessage textMessage = session.createTextMessage("hello Activemq"); // 8.发送消息 producer.send(textMessage); // 9.关闭资源 producer.close(); session.close(); connection.close();&#125;public void testQueueConsumer() throws Exception &#123; // 创建一个ConnectionFactory对象连接MQ服务器 ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://192.168.1.128:61616"); // 创建一个连接对象 Connection connection = connectionFactory.createConnection(); // 开启连接 connection.start(); // 使用Connection对象创建一个Session对象 Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE); // 创建一个Destinatiion对象，queue对象 Queue queue = session.createQueue("spring-queue"); // 使用Session对象创建一个消费者对象 MessageConsumer consumer = session.createConsumer(queue); // 接收消息 consumer.setMessageListener(new MessageListener() &#123; @Override public void onMessage(Message message) &#123; // 打印结果 TextMessage textMessage = (TextMessage) message; String text; try &#123; text = textMessage.getText(); System.out.println(text); &#125; catch (JMSException e) &#123; e.printStackTrace(); &#125; &#125; &#125;); // 等待接收消息 System.in.read(); // 关闭资源 consumer.close(); session.close(); connection.close();&#125;public void testTopicProducer() throws Exception &#123; // 1.创建一个连接工厂对象,需要指定服务的ip以及端口 ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://192.168.1.128:61616"); // 2.使用工厂对象来创建一个Connection对象 Connection connection = connectionFactory.createConnection(); // 3.开启连接，调用Connection对象的start方法 connection.start(); // 4.创建一个Session对象 // 第一个参数:是否开启事务。如果true开启事务，第二个无意义。一般不开启false // 第二个参数：如果不开启事务。应答模式，一般是自动应答或者手动应答 Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE); // 5.使用Session对象创建一个Destination对象。两种形式queue、topic Topic topic = session.createTopic("test-topic"); // 6.使用Session对象创建一个Producer对象 MessageProducer producer = session.createProducer(topic); // 7.创建一个Message对象，可以使用TextMessage。 /* * TextMessage textMessage=new ActiveMQTextMessage(); * textMessage.setText("hello Activemq"); */ TextMessage textMessage = session.createTextMessage("topicMessage"); // 8.发送消息 producer.send(textMessage); // 9.关闭资源 producer.close(); session.close(); connection.close();&#125;public void testTopicConsumer() throws Exception &#123; // 创建一个ConnectionFactory对象连接MQ服务器 ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://192.168.1.128:61616"); // 创建一个连接对象 Connection connection = connectionFactory.createConnection(); // 开启连接 connection.start(); // 使用Connection对象创建一个Session对象 Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE); // 创建一个Destinatiion对象，queue对象 Topic topic = session.createTopic("test-topic"); // 使用Session对象创建一个消费者对象 MessageConsumer consumer = session.createConsumer(topic); // 接收消息 consumer.setMessageListener(new MessageListener() &#123; @Override public void onMessage(Message message) &#123; // 打印结果 TextMessage textMessage = (TextMessage) message; String text; try &#123; text = textMessage.getText(); System.out.println(text); &#125; catch (JMSException e) &#123; e.printStackTrace(); &#125; &#125; &#125;); System.out.println("topic 消费者3已经启动"); // 等待接收消息 System.in.read(); // 关闭资源 consumer.close(); session.close(); connection.close();&#125; 作者：lhsjohn]]></content>
@@ -8,8 +20,8 @@
         <category>ActiveMQ</category>
       </categories>
       <tags>
-        <tag>ActiveMQ</tag>
         <tag>java</tag>
+        <tag>ActiveMQ</tag>
       </tags>
   </entry>
   <entry>
@@ -43,8 +55,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>Spring</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -82,8 +94,8 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>爬虫</tag>
+        <tag>python</tag>
         <tag>多线程</tag>
       </tags>
   </entry>
@@ -110,8 +122,8 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>爬虫</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -137,8 +149,8 @@
         <category>python</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>爬虫</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -164,8 +176,8 @@
         <category>python</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>爬虫</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -204,9 +216,9 @@
       </categories>
       <tags>
         <tag>心得</tag>
+        <tag>python</tag>
         <tag>技术</tag>
         <tag>Python环境搭建</tag>
-        <tag>python</tag>
       </tags>
   </entry>
   <entry>
