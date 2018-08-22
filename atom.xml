@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.lhsblog.cn/"/>
-  <updated>2018-08-22T13:13:00.231Z</updated>
+  <updated>2018-08-22T13:23:16.756Z</updated>
   <id>https://www.lhsblog.cn/</id>
   
   <author>
@@ -18,47 +18,14 @@
   
   <entry>
     <title>一个简单的登录拦截器</title>
-    <link href="https://www.lhsblog.cn/2018/08/22/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%99%BB%E5%BD%95%E6%8B%A6%E6%88%AA%E5%99%A8/"/>
-    <id>https://www.lhsblog.cn/2018/08/22/一个简单的登录拦截器/</id>
+    <link href="https://www.lhsblog.cn/2018/08/22/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%99%BB%E5%BD%95%E6%8B%A6%E6%88%AA%E5%99%A8(1)/"/>
+    <id>https://www.lhsblog.cn/2018/08/22/一个简单的登录拦截器(1)/</id>
     <published>2018-08-22T13:07:03.000Z</published>
-    <updated>2018-08-22T13:13:00.231Z</updated>
+    <updated>2018-08-22T13:23:16.756Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;“””java&lt;/p&gt;
-&lt;p&gt;package cn.e3mall.cart.interceptor;&lt;/p&gt;
-&lt;p&gt;import javax.servlet.http.HttpServletRequest;&lt;br&gt;import javax.servlet.http.HttpServletResponse;&lt;/p&gt;
-&lt;p&gt;import org.apache.commons.lang3.StringUtils;&lt;br&gt;import org.springframework.beans.factory.annotation.Autowired;&lt;br&gt;import org.springframework.web.servlet.HandlerExceptionResolver;&lt;br&gt;import org.springframework.web.servlet.HandlerInterceptor;&lt;br&gt;import org.springframework.web.servlet.ModelAndView;&lt;/p&gt;
-&lt;p&gt;import cn.e3mall.common.utils.CookieUtils;&lt;br&gt;import cn.e3mall.common.utils.E3Result;&lt;br&gt;import cn.e3mall.pojo.TbUser;&lt;br&gt;import cn.e3mall.sso.service.TokenService;&lt;br&gt;/**&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;用户登录拦截器&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;@author lihuashuo&lt;br&gt;&lt;em&gt;
-&lt;/em&gt;/&lt;br&gt;public class LoginInterceptor implements HandlerInterceptor {&lt;/p&gt;
-&lt;p&gt; @Autowired&lt;br&gt; private TokenService tokenService;&lt;/p&gt;
-&lt;p&gt; @Override&lt;br&gt; public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    throws Exception {
-//前处理，执行handler之前处理
-//返回 true,放行 false:拦截
-//1.从cookie中取token
-String token = CookieUtils.getCookieValue(request, &amp;quot;token&amp;quot;);
-//2.如果没有token,未登录状态，直接放行
-if(StringUtils.isBlank(token)) {
-    return true;
-}
-//3.取到token,需要调用sso系统的服务，根据token取用户信息
-E3Result e3Result = tokenService.getUserByToken(token);
-//4.没有取到用户信息。登录过期，直接放行
-if(e3Result.getStatus()!=200) {
-    return true;
-}
-//5.取到用户信息。登录状态。
-TbUser user =(TbUser) e3Result.getData();
-//6.把用户信息放到request中，只需要在Controller中判断是否包含user信息。放行
-request.setAttribute(&amp;quot;user&amp;quot;, user);
-return true;    
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; }&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+      &lt;figure class=&quot;highlight aspectj&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;55&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;56&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;57&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;58&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;59&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;60&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;61&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;62&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;63&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;65&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;66&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;67&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;68&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;69&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;70&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;package&lt;/span&gt; cn.e3mall.cart.interceptor;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; javax.servlet.http.HttpServletRequest;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; javax.servlet.http.HttpServletResponse;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; org.apache.commons.lang3.StringUtils;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; org.springframework.beans.factory.annotation.Autowired;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; org.springframework.web.servlet.HandlerExceptionResolver;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; org.springframework.web.servlet.HandlerInterceptor;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; org.springframework.web.servlet.ModelAndView;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; cn.e3mall.common.utils.CookieUtils;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; cn.e3mall.common.utils.E3Result;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; cn.e3mall.pojo.TbUser;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; cn.e3mall.sso.service.TokenService;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/**&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; * 用户登录拦截器&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; * &lt;span class=&quot;doctag&quot;&gt;@author&lt;/span&gt; lihuashuo&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; *&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;LoginInterceptor&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;HandlerInterceptor&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;meta&quot;&gt;@Autowired&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; TokenService tokenService;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;boolean&lt;/span&gt; preHandle(HttpServletRequest request, HttpServletResponse response, Object &lt;span class=&quot;keyword&quot;&gt;handler&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;keyword&quot;&gt;throws&lt;/span&gt; Exception &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;comment&quot;&gt;//前处理，执行handler之前处理&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;comment&quot;&gt;//返回 true,放行 false:拦截&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;comment&quot;&gt;//1.从cookie中取token&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		String token = CookieUtils.getCookieValue(request, &lt;span class=&quot;string&quot;&gt;&quot;token&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;comment&quot;&gt;//2.如果没有token,未登录状态，直接放行&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(StringUtils.isBlank(token)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;comment&quot;&gt;//3.取到token,需要调用sso系统的服务，根据token取用户信息&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		E3Result e3Result = tokenService.getUserByToken(token);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;comment&quot;&gt;//4.没有取到用户信息。登录过期，直接放行&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(e3Result.getStatus()!=&lt;span class=&quot;number&quot;&gt;200&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;comment&quot;&gt;//5.取到用户信息。登录状态。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		TbUser user =(TbUser) e3Result.getData();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;comment&quot;&gt;//6.把用户信息放到request中，只需要在Controller中判断是否包含user信息。放行&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		request.setAttribute(&lt;span class=&quot;string&quot;&gt;&quot;user&quot;&lt;/span&gt;, user);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;true&lt;/span&gt;;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; postHandle(HttpServletRequest request, HttpServletResponse response, Object &lt;span class=&quot;keyword&quot;&gt;handler&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			ModelAndView modelAndView) &lt;span class=&quot;keyword&quot;&gt;throws&lt;/span&gt; Exception &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       &lt;span class=&quot;comment&quot;&gt;//handler执行之后,返回ModeAndView之前&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	   &lt;span class=&quot;comment&quot;&gt;//&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; afterCompletion(HttpServletRequest request, HttpServletResponse response, Object &lt;span class=&quot;keyword&quot;&gt;handler&lt;/span&gt;, Exception ex)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;keyword&quot;&gt;throws&lt;/span&gt; Exception &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;comment&quot;&gt;//完成处理,返回ModelAndView之后&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	  &lt;span class=&quot;comment&quot;&gt;//可以在此处理异常&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
@@ -328,9 +295,9 @@ return true;
       <category term="学习" scheme="https://www.lhsblog.cn/categories/%E7%88%AC%E8%99%AB/python/%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="爬虫" scheme="https://www.lhsblog.cn/tags/%E7%88%AC%E8%99%AB/"/>
-    
       <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
+    
+      <category term="爬虫" scheme="https://www.lhsblog.cn/tags/%E7%88%AC%E8%99%AB/"/>
     
       <category term="多线程" scheme="https://www.lhsblog.cn/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
@@ -403,9 +370,9 @@ return true;
       <category term="学习" scheme="https://www.lhsblog.cn/categories/%E7%88%AC%E8%99%AB/python/%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="爬虫" scheme="https://www.lhsblog.cn/tags/%E7%88%AC%E8%99%AB/"/>
-    
       <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
+    
+      <category term="爬虫" scheme="https://www.lhsblog.cn/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
@@ -471,9 +438,9 @@ return true;
       <category term="python" scheme="https://www.lhsblog.cn/categories/%E7%88%AC%E8%99%AB/python/"/>
     
     
-      <category term="爬虫" scheme="https://www.lhsblog.cn/tags/%E7%88%AC%E8%99%AB/"/>
-    
       <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
+    
+      <category term="爬虫" scheme="https://www.lhsblog.cn/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
@@ -545,9 +512,9 @@ return true;
       <category term="python" scheme="https://www.lhsblog.cn/categories/%E7%88%AC%E8%99%AB/python/"/>
     
     
-      <category term="爬虫" scheme="https://www.lhsblog.cn/tags/%E7%88%AC%E8%99%AB/"/>
-    
       <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
+    
+      <category term="爬虫" scheme="https://www.lhsblog.cn/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
@@ -647,11 +614,11 @@ return true;
     
       <category term="心得" scheme="https://www.lhsblog.cn/tags/%E5%BF%83%E5%BE%97/"/>
     
-      <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
-    
       <category term="技术" scheme="https://www.lhsblog.cn/tags/%E6%8A%80%E6%9C%AF/"/>
     
       <category term="Python环境搭建" scheme="https://www.lhsblog.cn/tags/Python%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+      <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
     
   </entry>
   

@@ -305,7 +305,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lhsblog.cn/2018/08/22/一个简单的登录拦截器/">
+    <link itemprop="mainEntityOfPage" href="https://www.lhsblog.cn/2018/08/22/一个简单的登录拦截器(1)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lhsjohn">
@@ -324,7 +324,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/22/一个简单的登录拦截器/" itemprop="url">一个简单的登录拦截器</a></h1>
+                <a class="post-title-link" href="/2018/08/22/一个简单的登录拦截器(1)/" itemprop="url">一个简单的登录拦截器</a></h1>
         
 
         <div class="post-meta">
@@ -377,8 +377,8 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/08/22/一个简单的登录拦截器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/08/22/一个简单的登录拦截器/" itemprop="commentCount"></span>
+                <a href="/2018/08/22/一个简单的登录拦截器(1)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/08/22/一个简单的登录拦截器(1)/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -403,7 +403,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  342
+                  411
                 </span>
               
 
@@ -441,43 +441,10 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
 
       
         
-          <p>“””java</p>
-<p>package cn.e3mall.cart.interceptor;</p>
-<p>import javax.servlet.http.HttpServletRequest;<br>import javax.servlet.http.HttpServletResponse;</p>
-<p>import org.apache.commons.lang3.StringUtils;<br>import org.springframework.beans.factory.annotation.Autowired;<br>import org.springframework.web.servlet.HandlerExceptionResolver;<br>import org.springframework.web.servlet.HandlerInterceptor;<br>import org.springframework.web.servlet.ModelAndView;</p>
-<p>import cn.e3mall.common.utils.CookieUtils;<br>import cn.e3mall.common.utils.E3Result;<br>import cn.e3mall.pojo.TbUser;<br>import cn.e3mall.sso.service.TokenService;<br>/**</p>
-<ul>
-<li>用户登录拦截器</li>
-<li><p>@author lihuashuo<br><em>
-</em>/<br>public class LoginInterceptor implements HandlerInterceptor {</p>
-<p> @Autowired<br> private TokenService tokenService;</p>
-<p> @Override<br> public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)</p>
-<pre><code>    throws Exception {
-//前处理，执行handler之前处理
-//返回 true,放行 false:拦截
-//1.从cookie中取token
-String token = CookieUtils.getCookieValue(request, &quot;token&quot;);
-//2.如果没有token,未登录状态，直接放行
-if(StringUtils.isBlank(token)) {
-    return true;
-}
-//3.取到token,需要调用sso系统的服务，根据token取用户信息
-E3Result e3Result = tokenService.getUserByToken(token);
-//4.没有取到用户信息。登录过期，直接放行
-if(e3Result.getStatus()!=200) {
-    return true;
-}
-//5.取到用户信息。登录状态。
-TbUser user =(TbUser) e3Result.getData();
-//6.把用户信息放到request中，只需要在Controller中判断是否包含user信息。放行
-request.setAttribute(&quot;user&quot;, user);
-return true;    
-</code></pre><p> }</p>
-</li>
-</ul>
+          <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> cn.e3mall.cart.interceptor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.commons.lang3.StringUtils;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.HandlerExceptionResolver;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.HandlerInterceptor;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.ModelAndView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.e3mall.common.utils.CookieUtils;</span><br><span class="line"><span class="keyword">import</span> cn.e3mall.common.utils.E3Result;</span><br><span class="line"><span class="keyword">import</span> cn.e3mall.pojo.TbUser;</span><br><span class="line"><span class="keyword">import</span> cn.e3mall.sso.service.TokenService;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用户登录拦截器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> lihuashuo</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginInterceptor</span> <span class="keyword">implements</span> <span class="title">HandlerInterceptor</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> TokenService tokenService;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">boolean</span> preHandle(HttpServletRequest request, HttpServletResponse response, Object <span class="keyword">handler</span>)</span><br><span class="line">			<span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		<span class="comment">//前处理，执行handler之前处理</span></span><br><span class="line">		<span class="comment">//返回 true,放行 false:拦截</span></span><br><span class="line">		<span class="comment">//1.从cookie中取token</span></span><br><span class="line">		String token = CookieUtils.getCookieValue(request, <span class="string">"token"</span>);</span><br><span class="line">		<span class="comment">//2.如果没有token,未登录状态，直接放行</span></span><br><span class="line">		<span class="keyword">if</span>(StringUtils.isBlank(token)) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//3.取到token,需要调用sso系统的服务，根据token取用户信息</span></span><br><span class="line">		E3Result e3Result = tokenService.getUserByToken(token);</span><br><span class="line">		<span class="comment">//4.没有取到用户信息。登录过期，直接放行</span></span><br><span class="line">		<span class="keyword">if</span>(e3Result.getStatus()!=<span class="number">200</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//5.取到用户信息。登录状态。</span></span><br><span class="line">		TbUser user =(TbUser) e3Result.getData();</span><br><span class="line">		<span class="comment">//6.把用户信息放到request中，只需要在Controller中判断是否包含user信息。放行</span></span><br><span class="line">		request.setAttribute(<span class="string">"user"</span>, user);</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> postHandle(HttpServletRequest request, HttpServletResponse response, Object <span class="keyword">handler</span>,</span><br><span class="line">			ModelAndView modelAndView) <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">       <span class="comment">//handler执行之后,返回ModeAndView之前</span></span><br><span class="line">	   <span class="comment">//</span></span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> afterCompletion(HttpServletRequest request, HttpServletResponse response, Object <span class="keyword">handler</span>, Exception ex)</span><br><span class="line">			<span class="keyword">throws</span> Exception &#123;</span><br><span class="line">      <span class="comment">//完成处理,返回ModelAndView之后</span></span><br><span class="line">	  <span class="comment">//可以在此处理异常</span></span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/22/一个简单的登录拦截器/#more" rel="contents">
+            <a class="btn" href="/2018/08/22/一个简单的登录拦截器(1)/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1272,7 +1239,7 @@ show_date_time();
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">20.6k</span>
+    <span title="Site words total count">20.7k</span>
   
 </div>
 
