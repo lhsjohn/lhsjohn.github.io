@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+
+<script type="text/javascript"
+color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+<html class="theme-next mist use-motion" lang="zh-cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/header.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java,设计模式," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="lhsjohn的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="适配器模式的定义  将一个类的接口，转换成客户所期望的另一个接口。适配器让原本接口不兼容的类可以合作无间。   类图：      这里有四个名词，需要理解一下   Client: 客户端，调用自己需要领域的接口Target   Target: 定义客户端需要的跟特定领域相关的接口   Adaptee: 已经存在的接口，但是与客户端所需领域的接口要求不一致，需要被适配(例如是方法名字不一致)   A">
+<meta name="keywords" content="java,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式思考(五)-----适配器模式">
+<meta property="og:url" content="https://www.lhsblog.cn/2018/08/23/设计模式思考(五)-适配器模式(1)/index.html">
+<meta property="og:site_name" content="lhsjohn的博客">
+<meta property="og:description" content="适配器模式的定义  将一个类的接口，转换成客户所期望的另一个接口。适配器让原本接口不兼容的类可以合作无间。   类图：      这里有四个名词，需要理解一下   Client: 客户端，调用自己需要领域的接口Target   Target: 定义客户端需要的跟特定领域相关的接口   Adaptee: 已经存在的接口，但是与客户端所需领域的接口要求不一致，需要被适配(例如是方法名字不一致)   A">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="https://www.lhsblog.cn/images/2018-08-23.png">
+<meta property="og:image" content="https://www.lhsblog.cn/images/2018-08-24-2.png">
+<meta property="og:image" content="https://www.lhsblog.cn/images/2018-08-24-3.png">
+<meta property="og:updated_time" content="2018-08-23T18:47:04.196Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式思考(五)-----适配器模式">
+<meta name="twitter:description" content="适配器模式的定义  将一个类的接口，转换成客户所期望的另一个接口。适配器让原本接口不兼容的类可以合作无间。   类图：      这里有四个名词，需要理解一下   Client: 客户端，调用自己需要领域的接口Target   Target: 定义客户端需要的跟特定领域相关的接口   Adaptee: 已经存在的接口，但是与客户端所需领域的接口要求不一致，需要被适配(例如是方法名字不一致)   A">
+<meta name="twitter:image" content="https://www.lhsblog.cn/images/2018-08-23.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":10,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.lhsblog.cn/2018/08/23/设计模式思考(五)-适配器模式(1)/"/>
+
+
+
+
+
+  <title>设计模式思考(五)-----适配器模式 | lhsjohn的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband">
+	</div>
+		<a href="https://github.com/lhsjohn"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lhsjohn的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">对未来的真正慷慨，是把一切献给现在</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于我">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lhsblog.cn/2018/08/23/设计模式思考(五)-适配器模式(1)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lhsjohn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lhsjohn的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">设计模式思考(五)-----适配器模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-23T23:02:24+08:00">
+                2018-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/java/学习/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/23/设计模式思考(五)-适配器模式(1)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/08/23/设计模式思考(五)-适配器模式(1)/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+         
+     <span class="post-meta-divider">|</span>
+     <span id="busuanzi_value_page_pv"></span>次阅读
+        
+		  
+		  
+		  
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  4,502
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  21
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="适配器模式的定义"><a href="#适配器模式的定义" class="headerlink" title="适配器模式的定义"></a>适配器模式的定义</h1><p>  将一个类的接口，转换成客户所期望的另一个接口。适配器让原本接口不兼容的类可以合作无间。</p>
+<p>  类图：</p>
+<p>  <img src="/images/2018-08-23.png" alt=""></p>
+<p>  这里有四个名词，需要理解一下</p>
+<p>  Client: 客户端，调用自己需要领域的接口Target</p>
+<p>  Target: 定义客户端需要的跟特定领域相关的接口</p>
+<p>  Adaptee: 已经存在的接口，但是与客户端所需领域的接口要求不一致，需要被适配(例如是方法名字不一致)</p>
+<p>  Adapter: 适配器，把Adaptee适配成Client需要的Target</p>
+<h1 id="Example1"><a href="#Example1" class="headerlink" title="Example1"></a>Example1</h1><h2 id="Adaptee-java"><a href="#Adaptee-java" class="headerlink" title="Adaptee.java"></a>Adaptee.java</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package com.lhsjohn.adapter.example1;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 已经存在的接口，这个接口需要被适配</span></span><br><span class="line"><span class="comment"> * @author lihuashuo</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Adaptee</span> &#123;</span></span><br><span class="line"> </span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 示意方法，原本已经存在，已经实现了的方法</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">specificRequest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">//具体的功能处理</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Target-java"><a href="#Target-java" class="headerlink" title="Target.java"></a>Target.java</h2><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">package com.lhsjohn.adapter.example1;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 定义客户端使用的接口，与特定领域相关</span></span><br><span class="line"><span class="comment"> * @author lihuashuo</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">Target</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 示意方法，客户端请求处理的方法</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">request</span>(<span class="params"></span>)</span>;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Adapter-java"><a href="#Adapter-java" class="headerlink" title="Adapter.java"></a>Adapter.java</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lhsjohn.adapter.example1;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 适配器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Adapter</span> <span class="keyword">implements</span> <span class="title">Target</span></span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//持有需要被适配的接口对象</span></span><br><span class="line">	<span class="keyword">private</span> Adaptee adaptee;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 构造方法，传入需要被适配的对象</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> adaptee</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Adapter</span><span class="params">(Adaptee adaptee)</span> </span>&#123;</span><br><span class="line">	      <span class="keyword">this</span>.adaptee = adaptee;</span><br><span class="line">   &#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">request</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">//可能转调已经实现了的方法，进行适配</span></span><br><span class="line">		adaptee.specificRequest();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="Client-java"><a href="#Client-java" class="headerlink" title="Client.java"></a>Client.java</h2><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lhsjohn.adapter.example1;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用适配器的客户端</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> lihuashuo</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//创建需要被适配的对象</span></span><br><span class="line">		Adaptee adaptee=<span class="keyword">new</span> Adaptee();</span><br><span class="line">		<span class="comment">//创建客户端需要调用的接口对象。</span></span><br><span class="line">		Target <span class="keyword">target</span>=<span class="keyword">new</span> Adapter(adaptee);</span><br><span class="line">		<span class="comment">//请求处理</span></span><br><span class="line">		<span class="keyword">target</span>.request();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面是对该模式的一个扩展</p>
+<p> 有这样一个应用场景：</p>
+<p> 同时支持数据库和文件的日志管理</p>
+<p> 1：日志管理第一版：</p>
+<p> 在第一版的时候，用户要求日志以文件的形式记录</p>
+<p> 2：日志管理第二版：<br> 要采用数据可以来管理日志，并且已有新的基于数据库的实现</p>
+<p> 3：现在想在第二版的实现里面，能够同时兼容第一版的功能，那么就应该有一个类来实现第二版的接口，然后在这个类里面去调用已有的功能实现，这个类就是适配器</p>
+<h1 id="Example2"><a href="#Example2" class="headerlink" title="Example2"></a>Example2</h1><h2 id="LogModel-java"><a href="#LogModel-java" class="headerlink" title="LogModel.java"></a>LogModel.java</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">package com.lhsjohn.adapter.example2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 日志数据对象</span></span><br><span class="line"><span class="comment"> * @author lihuashuo</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> LogModel <span class="keyword">implements</span> Serializable &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//日志编号</span></span><br><span class="line">	<span class="keyword">private</span> <span class="built_in">String</span> logId;</span><br><span class="line">	<span class="comment">//操作人员</span></span><br><span class="line">	<span class="keyword">private</span> <span class="built_in">String</span> operaterUser;</span><br><span class="line">	<span class="comment">//操作时间，以yyyy-MM-dd HH:mm:ss的格式记录</span></span><br><span class="line">	<span class="keyword">private</span> <span class="built_in">String</span> operateTime;</span><br><span class="line">	<span class="comment">//日志内容</span></span><br><span class="line">	<span class="keyword">private</span> <span class="built_in">String</span> logContent;</span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">String</span> getLogId() &#123;</span><br><span class="line">		<span class="keyword">return</span> logId;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">void</span> setLogId(<span class="built_in">String</span> logId) &#123;</span><br><span class="line">		<span class="keyword">this</span>.logId = logId;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">String</span> getOperaterUser() &#123;</span><br><span class="line">		<span class="keyword">return</span> operaterUser;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">void</span> setOperaterUser(<span class="built_in">String</span> operaterUser) &#123;</span><br><span class="line">		<span class="keyword">this</span>.operaterUser = operaterUser;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">String</span> getOperateTime() &#123;</span><br><span class="line">		<span class="keyword">return</span> operateTime;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">void</span> setOperateTime(<span class="built_in">String</span> operateTime) &#123;</span><br><span class="line">		<span class="keyword">this</span>.operateTime = operateTime;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">String</span> getLogContent() &#123;</span><br><span class="line">		<span class="keyword">return</span> logContent;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">void</span> setLogContent(<span class="built_in">String</span> logContent) &#123;</span><br><span class="line">		<span class="keyword">this</span>.logContent = logContent;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">String</span> toString() &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"LogModel [logId="</span> + logId + <span class="string">", operaterUser="</span> + operaterUser + <span class="string">", operateTime="</span> + operateTime</span><br><span class="line">				+ <span class="string">", logContent="</span> + logContent + <span class="string">"]"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="LogFileOperateApi-java"><a href="#LogFileOperateApi-java" class="headerlink" title="LogFileOperateApi.java"></a>LogFileOperateApi.java</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">package com.lhsjohn.adapter.example2;</span><br><span class="line"></span><br><span class="line">import java.util.<span class="keyword">List</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 日志文件操作接口</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> lihuashuo</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">LogFileOperateApi</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 读取文件，从文件里面获取存储的日志列表</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span> 存储的日志操作对象</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">List</span>&lt;LogModel&gt; readLogFile();</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 写日志文件，把日志列表写到日志文件中去</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> list 要写到日志文件的日志列表</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> void writeLogFile(<span class="keyword">List</span>&lt;LogModel&gt; <span class="keyword">list</span>);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="LogFileOperate-java"><a href="#LogFileOperate-java" class="headerlink" title="LogFileOperate.java"></a>LogFileOperate.java</h2><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lhsjohn.adapter.example2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.BufferedInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.BufferedOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.ObjectInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.ObjectOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 实现对日志文件的操作</span></span><br><span class="line"><span class="comment"> * @author lihuashuo</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogFileOperate</span> <span class="keyword"><span class="keyword">implements</span> <span class="type">LogFileOperateApi</span></span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//日志文件的路径和文件名称，默认是当前classpath下的AdapterLog.log</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">String</span> logFilePathName=<span class="string">"AdapterLog.log"</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 构造方法，传入文件的路径和名称</span></span><br><span class="line"><span class="comment">	 * @param logFilePathName 文件的路径和名称</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> LogFileOperate(<span class="keyword">String</span> logFilePathName) &#123;</span><br><span class="line">		<span class="comment">//先判断是否传入了文件的路径和名称</span></span><br><span class="line">		<span class="comment">//如果是的话，就重新设置操作的日志文件的路径和名称</span></span><br><span class="line">		<span class="keyword">if</span>(logFilePathName!=<span class="literal">null</span>&amp;&amp; logFilePathName.trim().length()&gt;<span class="number">0</span>) &#123;			</span><br><span class="line">			<span class="built_in">this</span>.logFilePathName = logFilePathName;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	<span class="keyword">public</span> List&lt;LogModel&gt; readLogFile() &#123;</span><br><span class="line">       List&lt;LogModel&gt; list=<span class="literal">null</span>;</span><br><span class="line">       ObjectInputStream oin=<span class="literal">null</span>;</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">       File f=<span class="keyword">new</span> <span class="type">File</span>(logFilePathName);</span><br><span class="line">       <span class="keyword">if</span>(f.exists()) &#123;</span><br><span class="line">			oin=<span class="keyword">new</span> <span class="type">ObjectInputStream</span>(<span class="keyword">new</span> <span class="type">BufferedInputStream</span>(<span class="keyword">new</span> <span class="type">FileInputStream</span>(f)));</span><br><span class="line">            list=(List&lt;LogModel&gt;) oin.readObject();		</span><br><span class="line">           &#125;</span><br><span class="line">       </span><br><span class="line">       &#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">		   e.printStackTrace();</span><br><span class="line">		&#125;finally &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				<span class="keyword">if</span>(oin!=<span class="literal">null</span>) &#123;</span><br><span class="line">					oin.close();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; <span class="keyword">catch</span> (Exception e2) &#123;</span><br><span class="line">				e2.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">       </span><br><span class="line">		<span class="keyword">return</span> list;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	<span class="keyword">public</span> void writeLogFile(List&lt;LogModel&gt; list) &#123;</span><br><span class="line">	   File f=<span class="keyword">new</span> <span class="type">File</span>(logFilePathName);</span><br><span class="line">	   ObjectOutputStream oout=<span class="literal">null</span>;</span><br><span class="line">	   <span class="keyword">try</span> &#123;</span><br><span class="line">		oout=<span class="keyword">new</span> <span class="type">ObjectOutputStream</span>(<span class="keyword">new</span> <span class="type">BufferedOutputStream</span>(<span class="keyword">new</span> <span class="type">FileOutputStream</span>(f)));</span><br><span class="line">	    oout.writeObject(list);</span><br><span class="line">	   &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">	      e.printStackTrace();</span><br><span class="line">	  &#125;finally &#123;</span><br><span class="line">          <span class="keyword">try</span> &#123;</span><br><span class="line">		     <span class="keyword">if</span>(oout!=<span class="literal">null</span>) &#123;</span><br><span class="line">				 oout.close();</span><br><span class="line">		        &#125;</span><br><span class="line">			  &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		  &#125;</span><br><span class="line">	  &#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="LogDbOperator-java"><a href="#LogDbOperator-java" class="headerlink" title="LogDbOperator.java"></a>LogDbOperator.java</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lhsjohn.adapter.example2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 定义操作日志的应用接口</span></span><br><span class="line"><span class="comment"> * 简单定义了增删改查的方法</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> lihuashuo</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">LogDbOperaterApi</span> </span>&#123;</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 新增日志</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> lm 需要新增的日志对象</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createLog</span><span class="params">(LogModel lm)</span></span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 删除日志</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> lm 需要修改的日志对象</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateLog</span><span class="params">(LogModel lm)</span></span>;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 删除日志</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> lm 需要删除的日志对象 </span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeLog</span><span class="params">(LogModel lm)</span> </span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 获取所有的日志</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span> 所有的日志对象</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;LogModel&gt; <span class="title">getAllLog</span><span class="params">()</span></span>;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Adapter-java-1"><a href="#Adapter-java-1" class="headerlink" title="Adapter.java"></a>Adapter.java</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">package com.lhsjohn.adapter.example2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 适配器对象，把记录日志到文件的功能适配成第二版需要的增删改查的功能</span></span><br><span class="line"><span class="comment"> * @author lihuashuo</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Adapter</span> <span class="title">implements</span> <span class="title">LogDbOperaterApi</span> &#123;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 持有需要被适配的对象</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> LogFileOperateApi adaptee;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 构造方法，传入需要被适配的对象</span></span><br><span class="line"><span class="comment">	 * @param adaptee 需要被是配的对象</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Adapter</span><span class="params">(LogFileOperateApi adaptee)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.adaptee = adaptee;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createLog</span><span class="params">(LogModel lm)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1：先读取文件的内容</span></span><br><span class="line">		List&lt;LogModel&gt; <span class="built_in">list</span> = adaptee.readLogFile();</span><br><span class="line">		<span class="comment">//2:加入新的日志对象</span></span><br><span class="line">		<span class="built_in">list</span>.add(lm);</span><br><span class="line">		<span class="comment">//3.重新写入文件</span></span><br><span class="line">		adaptee.writeLogFile(<span class="built_in">list</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateLog</span><span class="params">(LogModel lm)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//1:先读取文件的内容</span></span><br><span class="line">		List&lt;LogModel&gt; <span class="built_in">list</span> = adaptee.readLogFile();</span><br><span class="line">		<span class="comment">//2:修改相应的日志对象</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="built_in">list</span>.size();i++) &#123;</span><br><span class="line">			<span class="keyword">if</span>(<span class="built_in">list</span>.get(i).getLogId().equals(lm.getLogId())) &#123;</span><br><span class="line">				<span class="built_in">list</span>.<span class="built_in">set</span>(i, lm);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeLog</span><span class="params">(LogModel lm)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//1:先读取文件的内容</span></span><br><span class="line">		List&lt;LogModel&gt; <span class="built_in">list</span> = adaptee.readLogFile();</span><br><span class="line">		<span class="comment">//2:删除对应的日志对象</span></span><br><span class="line">		<span class="built_in">list</span>.remove(lm);</span><br><span class="line">		<span class="comment">//3:重新写入文件</span></span><br><span class="line">		adaptee.writeLogFile(<span class="built_in">list</span>);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	<span class="keyword">public</span> List&lt;LogModel&gt; getAllLog() &#123;</span><br><span class="line">		<span class="keyword">return</span> adaptee.readLogFile();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Client-java-1"><a href="#Client-java-1" class="headerlink" title="Client.java"></a>Client.java</h2><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lhsjohn.adapter.example2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">		<span class="comment">//准备日志内容，也就是测试的数据</span></span><br><span class="line">		LogModel lm1=<span class="keyword">new</span> <span class="type">LogModel</span>();</span><br><span class="line">		lm1.setLogId(<span class="string">"001"</span>);</span><br><span class="line">	    lm1.setOperaterUser(<span class="string">"lhsjohn"</span>);</span><br><span class="line">	    lm1.setOperateTime(<span class="string">"2018-08-24 00:30:21"</span>);</span><br><span class="line">	    lm1.setLogContent(<span class="string">"这是一个测试"</span>);</span><br><span class="line">	    </span><br><span class="line">	    List&lt;LogModel&gt; list=<span class="keyword">new</span> <span class="type">ArrayList</span>&lt;LogModel&gt;();</span><br><span class="line">	    list.add(lm1);</span><br><span class="line">	    </span><br><span class="line">	    <span class="comment">//创建操作日志文件的对象</span></span><br><span class="line">	    LogFileOperateApi logFileApi=<span class="keyword">new</span> <span class="type">LogFileOperate</span>(<span class="string">""</span>);</span><br><span class="line">	    </span><br><span class="line">	    <span class="comment">//创建新版的操作日志的接口对象</span></span><br><span class="line">	    LogDbOperaterApi api=<span class="keyword">new</span> <span class="type">Adapter</span>(logFileApi);</span><br><span class="line">	    </span><br><span class="line">	    <span class="comment">//保存日志文件</span></span><br><span class="line">	    api.createLog(lm1);</span><br><span class="line">	    <span class="comment">//未使用适配器之前的:api.writeLogFile(list);</span></span><br><span class="line">	    </span><br><span class="line">	    <span class="comment">//读取日志文件的内容</span></span><br><span class="line">	    <span class="comment">//未使用适配器的：List&lt;LogModel&gt; list2 = api.readLogFile();</span></span><br><span class="line">	    <span class="comment">//使用适配器的</span></span><br><span class="line">	    List&lt;LogModel&gt; list2 = api.getAllLog();</span><br><span class="line">	    System.out.println(<span class="string">"readLog= "</span>+list2);</span><br><span class="line">	    </span><br><span class="line">	    </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再此基础上，再重新认识一下适配器模式</p>
+<p>1：适配器模式的功能</p>
+<p>主要是进行转换匹配，目的是复用已有的功能，而不是实现新的接口。</p>
+<p>  适配器里面也可以实现功能，称这种为智能适配器。</p>
+<p>2：Adaptee和Target的关系</p>
+<p>适配器模式中被适配的接口Adaptee和适配成为的接口Target是没有关联的。</p>
+<p>3：对象组合</p>
+<p>适配器的实现方式其实是依靠的对象组合的方式<br>其实也可以用对象继承的方式，但是不推荐，因为Java是单继承的，只能继承一个类，如果要使用多个类的特性，就无法用继承完成</p>
+<p>4.适配器模式调用的时序图</p>
+<p>1：调用客户端需要的功能–&gt;1:1这个功能会由适配器来实现–&gt;1:1:1适配器会转调被适配对象的功能</p>
+<h1 id="适配器的实现"><a href="#适配器的实现" class="headerlink" title="适配器的实现"></a>适配器的实现</h1><p>1.适配器的常见实现</p>
+<p>适配器通常是一个类，一般会让适配器去实现Target接口，然后在适配器的具体实现里面调用Adaptee.</p>
+<p>2:智能适配器</p>
+<p>可以在适配器的实现里面，加入新的功能实现，这种适配器被称为智能适配器</p>
+<ol start="3">
+<li><p>适配多个Adaptee</p>
+</li>
+<li><p>适配器Adapter实现的复杂程度<br>适配器Adapter实现的复杂程度取决于Adaptee和Target的相似程度</p>
+</li>
+</ol>
+<p>5.缺省适配</p>
+<p>为一个接口提供缺省实现：继承缺省适配器</p>
+<h1 id="双向适配器"><a href="#双向适配器" class="headerlink" title="双向适配器"></a>双向适配器</h1><p>  <img src="/images/2018-08-24-2.png" alt=""></p>
+<h1 id="example3"><a href="#example3" class="headerlink" title="example3"></a>example3</h1><h2 id="LogModel-java-1"><a href="#LogModel-java-1" class="headerlink" title="LogModel.java"></a>LogModel.java</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">package com.lhsjohn.adapter.example3;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 日志数据对象</span></span><br><span class="line"><span class="comment"> * @author lihuashuo</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> LogModel <span class="keyword">implements</span> Serializable &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//日志编号</span></span><br><span class="line">	<span class="keyword">private</span> <span class="built_in">String</span> logId;</span><br><span class="line">	<span class="comment">//操作人员</span></span><br><span class="line">	<span class="keyword">private</span> <span class="built_in">String</span> operaterUser;</span><br><span class="line">	<span class="comment">//操作时间，以yyyy-MM-dd HH:mm:ss的格式记录</span></span><br><span class="line">	<span class="keyword">private</span> <span class="built_in">String</span> operateTime;</span><br><span class="line">	<span class="comment">//日志内容</span></span><br><span class="line">	<span class="keyword">private</span> <span class="built_in">String</span> logContent;</span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">String</span> getLogId() &#123;</span><br><span class="line">		<span class="keyword">return</span> logId;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">void</span> setLogId(<span class="built_in">String</span> logId) &#123;</span><br><span class="line">		<span class="keyword">this</span>.logId = logId;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">String</span> getOperaterUser() &#123;</span><br><span class="line">		<span class="keyword">return</span> operaterUser;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">void</span> setOperaterUser(<span class="built_in">String</span> operaterUser) &#123;</span><br><span class="line">		<span class="keyword">this</span>.operaterUser = operaterUser;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">String</span> getOperateTime() &#123;</span><br><span class="line">		<span class="keyword">return</span> operateTime;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">void</span> setOperateTime(<span class="built_in">String</span> operateTime) &#123;</span><br><span class="line">		<span class="keyword">this</span>.operateTime = operateTime;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">String</span> getLogContent() &#123;</span><br><span class="line">		<span class="keyword">return</span> logContent;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">void</span> setLogContent(<span class="built_in">String</span> logContent) &#123;</span><br><span class="line">		<span class="keyword">this</span>.logContent = logContent;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">String</span> toString() &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"LogModel [logId="</span> + logId + <span class="string">", operaterUser="</span> + operaterUser + <span class="string">", operateTime="</span> + operateTime</span><br><span class="line">				+ <span class="string">", logContent="</span> + logContent + <span class="string">"]"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="LogFileOperateApi-java-1"><a href="#LogFileOperateApi-java-1" class="headerlink" title="LogFileOperateApi.java"></a>LogFileOperateApi.java</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">package com.lhsjohn.adapter.example3;</span><br><span class="line"></span><br><span class="line">import java.util.<span class="keyword">List</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 日志文件操作接口</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> lihuashuo</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">LogFileOperateApi</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 读取文件，从文件里面获取存储的日志列表</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span> 存储的日志操作对象</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">List</span>&lt;LogModel&gt; readLogFile();</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 写日志文件，把日志列表写到日志文件中去</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> list 要写到日志文件的日志列表</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> void writeLogFile(<span class="keyword">List</span>&lt;LogModel&gt; <span class="keyword">list</span>);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="LogFileOperate-java-1"><a href="#LogFileOperate-java-1" class="headerlink" title="LogFileOperate.java"></a>LogFileOperate.java</h2><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lhsjohn.adapter.example3;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.BufferedInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.BufferedOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.ObjectInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.ObjectOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 实现对日志文件的操作</span></span><br><span class="line"><span class="comment"> * @author lihuashuo</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogFileOperate</span> <span class="keyword"><span class="keyword">implements</span> <span class="type">LogFileOperateApi</span></span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//日志文件的路径和文件名称，默认是当前classpath下的AdapterLog.log</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">String</span> logFilePathName=<span class="string">"AdapterLog.log"</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 构造方法，传入文件的路径和名称</span></span><br><span class="line"><span class="comment">	 * @param logFilePathName 文件的路径和名称</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> LogFileOperate(<span class="keyword">String</span> logFilePathName) &#123;</span><br><span class="line">		<span class="comment">//先判断是否传入了文件的路径和名称</span></span><br><span class="line">		<span class="comment">//如果是的话，就重新设置操作的日志文件的路径和名称</span></span><br><span class="line">		<span class="keyword">if</span>(logFilePathName!=<span class="literal">null</span>&amp;&amp; logFilePathName.trim().length()&gt;<span class="number">0</span>) &#123;			</span><br><span class="line">			<span class="built_in">this</span>.logFilePathName = logFilePathName;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	<span class="keyword">public</span> List&lt;LogModel&gt; readLogFile() &#123;</span><br><span class="line">       List&lt;LogModel&gt; list=<span class="literal">null</span>;</span><br><span class="line">       ObjectInputStream oin=<span class="literal">null</span>;</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">       File f=<span class="keyword">new</span> <span class="type">File</span>(logFilePathName);</span><br><span class="line">       <span class="keyword">if</span>(f.exists()) &#123;</span><br><span class="line">			oin=<span class="keyword">new</span> <span class="type">ObjectInputStream</span>(<span class="keyword">new</span> <span class="type">BufferedInputStream</span>(<span class="keyword">new</span> <span class="type">FileInputStream</span>(f)));</span><br><span class="line">            list=(List&lt;LogModel&gt;) oin.readObject();		</span><br><span class="line">           &#125;</span><br><span class="line">       </span><br><span class="line">       &#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">		   e.printStackTrace();</span><br><span class="line">		&#125;finally &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				<span class="keyword">if</span>(oin!=<span class="literal">null</span>) &#123;</span><br><span class="line">					oin.close();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; <span class="keyword">catch</span> (Exception e2) &#123;</span><br><span class="line">				e2.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">       </span><br><span class="line">		<span class="keyword">return</span> list;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	<span class="keyword">public</span> void writeLogFile(List&lt;LogModel&gt; list) &#123;</span><br><span class="line">	   File f=<span class="keyword">new</span> <span class="type">File</span>(logFilePathName);</span><br><span class="line">	   ObjectOutputStream oout=<span class="literal">null</span>;</span><br><span class="line">	   <span class="keyword">try</span> &#123;</span><br><span class="line">		oout=<span class="keyword">new</span> <span class="type">ObjectOutputStream</span>(<span class="keyword">new</span> <span class="type">BufferedOutputStream</span>(<span class="keyword">new</span> <span class="type">FileOutputStream</span>(f)));</span><br><span class="line">	    oout.writeObject(list);</span><br><span class="line">	   &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">	      e.printStackTrace();</span><br><span class="line">	  &#125;finally &#123;</span><br><span class="line">          <span class="keyword">try</span> &#123;</span><br><span class="line">		     <span class="keyword">if</span>(oout!=<span class="literal">null</span>) &#123;</span><br><span class="line">				 oout.close();</span><br><span class="line">		        &#125;</span><br><span class="line">			  &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		  &#125;</span><br><span class="line">	  &#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="LogDbOperaterApi-java"><a href="#LogDbOperaterApi-java" class="headerlink" title="LogDbOperaterApi.java"></a>LogDbOperaterApi.java</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lhsjohn.adapter.example3;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 定义操作日志的应用接口</span></span><br><span class="line"><span class="comment"> * 简单定义了增删改查的方法</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> lihuashuo</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">LogDbOperaterApi</span> </span>&#123;</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 新增日志</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> lm 需要新增的日志对象</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createLog</span><span class="params">(LogModel lm)</span></span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 删除日志</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> lm 需要修改的日志对象</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateLog</span><span class="params">(LogModel lm)</span></span>;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 删除日志</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> lm 需要删除的日志对象 </span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeLog</span><span class="params">(LogModel lm)</span> </span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 获取所有的日志</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span> 所有的日志对象</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;LogModel&gt; <span class="title">getAllLog</span><span class="params">()</span></span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 删除所有的日志</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeAll</span><span class="params">()</span></span>;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="LogDbOperater-java"><a href="#LogDbOperater-java" class="headerlink" title="LogDbOperater.java"></a>LogDbOperater.java</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lhsjohn.adapter.example3;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lhsjohn.adapter.example3.LogDbOperaterApi;</span><br><span class="line"><span class="keyword">import</span> com.lhsjohn.adapter.example3.LogModel;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * DB存储日志的实现，这里是模拟</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> lihuashuo</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogDbOperate</span> <span class="keyword">implements</span> <span class="title">LogDbOperaterApi</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createLog</span><span class="params">(LogModel lm)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"now in LogDbOperate createLog,lm="</span>+lm);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateLog</span><span class="params">(LogModel lm)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"now in LogDbOperate updateLog,lm="</span>+lm);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeLog</span><span class="params">(LogModel lm)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"now in LogDbOperate removeLog,lm="</span>+lm);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;LogModel&gt; <span class="title">getAllLog</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	System.out.println(<span class="string">"now in LogDbOperate getAllLog"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeAll</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"now in LogDbOperate removeAll"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="TwoDirectAdapter"><a href="#TwoDirectAdapter" class="headerlink" title="TwoDirectAdapter"></a>TwoDirectAdapter</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">package com.lhsjohn.adapter.example3;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lhsjohn.adapter.example3.LogModel;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 双向适配器对象</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * @author lihuashuo</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TwoDirectAdapter</span> <span class="title">implements</span> <span class="title">LogDbOperaterApi</span>, <span class="title">LogFileOperateApi</span> &#123;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 持有需要被适配的文件存储日志的对象</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">private</span> LogFileOperateApi fileLog;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 持有需要被适配的DB存储日志的接口对象</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">private</span> LogDbOperaterApi dbLog;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 构造方法，传入需要被适配的对象</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * @param fileLog</span></span><br><span class="line"><span class="comment">	 *            需要被适配的文件存储日志的对象</span></span><br><span class="line"><span class="comment">	 * @param dbLog</span></span><br><span class="line"><span class="comment">	 *            需要被是配的DB存储日志的对象</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">TwoDirectAdapter</span><span class="params">(LogFileOperateApi fileLog, LogDbOperaterApi dbLog)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.fileLog = fileLog;</span><br><span class="line">		<span class="keyword">this</span>.dbLog = dbLog;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*---------以下是把稳健操作的方式适配成DB实现方式的接口-------------*/</span></span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createLog</span><span class="params">(LogModel lm)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 1：先读取文件的内容</span></span><br><span class="line">		List&lt;LogModel&gt; <span class="built_in">list</span> = fileLog.readLogFile();</span><br><span class="line">		<span class="comment">// 2:加入新的日志对象</span></span><br><span class="line">		<span class="built_in">list</span>.add(lm);</span><br><span class="line">		<span class="comment">// 3.重新写入文件</span></span><br><span class="line">		fileLog.writeLogFile(<span class="built_in">list</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateLog</span><span class="params">(LogModel lm)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 1:先读取文件的内容</span></span><br><span class="line">		List&lt;LogModel&gt; <span class="built_in">list</span> = fileLog.readLogFile();</span><br><span class="line">		<span class="comment">// 2:修改相应的日志对象</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="built_in">list</span>.size(); i++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (<span class="built_in">list</span>.get(i).getLogId().equals(lm.getLogId())) &#123;</span><br><span class="line">				<span class="built_in">list</span>.<span class="built_in">set</span>(i, lm);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeLog</span><span class="params">(LogModel lm)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 1:先读取文件的内容</span></span><br><span class="line">		List&lt;LogModel&gt; <span class="built_in">list</span> = fileLog.readLogFile();</span><br><span class="line">		<span class="comment">// 2:删除对应的日志对象</span></span><br><span class="line">		<span class="built_in">list</span>.remove(lm);</span><br><span class="line">		<span class="comment">// 3:重新写入文件</span></span><br><span class="line">		fileLog.writeLogFile(<span class="built_in">list</span>);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	<span class="keyword">public</span> List&lt;LogModel&gt; getAllLog() &#123;</span><br><span class="line">		<span class="keyword">return</span> fileLog.readLogFile();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/* ----以下是把DB操作的方式适配成为文件实现的方式的接口*/</span></span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	<span class="keyword">public</span> List&lt;LogModel&gt; readLogFile() &#123;</span><br><span class="line">		<span class="keyword">return</span> dbLog.getAllLog();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeLogFile</span><span class="params">(List&lt;LogModel&gt; <span class="built_in">list</span>)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//1:最简单的实现思路，先删除数据库中的数据</span></span><br><span class="line">		dbLog.removeLog(null);</span><br><span class="line">	    <span class="comment">//2：然后循环把现在的数据加入到数据库中</span></span><br><span class="line">		<span class="keyword">for</span> (LogModel lm : <span class="built_in">list</span>) &#123;</span><br><span class="line">			dbLog.createLog(lm);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeAll</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.err.println(<span class="string">"now in two driect remove All"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Client-java-2"><a href="#Client-java-2" class="headerlink" title="Client.java"></a>Client.java</h2><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lhsjohn.adapter.example3;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">		<span class="comment">//准备日志内容，也就是测试的数据</span></span><br><span class="line">		LogModel lm1=<span class="keyword">new</span> <span class="type">LogModel</span>();</span><br><span class="line">		lm1.setLogId(<span class="string">"001"</span>);</span><br><span class="line">	    lm1.setOperaterUser(<span class="string">"lhsjohn"</span>);</span><br><span class="line">	    lm1.setOperateTime(<span class="string">"2018-08-24 00:30:21"</span>);</span><br><span class="line">	    lm1.setLogContent(<span class="string">"这是一个测试"</span>);</span><br><span class="line">	    </span><br><span class="line">	    List&lt;LogModel&gt; list=<span class="keyword">new</span> <span class="type">ArrayList</span>&lt;LogModel&gt;();</span><br><span class="line">	    list.add(lm1);</span><br><span class="line">	    </span><br><span class="line">	    <span class="comment">//创建操作日志文件的对象</span></span><br><span class="line">	    LogFileOperateApi fileLogApi=<span class="keyword">new</span> <span class="type">LogFileOperate</span>(<span class="string">""</span>);</span><br><span class="line">	    LogDbOperaterApi dbLogApi=<span class="keyword">new</span> <span class="type">LogDbOperate</span>();</span><br><span class="line">	    </span><br><span class="line">	    <span class="comment">//创建经过双向适配后的操作接口日志的接口对象</span></span><br><span class="line">	    LogFileOperateApi fileLogApi2=<span class="keyword">new</span> <span class="type">TwoDirectAdapter</span>(fileLogApi, dbLogApi);</span><br><span class="line">	    LogDbOperaterApi dbLogApi2=<span class="keyword">new</span> <span class="type">TwoDirectAdapter</span>(fileLogApi, dbLogApi);</span><br><span class="line">	    </span><br><span class="line">	   </span><br><span class="line">	    <span class="comment">//先测试从文件操作适配器第二版，虽然调用第二版的接口，实际上是文件操作在实现</span></span><br><span class="line">	    dbLogApi2.createLog(lm1);</span><br><span class="line">	    List&lt;LogModel&gt; allLog = dbLogApi2.getAllLog();</span><br><span class="line">	    System.out.println(<span class="string">"allLog="</span>+allLog);</span><br><span class="line">	   </span><br><span class="line">	    <span class="comment">//再测试从数据库存储适配成第一版的接口，调用第一版的接口，实际上是数据库相关在实现</span></span><br><span class="line">	    System.out.println(<span class="string">"------------------------File Api"</span>);</span><br><span class="line">	    fileLogApi2.writeLogFile(list);</span><br><span class="line">	    fileLogApi2.readLogFile();</span><br><span class="line">	    </span><br><span class="line">	    </span><br><span class="line">	    </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>控制台输出</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">allLog=[LogModel [<span class="attribute">logId</span>=001, <span class="attribute">operaterUser</span>=lhsjohn, <span class="attribute">operateTime</span>=2018-08-24 00:30:21, <span class="attribute">logContent</span>=这是一个测试], LogModel [<span class="attribute">logId</span>=001, <span class="attribute">operaterUser</span>=lhsjohn, <span class="attribute">operateTime</span>=2018-08-24 00:30:21, <span class="attribute">logContent</span>=这是一个测试]]</span><br><span class="line">------------------------File Api</span><br><span class="line">now <span class="keyword">in</span> LogDbOperate removeLog,<span class="attribute">lm</span>=<span class="literal">null</span></span><br><span class="line">now <span class="keyword">in</span> LogDbOperate createLog,<span class="attribute">lm</span>=LogModel [<span class="attribute">logId</span>=001, <span class="attribute">operaterUser</span>=lhsjohn, <span class="attribute">operateTime</span>=2018-08-24 00:30:21, <span class="attribute">logContent</span>=这是一个测试]</span><br><span class="line">now <span class="keyword">in</span> LogDbOperate getAllLog</span><br></pre></td></tr></table></figure>
+<p>然后再深入理解一下适配器模式</p>
+<p>对象适配器和类适配器</p>
+<p>1：对象适配器的实现：依赖于对象组合，前面示例都是对象适配器的实现方式</p>
+<p>2：类适配器的实现：采用多重继承对一个接口与另一个接口匹配。由于java不支持多重继承，所以到目前没涉及到。</p>
+<p>但是java可以类似去实现类适配器，采用继承加实现接口的方式</p>
+<p><img src="/images/2018-08-24-3.png" alt=""></p>
+<h1 id="最后来一个总结吧"><a href="#最后来一个总结吧" class="headerlink" title="最后来一个总结吧"></a>最后来一个总结吧</h1><h2 id="适配器模式的本质"><a href="#适配器模式的本质" class="headerlink" title="适配器模式的本质"></a>适配器模式的本质</h2><p> 转换匹配，复用功能</p>
+<h2 id="何时使用适配器模式"><a href="#何时使用适配器模式" class="headerlink" title="何时使用适配器模式"></a>何时使用适配器模式</h2><p> 1：如果你想使用一个已经存在的类，但它的接口不符合你的需求，这种情况可以使用适配器模式，来把已有的实现转换成你需要的接口。</p>
+<p> 2：如果你想创建一个可以复用的类，这个类可能和一些不兼容的类一起工作，这种情况下可以使用适配器模式，到时候需要什么就适配什么</p>
+<p> 3：如果你想使用一些已经存在的子类，但是不可能对每一个子类都进行适配，这种情况下就可以选用对象适配器，直接适配这些子类的父类就可以了。</p>
+<p> 作者：lhsjohn</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/22/一个简单的登录拦截器(1)/" rel="next" title="一个简单的登录拦截器">
+                <i class="fa fa-chevron-left"></i> 一个简单的登录拦截器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!--MOB SHARE BEGIN-->
+<div class="-mob-share-ui-button -mob-share-open">分享</div>
+<div class="-mob-share-ui" style="display: none">
+<ul class="-mob-share-list">
+<li class="-mob-share-weibo"><p>新浪微博</p></li>
+<li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
+<li class="-mob-share-qzone"><p>QQ空间</p></li>
+<li class="-mob-share-qq"><p>QQ好友</p></li>
+<li class="-mob-share-renren"><p>人人网</p></li>
+<li class="-mob-share-kaixin"><p>开心网</p></li>
+<li class="-mob-share-douban"><p>豆瓣</p></li>
+<li class="-mob-share-facebook"><p>Facebook</p></li>
+<li class="-mob-share-twitter"><p>Twitter</p></li>
+</ul>
+<div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=276e66346840e"></script>
+<!--MOB SHARE END-->  
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="lhsjohn" />
+            
+              <p class="site-author-name" itemprop="name">lhsjohn</p>
+              <p class="site-description motion-element" itemprop="description">对未来的真正慷慨，是把一切献给现在</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+    
+    
+
+          <div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("07/28/2018 15:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+        </div>
+      </section>
+
+      
+
+      
+	  
+	  
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+<h3 class="widget-title">Tag Cloud</h3>
+<div id="myCanvasContainer" class="widget tagcloud">
+    <canvas width="250" height="250" id="resCanvas" style="width=100%">
+        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ActiveMQ/">ActiveMQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intercepter/">Intercepter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python环境搭建/">Python环境搭建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO单点登录/">SSO单点登录</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastdfs/">fastdfs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solr-zookeeper/">solr+zookeeper</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/励志/">励志</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/喜剧/">喜剧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/影评/">影评</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心得/">心得</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂文/">杂文</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/段子/">段子</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">5</span></li></ul>
+    </canvas>
+</div>
+</div>
+
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lhsjohn</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">25.2k</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+<div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+<!-- 页面点击小红心 -->
+ <script type="text/javascript" src="/js/src/clicklove.js"></script>
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'dILes8JxmVOKeMvXEeHzOlYs-gzGzoHsz',
+        appKey: 'LOd9oGKdW8Ag1emY5hQ3Of4B',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  undefined
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/chitose.model.json"},"display":{"position":"left","width":150,"height":256},"mobile":{"show":true},"log":false,"tagMode":false});</script></body>
+</html>
