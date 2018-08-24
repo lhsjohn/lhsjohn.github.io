@@ -5,9 +5,9 @@
   <subtitle>对未来的真正慷慨，是把一切献给现在</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://www.lhsblog.cn/"/>
+  <link href="https://www.lhsjohn.com/"/>
   <updated>2018-08-23T18:47:04.196Z</updated>
-  <id>https://www.lhsblog.cn/</id>
+  <id>https://www.lhsjohn.com/</id>
   
   <author>
     <name>lhsjohn</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>设计模式思考(五)-----适配器模式</title>
-    <link href="https://www.lhsblog.cn/2018/08/23/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%9D%E8%80%83(%E4%BA%94)-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F(1)/"/>
-    <id>https://www.lhsblog.cn/2018/08/23/设计模式思考(五)-适配器模式(1)/</id>
+    <link href="https://www.lhsjohn.com/2018/08/23/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%9D%E8%80%83(%E4%BA%94)-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F(1)/"/>
+    <id>https://www.lhsjohn.com/2018/08/23/设计模式思考(五)-适配器模式(1)/</id>
     <published>2018-08-23T15:02:24.000Z</published>
     <updated>2018-08-23T18:47:04.196Z</updated>
     
@@ -39,23 +39,23 @@
     
     </summary>
     
-      <category term="设计模式" scheme="https://www.lhsblog.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://www.lhsjohn.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-      <category term="java" scheme="https://www.lhsblog.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/java/"/>
+      <category term="java" scheme="https://www.lhsjohn.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/java/"/>
     
-      <category term="学习" scheme="https://www.lhsblog.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/java/%E5%AD%A6%E4%B9%A0/"/>
+      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/java/%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
     
-      <category term="设计模式" scheme="https://www.lhsblog.cn/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://www.lhsjohn.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>一个简单的登录拦截器</title>
-    <link href="https://www.lhsblog.cn/2018/08/22/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%99%BB%E5%BD%95%E6%8B%A6%E6%88%AA%E5%99%A8(1)/"/>
-    <id>https://www.lhsblog.cn/2018/08/22/一个简单的登录拦截器(1)/</id>
+    <link href="https://www.lhsjohn.com/2018/08/22/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%99%BB%E5%BD%95%E6%8B%A6%E6%88%AA%E5%99%A8(1)/"/>
+    <id>https://www.lhsjohn.com/2018/08/22/一个简单的登录拦截器(1)/</id>
     <published>2018-08-22T13:07:03.000Z</published>
     <updated>2018-08-22T13:23:16.756Z</updated>
     
@@ -65,19 +65,19 @@
     
     </summary>
     
-      <category term="Spring" scheme="https://www.lhsblog.cn/categories/Spring/"/>
+      <category term="Spring" scheme="https://www.lhsjohn.com/categories/Spring/"/>
     
     
-      <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
     
-      <category term="Intercepter" scheme="https://www.lhsblog.cn/tags/Intercepter/"/>
+      <category term="Intercepter" scheme="https://www.lhsjohn.com/tags/Intercepter/"/>
     
   </entry>
   
   <entry>
     <title>SSO单点登录</title>
-    <link href="https://www.lhsblog.cn/2018/08/19/SSO%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E5%A4%84%E7%90%86/"/>
-    <id>https://www.lhsblog.cn/2018/08/19/SSO单点登录处理/</id>
+    <link href="https://www.lhsjohn.com/2018/08/19/SSO%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E5%A4%84%E7%90%86/"/>
+    <id>https://www.lhsjohn.com/2018/08/19/SSO单点登录处理/</id>
     <published>2018-08-19T11:00:03.000Z</published>
     <updated>2018-08-19T11:08:17.066Z</updated>
     
@@ -91,19 +91,19 @@
     
     </summary>
     
-      <category term="SSO单点登录" scheme="https://www.lhsblog.cn/categories/SSO%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
+      <category term="SSO单点登录" scheme="https://www.lhsjohn.com/categories/SSO%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
     
     
-      <category term="SSO单点登录" scheme="https://www.lhsblog.cn/tags/SSO%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
     
-      <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
+      <category term="SSO单点登录" scheme="https://www.lhsjohn.com/tags/SSO%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
     
   </entry>
   
   <entry>
     <title>ActiveMQ</title>
-    <link href="https://www.lhsblog.cn/2018/08/17/ActiveMQ/"/>
-    <id>https://www.lhsblog.cn/2018/08/17/ActiveMQ/</id>
+    <link href="https://www.lhsjohn.com/2018/08/17/ActiveMQ/"/>
+    <id>https://www.lhsjohn.com/2018/08/17/ActiveMQ/</id>
     <published>2018-08-17T07:41:03.000Z</published>
     <updated>2018-08-17T10:08:08.725Z</updated>
     
@@ -137,19 +137,19 @@
     
     </summary>
     
-      <category term="ActiveMQ" scheme="https://www.lhsblog.cn/categories/ActiveMQ/"/>
+      <category term="ActiveMQ" scheme="https://www.lhsjohn.com/categories/ActiveMQ/"/>
     
     
-      <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
     
-      <category term="ActiveMQ" scheme="https://www.lhsblog.cn/tags/ActiveMQ/"/>
+      <category term="ActiveMQ" scheme="https://www.lhsjohn.com/tags/ActiveMQ/"/>
     
   </entry>
   
   <entry>
     <title>SolrCloud，一个分布式搜索方案</title>
-    <link href="https://www.lhsblog.cn/2018/08/14/SolrCloud%EF%BC%8C%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E6%96%B9%E6%A1%88/"/>
-    <id>https://www.lhsblog.cn/2018/08/14/SolrCloud，一个分布式搜索方案/</id>
+    <link href="https://www.lhsjohn.com/2018/08/14/SolrCloud%EF%BC%8C%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E6%96%B9%E6%A1%88/"/>
+    <id>https://www.lhsjohn.com/2018/08/14/SolrCloud，一个分布式搜索方案/</id>
     <published>2018-08-14T15:17:16.000Z</published>
     <updated>2018-08-17T10:09:11.202Z</updated>
     
@@ -168,18 +168,18 @@
     </summary>
     
     
-      <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
     
-      <category term="solr+zookeeper" scheme="https://www.lhsblog.cn/tags/solr-zookeeper/"/>
+      <category term="solr+zookeeper" scheme="https://www.lhsjohn.com/tags/solr-zookeeper/"/>
     
-      <category term="linux" scheme="https://www.lhsblog.cn/tags/linux/"/>
+      <category term="linux" scheme="https://www.lhsjohn.com/tags/linux/"/>
     
   </entry>
   
   <entry>
     <title>fastdfs</title>
-    <link href="https://www.lhsblog.cn/2018/08/11/fastdfs/"/>
-    <id>https://www.lhsblog.cn/2018/08/11/fastdfs/</id>
+    <link href="https://www.lhsjohn.com/2018/08/11/fastdfs/"/>
+    <id>https://www.lhsjohn.com/2018/08/11/fastdfs/</id>
     <published>2018-08-11T03:17:16.000Z</published>
     <updated>2018-08-17T10:08:27.498Z</updated>
     
@@ -208,21 +208,21 @@
     
     </summary>
     
-      <category term="fastdfs" scheme="https://www.lhsblog.cn/categories/fastdfs/"/>
+      <category term="fastdfs" scheme="https://www.lhsjohn.com/categories/fastdfs/"/>
     
     
-      <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
     
-      <category term="linux" scheme="https://www.lhsblog.cn/tags/linux/"/>
+      <category term="linux" scheme="https://www.lhsjohn.com/tags/linux/"/>
     
-      <category term="fastdfs" scheme="https://www.lhsblog.cn/tags/fastdfs/"/>
+      <category term="fastdfs" scheme="https://www.lhsjohn.com/tags/fastdfs/"/>
     
   </entry>
   
   <entry>
     <title>Pom文件</title>
-    <link href="https://www.lhsblog.cn/2018/08/08/Pom%E6%96%87%E4%BB%B6/"/>
-    <id>https://www.lhsblog.cn/2018/08/08/Pom文件/</id>
+    <link href="https://www.lhsjohn.com/2018/08/08/Pom%E6%96%87%E4%BB%B6/"/>
+    <id>https://www.lhsjohn.com/2018/08/08/Pom文件/</id>
     <published>2018-08-08T03:45:16.000Z</published>
     <updated>2018-08-17T10:08:59.561Z</updated>
     
@@ -238,19 +238,19 @@
     
     </summary>
     
-      <category term="Spring" scheme="https://www.lhsblog.cn/categories/Spring/"/>
+      <category term="Spring" scheme="https://www.lhsjohn.com/categories/Spring/"/>
     
     
-      <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
+      <category term="Spring" scheme="https://www.lhsjohn.com/tags/Spring/"/>
     
-      <category term="Spring" scheme="https://www.lhsblog.cn/tags/Spring/"/>
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
     
   </entry>
   
   <entry>
     <title>设计模式思考(四)-----单件模式</title>
-    <link href="https://www.lhsblog.cn/2018/08/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%9D%E8%80%83(%E5%9B%9B)-----%E5%8D%95%E4%BB%B6%E6%A8%A1%E5%BC%8F/"/>
-    <id>https://www.lhsblog.cn/2018/08/07/设计模式思考(四)-----单件模式/</id>
+    <link href="https://www.lhsjohn.com/2018/08/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%9D%E8%80%83(%E5%9B%9B)-----%E5%8D%95%E4%BB%B6%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://www.lhsjohn.com/2018/08/07/设计模式思考(四)-----单件模式/</id>
     <published>2018-08-07T09:40:24.000Z</published>
     <updated>2018-08-17T10:10:24.095Z</updated>
     
@@ -265,23 +265,23 @@
     
     </summary>
     
-      <category term="设计模式" scheme="https://www.lhsblog.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://www.lhsjohn.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-      <category term="java" scheme="https://www.lhsblog.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/java/"/>
+      <category term="java" scheme="https://www.lhsjohn.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/java/"/>
     
-      <category term="学习" scheme="https://www.lhsblog.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/java/%E5%AD%A6%E4%B9%A0/"/>
+      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/java/%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
     
-      <category term="设计模式" scheme="https://www.lhsblog.cn/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://www.lhsjohn.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>一道算法题</title>
-    <link href="https://www.lhsblog.cn/2018/08/06/%E4%B8%80%E9%81%93%E7%AE%97%E6%B3%95%E9%A2%98/"/>
-    <id>https://www.lhsblog.cn/2018/08/06/一道算法题/</id>
+    <link href="https://www.lhsjohn.com/2018/08/06/%E4%B8%80%E9%81%93%E7%AE%97%E6%B3%95%E9%A2%98/"/>
+    <id>https://www.lhsjohn.com/2018/08/06/一道算法题/</id>
     <published>2018-08-06T08:59:01.000Z</published>
     <updated>2018-08-06T09:01:02.079Z</updated>
     
@@ -298,17 +298,17 @@
     
     </summary>
     
-      <category term="段子" scheme="https://www.lhsblog.cn/categories/%E6%AE%B5%E5%AD%90/"/>
+      <category term="段子" scheme="https://www.lhsjohn.com/categories/%E6%AE%B5%E5%AD%90/"/>
     
     
-      <category term="段子" scheme="https://www.lhsblog.cn/tags/%E6%AE%B5%E5%AD%90/"/>
+      <category term="段子" scheme="https://www.lhsjohn.com/tags/%E6%AE%B5%E5%AD%90/"/>
     
   </entry>
   
   <entry>
     <title>threadqiushi.py</title>
-    <link href="https://www.lhsblog.cn/2018/08/06/threadqiushi.py/"/>
-    <id>https://www.lhsblog.cn/2018/08/06/threadqiushi.py/</id>
+    <link href="https://www.lhsjohn.com/2018/08/06/threadqiushi.py/"/>
+    <id>https://www.lhsjohn.com/2018/08/06/threadqiushi.py/</id>
     <published>2018-08-05T16:36:03.000Z</published>
     <updated>2018-08-17T10:09:26.365Z</updated>
     
@@ -324,25 +324,25 @@
     
     </summary>
     
-      <category term="爬虫" scheme="https://www.lhsblog.cn/categories/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="https://www.lhsjohn.com/categories/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="python" scheme="https://www.lhsblog.cn/categories/%E7%88%AC%E8%99%AB/python/"/>
+      <category term="python" scheme="https://www.lhsjohn.com/categories/%E7%88%AC%E8%99%AB/python/"/>
     
-      <category term="学习" scheme="https://www.lhsblog.cn/categories/%E7%88%AC%E8%99%AB/python/%E5%AD%A6%E4%B9%A0/"/>
+      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E7%88%AC%E8%99%AB/python/%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
+      <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
     
-      <category term="爬虫" scheme="https://www.lhsblog.cn/tags/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="多线程" scheme="https://www.lhsblog.cn/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+      <category term="多线程" scheme="https://www.lhsjohn.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>生活带有主观性  —— 二刷《当幸福来敲门》</title>
-    <link href="https://www.lhsblog.cn/2018/08/05/%E7%94%9F%E6%B4%BB%E5%B8%A6%E6%9C%89%E4%B8%BB%E8%A7%82%E6%80%A7%E4%BA%8C%E5%88%B7%E3%80%8A%E5%BD%93%E5%B9%B8%E7%A6%8F%E6%9D%A5%E6%95%B2%E9%97%A8%E3%80%8B/"/>
-    <id>https://www.lhsblog.cn/2018/08/05/生活带有主观性二刷《当幸福来敲门》/</id>
+    <link href="https://www.lhsjohn.com/2018/08/05/%E7%94%9F%E6%B4%BB%E5%B8%A6%E6%9C%89%E4%B8%BB%E8%A7%82%E6%80%A7%E4%BA%8C%E5%88%B7%E3%80%8A%E5%BD%93%E5%B9%B8%E7%A6%8F%E6%9D%A5%E6%95%B2%E9%97%A8%E3%80%8B/"/>
+    <id>https://www.lhsjohn.com/2018/08/05/生活带有主观性二刷《当幸福来敲门》/</id>
     <published>2018-08-05T10:31:09.000Z</published>
     <updated>2018-08-17T10:10:41.263Z</updated>
     
@@ -369,21 +369,21 @@
     
     </summary>
     
-      <category term="观后感" scheme="https://www.lhsblog.cn/categories/%E8%A7%82%E5%90%8E%E6%84%9F/"/>
+      <category term="观后感" scheme="https://www.lhsjohn.com/categories/%E8%A7%82%E5%90%8E%E6%84%9F/"/>
     
     
-      <category term="杂谈" scheme="https://www.lhsblog.cn/tags/%E6%9D%82%E8%B0%88/"/>
+      <category term="杂谈" scheme="https://www.lhsjohn.com/tags/%E6%9D%82%E8%B0%88/"/>
     
-      <category term="影评" scheme="https://www.lhsblog.cn/tags/%E5%BD%B1%E8%AF%84/"/>
+      <category term="影评" scheme="https://www.lhsjohn.com/tags/%E5%BD%B1%E8%AF%84/"/>
     
-      <category term="励志" scheme="https://www.lhsblog.cn/tags/%E5%8A%B1%E5%BF%97/"/>
+      <category term="励志" scheme="https://www.lhsjohn.com/tags/%E5%8A%B1%E5%BF%97/"/>
     
   </entry>
   
   <entry>
     <title>ez_setup.py</title>
-    <link href="https://www.lhsblog.cn/2018/08/04/ez_setup.py/"/>
-    <id>https://www.lhsblog.cn/2018/08/04/ez_setup.py/</id>
+    <link href="https://www.lhsjohn.com/2018/08/04/ez_setup.py/"/>
+    <id>https://www.lhsjohn.com/2018/08/04/ez_setup.py/</id>
     <published>2018-08-04T03:37:03.000Z</published>
     <updated>2018-08-17T10:08:19.007Z</updated>
     
@@ -399,23 +399,23 @@
     
     </summary>
     
-      <category term="爬虫" scheme="https://www.lhsblog.cn/categories/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="https://www.lhsjohn.com/categories/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="python" scheme="https://www.lhsblog.cn/categories/%E7%88%AC%E8%99%AB/python/"/>
+      <category term="python" scheme="https://www.lhsjohn.com/categories/%E7%88%AC%E8%99%AB/python/"/>
     
-      <category term="学习" scheme="https://www.lhsblog.cn/categories/%E7%88%AC%E8%99%AB/python/%E5%AD%A6%E4%B9%A0/"/>
+      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E7%88%AC%E8%99%AB/python/%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
+      <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
     
-      <category term="爬虫" scheme="https://www.lhsblog.cn/tags/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
   <entry>
     <title>设计模式思考(三)装饰者模式</title>
-    <link href="https://www.lhsblog.cn/2018/08/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%9D%E8%80%83(%E4%B8%89)-----%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
-    <id>https://www.lhsblog.cn/2018/08/02/设计模式思考(三)-----装饰者模式/</id>
+    <link href="https://www.lhsjohn.com/2018/08/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%9D%E8%80%83(%E4%B8%89)-----%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://www.lhsjohn.com/2018/08/02/设计模式思考(三)-----装饰者模式/</id>
     <published>2018-08-02T14:09:03.000Z</published>
     <updated>2018-08-17T10:10:15.862Z</updated>
     
@@ -436,23 +436,23 @@
     
     </summary>
     
-      <category term="设计模式" scheme="https://www.lhsblog.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://www.lhsjohn.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-      <category term="java" scheme="https://www.lhsblog.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/java/"/>
+      <category term="java" scheme="https://www.lhsjohn.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/java/"/>
     
-      <category term="学习" scheme="https://www.lhsblog.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/java/%E5%AD%A6%E4%B9%A0/"/>
+      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/java/%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
     
-      <category term="设计模式" scheme="https://www.lhsblog.cn/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://www.lhsjohn.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>urllib2爬虫初级 (二)</title>
-    <link href="https://www.lhsblog.cn/2018/08/01/urllib2%E7%88%AC%E8%99%AB%E5%88%9D%E7%BA%A7(%E4%BA%8C%EF%BC%89/"/>
-    <id>https://www.lhsblog.cn/2018/08/01/urllib2爬虫初级(二）/</id>
+    <link href="https://www.lhsjohn.com/2018/08/01/urllib2%E7%88%AC%E8%99%AB%E5%88%9D%E7%BA%A7(%E4%BA%8C%EF%BC%89/"/>
+    <id>https://www.lhsjohn.com/2018/08/01/urllib2爬虫初级(二）/</id>
     <published>2018-08-01T09:05:21.000Z</published>
     <updated>2018-08-17T10:09:33.111Z</updated>
     
@@ -469,21 +469,21 @@
     
     </summary>
     
-      <category term="爬虫" scheme="https://www.lhsblog.cn/categories/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="https://www.lhsjohn.com/categories/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="python" scheme="https://www.lhsblog.cn/categories/%E7%88%AC%E8%99%AB/python/"/>
+      <category term="python" scheme="https://www.lhsjohn.com/categories/%E7%88%AC%E8%99%AB/python/"/>
     
     
-      <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
+      <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
     
-      <category term="爬虫" scheme="https://www.lhsblog.cn/tags/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
   <entry>
     <title>设计模式思考(二)观察者模式</title>
-    <link href="https://www.lhsblog.cn/2018/07/31/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%9D%E8%80%83(%E4%BA%8C)-----%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
-    <id>https://www.lhsblog.cn/2018/07/31/设计模式思考(二)-----观察者模式/</id>
+    <link href="https://www.lhsjohn.com/2018/07/31/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%9D%E8%80%83(%E4%BA%8C)-----%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://www.lhsjohn.com/2018/07/31/设计模式思考(二)-----观察者模式/</id>
     <published>2018-07-31T15:55:21.000Z</published>
     <updated>2018-08-17T10:10:08.797Z</updated>
     
@@ -508,23 +508,23 @@
     
     </summary>
     
-      <category term="设计模式" scheme="https://www.lhsblog.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://www.lhsjohn.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-      <category term="java" scheme="https://www.lhsblog.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/java/"/>
+      <category term="java" scheme="https://www.lhsjohn.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/java/"/>
     
-      <category term="学习" scheme="https://www.lhsblog.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/java/%E5%AD%A6%E4%B9%A0/"/>
+      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/java/%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
     
-      <category term="设计模式" scheme="https://www.lhsblog.cn/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://www.lhsjohn.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>urllib2爬虫初级 (一)</title>
-    <link href="https://www.lhsblog.cn/2018/07/31/urllib2%E7%88%AC%E8%99%AB%E5%88%9D%E7%BA%A7/"/>
-    <id>https://www.lhsblog.cn/2018/07/31/urllib2爬虫初级/</id>
+    <link href="https://www.lhsjohn.com/2018/07/31/urllib2%E7%88%AC%E8%99%AB%E5%88%9D%E7%BA%A7/"/>
+    <id>https://www.lhsjohn.com/2018/07/31/urllib2爬虫初级/</id>
     <published>2018-07-30T18:27:21.000Z</published>
     <updated>2018-08-17T10:09:45.727Z</updated>
     
@@ -543,21 +543,21 @@
     
     </summary>
     
-      <category term="爬虫" scheme="https://www.lhsblog.cn/categories/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="https://www.lhsjohn.com/categories/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="python" scheme="https://www.lhsblog.cn/categories/%E7%88%AC%E8%99%AB/python/"/>
+      <category term="python" scheme="https://www.lhsjohn.com/categories/%E7%88%AC%E8%99%AB/python/"/>
     
     
-      <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
+      <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
     
-      <category term="爬虫" scheme="https://www.lhsblog.cn/tags/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
   <entry>
     <title>设计模式思考(一)策略模式</title>
-    <link href="https://www.lhsblog.cn/2018/07/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%9D%E8%80%83(%E4%B8%80)-----%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F(1)/"/>
-    <id>https://www.lhsblog.cn/2018/07/30/设计模式思考(一)-----策略模式(1)/</id>
+    <link href="https://www.lhsjohn.com/2018/07/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%9D%E8%80%83(%E4%B8%80)-----%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F(1)/"/>
+    <id>https://www.lhsjohn.com/2018/07/30/设计模式思考(一)-----策略模式(1)/</id>
     <published>2018-07-30T15:08:21.000Z</published>
     <updated>2018-08-17T10:10:33.152Z</updated>
     
@@ -580,23 +580,23 @@
     
     </summary>
     
-      <category term="设计模式" scheme="https://www.lhsblog.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://www.lhsjohn.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-      <category term="java" scheme="https://www.lhsblog.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/java/"/>
+      <category term="java" scheme="https://www.lhsjohn.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/java/"/>
     
-      <category term="学习" scheme="https://www.lhsblog.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/java/%E5%AD%A6%E4%B9%A0/"/>
+      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/java/%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="java" scheme="https://www.lhsblog.cn/tags/java/"/>
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
     
-      <category term="设计模式" scheme="https://www.lhsblog.cn/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://www.lhsjohn.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>《西虹市首富》--爆笑与浪漫的融合体</title>
-    <link href="https://www.lhsblog.cn/2018/07/29/%E3%80%8A%E8%A5%BF%E8%99%B9%E5%B8%82%E9%A6%96%E5%AF%8C%E3%80%8B---%E7%88%86%E7%AC%91%E4%B8%8E%E6%B5%AA%E6%BC%AB%E7%9A%84%E8%9E%8D%E5%90%88%E4%BD%93/"/>
-    <id>https://www.lhsblog.cn/2018/07/29/《西虹市首富》---爆笑与浪漫的融合体/</id>
+    <link href="https://www.lhsjohn.com/2018/07/29/%E3%80%8A%E8%A5%BF%E8%99%B9%E5%B8%82%E9%A6%96%E5%AF%8C%E3%80%8B---%E7%88%86%E7%AC%91%E4%B8%8E%E6%B5%AA%E6%BC%AB%E7%9A%84%E8%9E%8D%E5%90%88%E4%BD%93/"/>
+    <id>https://www.lhsjohn.com/2018/07/29/《西虹市首富》---爆笑与浪漫的融合体/</id>
     <published>2018-07-29T10:39:09.000Z</published>
     <updated>2018-07-29T11:06:11.476Z</updated>
     
@@ -614,21 +614,21 @@
     
     </summary>
     
-      <category term="观后感" scheme="https://www.lhsblog.cn/categories/%E8%A7%82%E5%90%8E%E6%84%9F/"/>
+      <category term="观后感" scheme="https://www.lhsjohn.com/categories/%E8%A7%82%E5%90%8E%E6%84%9F/"/>
     
     
-      <category term="杂谈" scheme="https://www.lhsblog.cn/tags/%E6%9D%82%E8%B0%88/"/>
+      <category term="杂谈" scheme="https://www.lhsjohn.com/tags/%E6%9D%82%E8%B0%88/"/>
     
-      <category term="影评" scheme="https://www.lhsblog.cn/tags/%E5%BD%B1%E8%AF%84/"/>
+      <category term="影评" scheme="https://www.lhsjohn.com/tags/%E5%BD%B1%E8%AF%84/"/>
     
-      <category term="喜剧" scheme="https://www.lhsblog.cn/tags/%E5%96%9C%E5%89%A7/"/>
+      <category term="喜剧" scheme="https://www.lhsjohn.com/tags/%E5%96%9C%E5%89%A7/"/>
     
   </entry>
   
   <entry>
     <title>Windows下Eclipse搭建python环境</title>
-    <link href="https://www.lhsblog.cn/2018/07/29/Windows%E4%B8%8BEclipse%E6%90%AD%E5%BB%BApython%E7%8E%AF%E5%A2%83/"/>
-    <id>https://www.lhsblog.cn/2018/07/29/Windows下Eclipse搭建python环境/</id>
+    <link href="https://www.lhsjohn.com/2018/07/29/Windows%E4%B8%8BEclipse%E6%90%AD%E5%BB%BApython%E7%8E%AF%E5%A2%83/"/>
+    <id>https://www.lhsjohn.com/2018/07/29/Windows下Eclipse搭建python环境/</id>
     <published>2018-07-29T03:34:09.000Z</published>
     <updated>2018-08-01T10:10:18.797Z</updated>
     
@@ -645,23 +645,23 @@
     
     </summary>
     
-      <category term="Diary" scheme="https://www.lhsblog.cn/categories/Diary/"/>
+      <category term="Diary" scheme="https://www.lhsjohn.com/categories/Diary/"/>
     
     
-      <category term="心得" scheme="https://www.lhsblog.cn/tags/%E5%BF%83%E5%BE%97/"/>
+      <category term="心得" scheme="https://www.lhsjohn.com/tags/%E5%BF%83%E5%BE%97/"/>
     
-      <category term="技术" scheme="https://www.lhsblog.cn/tags/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="https://www.lhsjohn.com/tags/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="Python环境搭建" scheme="https://www.lhsblog.cn/tags/Python%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+      <category term="Python环境搭建" scheme="https://www.lhsjohn.com/tags/Python%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
     
-      <category term="python" scheme="https://www.lhsblog.cn/tags/python/"/>
+      <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
     
   </entry>
   
   <entry>
     <title>青春</title>
-    <link href="https://www.lhsblog.cn/2018/07/28/%E9%9D%92%E6%98%A5/"/>
-    <id>https://www.lhsblog.cn/2018/07/28/青春/</id>
+    <link href="https://www.lhsjohn.com/2018/07/28/%E9%9D%92%E6%98%A5/"/>
+    <id>https://www.lhsjohn.com/2018/07/28/青春/</id>
     <published>2018-07-28T15:47:01.000Z</published>
     <updated>2018-07-28T15:57:59.599Z</updated>
     
@@ -677,10 +677,10 @@
     
     </summary>
     
-      <category term="随笔" scheme="https://www.lhsblog.cn/categories/%E9%9A%8F%E7%AC%94/"/>
+      <category term="随笔" scheme="https://www.lhsjohn.com/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
-      <category term="杂文" scheme="https://www.lhsblog.cn/tags/%E6%9D%82%E6%96%87/"/>
+      <category term="杂文" scheme="https://www.lhsjohn.com/tags/%E6%9D%82%E6%96%87/"/>
     
   </entry>
   
