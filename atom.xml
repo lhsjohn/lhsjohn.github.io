@@ -137,9 +137,9 @@
       <category term="SSO单点登录" scheme="https://www.lhsjohn.com/categories/SSO%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
     
     
-      <category term="SSO单点登录" scheme="https://www.lhsjohn.com/tags/SSO%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
-    
       <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
+    
+      <category term="SSO单点登录" scheme="https://www.lhsjohn.com/tags/SSO%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
     
   </entry>
   
@@ -284,9 +284,9 @@
       <category term="Spring" scheme="https://www.lhsjohn.com/categories/Spring/"/>
     
     
-      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
-    
       <category term="Spring" scheme="https://www.lhsjohn.com/tags/Spring/"/>
+    
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
     
   </entry>
   
