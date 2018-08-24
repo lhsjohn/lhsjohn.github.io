@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.lhsjohn.com/"/>
-  <updated>2018-08-23T18:47:04.196Z</updated>
+  <updated>2018-08-24T18:25:20.844Z</updated>
   <id>https://www.lhsjohn.com/</id>
   
   <author>
@@ -15,6 +15,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vue-axios</title>
+    <link href="https://www.lhsjohn.com/2018/08/25/Vue-axios(1)/"/>
+    <id>https://www.lhsjohn.com/2018/08/25/Vue-axios(1)/</id>
+    <published>2018-08-25T15:02:24.000Z</published>
+    <updated>2018-08-24T18:25:20.844Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;参考地址：&lt;a href=&quot;https://www.kancloud.cn/yunye/axios/234845&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.kancloud.cn/yunye/axios/234845&lt;/a&gt;&lt;br&gt;参考地址：&lt;a href=&quot;https://github.com/axios/axios&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/axios/axios&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;1.Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。&lt;/p&gt;
+&lt;p&gt;2.优势：&lt;/p&gt;
+&lt;p&gt;  从浏览器中创建 XMLHttpRequests&lt;/p&gt;
+&lt;p&gt;  从 node.js 创建 http 请求&lt;/p&gt;
+&lt;p&gt;  支持 Promise API&lt;/p&gt;
+&lt;p&gt;  拦截请求和响应&lt;/p&gt;
+&lt;p&gt;  转换请求数据和响应数据&lt;/p&gt;
+&lt;p&gt;  取消请求&lt;/p&gt;
+&lt;p&gt;  自动转换 JSON 数据&lt;/p&gt;
+&lt;p&gt;  客户端支持防御 XSRF&lt;/p&gt;
+&lt;p&gt;3.安装：&lt;/p&gt;
+&lt;p&gt;  npm install axios –save&lt;/p&gt;
+&lt;p&gt;4.引入：&lt;/p&gt;
+&lt;p&gt;  import Axios from “axios”&lt;/p&gt;
+&lt;p&gt;  Vue.prototype.$axios = Axios&lt;/p&gt;
+&lt;p&gt;5.应用：&lt;/p&gt;
+&lt;figure class=&quot;highlight vim&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;this.$axios(&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  method:&lt;span class=&quot;string&quot;&gt;&quot;get&quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  ur&lt;span class=&quot;variable&quot;&gt;l:&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;&quot;http://www.wwtliu.com/sxtstu/news/juhenews.php&quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  param&lt;span class=&quot;variable&quot;&gt;s:&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;type&lt;/span&gt;:&lt;span class=&quot;string&quot;&gt;&quot;yule&quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    coun&lt;span class=&quot;variable&quot;&gt;t:30&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;.then(&lt;span class=&quot;keyword&quot;&gt;res&lt;/span&gt; =&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  console.&lt;span class=&quot;built_in&quot;&gt;log&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;res&lt;/span&gt;.data)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;.&lt;span class=&quot;keyword&quot;&gt;catch&lt;/span&gt;(error =&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  console.&lt;span class=&quot;built_in&quot;&gt;log&lt;/span&gt;(error)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="Vue.js" scheme="https://www.lhsjohn.com/categories/Vue-js/"/>
+    
+      <category term="javaScript" scheme="https://www.lhsjohn.com/categories/Vue-js/javaScript/"/>
+    
+      <category term="学习" scheme="https://www.lhsjohn.com/categories/Vue-js/javaScript/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="Vue.js" scheme="https://www.lhsjohn.com/tags/Vue-js/"/>
+    
+      <category term="axios" scheme="https://www.lhsjohn.com/tags/axios/"/>
+    
+  </entry>
   
   <entry>
     <title>设计模式思考(五)-----适配器模式</title>
@@ -94,9 +137,9 @@
       <category term="SSO单点登录" scheme="https://www.lhsjohn.com/categories/SSO%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
     
     
-      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
-    
       <category term="SSO单点登录" scheme="https://www.lhsjohn.com/tags/SSO%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
+    
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
     
   </entry>
   
@@ -241,9 +284,9 @@
       <category term="Spring" scheme="https://www.lhsjohn.com/categories/Spring/"/>
     
     
-      <category term="Spring" scheme="https://www.lhsjohn.com/tags/Spring/"/>
-    
       <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
+    
+      <category term="Spring" scheme="https://www.lhsjohn.com/tags/Spring/"/>
     
   </entry>
   
@@ -655,32 +698,6 @@
       <category term="Python环境搭建" scheme="https://www.lhsjohn.com/tags/Python%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
     
       <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>青春</title>
-    <link href="https://www.lhsjohn.com/2018/07/28/%E9%9D%92%E6%98%A5/"/>
-    <id>https://www.lhsjohn.com/2018/07/28/青春/</id>
-    <published>2018-07-28T15:47:01.000Z</published>
-    <updated>2018-07-28T15:57:59.599Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;
-        
-      
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://www.lhsjohn.com/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="杂文" scheme="https://www.lhsjohn.com/tags/%E6%9D%82%E6%96%87/"/>
     
   </entry>
   
