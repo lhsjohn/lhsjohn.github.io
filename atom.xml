@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.lhsjohn.com/"/>
-  <updated>2018-08-24T18:25:20.844Z</updated>
+  <updated>2018-08-31T13:07:16.141Z</updated>
   <id>https://www.lhsjohn.com/</id>
   
   <author>
@@ -17,11 +17,63 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Java的反射机制 (一）</title>
+    <link href="https://www.lhsjohn.com/2018/08/25/Java%E7%9A%84%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%20(%E4%B8%80%EF%BC%89%E6%A6%82%E5%BF%B5%E4%BB%A5%E5%8F%8A%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/"/>
+    <id>https://www.lhsjohn.com/2018/08/25/Java的反射机制 (一）概念以及常见用法/</id>
+    <published>2018-08-25T09:29:24.000Z</published>
+    <updated>2018-08-31T13:07:16.141Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;/images/2018-08-31-1.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="java" scheme="https://www.lhsjohn.com/categories/java/"/>
+    
+    
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
+    
+      <category term="学习" scheme="https://www.lhsjohn.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>&lt;&lt;本杰明·巴顿奇事&gt;&gt;经典台词收录</title>
+    <link href="https://www.lhsjohn.com/2018/08/25/%E6%9C%AC%E6%9D%B0%E6%98%8E%E5%B7%B4%E9%A1%BF%E5%A5%87%E4%BA%8B%E7%BB%8F%E5%85%B8%E5%8F%B0%E8%AF%8D/"/>
+    <id>https://www.lhsjohn.com/2018/08/25/本杰明巴顿奇事经典台词/</id>
+    <published>2018-08-25T09:29:24.000Z</published>
+    <updated>2018-08-25T09:52:51.116Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;终于抽出来时间看了这部想看了很久的电影，一部爱情奇幻类的影片，有创意和脑洞，布拉德皮特演绎的完美饰演赋予了这部电影生命。&lt;/p&gt;
+&lt;p&gt;像&amp;lt;&amp;lt;泰坦尼克号&amp;gt;&amp;gt;一样,倒叙的方式开场,本杰明留下的牛皮书作为线索，推动着对整个情节的叙述。&lt;/p&gt;
+&lt;p&gt;大体懵懵懂懂看了第一遍看完了，算不上理解的特别透彻，但是却很喜欢里面的一些经典台词。&lt;/p&gt;
+&lt;p&gt;下面是从网络上收集的一些比较经典的台词,这部电影的成功之处在于，当你听到类似的台词时，你肯定会毫不犹豫想到这部电影。&lt;/p&gt;
+&lt;p&gt;并非鸡汤化的台词，只是人性的缩影。&lt;br&gt;(突然发现,代码块不仅可以写代码，还可以装台词 苦笑、、、、、)&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="观后感" scheme="https://www.lhsjohn.com/categories/%E8%A7%82%E5%90%8E%E6%84%9F/"/>
+    
+      <category term="影评" scheme="https://www.lhsjohn.com/categories/%E8%A7%82%E5%90%8E%E6%84%9F/%E5%BD%B1%E8%AF%84/"/>
+    
+    
+      <category term="杂谈" scheme="https://www.lhsjohn.com/tags/%E6%9D%82%E8%B0%88/"/>
+    
+      <category term="影评" scheme="https://www.lhsjohn.com/tags/%E5%BD%B1%E8%AF%84/"/>
+    
+      <category term="生活" scheme="https://www.lhsjohn.com/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
     <title>vue-axios</title>
-    <link href="https://www.lhsjohn.com/2018/08/25/Vue-axios(1)/"/>
-    <id>https://www.lhsjohn.com/2018/08/25/Vue-axios(1)/</id>
-    <published>2018-08-25T15:02:24.000Z</published>
-    <updated>2018-08-24T18:25:20.844Z</updated>
+    <link href="https://www.lhsjohn.com/2018/08/24/Vue-axios(1)/"/>
+    <id>https://www.lhsjohn.com/2018/08/24/Vue-axios(1)/</id>
+    <published>2018-08-24T15:02:24.000Z</published>
+    <updated>2018-08-25T10:04:14.682Z</updated>
     
     <summary type="html">
     
@@ -56,36 +108,6 @@
       <category term="Vue.js" scheme="https://www.lhsjohn.com/tags/Vue-js/"/>
     
       <category term="axios" scheme="https://www.lhsjohn.com/tags/axios/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>&lt;&lt;本杰明·巴顿奇事&gt;&gt;经典台词收录</title>
-    <link href="https://www.lhsjohn.com/2018/08/25/%E6%9C%AC%E6%9D%B0%E6%98%8E%E5%B7%B4%E9%A1%BF%E5%A5%87%E4%BA%8B%E7%BB%8F%E5%85%B8%E5%8F%B0%E8%AF%8D/"/>
-    <id>https://www.lhsjohn.com/2018/08/25/本杰明巴顿奇事经典台词/</id>
-    <published>2018-08-25T09:29:24.000Z</published>
-    <updated>2018-08-25T09:52:51.116Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;终于抽出来时间看了这部想看了很久的电影，一部爱情奇幻类的影片，有创意和脑洞，布拉德皮特演绎的完美饰演赋予了这部电影生命。&lt;/p&gt;
-&lt;p&gt;像&amp;lt;&amp;lt;泰坦尼克号&amp;gt;&amp;gt;一样,倒叙的方式开场,本杰明留下的牛皮书作为线索，推动着对整个情节的叙述。&lt;/p&gt;
-&lt;p&gt;大体懵懵懂懂看了第一遍看完了，算不上理解的特别透彻，但是却很喜欢里面的一些经典台词。&lt;/p&gt;
-&lt;p&gt;下面是从网络上收集的一些比较经典的台词,这部电影的成功之处在于，当你听到类似的台词时，你肯定会毫不犹豫想到这部电影。&lt;/p&gt;
-&lt;p&gt;并非鸡汤化的台词，只是人性的缩影。&lt;br&gt;(突然发现,代码块不仅可以写代码，还可以装台词 苦笑、、、、、)&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="观后感" scheme="https://www.lhsjohn.com/categories/%E8%A7%82%E5%90%8E%E6%84%9F/"/>
-    
-      <category term="影评" scheme="https://www.lhsjohn.com/categories/%E8%A7%82%E5%90%8E%E6%84%9F/%E5%BD%B1%E8%AF%84/"/>
-    
-    
-      <category term="杂谈" scheme="https://www.lhsjohn.com/tags/%E6%9D%82%E8%B0%88/"/>
-    
-      <category term="影评" scheme="https://www.lhsjohn.com/tags/%E5%BD%B1%E8%AF%84/"/>
-    
-      <category term="生活" scheme="https://www.lhsjohn.com/tags/%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   
@@ -213,9 +235,9 @@
       <category term="ActiveMQ" scheme="https://www.lhsjohn.com/categories/ActiveMQ/"/>
     
     
-      <category term="ActiveMQ" scheme="https://www.lhsjohn.com/tags/ActiveMQ/"/>
-    
       <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
+    
+      <category term="ActiveMQ" scheme="https://www.lhsjohn.com/tags/ActiveMQ/"/>
     
   </entry>
   
@@ -404,9 +426,9 @@
       <category term="学习" scheme="https://www.lhsjohn.com/categories/%E7%88%AC%E8%99%AB/python/%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
-    
       <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
     
       <category term="多线程" scheme="https://www.lhsjohn.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
@@ -481,9 +503,9 @@
       <category term="学习" scheme="https://www.lhsjohn.com/categories/%E7%88%AC%E8%99%AB/python/%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
-    
       <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
     
   </entry>
   
@@ -549,9 +571,9 @@
       <category term="python" scheme="https://www.lhsjohn.com/categories/%E7%88%AC%E8%99%AB/python/"/>
     
     
-      <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
-    
       <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
     
   </entry>
   
@@ -623,9 +645,9 @@
       <category term="python" scheme="https://www.lhsjohn.com/categories/%E7%88%AC%E8%99%AB/python/"/>
     
     
-      <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
-    
       <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
     
   </entry>
   
@@ -665,40 +687,6 @@
       <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
     
       <category term="设计模式" scheme="https://www.lhsjohn.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《西虹市首富》--爆笑与浪漫的融合体</title>
-    <link href="https://www.lhsjohn.com/2018/07/29/%E3%80%8A%E8%A5%BF%E8%99%B9%E5%B8%82%E9%A6%96%E5%AF%8C%E3%80%8B---%E7%88%86%E7%AC%91%E4%B8%8E%E6%B5%AA%E6%BC%AB%E7%9A%84%E8%9E%8D%E5%90%88%E4%BD%93/"/>
-    <id>https://www.lhsjohn.com/2018/07/29/《西虹市首富》---爆笑与浪漫的融合体/</id>
-    <published>2018-07-29T10:39:09.000Z</published>
-    <updated>2018-08-25T09:53:48.025Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;在家闲着无聊，无意之间看到了手机上推荐的最近比较火的电影《西虹市首富》。&lt;br&gt;西红柿首付？&lt;br&gt;听起来谐音就挺搞笑，潜意识感觉应该挺不错的一部电影。&lt;/p&gt;
-&lt;p&gt;“可以去看看，颇具沈腾风格的一部电影。”朋友曾这么给我推荐过。&lt;/p&gt;
-&lt;p&gt;确实啊，在家也确实无聊，虽然
-        
-      
-    
-    </summary>
-    
-      <category term="观后感" scheme="https://www.lhsjohn.com/categories/%E8%A7%82%E5%90%8E%E6%84%9F/"/>
-    
-      <category term="影评" scheme="https://www.lhsjohn.com/categories/%E8%A7%82%E5%90%8E%E6%84%9F/%E5%BD%B1%E8%AF%84/"/>
-    
-    
-      <category term="杂谈" scheme="https://www.lhsjohn.com/tags/%E6%9D%82%E8%B0%88/"/>
-    
-      <category term="影评" scheme="https://www.lhsjohn.com/tags/%E5%BD%B1%E8%AF%84/"/>
-    
-      <category term="喜剧" scheme="https://www.lhsjohn.com/tags/%E5%96%9C%E5%89%A7/"/>
     
   </entry>
   

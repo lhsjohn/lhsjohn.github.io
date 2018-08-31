@@ -305,6 +305,215 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lhsjohn.com/2018/08/11/fastdfs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lhsjohn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lhsjohn的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/11/fastdfs/" itemprop="url">fastdfs</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-11T11:17:16+08:00">
+                2018-08-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/fastdfs/" itemprop="url" rel="index">
+                    <span itemprop="name">fastdfs</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/11/fastdfs/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/08/11/fastdfs/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+         
+		  
+		  
+		  
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,986
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>FastDFS是C语言开发，建议在linux上运行，下面使用Centos6.4作为安装环境。<br>安装FastDFS需要先将官网下载的源码进行编译，编译依赖gcc环境，如果没有gcc环境，需要安装gcc：yum install gcc-c++</p>
+<h2 id="安装libevent"><a href="#安装libevent" class="headerlink" title="安装libevent"></a>安装libevent</h2><p>FastDFS依赖libevent库，需要安装：</p>
+<p>yum -y install libevent</p>
+<h2 id="安装libfastcommon"><a href="#安装libfastcommon" class="headerlink" title="安装libfastcommon"></a>安装libfastcommon</h2><p>libfastcommon是FastDFS官方提供的，libfastcommon包含了FastDFS运行所需要的一些基础库。<br>将libfastcommonV1.0.7.tar.gz拷贝至/usr/local/下</p>
+<p>cd /usr/local</p>
+<p>tar -zxvf  libfastcommonV1.0.7.tar.gz</p>
+<p>cd libfastcommon-1.0.7<br>./make.sh</p>
+<p>./make.sh install</p>
+<p>注意：libfastcommon安装好后会自动将库文件拷贝至/usr/lib64下，由于FastDFS程序引用usr/lib目录所以需要将/usr/lib64下的库文件拷贝至/usr/lib下。</p>
+<h2 id="tracker编译安装"><a href="#tracker编译安装" class="headerlink" title="tracker编译安装"></a>tracker编译安装</h2><p>将FastDFS_v5.05.tar.gz拷贝至/usr/local/下</p>
+<p>tar -zxvf FastDFS_v5.05.tar.gz</p>
+<p>cd FastDFS</p>
+<p>./make.sh</p>
+<p>./make.sh install</p>
+<p>安装成功将安装目录下的conf下的文件拷贝到/etc/fdfs/下。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>安装成功后进入/etc/fdfs目录：<br>拷贝一份新的tracker配置文件：</p>
+<p>cp tracker.conf.sample tracker.conf</p>
+<p>修改tracker.conf<br>vi tracker.conf<br>base_path=/home/yuqing/FastDFS<br>改为：<br>base_path=/home/FastDFS</p>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>/usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf restart<br>启动的日志显示先停止5619进程（实际环境不是5619）</p>
+<h2 id="设置开机启动"><a href="#设置开机启动" class="headerlink" title="设置开机启动"></a>设置开机启动</h2>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/11/fastdfs/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.lhsjohn.com/2018/08/08/Pom文件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -882,219 +1091,11 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lhsjohn.com/2018/08/06/threadqiushi.py/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lhsjohn">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="lhsjohn的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/06/threadqiushi.py/" itemprop="url">threadqiushi.py</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-06T00:36:03+08:00">
-                2018-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/爬虫/" itemprop="url" rel="index">
-                    <span itemprop="name">爬虫</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/爬虫/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/爬虫/python/学习/" itemprop="url" rel="index">
-                    <span itemprop="name">学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/06/threadqiushi.py/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/08/06/threadqiushi.py/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-         
-		  
-		  
-		  
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  952
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用了线程库</span></span><br><span class="line">import threading</span><br><span class="line"><span class="comment"># 队列</span></span><br><span class="line">from Queue import Queue</span><br><span class="line"><span class="comment"># 解析库</span></span><br><span class="line">from lxml import etree</span><br><span class="line"><span class="comment"># 请求处理</span></span><br><span class="line">import requests</span><br><span class="line"><span class="comment"># json处理</span></span><br><span class="line">import json</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreadCrawl</span>(<span class="title">threading</span>.<span class="title">Thread</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, threadName, pageQueue, dataQueue)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="comment">#threading.Thread.__init__(self)</span></span><br><span class="line">        <span class="comment"># 调用父类初始化方法</span></span><br><span class="line">        <span class="keyword">super</span>(ThreadCrawl, <span class="keyword">self</span>).__init_<span class="number">_</span>()</span><br><span class="line">        <span class="comment"># 线程名</span></span><br><span class="line">        <span class="keyword">self</span>.threadName = threadName</span><br><span class="line">        <span class="comment"># 页码队列</span></span><br><span class="line">        <span class="keyword">self</span>.pageQueue = pageQueue</span><br><span class="line">        <span class="comment"># 数据队列</span></span><br><span class="line">        <span class="keyword">self</span>.dataQueue = dataQueue</span><br><span class="line">        <span class="comment"># 请求报头</span></span><br><span class="line">        <span class="keyword">self</span>.headers = &#123;<span class="string">"User-Agent"</span> : <span class="string">"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0;"</span>&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        print <span class="string">"启动 "</span> + <span class="keyword">self</span>.threadName</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> <span class="symbol">CRAWL_EXIT:</span></span><br><span class="line">            <span class="symbol">try:</span></span><br><span class="line">                <span class="comment"># 取出一个数字，先进先出</span></span><br><span class="line">                <span class="comment"># 可选参数block，默认值为True</span></span><br><span class="line">                <span class="comment">#1. 如果对列为空，block为True的话，不会结束，会进入阻塞状态，直到队列有新的数据</span></span><br><span class="line">                <span class="comment">#2. 如果队列为空，block为False的话，就弹出一个Queue.empty()异常，</span></span><br><span class="line">                page = <span class="keyword">self</span>.pageQueue.get(False)</span><br><span class="line">                url = <span class="string">"http://www.qiushibaike.com/8hr/page/"</span> + str(page) +<span class="string">"/"</span></span><br><span class="line">                <span class="comment">#print url</span></span><br><span class="line">                content = requests.get(url, headers = <span class="keyword">self</span>.headers).text</span><br><span class="line">                time.sleep(<span class="number">1</span>)</span><br><span class="line">                <span class="keyword">self</span>.dataQueue.put(content)</span><br><span class="line">                <span class="comment">#print len(content)</span></span><br><span class="line">            <span class="symbol">except:</span></span><br><span class="line">                pass</span><br><span class="line">        print <span class="string">"结束 "</span> + <span class="keyword">self</span>.threadName</span><br><span class="line">   &lt;!--more--&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreadParse</span>(<span class="title">threading</span>.<span class="title">Thread</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, threadName, dataQueue, filename, lock)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">super</span>(ThreadParse, <span class="keyword">self</span>).__init_<span class="number">_</span>()</span><br><span class="line">        <span class="comment"># 线程名</span></span><br><span class="line">        <span class="keyword">self</span>.threadName = threadName</span><br><span class="line">        <span class="comment"># 数据队列</span></span><br><span class="line">        <span class="keyword">self</span>.dataQueue = dataQueue</span><br><span class="line">        <span class="comment"># 保存解析后数据的文件名</span></span><br><span class="line">        <span class="keyword">self</span>.filename = filename</span><br><span class="line">        <span class="comment"># 锁</span></span><br><span class="line">        <span class="keyword">self</span>.lock = lock</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        print <span class="string">"启动"</span> + <span class="keyword">self</span>.threadName</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> <span class="symbol">PARSE_EXIT:</span></span><br><span class="line">            <span class="symbol">try:</span></span><br><span class="line">                html = <span class="keyword">self</span>.dataQueue.get(False)</span><br><span class="line">                <span class="keyword">self</span>.parse(html)</span><br><span class="line">            <span class="symbol">except:</span></span><br><span class="line">                pass</span><br><span class="line">        print <span class="string">"退出"</span> + <span class="keyword">self</span>.threadName</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(<span class="keyword">self</span>, html)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="comment"># 解析为HTML DOM</span></span><br><span class="line">        html = etree.HTML(html)</span><br><span class="line"></span><br><span class="line">        node_list = html.xpath(<span class="string">'//div[contains(@id, "qiushi_tag")]'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> node <span class="keyword">in</span> <span class="symbol">node_list:</span></span><br><span class="line">            <span class="comment"># xpath返回的列表，这个列表就这一个参数，用索引方式取出来，用户名</span></span><br><span class="line">            username = node.xpath(<span class="string">'./div/a/@title'</span>)[<span class="number">0</span>]</span><br><span class="line">            <span class="comment"># 图片连接</span></span><br><span class="line">            image = node.xpath(<span class="string">'.//div[@class="thumb"]//@src'</span>)<span class="comment">#[0]</span></span><br><span class="line">            <span class="comment"># 取出标签下的内容,段子内容</span></span><br><span class="line">            content = node.xpath(<span class="string">'.//div[@class="content"]/span'</span>)[<span class="number">0</span>].text</span><br><span class="line">            <span class="comment"># 取出标签里包含的内容，点赞</span></span><br><span class="line">            zan = node.xpath(<span class="string">'.//i'</span>)[<span class="number">0</span>].text</span><br><span class="line">            <span class="comment"># 评论</span></span><br><span class="line">            comments = node.xpath(<span class="string">'.//i'</span>)[<span class="number">1</span>].text</span><br><span class="line"></span><br><span class="line">            items = &#123;</span><br><span class="line">                <span class="string">"username"</span> : username,</span><br><span class="line">                <span class="string">"image"</span> : image,</span><br><span class="line">                <span class="string">"content"</span> : content,</span><br><span class="line">                <span class="string">"zan"</span> : zan,</span><br><span class="line">                <span class="string">"comments"</span> : comments</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment"># with 后面有两个必须执行的操作：__enter__ 和 _exit__</span></span><br><span class="line">            <span class="comment"># 不管里面的操作结果如何，都会执行打开、关闭</span></span><br><span class="line">            <span class="comment"># 打开锁、处理内容、释放锁</span></span><br><span class="line">            with <span class="keyword">self</span>.<span class="symbol">lock:</span></span><br><span class="line">                <span class="comment"># 写入存储的解析后的数据</span></span><br><span class="line">                <span class="keyword">self</span>.filename.write(json.dumps(items, ensure_ascii = False).encode(<span class="string">"utf-8"</span>) + <span class="string">"\n"</span>)</span><br><span class="line"></span><br><span class="line">CRAWL_EXIT = False</span><br><span class="line">PARSE_EXIT = False</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span></span><span class="symbol">:</span></span><br><span class="line">    <span class="comment"># 页码的队列，表示20个页面</span></span><br><span class="line">    pageQueue = Queue(<span class="number">20</span>)</span><br><span class="line">    <span class="comment"># 放入1~10的数字，先进先出</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">21</span>)<span class="symbol">:</span></span><br><span class="line">        pageQueue.put(i)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 采集结果(每页的HTML源码)的数据队列，参数为空表示不限制</span></span><br><span class="line">    dataQueue = Queue()</span><br><span class="line"></span><br><span class="line">    filename = open(<span class="string">"duanzi.json"</span>, <span class="string">"a"</span>)</span><br><span class="line">    <span class="comment"># 创建锁</span></span><br><span class="line">    lock = threading.Lock()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 三个采集线程的名字</span></span><br><span class="line">    crawlList = [<span class="string">"采集线程1号"</span>, <span class="string">"采集线程2号"</span>, <span class="string">"采集线程3号"</span>]</span><br><span class="line">    <span class="comment"># 存储三个采集线程的列表集合</span></span><br><span class="line">    threadcrawl = []</span><br><span class="line">    <span class="keyword">for</span> threadName <span class="keyword">in</span> <span class="symbol">crawlList:</span></span><br><span class="line">        thread = ThreadCrawl(threadName, pageQueue, dataQueue)</span><br><span class="line">        thread.start()</span><br><span class="line">        threadcrawl.append(thread)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 三个解析线程的名字</span></span><br><span class="line">    parseList = [<span class="string">"解析线程1号"</span>,<span class="string">"解析线程2号"</span>,<span class="string">"解析线程3号"</span>]</span><br><span class="line">    <span class="comment"># 存储三个解析线程</span></span><br><span class="line">    threadparse = []</span><br><span class="line">    <span class="keyword">for</span> threadName <span class="keyword">in</span> <span class="symbol">parseList:</span></span><br><span class="line">        thread = ThreadParse(threadName, dataQueue, filename, lock)</span><br><span class="line">        thread.start()</span><br><span class="line">        threadparse.append(thread)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 等待pageQueue队列为空，也就是等待之前的操作执行完毕</span></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">not</span> pageQueue.empty()<span class="symbol">:</span></span><br><span class="line">        pass</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 如果pageQueue为空，采集线程退出循环</span></span><br><span class="line">    global CRAWL_EXIT</span><br><span class="line">    CRAWL_EXIT = True</span><br><span class="line"></span><br><span class="line">    print <span class="string">"pageQueue为空"</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> thread <span class="keyword">in</span> <span class="symbol">threadcrawl:</span></span><br><span class="line">        thread.join()</span><br><span class="line">        print <span class="string">"1"</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">not</span> dataQueue.empty()<span class="symbol">:</span></span><br><span class="line">        pass</span><br><span class="line"></span><br><span class="line">    global PARSE_EXIT</span><br><span class="line">    PARSE_EXIT = True</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> thread <span class="keyword">in</span> <span class="symbol">threadparse:</span></span><br><span class="line">        thread.join()</span><br><span class="line">        print <span class="string">"2"</span></span><br><span class="line"></span><br><span class="line">    with <span class="symbol">lock:</span></span><br><span class="line">        <span class="comment"># 关闭文件</span></span><br><span class="line">        filename.close()</span><br><span class="line">    print <span class="string">"谢谢使用！"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name_<span class="number">_</span> == <span class="string">"__main__"</span><span class="symbol">:</span></span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1144,7 +1145,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1155,7 +1156,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1166,7 +1167,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1233,7 +1234,7 @@ show_date_time();
 <h3 class="widget-title">Tag Cloud</h3>
 <div id="myCanvasContainer" class="widget tagcloud">
     <canvas width="250" height="250" id="resCanvas" style="width=100%">
-        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ActiveMQ/">ActiveMQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intercepter/">Intercepter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python环境搭建/">Python环境搭建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO单点登录/">SSO单点登录</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/">axios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastdfs/">fastdfs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solr-zookeeper/">solr+zookeeper</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/励志/">励志</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/喜剧/">喜剧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/影评/">影评</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心得/">心得</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂文/">杂文</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/段子/">段子</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">5</span></li></ul>
+        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ActiveMQ/">ActiveMQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intercepter/">Intercepter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python环境搭建/">Python环境搭建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO单点登录/">SSO单点登录</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/">axios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastdfs/">fastdfs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solr-zookeeper/">solr+zookeeper</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/励志/">励志</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/喜剧/">喜剧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/影评/">影评</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心得/">心得</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂文/">杂文</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/段子/">段子</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">5</span></li></ul>
     </canvas>
 </div>
 </div>
@@ -1263,7 +1264,7 @@ show_date_time();
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">28.3k</span>
+    <span title="Site words total count">31.0k</span>
   
 </div>
 
