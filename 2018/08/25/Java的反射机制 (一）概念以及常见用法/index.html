@@ -92,7 +92,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
 <meta property="og:site_name" content="lhsjohn的博客">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.lhsjohn.com/images/2018-08-31-1.jpg">
-<meta property="og:updated_time" content="2018-08-31T13:23:14.087Z">
+<meta property="og:updated_time" content="2018-08-31T13:27:27.061Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java的反射机制 (一）">
 <meta name="twitter:image" content="https://www.lhsjohn.com/images/2018-08-31-1.jpg">
@@ -356,8 +356,8 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
+                  <a href="/categories/学习/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
                   </a>
                 </span>
 
@@ -367,8 +367,8 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/学习/" itemprop="url" rel="index">
-                    <span itemprop="name">学习</span>
+                  <a href="/categories/学习/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
 
@@ -414,7 +414,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,712
+                  2,815
                 </span>
               
 
@@ -476,6 +476,9 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
 <p>##用三种方法实例化Class类对象</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 2.实例化Class类对象,这里有三种方法</span></span><br><span class="line"><span class="comment">	 * @throws Exception</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	@Test</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> testInstantiateClassObject() <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">     </span><br><span class="line">		<span class="keyword">Class</span> clazz1=<span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">Class</span> clazz2=<span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">Class</span> clazz3=<span class="keyword">null</span>;</span><br><span class="line">		<span class="comment">//用forName,最常用的一种形式</span></span><br><span class="line">		clazz1=<span class="keyword">Class</span>.forName(<span class="string">"com.lhsjohn.reflect.Person"</span>);</span><br><span class="line">		</span><br><span class="line">		clazz2=<span class="keyword">new</span> Person().getClass();</span><br><span class="line">		clazz3=Person.<span class="keyword">class</span>;</span><br><span class="line">		</span><br><span class="line">		System.out.<span class="keyword">println</span>(<span class="string">"Class Name1: "</span> + clazz1.getName());</span><br><span class="line">		System.out.<span class="keyword">println</span>(<span class="string">"Class Name2: "</span> + clazz2.getName());</span><br><span class="line">		System.out.<span class="keyword">println</span>(<span class="string">"Class Name3: "</span> + clazz3.getName());</span><br><span class="line">		</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 <p>测试结果:</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person [<span class="attribute">name</span>=小王, <span class="attribute">sex</span>=m, <span class="attribute">age</span>=20, <span class="attribute">address</span>=集美大道668号]</span><br></pre></td></tr></table></figure>
+<h2 id="3-通过Class实例化其他类的对象"><a href="#3-通过Class实例化其他类的对象" class="headerlink" title="3.通过Class实例化其他类的对象"></a>3.通过Class实例化其他类的对象</h2><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 3.通过Class实例化其他类的对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">public void testInstantiateOtherObject() throws Exception &#123;</span><br><span class="line">	</span><br><span class="line">	Class&lt;?&gt; clazz = Class.forName(<span class="string">"com.lhsjohn.reflect.Person"</span>)<span class="comment">;</span></span><br><span class="line">	</span><br><span class="line">	Person person = (Person) clazz.newInstance()<span class="comment">;		</span></span><br><span class="line">	person.setName(<span class="string">"小王"</span>)<span class="comment">;</span></span><br><span class="line">	person.setAge(<span class="number">20</span>)<span class="comment">;</span></span><br><span class="line">	person.setSex(<span class="string">"m"</span>)<span class="comment">;</span></span><br><span class="line">	person.setAddress(<span class="string">"集美大道668号"</span>)<span class="comment">;		</span></span><br><span class="line">	System.out.println(person.toString())<span class="comment">;	</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试结果：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person [<span class="attribute">name</span>=小王, <span class="attribute">sex</span>=m, <span class="attribute">age</span>=20, <span class="attribute">address</span>=集美大道668号]</span><br></pre></td></tr></table></figure>
 <h2 id="4-通过Class来调用其他类中的构造函数"><a href="#4-通过Class来调用其他类中的构造函数" class="headerlink" title="4.通过Class来调用其他类中的构造函数"></a>4.通过Class来调用其他类中的构造函数</h2><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 4.通过Class来调用其他类中的构造函数,也可以用这种方式来创建对象 </span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	public void testConstruct() throws Exception &#123;</span><br><span class="line">		Class&lt;?&gt; clazz = Class.forName(<span class="string">"com.lhsjohn.reflect.Person"</span>)<span class="comment">;</span></span><br><span class="line">		</span><br><span class="line">		Constructor&lt;?&gt;[] constructors = clazz.getConstructors()<span class="comment">;</span></span><br><span class="line">		</span><br><span class="line">		Person person1=null<span class="comment">;</span></span><br><span class="line">		Person person2=null<span class="comment">;</span></span><br><span class="line">		Person person3=null<span class="comment">;</span></span><br><span class="line">		Person person4=null<span class="comment">;</span></span><br><span class="line">		</span><br><span class="line">		person1=(Person) constructors[<span class="number">3</span>].newInstance()<span class="comment">;</span></span><br><span class="line">		person2 = (Person) constructors[<span class="number">2</span>].newInstance(<span class="string">"小王1"</span>,<span class="number">18</span>)<span class="comment">;</span></span><br><span class="line">		person3=(Person) constructors[<span class="number">1</span>].newInstance(<span class="string">"小王2"</span>,<span class="number">18</span>,<span class="string">"集美大道668号"</span>)<span class="comment">;</span></span><br><span class="line">		person4=(Person) constructors[<span class="number">0</span>].newInstance(<span class="string">"小王3"</span>,<span class="string">"男"</span>,<span class="number">18</span>,<span class="string">"集美大道668号"</span>)<span class="comment">;</span></span><br><span class="line">		</span><br><span class="line">		System.out.println(person1)<span class="comment">;</span></span><br><span class="line">		System.out.println(person2)<span class="comment">;</span></span><br><span class="line">		System.out.println(person3)<span class="comment">;</span></span><br><span class="line">		System.out.println(person4)<span class="comment">;</span></span><br><span class="line">			</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 <p>测试结果：</p>
@@ -768,7 +771,7 @@ show_date_time();
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">31.0k</span>
+    <span title="Site words total count">31.1k</span>
   
 </div>
 
