@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.lhsjohn.com/"/>
-  <updated>2018-08-31T15:21:32.836Z</updated>
+  <updated>2018-09-01T15:24:43.850Z</updated>
   <id>https://www.lhsjohn.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>String 字符串 (一）</title>
+    <link href="https://www.lhsjohn.com/2018/09/01/String%20%E5%AD%97%E7%AC%A6%E4%B8%B2%20(%E4%B8%80%EF%BC%89Prac1/"/>
+    <id>https://www.lhsjohn.com/2018/09/01/String 字符串 (一）Prac1/</id>
+    <published>2018-09-01T15:24:24.000Z</published>
+    <updated>2018-09-01T15:24:43.850Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;1-无意识的递归&quot;&gt;&lt;a href=&quot;#1-无意识的递归&quot; class=&quot;headerlink&quot; title=&quot;1.无意识的递归&quot;&gt;&lt;/a&gt;1.无意识的递归&lt;/h2&gt;&lt;figure class=&quot;highlight haxe&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;package&lt;/span&gt; com.lhsjohn.pr.string;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.util.ArrayList;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.util.List;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/**&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; * 迭代打印本类的地址信息,在这里可以把所有的宽度提取成常量，需要修改时只需要修改一处即可。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; * @author lihuashuo&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; *&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;InfiniteRecursion&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;String&lt;/span&gt; toString() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;comment&quot;&gt;//return &quot;InfiniteRecursion address: &quot; + this + &quot;\n&quot;; 这样写会报错，原因是将this转换成String时无意识调用了this的toString(),造成递归&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;InfiniteRecursion address: &quot;&lt;/span&gt; + &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;.toString() + &lt;span class=&quot;string&quot;&gt;&quot;\n&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; void main(&lt;span class=&quot;keyword&quot;&gt;String&lt;/span&gt;[] args) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		List&amp;lt;InfiniteRecursion&amp;gt; v=&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;ArrayList&lt;/span&gt;&amp;lt;InfiniteRecursion&amp;gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;( int i=&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i&amp;lt;&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;; i++ )&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	    	v.add(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;InfiniteRecursion&lt;/span&gt;());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	      System.out.println(v);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="java" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/"/>
+    
+    
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
+    
+      <category term="学习" scheme="https://www.lhsjohn.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="Thinking in java" scheme="https://www.lhsjohn.com/tags/Thinking-in-java/"/>
+    
+  </entry>
   
   <entry>
     <title>Java的反射机制 (一）</title>
@@ -360,9 +386,9 @@
       <category term="Spring" scheme="https://www.lhsjohn.com/categories/Spring/"/>
     
     
-      <category term="Spring" scheme="https://www.lhsjohn.com/tags/Spring/"/>
-    
       <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
+    
+      <category term="Spring" scheme="https://www.lhsjohn.com/tags/Spring/"/>
     
   </entry>
   
@@ -676,45 +702,6 @@
       <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
     
       <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>设计模式思考(一)策略模式</title>
-    <link href="https://www.lhsjohn.com/2018/07/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%9D%E8%80%83(%E4%B8%80)-----%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F(1)/"/>
-    <id>https://www.lhsjohn.com/2018/07/30/设计模式思考(一)-----策略模式(1)/</id>
-    <published>2018-07-30T15:08:21.000Z</published>
-    <updated>2018-08-31T13:32:13.036Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;策略模式的定义：&quot;&gt;&lt;a href=&quot;#策略模式的定义：&quot; class=&quot;headerlink&quot; title=&quot;策略模式的定义：&quot;&gt;&lt;/a&gt;策略模式的定义：&lt;/h1&gt;&lt;p&gt;策略模式定义了算法族，分别封装起来，让它们之间可以相互替换，此模式让算法的变化独立于使用算法的客户。&lt;/p&gt;
-&lt;h2 id=&quot;OO基础&quot;&gt;&lt;a href=&quot;#OO基础&quot; class=&quot;headerlink&quot; title=&quot;OO基础&quot;&gt;&lt;/a&gt;OO基础&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;抽象&lt;/li&gt;
-&lt;li&gt;封装&lt;/li&gt;
-&lt;li&gt;多态&lt;/li&gt;
-&lt;li&gt;继承&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;OO原则&quot;&gt;&lt;a href=&quot;#OO原则&quot; class=&quot;headerlink&quot; title=&quot;OO原则&quot;&gt;&lt;/a&gt;OO原则&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;封装变化&lt;/li&gt;
-&lt;li&gt;多用组合，少用继承&lt;/li&gt;
-&lt;li&gt;针对接口编程，不针对实现编程&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;OO模式&quot;&gt;&lt;a href=&quot;#OO模式&quot; class=&quot;headerlink&quot; title=&quot;OO模式&quot;&gt;&lt;/a&gt;OO模式&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;本篇介绍的是策略模式
-    
-    </summary>
-    
-      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="java" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/"/>
-    
-      <category term="设计模式" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
-    
-      <category term="设计模式" scheme="https://www.lhsjohn.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
