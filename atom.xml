@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.lhsjohn.com/"/>
-  <updated>2018-09-01T15:40:07.606Z</updated>
+  <updated>2018-09-02T14:35:50.663Z</updated>
   <id>https://www.lhsjohn.com/</id>
   
   <author>
@@ -17,11 +17,43 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>String 字符串 (一）</title>
+    <title>String 字符串 (二）Prac2</title>
+    <link href="https://www.lhsjohn.com/2018/09/02/String%20%E5%AD%97%E7%AC%A6%E4%B8%B2%20(%E4%BA%8C%EF%BC%89Prac2/"/>
+    <id>https://www.lhsjohn.com/2018/09/02/String 字符串 (二）Prac2/</id>
+    <published>2018-09-02T13:52:24.000Z</published>
+    <updated>2018-09-02T14:35:50.663Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;1-试用正则表达式&quot;&gt;&lt;a href=&quot;#1-试用正则表达式&quot; class=&quot;headerlink&quot; title=&quot;1.试用正则表达式&quot;&gt;&lt;/a&gt;1.试用正则表达式&lt;/h2&gt;&lt;figure class=&quot;highlight
+        
+      
+    
+    </summary>
+    
+      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="java" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/"/>
+    
+    
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
+    
+      <category term="学习" scheme="https://www.lhsjohn.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="Thinking in java" scheme="https://www.lhsjohn.com/tags/Thinking-in-java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>String 字符串 (一）Prac1</title>
     <link href="https://www.lhsjohn.com/2018/09/01/String%20%E5%AD%97%E7%AC%A6%E4%B8%B2%20(%E4%B8%80%EF%BC%89Prac1/"/>
     <id>https://www.lhsjohn.com/2018/09/01/String 字符串 (一）Prac1/</id>
     <published>2018-09-01T15:24:24.000Z</published>
-    <updated>2018-09-01T15:40:07.606Z</updated>
+    <updated>2018-09-02T14:34:13.333Z</updated>
     
     <summary type="html">
     
@@ -277,9 +309,9 @@
       <category term="ActiveMQ" scheme="https://www.lhsjohn.com/categories/%E9%A1%B9%E7%9B%AE/java/ActiveMQ/"/>
     
     
-      <category term="ActiveMQ" scheme="https://www.lhsjohn.com/tags/ActiveMQ/"/>
-    
       <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
+    
+      <category term="ActiveMQ" scheme="https://www.lhsjohn.com/tags/ActiveMQ/"/>
     
   </entry>
   
@@ -667,41 +699,6 @@
       <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
     
       <category term="设计模式" scheme="https://www.lhsjohn.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>urllib2爬虫初级 (一)</title>
-    <link href="https://www.lhsjohn.com/2018/07/31/urllib2%E7%88%AC%E8%99%AB%E5%88%9D%E7%BA%A7/"/>
-    <id>https://www.lhsjohn.com/2018/07/31/urllib2爬虫初级/</id>
-    <published>2018-07-30T18:27:21.000Z</published>
-    <updated>2018-08-31T13:36:09.946Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近由于项目需要，难得需要获取网络上的一些数据，手动获取的话效率又太低，所以最近想要接触一下爬虫。&lt;br&gt;因为有一小部分java开发的经验，所以入门python并不是特别困难，大概看了半天的官方文档后，决定采用python爬虫来获取相关的数据。&lt;/p&gt;
-&lt;p&gt;python 现在已经有了几个比较成熟的爬虫框架，如scrapy等，由于刚开始接触python以及python爬虫，我决定从比较底层的urllib2 入手。&lt;/p&gt;
-&lt;p&gt;爬虫，简单说来就是通过程序模拟浏览器请求站点的行为，把站点返回的HTML代码/JSON数据/二进制数据（图片、视频） 爬到本地，进而提取自己需要的数据，存放起来使用。&lt;/p&gt;
-&lt;p&gt;我使用爬虫的目的很简单，就是获取数据。&lt;/p&gt;
-&lt;p&gt;爬虫的一般流程为&lt;br&gt;1.发起请求 也就是模仿浏览器，发送一个Request，一般包含请求头和请求体的部分。&lt;br&gt;2.获取响应的内容&lt;br&gt;3.解析内容&lt;br&gt;4.保存数据(可以存在mysql这种关系型数据库中，但现在非常火的分布式爬虫经常使用redis、mogodb等非关系型数据库，极大提高了数据处理的性能)&lt;/p&gt;
-&lt;p&gt;同时推荐一个比较好用的抓包工具Fiddler&lt;/p&gt;
-&lt;p&gt;还有谷歌的代理请求插件Proxy SwitchyOmega&lt;/p&gt;
-&lt;p&gt;初级练习爬虫的话基本上都是结合着这两个工具来的&lt;/p&gt;
-&lt;p&gt;然后自己就跟着做了一个用url2初级爬虫的练习，可以爬取百度贴吧的一些信息，并保存下来为html文件&lt;br&gt;（刚开始入门，并没有考虑到反 反爬虫）&lt;/p&gt;
-&lt;p&gt;下面安利一波代码&lt;br&gt;
-    
-    </summary>
-    
-      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="python" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/python/"/>
-    
-      <category term="爬虫" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/python/%E7%88%AC%E8%99%AB/"/>
-    
-    
-      <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
-    
-      <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   

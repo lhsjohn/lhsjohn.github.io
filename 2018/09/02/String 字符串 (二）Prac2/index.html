@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+
+<script type="text/javascript"
+color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/header.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java,学习,Thinking in java," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="lhsjohn的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1.试用正则表达式1(?i)((^[aeiou])|(\s+[aeiou]))\w+?[aeiou]\b 注意事项：(?!)表示匹配时不区分大小写 ?匹配前面的子表达式0次或者多次+匹配前面的子表达式1次或者多次 整个正则表达式合起来为 匹配以元音字母开始元音字母结尾的单词 来匹配“Arline ate eight apples and one orange while Anita hadn’t">
+<meta name="keywords" content="java,学习,Thinking in java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="String 字符串 (二）Prac2">
+<meta property="og:url" content="https://www.lhsjohn.com/2018/09/02/String 字符串 (二）Prac2/index.html">
+<meta property="og:site_name" content="lhsjohn的博客">
+<meta property="og:description" content="1.试用正则表达式1(?i)((^[aeiou])|(\s+[aeiou]))\w+?[aeiou]\b 注意事项：(?!)表示匹配时不区分大小写 ?匹配前面的子表达式0次或者多次+匹配前面的子表达式1次或者多次 整个正则表达式合起来为 匹配以元音字母开始元音字母结尾的单词 来匹配“Arline ate eight apples and one orange while Anita hadn’t">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-02T14:35:50.663Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="String 字符串 (二）Prac2">
+<meta name="twitter:description" content="1.试用正则表达式1(?i)((^[aeiou])|(\s+[aeiou]))\w+?[aeiou]\b 注意事项：(?!)表示匹配时不区分大小写 ?匹配前面的子表达式0次或者多次+匹配前面的子表达式1次或者多次 整个正则表达式合起来为 匹配以元音字母开始元音字母结尾的单词 来匹配“Arline ate eight apples and one orange while Anita hadn’t">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":10,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.lhsjohn.com/2018/09/02/String 字符串 (二）Prac2/"/>
+
+
+
+
+
+  <title>String 字符串 (二）Prac2 | lhsjohn的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband">
+	</div>
+		<a href="https://github.com/lhsjohn"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lhsjohn的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">对未来的真正慷慨，是把一切献给现在</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于我">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lhsjohn.com/2018/09/02/String 字符串 (二）Prac2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lhsjohn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lhsjohn的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">String 字符串 (二）Prac2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T21:52:24+08:00">
+                2018-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/02/String 字符串 (二）Prac2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/09/02/String 字符串 (二）Prac2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+         
+     <span class="post-meta-divider">|</span>
+     <span id="busuanzi_value_page_pv"></span>次阅读
+        
+		  
+		  
+		  
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,355
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-试用正则表达式"><a href="#1-试用正则表达式" class="headerlink" title="1.试用正则表达式"></a>1.试用正则表达式</h2><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(?i)((^<span class="string">[aeiou]</span>)|(\s+<span class="string">[aeiou]</span>))\w+?<span class="string">[aeiou]</span>\b</span><br></pre></td></tr></table></figure>
+<p>注意事项：<br>(?!)表示匹配时不区分大小写</p>
+<p>?匹配前面的子表达式0次或者多次<br>+匹配前面的子表达式1次或者多次</p>
+<p>整个正则表达式合起来为 匹配以元音字母开始元音字母结尾的单词</p>
+<h2 id="来匹配"><a href="#来匹配" class="headerlink" title="来匹配"></a>来匹配</h2><p>“Arline ate eight apples and one orange while Anita hadn’t any”</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">package com.lhsjohn.pr.<span class="keyword">string</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.regex.Matcher;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.Pattern;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class TestRegularExpression11 &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">		<span class="built_in">if</span>(args.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">			System.out.<span class="built_in">println</span>(<span class="string">"Usage:\njava TestRegularExpression "</span> + </span><br><span class="line">				<span class="string">"characterSequence regularExpression+"</span>);</span><br><span class="line">			System.exit(<span class="number">0</span>);  </span><br><span class="line">		&#125;</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="string">"Input: \""</span> + args[<span class="number">0</span>] + <span class="string">"\""</span>);</span><br><span class="line">		<span class="built_in">for</span>(<span class="keyword">String</span> arg : args) &#123;</span><br><span class="line">			System.out.<span class="built_in">println</span>(<span class="string">"Regular expression: \""</span> + arg + <span class="string">"\""</span>);</span><br><span class="line">			Pattern p = Pattern.compile(arg);</span><br><span class="line">			Matcher m = p.matcher(args[<span class="number">0</span>]);</span><br><span class="line">			<span class="built_in">if</span>(!m.<span class="built_in">find</span>()) </span><br><span class="line">				System.out.<span class="built_in">println</span>(<span class="string">"No match found for "</span> + <span class="string">"\""</span> + arg + <span class="string">"\""</span>);</span><br><span class="line">			m.reset();</span><br><span class="line">			<span class="built_in">while</span>(m.<span class="built_in">find</span>()) &#123;</span><br><span class="line">				System.out.<span class="built_in">println</span>(<span class="string">"Match \""</span> + m.group() + <span class="string">"\" at position "</span> +</span><br><span class="line">					m.start() + ((m.<span class="built_in">end</span>() - m.start() &lt; <span class="number">2</span>) ? <span class="string">""</span> :  (<span class="string">"-"</span> + (m.<span class="built_in">end</span>() - <span class="number">1</span>))));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;!-- more --&gt;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Input: <span class="string">"Arline ate eight apples and one orange while Anita hadn't any"</span></span><br><span class="line">Regular expression: <span class="string">"Arline ate eight apples and one orange while Anita hadn't any"</span></span><br><span class="line">Match <span class="string">"Arline ate eight apples and one orange while Anita hadn't any"</span> <span class="built_in">at</span> <span class="built_in">position</span> <span class="number">0</span>-<span class="number">60</span></span><br><span class="line">Regular expression: <span class="string">"(?i)((^[aeiou])|(\s+[aeiou]))\w+?[aeiou]\b"</span></span><br><span class="line">Match <span class="string">"Arline"</span> <span class="built_in">at</span> <span class="built_in">position</span> <span class="number">0</span>-<span class="number">5</span></span><br><span class="line">Match <span class="string">" ate"</span> <span class="built_in">at</span> <span class="built_in">position</span> <span class="number">6</span>-<span class="number">9</span></span><br><span class="line">Match <span class="string">" one"</span> <span class="built_in">at</span> <span class="built_in">position</span> <span class="number">27</span>-<span class="number">30</span></span><br><span class="line">Match <span class="string">" orange"</span> <span class="built_in">at</span> <span class="built_in">position</span> <span class="number">31</span>-<span class="number">37</span></span><br><span class="line">Match <span class="string">" Anita"</span> <span class="built_in">at</span> <span class="built_in">position</span> <span class="number">44</span>-<span class="number">49</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-Finding-java"><a href="#2-Finding-java" class="headerlink" title="2.Finding.java"></a>2.Finding.java</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lhsjohn.pr.string;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.regex.Matcher;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.Pattern;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> Finding &#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) &#123;</span><br><span class="line">		</span><br><span class="line">	 Matcher m = Pattern.<span class="keyword">compile</span>(<span class="string">"\\w+"</span>).matcher(<span class="string">"Evening is full of the linnet's wings"</span>);</span><br><span class="line">	</span><br><span class="line">	 <span class="keyword">while</span>(m.<span class="keyword">find</span>())</span><br><span class="line">		 System.out.<span class="keyword">print</span>(m.<span class="keyword">group</span>()+ <span class="string">" "</span>);</span><br><span class="line">	 System.out.<span class="keyword">println</span>();</span><br><span class="line">	 System.out.<span class="keyword">println</span>(<span class="string">"=================================="</span>);</span><br><span class="line">	 <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">	 <span class="keyword">while</span>(m.<span class="keyword">find</span>(i)) &#123;</span><br><span class="line">		 System.out.<span class="keyword">print</span>(m.<span class="keyword">group</span>()+<span class="string">" "</span>);</span><br><span class="line">		 i++;</span><br><span class="line">	 &#125;</span><br><span class="line">	 </span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>模式\w+将字符串划分为单词。find()像迭代器那样向前遍历输出字符串，第二个find()能够接收一个整数作为参数，该整数表示字符串中字符的位置，并以此作为搜索起点。</p>
+<p>输出结果:</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Evening is full of the linnet s wings </span><br><span class="line">==================================</span><br><span class="line">Evening vening ening ning ing ng g is is s full full ull ll l of of f the the he e linnet linnet innet nnet net et t s s wings wings ings ngs gs s</span><br></pre></td></tr></table></figure>
+<h2 id="3-组"><a href="#3-组" class="headerlink" title="3.组"></a>3.组</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lhsjohn.pr.string;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.regex.Matcher;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.Pattern;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> Groups &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">public</span> <span class="keyword">final</span> String POEM=</span><br><span class="line">			<span class="string">"Twas brillig, and the slithy toves\n"</span> +</span><br><span class="line">					<span class="string">"Did gyre and gimble in the wabe.\n"</span> +</span><br><span class="line">					<span class="string">"All mimsy were the borogoves,\n"</span> +</span><br><span class="line">					<span class="string">"And the mome raths outgrabe.\n\n"</span> +</span><br><span class="line">					<span class="string">"Beware the Jabberwock, my son,\n"</span> +</span><br><span class="line">					<span class="string">"The jaws that bite, the claws that catch,\n"</span> +</span><br><span class="line">					<span class="string">"Beware the Jubjub bird, and shun\n"</span> +</span><br><span class="line">					<span class="string">"The frumious Bandersnatch."</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) &#123;</span><br><span class="line">		</span><br><span class="line">		Matcher m = Pattern.<span class="keyword">compile</span>(<span class="string">"(?m)(\\S+)\\s+((\\S+)\\s+(\\S+))$"</span>).matcher(POEM);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span>(m.<span class="keyword">find</span>()) &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=m.groupCount();i++) &#123;</span><br><span class="line">				System.out.<span class="keyword">print</span>(<span class="string">"["</span> +m.<span class="keyword">group</span>(i)+ <span class="string">"]"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.<span class="keyword">println</span>();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">			</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里的正则表达式</p>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(?m)(<span class="symbol">\\</span>S+)<span class="symbol">\\</span>s+((<span class="symbol">\\</span>S+)<span class="symbol">\\</span>s+(<span class="symbol">\\</span>S+))$</span><br></pre></td></tr></table></figure>
+<p>由任意数目的非空格字符(\S+)以及随后的任意数目的空格字符(\s+)所组成,目的是捕获每行最后的三个词，每行最后以$结束</p>
+<p>显示告诉正则表达式注意输入序列中的换行符，可以由序列开头的模式标记(?m)来完成。</p>
+<p>输出结果：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">the slithy toves</span>][<span class="symbol">the</span>][<span class="string">slithy toves</span>][<span class="symbol">slithy</span>][<span class="string">toves</span>]</span><br><span class="line">[<span class="string">in the wabe.</span>][<span class="symbol">in</span>][<span class="string">the wabe.</span>][<span class="symbol">the</span>][<span class="string">wabe.</span>]</span><br><span class="line">[<span class="string">were the borogoves,</span>][<span class="symbol">were</span>][<span class="string">the borogoves,</span>][<span class="symbol">the</span>][<span class="string">borogoves,</span>]</span><br><span class="line">[<span class="string">mome raths outgrabe.</span>][<span class="symbol">mome</span>][<span class="string">raths outgrabe.</span>][<span class="symbol">raths</span>][<span class="string">outgrabe.</span>]</span><br><span class="line">[<span class="string">Jabberwock, my son,</span>][<span class="symbol">Jabberwock,</span>][<span class="string">my son,</span>][<span class="symbol">my</span>][<span class="string">son,</span>]</span><br><span class="line">[<span class="string">claws that catch,</span>][<span class="symbol">claws</span>][<span class="string">that catch,</span>][<span class="symbol">that</span>][<span class="string">catch,</span>]</span><br><span class="line">[<span class="string">bird, and shun</span>][<span class="symbol">bird,</span>][<span class="string">and shun</span>][<span class="symbol">and</span>][<span class="string">shun</span>]</span><br><span class="line">[<span class="string">The frumious Bandersnatch.</span>][<span class="symbol">The</span>][<span class="string">frumious Bandersnatch.</span>][<span class="symbol">frumious</span>][<span class="string">Bandersnatch.</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="4-修改上面的Groups-java，找出所有不以大写字母开头的词，不重复地计算其个数。"><a href="#4-修改上面的Groups-java，找出所有不以大写字母开头的词，不重复地计算其个数。" class="headerlink" title="4.修改上面的Groups.java，找出所有不以大写字母开头的词，不重复地计算其个数。"></a>4.修改上面的Groups.java，找出所有不以大写字母开头的词，不重复地计算其个数。</h2><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lhsjohn.pr.string;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"><span class="keyword">import</span> java.util.TreeSet;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.Matcher;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.Pattern;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class Group12 &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">String</span> POEM=</span><br><span class="line">			<span class="string">"Twas brillig, and the slithy toves\n"</span> +</span><br><span class="line">					<span class="string">"Did gyre and gimble in the wabe.\n"</span> +</span><br><span class="line">					<span class="string">"All mimsy were the borogoves,\n"</span> +</span><br><span class="line">					<span class="string">"And the mome raths outgrabe.\n\n"</span> +</span><br><span class="line">					<span class="string">"Beware the Jabberwock, my son,\n"</span> +</span><br><span class="line">					<span class="string">"The jaws that bite, the claws that catch,\n"</span> +</span><br><span class="line">					<span class="string">"Beware the Jubjub bird, and shun\n"</span> +</span><br><span class="line">					<span class="string">"The frumious Bandersnatch."</span>;</span><br><span class="line">	</span><br><span class="line">	   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">		   <span class="comment">//找出所有不以大写字母开头的词，不重复的计算其个数</span></span><br><span class="line">		  Matcher m = Pattern.compile(<span class="string">"(^[a-z]|\\s+[a-z])\\w+"</span>).matcher(POEM);</span><br><span class="line">		  Set&lt;<span class="keyword">String</span>&gt; words=<span class="keyword">new</span> TreeSet&lt;<span class="keyword">String</span>&gt;();</span><br><span class="line">		  <span class="keyword">while</span>(m.find()) &#123;</span><br><span class="line">			  words.<span class="built_in">add</span>(m.group());</span><br><span class="line">		  &#125;</span><br><span class="line">		  </span><br><span class="line">		  System.out.<span class="built_in">println</span>(<span class="string">"符合要求的数目为: "</span> +words.<span class="built_in">size</span>());</span><br><span class="line">		  System.out.<span class="built_in">println</span>(words);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">符合要求的数目为: <span class="number">25</span></span><br><span class="line">[ <span class="keyword">and, </span> <span class="keyword">bird, </span> <span class="keyword">bite, </span> <span class="keyword">borogoves, </span> <span class="keyword">brillig, </span> catch,  claws,  frumious,  gimble,  gyre,  in,  <span class="keyword">jaws, </span> mimsy,  mome,  my,  outgrabe,  raths,  <span class="keyword">shun, </span> slithy,  son,  that,  the,  toves,  wabe,  were]</span><br></pre></td></tr></table></figure>
+<h2 id="5-start-与end"><a href="#5-start-与end" class="headerlink" title="5.start()与end()"></a>5.start()与end()</h2><p>start()返回先前匹配的起始位置的索引,.而end()返回所匹配的最后字符的索引加一的值.</p>
+<p>不多说了，上代码！</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">package com.lhsjohn.pr.<span class="keyword">string</span>;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.*;</span><br><span class="line"><span class="keyword">public</span> class StartEnd &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">String</span> input =</span><br><span class="line">    <span class="string">"As long as there is injustice, whenever a\n"</span> +</span><br><span class="line">    <span class="string">"Targathian baby cries out, wherever a distress\n"</span> +</span><br><span class="line">    <span class="string">"signal sounds among the stars ... We'll be there.\n"</span> +</span><br><span class="line">    <span class="string">"This fine ship, and this fine crew ...\n"</span> +</span><br><span class="line">    <span class="string">"Never give up! Never surrender!"</span>;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> class Display &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> regexPrinted = false;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">String</span> regex;</span><br><span class="line">    Display(<span class="keyword">String</span> regex) &#123; <span class="keyword">this</span>.regex = regex; &#125;</span><br><span class="line">    <span class="keyword">void</span> <span class="built_in">display</span>(<span class="keyword">String</span> message) &#123;</span><br><span class="line">      <span class="built_in">if</span>(!regexPrinted) &#123;</span><br><span class="line">        System.out.<span class="built_in">println</span>(regex);</span><br><span class="line">        regexPrinted = true;</span><br><span class="line">      &#125;</span><br><span class="line">      System.out.<span class="built_in">println</span>(message);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">void</span> examine(<span class="keyword">String</span> s, <span class="keyword">String</span> regex) &#123;</span><br><span class="line">    Display d = <span class="keyword">new</span> Display(regex);</span><br><span class="line">    Pattern p = Pattern.compile(regex);</span><br><span class="line">    Matcher m = p.matcher(s);</span><br><span class="line">    <span class="built_in">while</span>(m.<span class="built_in">find</span>())</span><br><span class="line">      d.<span class="built_in">display</span>(<span class="string">"find() '"</span> + m.group() +</span><br><span class="line">        <span class="string">"' start = "</span>+ m.start() + <span class="string">" end = "</span> + m.<span class="built_in">end</span>());</span><br><span class="line">    <span class="built_in">if</span>(m.lookingAt()) <span class="comment">// No reset() necessary</span></span><br><span class="line">      d.<span class="built_in">display</span>(<span class="string">"lookingAt() start = "</span></span><br><span class="line">        + m.start() + <span class="string">" end = "</span> + m.<span class="built_in">end</span>());</span><br><span class="line">    <span class="built_in">if</span>(m.matches()) <span class="comment">// No reset() necessary</span></span><br><span class="line">      d.<span class="built_in">display</span>(<span class="string">"matches() start = "</span></span><br><span class="line">        + m.start() + <span class="string">" end = "</span> + m.<span class="built_in">end</span>());</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">    <span class="built_in">for</span>(<span class="keyword">String</span> in : input.split(<span class="string">"\n"</span>)) &#123;</span><br><span class="line">    	System.out.<span class="built_in">println</span>(<span class="string">"input : "</span> + in);</span><br><span class="line">      <span class="built_in">for</span>(<span class="keyword">String</span> regex : <span class="keyword">new</span> <span class="keyword">String</span>[]&#123;<span class="string">"\\w*ere\\w*"</span>,</span><br><span class="line">        <span class="string">"\\w*ever"</span>, <span class="string">"T\\w+"</span>, <span class="string">"Never.*?!"</span>&#125;)</span><br><span class="line">        examine(in, regex);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">input : As long as there is injustice, whenever a</span><br><span class="line">\w*ere\w*</span><br><span class="line"><span class="built_in">find</span>() <span class="string">'there'</span> start = <span class="number">11</span> <span class="keyword">end</span> = <span class="number">16</span></span><br><span class="line">\w*ever</span><br><span class="line"><span class="built_in">find</span>() <span class="string">'whenever'</span> start = <span class="number">31</span> <span class="keyword">end</span> = <span class="number">39</span></span><br><span class="line">input : Targathian baby cries out, wherever a distress</span><br><span class="line">\w*ere\w*</span><br><span class="line"><span class="built_in">find</span>() <span class="string">'wherever'</span> start = <span class="number">27</span> <span class="keyword">end</span> = <span class="number">35</span></span><br><span class="line">\w*ever</span><br><span class="line"><span class="built_in">find</span>() <span class="string">'wherever'</span> start = <span class="number">27</span> <span class="keyword">end</span> = <span class="number">35</span></span><br><span class="line">T\w+</span><br><span class="line"><span class="built_in">find</span>() <span class="string">'Targathian'</span> start = <span class="number">0</span> <span class="keyword">end</span> = <span class="number">10</span></span><br><span class="line">lookingAt() start = <span class="number">0</span> <span class="keyword">end</span> = <span class="number">10</span></span><br><span class="line">input : signal sounds among the stars ... We'll be there.</span><br><span class="line">\w*ere\w*</span><br><span class="line"><span class="built_in">find</span>() <span class="string">'there'</span> start = <span class="number">43</span> <span class="keyword">end</span> = <span class="number">48</span></span><br><span class="line">input : This fine ship, and this fine crew ...</span><br><span class="line">T\w+</span><br><span class="line"><span class="built_in">find</span>() <span class="string">'This'</span> start = <span class="number">0</span> <span class="keyword">end</span> = <span class="number">4</span></span><br><span class="line">lookingAt() start = <span class="number">0</span> <span class="keyword">end</span> = <span class="number">4</span></span><br><span class="line">input : Never give up! Never surrender!</span><br><span class="line">\w*ever</span><br><span class="line"><span class="built_in">find</span>() <span class="string">'Never'</span> start = <span class="number">0</span> <span class="keyword">end</span> = <span class="number">5</span></span><br><span class="line"><span class="built_in">find</span>() <span class="string">'Never'</span> start = <span class="number">15</span> <span class="keyword">end</span> = <span class="number">20</span></span><br><span class="line">lookingAt() start = <span class="number">0</span> <span class="keyword">end</span> = <span class="number">5</span></span><br><span class="line">Never.*?!</span><br><span class="line"><span class="built_in">find</span>() <span class="string">'Never give up!'</span> start = <span class="number">0</span> <span class="keyword">end</span> = <span class="number">14</span></span><br><span class="line"><span class="built_in">find</span>() <span class="string">'Never surrender!'</span> start = <span class="number">15</span> <span class="keyword">end</span> = <span class="number">31</span></span><br><span class="line">lookingAt() start = <span class="number">0</span> <span class="keyword">end</span> = <span class="number">14</span></span><br><span class="line">matches() start = <span class="number">0</span> <span class="keyword">end</span> = <span class="number">31</span></span><br></pre></td></tr></table></figure>
+<h2 id="6-特别好用的split"><a href="#6-特别好用的split" class="headerlink" title="6.特别好用的split()"></a>6.特别好用的split()</h2><p>可以通过通用边界断开输入文本</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">package com.lhsjohn.pr.string;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.Pattern;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SplitDemo</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="type">String</span>[] args) &#123;</span><br><span class="line">	</span><br><span class="line">		<span class="type">String</span> input=<span class="string">"This!!unusual use!!of exclamation!!points"</span>;</span><br><span class="line">		<span class="type">System</span>.out.<span class="built_in">println</span>(<span class="type">Arrays</span>.<span class="built_in">toString</span>(<span class="type">Pattern</span>.compile(<span class="string">"!!"</span>).<span class="built_in">split</span>(input)));</span><br><span class="line">		<span class="type">System</span>.out.<span class="built_in">println</span>(<span class="type">Arrays</span>.<span class="built_in">toString</span>(<span class="type">Pattern</span>.compile(<span class="string">"!!"</span>).<span class="built_in">split</span>(input,<span class="number">3</span>)));</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[This, unusual use, of exclamation, points]</span><br><span class="line">[This, unusual use, of exclamation!!points]</span><br></pre></td></tr></table></figure>
+<h2 id="7-用String-split-重写SplitDemo"><a href="#7-用String-split-重写SplitDemo" class="headerlink" title="7.用String.split()重写SplitDemo"></a>7.用String.split()重写SplitDemo</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">package com.lhsjohn.pr.string;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.Pattern;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SplitDemo14</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	 <span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="type">String</span>[] args) &#123;</span><br><span class="line">		</span><br><span class="line">		<span class="type">String</span> input=<span class="string">"This!!unusual use!!of exclamation!!points"</span>;</span><br><span class="line">		<span class="type">System</span>.out.<span class="built_in">println</span>(<span class="type">Arrays</span>.<span class="built_in">toString</span>(input.<span class="built_in">split</span>(<span class="string">"!!"</span>)));</span><br><span class="line">		<span class="type">System</span>.out.<span class="built_in">println</span>(<span class="type">Arrays</span>.<span class="built_in">toString</span>(input.<span class="built_in">split</span>(<span class="string">"!!"</span>,<span class="number">3</span>)));</span><br><span class="line">		 </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[This, unusual use, of exclamation, points]</span><br><span class="line">[This, unusual use, of exclamation!!points]</span><br></pre></td></tr></table></figure>
+<h2 id="8-替换操作"><a href="#8-替换操作" class="headerlink" title="8.替换操作"></a>8.替换操作</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lhsjohn.pr.string;</span><br><span class="line"><span class="keyword">import</span> java.io.BufferedReader;</span><br><span class="line"><span class="keyword">import</span> java.io.<span class="keyword">File</span>;</span><br><span class="line"><span class="keyword">import</span> java.io.FileReader;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*! Here's a block of text to use as input to</span></span><br><span class="line"><span class="comment">    the regular expression matcher. Note that we'll</span></span><br><span class="line"><span class="comment">    first extract the block of text by looking for</span></span><br><span class="line"><span class="comment">    the special delimiters, then process the</span></span><br><span class="line"><span class="comment">    extracted block. !*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> TheReplacements &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">	 <span class="comment">//读入整个文件，将其内容作为String对象返回</span></span><br><span class="line">    String s = <span class="keyword">read</span>(<span class="string">"F:/Study/java/DesignerPattern/PracticeString/src/com/lhsjohn/pr/string/TheReplacements.java"</span>);</span><br><span class="line">    <span class="comment">//mInput用于匹配在/*!和！*/之间的文字</span></span><br><span class="line">    Matcher mInput =</span><br><span class="line">      Pattern.<span class="keyword">compile</span>(<span class="string">"/\\*!(.*)!\\*/"</span>, Pattern.DOTALL)</span><br><span class="line">        .matcher(s);</span><br><span class="line">    <span class="keyword">if</span>(mInput.<span class="keyword">find</span>())</span><br><span class="line">    	<span class="comment">//注意分组的括号</span></span><br><span class="line">      s = mInput.<span class="keyword">group</span>(<span class="number">1</span>); </span><br><span class="line">    <span class="comment">// 将存在两个或者两个以上的地方，替换成一个空格:</span></span><br><span class="line">    s = s.replaceAll(<span class="string">" &#123;2,&#125;"</span>, <span class="string">" "</span>);</span><br><span class="line">    <span class="comment">//删除开头部分的空格，因为是多行模式，所以需要打开多行状态</span></span><br><span class="line">    s = s.replaceAll(<span class="string">"(?m)^ +"</span>, <span class="string">""</span>);</span><br><span class="line">    System.out.<span class="keyword">println</span>(s);</span><br><span class="line">    <span class="comment">//replaceFirst只对找到的第一个匹配进行替换</span></span><br><span class="line">    <span class="comment">//注意replaceFirst()和replaceAll()用来替换的只是普通的字符串,如果需要对这些替换字符串进行特殊的处理</span></span><br><span class="line">    <span class="comment">//我们还需要使用appendReplacement()方法</span></span><br><span class="line">    s = s.replaceFirst(<span class="string">"[aeiou]"</span>, <span class="string">"(VOWEL1)"</span>);</span><br><span class="line">    StringBuffer sbuf = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">    Pattern p = Pattern.<span class="keyword">compile</span>(<span class="string">"[aeiou]"</span>);</span><br><span class="line">    Matcher m = p.matcher(s);</span><br><span class="line">    <span class="comment">//先构造sbuf来保存最终结果,然后用group选择了一个组进行相关处理</span></span><br><span class="line">    <span class="keyword">while</span>(m.<span class="keyword">find</span>())</span><br><span class="line">      m.appendReplacement(sbuf, m.<span class="keyword">group</span>().toUpperCase());</span><br><span class="line">    <span class="comment">//在执行了一次或者多次appendReplacement()方法之后,调用此方法可以将输入字符串剩下的部分复制到sbuf中</span></span><br><span class="line">    m.appendTail(sbuf);</span><br><span class="line">    System.out.<span class="keyword">println</span>(sbuf);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> String <span class="keyword">read</span>(String fileName) &#123;</span><br><span class="line">	    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">	    <span class="keyword">try</span> &#123;</span><br><span class="line">	      BufferedReader in= <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(</span><br><span class="line">	        <span class="keyword">new</span> <span class="keyword">File</span>(fileName).getAbsoluteFile()));</span><br><span class="line">	      <span class="keyword">try</span> &#123;</span><br><span class="line">	        String s;</span><br><span class="line">	        <span class="keyword">while</span>((s = in.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">	          sb.<span class="keyword">append</span>(s);</span><br><span class="line">	          sb.<span class="keyword">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">	        &#125;</span><br><span class="line">	      &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">	        in.close();</span><br><span class="line">	      &#125;</span><br><span class="line">	    &#125; <span class="keyword">catch</span>(IOException e) &#123;</span><br><span class="line">	      <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="keyword">return</span> sb.toString();</span><br><span class="line">	  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果:</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Here<span class="symbol">'s</span> a <span class="keyword">block</span> <span class="keyword">of</span> <span class="literal">text</span> <span class="keyword">to</span> <span class="keyword">use</span> as input <span class="keyword">to</span></span><br><span class="line">the regular expression matcher. <span class="literal">Note</span> that we<span class="symbol">'ll</span></span><br><span class="line">first extract the <span class="keyword">block</span> <span class="keyword">of</span> <span class="literal">text</span> by looking <span class="keyword">for</span></span><br><span class="line">the special delimiters, <span class="keyword">then</span> <span class="keyword">process</span> the</span><br><span class="line">extracted <span class="keyword">block</span>. </span><br><span class="line">H(VOWEL1)rE<span class="symbol">'s</span> A <span class="keyword">blOck</span> <span class="keyword">Of</span> <span class="literal">tExt</span> <span class="keyword">tO</span> <span class="keyword">UsE</span> As InpUt <span class="keyword">tO</span></span><br><span class="line">thE rEgUlAr ExprEssIOn mAtchEr. <span class="literal">NOtE</span> thAt wE<span class="symbol">'ll</span></span><br><span class="line">fIrst ExtrAct thE <span class="keyword">blOck</span> <span class="keyword">Of</span> <span class="literal">tExt</span> by lOOkIng <span class="keyword">fOr</span></span><br><span class="line">thE spEcIAl dElImItErs, <span class="keyword">thEn</span> <span class="keyword">prOcEss</span> thE</span><br><span class="line">ExtrActEd <span class="keyword">blOck</span>.</span><br></pre></td></tr></table></figure>
+<p>作者:lhsjohn</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/学习/" rel="tag"># 学习</a>
+          
+            <a href="/tags/Thinking-in-java/" rel="tag"># Thinking in java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/01/String 字符串 (一）Prac1/" rel="next" title="String 字符串 (一）Prac1">
+                <i class="fa fa-chevron-left"></i> String 字符串 (一）Prac1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!--MOB SHARE BEGIN-->
+<div class="-mob-share-ui-button -mob-share-open">分享</div>
+<div class="-mob-share-ui" style="display: none">
+<ul class="-mob-share-list">
+<li class="-mob-share-weibo"><p>新浪微博</p></li>
+<li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
+<li class="-mob-share-qzone"><p>QQ空间</p></li>
+<li class="-mob-share-qq"><p>QQ好友</p></li>
+<li class="-mob-share-renren"><p>人人网</p></li>
+<li class="-mob-share-kaixin"><p>开心网</p></li>
+<li class="-mob-share-douban"><p>豆瓣</p></li>
+<li class="-mob-share-facebook"><p>Facebook</p></li>
+<li class="-mob-share-twitter"><p>Twitter</p></li>
+</ul>
+<div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=276e66346840e"></script>
+<!--MOB SHARE END-->  
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="lhsjohn" />
+            
+              <p class="site-author-name" itemprop="name">lhsjohn</p>
+              <p class="site-description motion-element" itemprop="description">对未来的真正慷慨，是把一切献给现在</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+    
+    
+
+          <div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("07/28/2018 15:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+        </div>
+      </section>
+
+      
+
+      
+	  
+	  
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+<h3 class="widget-title">Tag Cloud</h3>
+<div id="myCanvasContainer" class="widget tagcloud">
+    <canvas width="250" height="250" id="resCanvas" style="width=100%">
+        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ActiveMQ/">ActiveMQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intercepter/">Intercepter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python环境搭建/">Python环境搭建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO单点登录/">SSO单点登录</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thinking-in-java/">Thinking in java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/">axios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastdfs/">fastdfs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solr-zookeeper/">solr+zookeeper</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/励志/">励志</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/反射机制/">反射机制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/喜剧/">喜剧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/影评/">影评</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心得/">心得</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂文/">杂文</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/段子/">段子</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">5</span></li></ul>
+    </canvas>
+</div>
+</div>
+
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lhsjohn</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">35.3k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+<div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+<!-- 页面点击小红心 -->
+ <script type="text/javascript" src="/js/src/clicklove.js"></script>
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'dILes8JxmVOKeMvXEeHzOlYs-gzGzoHsz',
+        appKey: 'LOd9oGKdW8Ag1emY5hQ3Of4B',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  undefined
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/chitose.model.json"},"display":{"position":"left","width":75,"height":180},"mobile":{"show":true},"log":false,"tagMode":false});</script></body>
+</html>
