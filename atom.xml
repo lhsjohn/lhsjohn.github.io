@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.lhsjohn.com/"/>
-  <updated>2018-09-02T14:35:50.663Z</updated>
+  <updated>2018-09-02T14:41:59.465Z</updated>
   <id>https://www.lhsjohn.com/</id>
   
   <author>
@@ -21,17 +21,16 @@
     <link href="https://www.lhsjohn.com/2018/09/02/String%20%E5%AD%97%E7%AC%A6%E4%B8%B2%20(%E4%BA%8C%EF%BC%89Prac2/"/>
     <id>https://www.lhsjohn.com/2018/09/02/String 字符串 (二）Prac2/</id>
     <published>2018-09-02T13:52:24.000Z</published>
-    <updated>2018-09-02T14:35:50.663Z</updated>
+    <updated>2018-09-02T14:41:59.465Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h2 id=&quot;1-试用正则表达式&quot;&gt;&lt;a href=&quot;#1-试用正则表达式&quot; class=&quot;headerlink&quot; title=&quot;1.试用正则表达式&quot;&gt;&lt;/a&gt;1.试用正则表达式&lt;/h2&gt;&lt;figure class=&quot;highlight
-        
-      
+      &lt;h2 id=&quot;1-试用正则表达式&quot;&gt;&lt;a href=&quot;#1-试用正则表达式&quot; class=&quot;headerlink&quot; title=&quot;1.试用正则表达式&quot;&gt;&lt;/a&gt;1.试用正则表达式&lt;/h2&gt;&lt;figure class=&quot;highlight accesslog&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;(?i)((^&lt;span class=&quot;string&quot;&gt;[aeiou]&lt;/span&gt;)|(\s+&lt;span class=&quot;string&quot;&gt;[aeiou]&lt;/span&gt;))\w+?&lt;span class=&quot;string&quot;&gt;[aeiou]&lt;/span&gt;\b&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;注意事项：&lt;br&gt;(?!)表示匹配时不区分大小写&lt;/p&gt;
+&lt;p&gt;?匹配前面的子表达式0次或者多次&lt;br&gt;+匹配前面的子表达式1次或者多次&lt;/p&gt;
+&lt;p&gt;整个正则表达式合起来为 匹配以元音字母开始元音字母结尾的单词&lt;/p&gt;
+&lt;h2 id=&quot;来匹配&quot;&gt;&lt;a href=&quot;#来匹配&quot; class=&quot;headerlink&quot; title=&quot;来匹配&quot;&gt;&lt;/a&gt;来匹配&lt;/h2&gt;&lt;p&gt;“Arline ate eight apples and one orange while Anita hadn’t any”&lt;/p&gt;
+&lt;figure class=&quot;highlight arduino&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;package com.lhsjohn.pr.&lt;span class=&quot;keyword&quot;&gt;string&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.util.regex.Matcher;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.util.regex.Pattern;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; class TestRegularExpression11 &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; main(&lt;span class=&quot;keyword&quot;&gt;String&lt;/span&gt;[] args) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;built_in&quot;&gt;if&lt;/span&gt;(args.length &amp;lt; &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			System.out.&lt;span class=&quot;built_in&quot;&gt;println&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;Usage:\njava TestRegularExpression &quot;&lt;/span&gt; + &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				&lt;span class=&quot;string&quot;&gt;&quot;characterSequence regularExpression+&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			System.exit(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		System.out.&lt;span class=&quot;built_in&quot;&gt;println&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;Input: \&quot;&quot;&lt;/span&gt; + args[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;] + &lt;span class=&quot;string&quot;&gt;&quot;\&quot;&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;built_in&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;String&lt;/span&gt; arg : args) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			System.out.&lt;span class=&quot;built_in&quot;&gt;println&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;Regular expression: \&quot;&quot;&lt;/span&gt; + arg + &lt;span class=&quot;string&quot;&gt;&quot;\&quot;&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			Pattern p = Pattern.compile(arg);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			Matcher m = p.matcher(args[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;built_in&quot;&gt;if&lt;/span&gt;(!m.&lt;span class=&quot;built_in&quot;&gt;find&lt;/span&gt;()) &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				System.out.&lt;span class=&quot;built_in&quot;&gt;println&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;No match found for &quot;&lt;/span&gt; + &lt;span class=&quot;string&quot;&gt;&quot;\&quot;&quot;&lt;/span&gt; + arg + &lt;span class=&quot;string&quot;&gt;&quot;\&quot;&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			m.reset();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;built_in&quot;&gt;while&lt;/span&gt;(m.&lt;span class=&quot;built_in&quot;&gt;find&lt;/span&gt;()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				System.out.&lt;span class=&quot;built_in&quot;&gt;println&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;Match \&quot;&quot;&lt;/span&gt; + m.group() + &lt;span class=&quot;string&quot;&gt;&quot;\&quot; at position &quot;&lt;/span&gt; +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;					m.start() + ((m.&lt;span class=&quot;built_in&quot;&gt;end&lt;/span&gt;() - m.start() &amp;lt; &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;) ? &lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt; :  (&lt;span class=&quot;string&quot;&gt;&quot;-&quot;&lt;/span&gt; + (m.&lt;span class=&quot;built_in&quot;&gt;end&lt;/span&gt;() - &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;))));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
@@ -309,9 +308,9 @@
       <category term="ActiveMQ" scheme="https://www.lhsjohn.com/categories/%E9%A1%B9%E7%9B%AE/java/ActiveMQ/"/>
     
     
-      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
-    
       <category term="ActiveMQ" scheme="https://www.lhsjohn.com/tags/ActiveMQ/"/>
+    
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
     
   </entry>
   
@@ -508,9 +507,9 @@
       <category term="爬虫" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/python/%E7%88%AC%E8%99%AB/"/>
     
     
-      <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
-    
       <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
     
       <category term="多线程" scheme="https://www.lhsjohn.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
@@ -585,9 +584,9 @@
       <category term="爬虫" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/python/%E7%88%AC%E8%99%AB/"/>
     
     
-      <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
-    
       <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
     
   </entry>
   
@@ -655,9 +654,9 @@
       <category term="爬虫" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/python/%E7%88%AC%E8%99%AB/"/>
     
     
-      <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
-    
       <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
     
   </entry>
   
