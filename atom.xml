@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.lhsjohn.com/"/>
-  <updated>2018-09-02T14:41:59.465Z</updated>
+  <updated>2018-09-03T08:46:18.466Z</updated>
   <id>https://www.lhsjohn.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>String 字符串 (三)Prc3</title>
+    <link href="https://www.lhsjohn.com/2018/09/03/String%20%E5%AD%97%E7%AC%A6%E4%B8%B2%20(%E4%B8%89%EF%BC%89Prc3/"/>
+    <id>https://www.lhsjohn.com/2018/09/03/String 字符串 (三）Prc3/</id>
+    <published>2018-09-03T08:26:24.000Z</published>
+    <updated>2018-09-03T08:46:18.466Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&amp;lt;开学第一天&amp;gt;&lt;/p&gt;
+&lt;p&gt;今日份dai码 |0-0|&lt;/p&gt;
+&lt;h2 id=&quot;1-正则表达式与JAVA-I-O&quot;&gt;&lt;a href=&quot;#1-正则表达式与JAVA-I-O&quot; class=&quot;headerlink&quot; title=&quot;1.正则表达式与JAVA I/O&quot;&gt;&lt;/a&gt;1.正则表达式与JAVA I/O&lt;/h2&gt;&lt;p&gt;下面我们将演示如何应用正则表达式在文件中进行搜索匹配操作&lt;/p&gt;
+&lt;figure class=&quot;highlight arduino&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;package com.lhsjohn.pr.&lt;span class=&quot;keyword&quot;&gt;string&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//: strings/JGrep.java&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// A very simple version of the &quot;grep&quot; program.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// &amp;#123;Args: JGrep.java &quot;\\b[Ssct]\\w+&quot;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.util.regex.*;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; class JGrep &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; main(&lt;span class=&quot;keyword&quot;&gt;String&lt;/span&gt;[] args) throws Exception &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Pattern p = Pattern.compile(&lt;span class=&quot;string&quot;&gt;&quot;\\b[Ssct]\\w+&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; index = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Matcher m = p.matcher(&lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;line&lt;/span&gt; : &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; TextFile(&lt;span class=&quot;string&quot;&gt;&quot;F:\\Study\\java\\DesignerPattern\\PracticeString\\src\\com\\lhsjohn\\pr\\string\\JGrep.java&quot;&lt;/span&gt;)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      m.reset(&lt;span class=&quot;built_in&quot;&gt;line&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;built_in&quot;&gt;while&lt;/span&gt;(m.&lt;span class=&quot;built_in&quot;&gt;find&lt;/span&gt;())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        System.out.&lt;span class=&quot;built_in&quot;&gt;println&lt;/span&gt;(index++ + &lt;span class=&quot;string&quot;&gt;&quot;: &quot;&lt;/span&gt; +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          m.group() + &lt;span class=&quot;string&quot;&gt;&quot;: &quot;&lt;/span&gt; + m.start());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="java" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/"/>
+    
+    
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
+    
+      <category term="学习" scheme="https://www.lhsjohn.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="Thinking in java" scheme="https://www.lhsjohn.com/tags/Thinking-in-java/"/>
+    
+  </entry>
   
   <entry>
     <title>String 字符串 (二）Prac2</title>
@@ -308,9 +337,9 @@
       <category term="ActiveMQ" scheme="https://www.lhsjohn.com/categories/%E9%A1%B9%E7%9B%AE/java/ActiveMQ/"/>
     
     
-      <category term="ActiveMQ" scheme="https://www.lhsjohn.com/tags/ActiveMQ/"/>
-    
       <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
+    
+      <category term="ActiveMQ" scheme="https://www.lhsjohn.com/tags/ActiveMQ/"/>
     
   </entry>
   
@@ -507,9 +536,9 @@
       <category term="爬虫" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/python/%E7%88%AC%E8%99%AB/"/>
     
     
-      <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
-    
       <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
+    
+      <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
     
       <category term="多线程" scheme="https://www.lhsjohn.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
@@ -584,9 +613,9 @@
       <category term="爬虫" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/python/%E7%88%AC%E8%99%AB/"/>
     
     
-      <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
-    
       <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
+    
+      <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
@@ -654,50 +683,9 @@
       <category term="爬虫" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/python/%E7%88%AC%E8%99%AB/"/>
     
     
-      <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
-    
       <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
     
-  </entry>
-  
-  <entry>
-    <title>设计模式思考(二)观察者模式</title>
-    <link href="https://www.lhsjohn.com/2018/07/31/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%9D%E8%80%83(%E4%BA%8C)-----%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
-    <id>https://www.lhsjohn.com/2018/07/31/设计模式思考(二)-----观察者模式/</id>
-    <published>2018-07-31T15:55:21.000Z</published>
-    <updated>2018-08-31T13:32:01.473Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;观察者模式的定义：&quot;&gt;&lt;a href=&quot;#观察者模式的定义：&quot; class=&quot;headerlink&quot; title=&quot;观察者模式的定义：&quot;&gt;&lt;/a&gt;观察者模式的定义：&lt;/h1&gt;&lt;p&gt; 观察者模式定义了对象的一对多依赖，这样一来，让一个对象改变状态时，它的所有依赖者都会收到通知并且会自动更新。&lt;/p&gt;
-&lt;h1 id=&quot;观察者模式的实例：&quot;&gt;&lt;a href=&quot;#观察者模式的实例：&quot; class=&quot;headerlink&quot; title=&quot;观察者模式的实例：&quot;&gt;&lt;/a&gt;观察者模式的实例：&lt;/h1&gt;&lt;p&gt; 实例：建立一个气象站应用，利用WeatherData对象取得数据，并更新三个布告板：当前状况、气象统计和天气预报，当WeatherObject对象获得最新的测量数据时，三种布告板必须实时更新。&lt;/p&gt;
-&lt;p&gt; 其实观察者模式可以从订报的角度来理解。&lt;br&gt;  拿报纸的订阅来举例子：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;报社的业务就是出版报纸&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;向某家报社订阅了报纸，只要他们有心得报纸出版，就会给你 送过来。只要你是他们的订户，你就会一直收到新报纸。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;当你不再看报纸的时候，取消订阅，他们就不会再送报纸过来&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;只要报社还在运营，就会一直有人向他们订阅报纸或者取消订阅报纸。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;定义观察者模式，类图&quot;&gt;&lt;a href=&quot;#定义观察者模式，类图&quot; class=&quot;headerlink&quot; title=&quot;定义观察者模式，类图&quot;&gt;&lt;/a&gt;定义观察者模式，类图&lt;/h1&gt;&lt;p&gt; &lt;img src=&quot;/images/2018-07-31-3.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt; 任何时候我们都可以增加新的观察者，因为主题唯一依赖的东西是一个实现了Observer接口的对象列表。所以我们可以随时增加观察者。事实上，在运行时我们可以用新的观察者取代现有的观察者，主题不会受到任何影响。同样的也可以在任何时候删除某些观察者。&lt;/p&gt;
-&lt;p&gt; 有新类型的观察者出现时，主题的代码不需要修改。加入我们有个新的具体类需要当观察者，我们不需要为了兼容新类型而修改主题的代码，所有要做的就是在新的类里实现此观察者接口，然后注册为观察者即可。主题不在乎别的，它只会发送通知给所有实现了观察者接口的对象。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="java" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/"/>
-    
-      <category term="设计模式" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
-    
-      <category term="设计模式" scheme="https://www.lhsjohn.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   

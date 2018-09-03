@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+
+<script type="text/javascript"
+color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/header.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java,学习,Thinking in java," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="lhsjohn的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="&amp;lt;开学第一天&amp;gt; 今日份dai码 |0-0| 1.正则表达式与JAVA I/O下面我们将演示如何应用正则表达式在文件中进行搜索匹配操作 1234567891011121314151617181920package com.lhsjohn.pr.string;//: strings/JGrep.java// A very simple version of the &quot;grep&quot; progr">
+<meta name="keywords" content="java,学习,Thinking in java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="String 字符串 (三)Prc3">
+<meta property="og:url" content="https://www.lhsjohn.com/2018/09/03/String 字符串 (三）Prc3/index.html">
+<meta property="og:site_name" content="lhsjohn的博客">
+<meta property="og:description" content="&amp;lt;开学第一天&amp;gt; 今日份dai码 |0-0| 1.正则表达式与JAVA I/O下面我们将演示如何应用正则表达式在文件中进行搜索匹配操作 1234567891011121314151617181920package com.lhsjohn.pr.string;//: strings/JGrep.java// A very simple version of the &quot;grep&quot; progr">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-03T08:46:18.466Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="String 字符串 (三)Prc3">
+<meta name="twitter:description" content="&amp;lt;开学第一天&amp;gt; 今日份dai码 |0-0| 1.正则表达式与JAVA I/O下面我们将演示如何应用正则表达式在文件中进行搜索匹配操作 1234567891011121314151617181920package com.lhsjohn.pr.string;//: strings/JGrep.java// A very simple version of the &quot;grep&quot; progr">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":10,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.lhsjohn.com/2018/09/03/String 字符串 (三）Prc3/"/>
+
+
+
+
+
+  <title>String 字符串 (三)Prc3 | lhsjohn的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband">
+	</div>
+		<a href="https://github.com/lhsjohn"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lhsjohn的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">对未来的真正慷慨，是把一切献给现在</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于我">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lhsjohn.com/2018/09/03/String 字符串 (三）Prc3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lhsjohn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lhsjohn的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">String 字符串 (三)Prc3</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-03T16:26:24+08:00">
+                2018-09-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/03/String 字符串 (三）Prc3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/09/03/String 字符串 (三）Prc3/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+         
+     <span class="post-meta-divider">|</span>
+     <span id="busuanzi_value_page_pv"></span>次阅读
+        
+		  
+		  
+		  
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,058
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&lt;开学第一天&gt;</p>
+<p>今日份dai码 |0-0|</p>
+<h2 id="1-正则表达式与JAVA-I-O"><a href="#1-正则表达式与JAVA-I-O" class="headerlink" title="1.正则表达式与JAVA I/O"></a>1.正则表达式与JAVA I/O</h2><p>下面我们将演示如何应用正则表达式在文件中进行搜索匹配操作</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">package com.lhsjohn.pr.<span class="keyword">string</span>;</span><br><span class="line"><span class="comment">//: strings/JGrep.java</span></span><br><span class="line"><span class="comment">// A very simple version of the "grep" program.</span></span><br><span class="line"><span class="comment">// &#123;Args: JGrep.java "\\b[Ssct]\\w+"&#125;</span></span><br><span class="line"><span class="keyword">import</span> java.util.regex.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class JGrep &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">    Pattern p = Pattern.compile(<span class="string">"\\b[Ssct]\\w+"</span>);</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">    Matcher m = p.matcher(<span class="string">""</span>);</span><br><span class="line">    <span class="built_in">for</span>(<span class="keyword">String</span> <span class="built_in">line</span> : <span class="keyword">new</span> TextFile(<span class="string">"F:\\Study\\java\\DesignerPattern\\PracticeString\\src\\com\\lhsjohn\\pr\\string\\JGrep.java"</span>)) &#123;</span><br><span class="line">      m.reset(<span class="built_in">line</span>);</span><br><span class="line">      <span class="built_in">while</span>(m.<span class="built_in">find</span>())</span><br><span class="line">        System.out.<span class="built_in">println</span>(index++ + <span class="string">": "</span> +</span><br><span class="line">          m.group() + <span class="string">": "</span> + m.start());</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>注意:这里的TextFile的作用是将文件打开，读入所有的行后，存储在一个Array List中。</p>
+<p>运行结果:</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">0</span>: <span class="attribute">com</span>: <span class="number">8</span></span><br><span class="line"><span class="number">1</span>: <span class="attribute">string</span>: <span class="number">23</span></span><br><span class="line"><span class="number">2</span>: <span class="attribute">strings</span>: <span class="number">4</span></span><br><span class="line"><span class="number">3</span>: <span class="attribute">simple</span>: <span class="number">10</span></span><br><span class="line"><span class="number">4</span>: <span class="attribute">the</span>: <span class="number">28</span></span><br><span class="line"><span class="number">5</span>: <span class="attribute">Ssct</span>: <span class="number">26</span></span><br><span class="line"><span class="number">6</span>: <span class="attribute">class</span>: <span class="number">7</span></span><br><span class="line"><span class="number">7</span>: <span class="attribute">static</span>: <span class="number">9</span></span><br><span class="line"><span class="number">8</span>: <span class="attribute">String</span>: <span class="number">26</span></span><br><span class="line"><span class="number">9</span>: <span class="attribute">throws</span>: <span class="number">41</span></span><br><span class="line"><span class="number">10</span>: <span class="attribute">compile</span>: <span class="number">24</span></span><br><span class="line"><span class="number">11</span>: <span class="attribute">Ssct</span>: <span class="number">37</span></span><br><span class="line"><span class="number">12</span>: <span class="attribute">String</span>: <span class="number">8</span></span><br><span class="line"><span class="number">13</span>: <span class="attribute">Study</span>: <span class="number">40</span></span><br><span class="line"><span class="number">14</span>: <span class="attribute">src</span>: <span class="number">86</span></span><br><span class="line"><span class="number">15</span>: <span class="attribute">com</span>: <span class="number">91</span></span><br><span class="line"><span class="number">16</span>: <span class="attribute">string</span>: <span class="number">109</span></span><br><span class="line"><span class="number">17</span>: <span class="attribute">System</span>: <span class="number">8</span></span><br><span class="line"><span class="number">18</span>: <span class="attribute">start</span>: <span class="number">31</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-修改JGrep-java类，令其能够接受一个目录或者文件为参数，如果传入的是目录，就搜索目录中的所有文件"><a href="#2-修改JGrep-java类，令其能够接受一个目录或者文件为参数，如果传入的是目录，就搜索目录中的所有文件" class="headerlink" title="2. 修改JGrep.java类，令其能够接受一个目录或者文件为参数，如果传入的是目录，就搜索目录中的所有文件"></a>2. 修改JGrep.java类，令其能够接受一个目录或者文件为参数，如果传入的是目录，就搜索目录中的所有文件</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">package com.lhsjohn.pr.<span class="keyword">string</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.<span class="built_in">File</span>;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.Matcher;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.Pattern;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class JGrep16  &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">String</span> directoryName =<span class="string">"F:\\Study\\java\\DesignerPattern\\test"</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) throws Exception &#123;</span><br><span class="line"> </span><br><span class="line">		Pattern p = Pattern.compile(<span class="string">"\\b[Ssct]\\w+"</span>);</span><br><span class="line">		Matcher d = Pattern.compile(<span class="string">"\\w+\\.&#123;1&#125;\\w+"</span>).matcher(directoryName);</span><br><span class="line">		<span class="built_in">if</span>(d.<span class="built_in">find</span>()) &#123;</span><br><span class="line">			System.out.<span class="built_in">println</span>(<span class="string">"File: "</span> + directoryName);</span><br><span class="line">			<span class="comment">// Iterate through the lines of the input file:</span></span><br><span class="line">			<span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">			Matcher m = p.matcher(<span class="string">""</span>); <span class="comment">// creates emtpy Matcher object</span></span><br><span class="line">			<span class="built_in">for</span>(<span class="keyword">String</span> <span class="built_in">line</span> : <span class="keyword">new</span> TextFile(directoryName)) &#123;</span><br><span class="line">				m.reset(<span class="built_in">line</span>);</span><br><span class="line">				<span class="built_in">while</span>(m.<span class="built_in">find</span>())</span><br><span class="line">					System.out.<span class="built_in">println</span>(index++ + <span class="string">": "</span> + </span><br><span class="line">						m.group() + <span class="string">": "</span> + m.start());</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;		</span><br><span class="line">		Matcher e = Pattern.compile(<span class="string">"^\\.&#123;1&#125;$"</span>).matcher(directoryName);</span><br><span class="line">		<span class="built_in">if</span>(e.<span class="built_in">find</span>()) &#123;</span><br><span class="line">			<span class="built_in">File</span>[] files = <span class="keyword">new</span> <span class="built_in">File</span>(directoryName).listFiles();</span><br><span class="line">			System.out.<span class="built_in">println</span>(<span class="string">"root dir of files: "</span> + Arrays.asList(files));</span><br><span class="line">			<span class="comment">// Iterate through the lines of each file in directory:</span></span><br><span class="line">			<span class="built_in">for</span>(<span class="built_in">File</span> f : files) &#123;</span><br><span class="line">				<span class="built_in">if</span>(f.getName().matches(<span class="string">"\\w+\\.&#123;1&#125;\\w+"</span>)) &#123;</span><br><span class="line">					System.out.<span class="built_in">println</span>(f.getName() + <span class="string">":"</span>);</span><br><span class="line">					<span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">					Matcher m = p.matcher(<span class="string">""</span>); <span class="comment">// creates emtpy Matcher object</span></span><br><span class="line">					<span class="built_in">for</span>(<span class="keyword">String</span> <span class="built_in">line</span> : <span class="keyword">new</span> TextFile(f.getName())) &#123;</span><br><span class="line">						m.reset(<span class="built_in">line</span>);</span><br><span class="line">						<span class="built_in">while</span>(m.<span class="built_in">find</span>())</span><br><span class="line">							System.out.<span class="built_in">println</span>(index++ + <span class="string">": "</span> + </span><br><span class="line">								m.group() + <span class="string">": "</span> + m.start());</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				System.out.<span class="built_in">println</span>();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		d.reset();</span><br><span class="line">		e.reset();</span><br><span class="line">		<span class="built_in">if</span>(!(d.<span class="built_in">find</span>() || e.<span class="built_in">find</span>())) &#123;</span><br><span class="line">			<span class="built_in">if</span>(<span class="keyword">new</span> <span class="built_in">File</span>(directoryName).listFiles() == null) &#123; </span><br><span class="line">				System.out.<span class="built_in">println</span>(<span class="string">"no such directory: "</span> + directoryName);</span><br><span class="line">				System.exit(<span class="number">0</span>); </span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">File</span>[] files = <span class="keyword">new</span> <span class="built_in">File</span>(directoryName).listFiles();</span><br><span class="line">			System.out.<span class="built_in">println</span>(directoryName + <span class="string">": subdir of files: "</span> + Arrays.asList(files));</span><br><span class="line">			<span class="comment">// Iterate through the lines of each file in directory:</span></span><br><span class="line">			<span class="built_in">for</span>(<span class="built_in">File</span> f : files) &#123;</span><br><span class="line">				<span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">				Matcher m = p.matcher(<span class="string">""</span>); <span class="comment">// creates emtpy Matcher object</span></span><br><span class="line">				<span class="built_in">for</span>(<span class="keyword">String</span> <span class="built_in">line</span> : <span class="keyword">new</span> TextFile(directoryName + <span class="string">"\\"</span> + f.getName())) &#123;</span><br><span class="line">					m.reset(<span class="built_in">line</span>);</span><br><span class="line">					<span class="built_in">while</span>(m.<span class="built_in">find</span>())</span><br><span class="line">						System.out.<span class="built_in">println</span>(index++ + <span class="string">": "</span> + </span><br><span class="line">							m.group() + <span class="string">": "</span> + m.start());</span><br><span class="line">				&#125;</span><br><span class="line">				System.out.<span class="built_in">println</span>();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">F</span>:\Study\java\DesignerPattern\<span class="attribute">test</span>: subdir of <span class="attribute">files</span>: [<span class="attribute">F</span>:\Study\java\DesignerPattern\test\JGrep.java, <span class="attribute">F</span>:\Study\java\DesignerPattern\test\Receipt.java]</span><br><span class="line"><span class="number">0</span>: <span class="attribute">com</span>: <span class="number">8</span></span><br><span class="line"><span class="number">1</span>: <span class="attribute">string</span>: <span class="number">23</span></span><br><span class="line"><span class="number">2</span>: <span class="attribute">strings</span>: <span class="number">4</span></span><br><span class="line"><span class="number">3</span>: <span class="attribute">simple</span>: <span class="number">10</span></span><br><span class="line"><span class="number">4</span>: <span class="attribute">the</span>: <span class="number">28</span></span><br><span class="line"><span class="number">5</span>: <span class="attribute">Ssct</span>: <span class="number">26</span></span><br><span class="line"><span class="number">6</span>: <span class="attribute">class</span>: <span class="number">7</span></span><br><span class="line"><span class="number">7</span>: <span class="attribute">static</span>: <span class="number">9</span></span><br><span class="line"><span class="number">8</span>: <span class="attribute">String</span>: <span class="number">26</span></span><br><span class="line"><span class="number">9</span>: <span class="attribute">throws</span>: <span class="number">41</span></span><br><span class="line"><span class="number">10</span>: <span class="attribute">compile</span>: <span class="number">24</span></span><br><span class="line"><span class="number">11</span>: <span class="attribute">Ssct</span>: <span class="number">37</span></span><br><span class="line"><span class="number">12</span>: <span class="attribute">String</span>: <span class="number">8</span></span><br><span class="line"><span class="number">13</span>: <span class="attribute">Study</span>: <span class="number">40</span></span><br><span class="line"><span class="number">14</span>: <span class="attribute">src</span>: <span class="number">86</span></span><br><span class="line"><span class="number">15</span>: <span class="attribute">com</span>: <span class="number">91</span></span><br><span class="line"><span class="number">16</span>: <span class="attribute">string</span>: <span class="number">109</span></span><br><span class="line"><span class="number">17</span>: <span class="attribute">System</span>: <span class="number">8</span></span><br><span class="line"><span class="number">18</span>: <span class="attribute">start</span>: <span class="number">31</span></span><br><span class="line"></span><br><span class="line"><span class="number">0</span>: <span class="attribute">com</span>: <span class="number">8</span></span><br><span class="line"><span class="number">1</span>: <span class="attribute">string</span>: <span class="number">23</span></span><br><span class="line"><span class="number">2</span>: <span class="attribute">class</span>: <span class="number">7</span></span><br><span class="line"><span class="number">3</span>: <span class="attribute">total</span>: <span class="number">16</span></span><br><span class="line"><span class="number">4</span>: <span class="attribute">System</span>: <span class="number">36</span></span><br><span class="line"><span class="number">5</span>: <span class="attribute">String</span>: <span class="number">19</span></span><br><span class="line"><span class="number">6</span>: <span class="attribute">total</span>: <span class="number">2</span></span><br><span class="line"><span class="number">7</span>: <span class="attribute">total</span>: <span class="number">42</span></span><br><span class="line"><span class="number">8</span>: <span class="attribute">total</span>: <span class="number">44</span></span><br><span class="line"><span class="number">9</span>: <span class="attribute">static</span>: <span class="number">8</span></span><br><span class="line"><span class="number">10</span>: <span class="attribute">String</span>: <span class="number">25</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-编写一个程序，读取一个java源代码文件，打印出所有注释"><a href="#3-编写一个程序，读取一个java源代码文件，打印出所有注释" class="headerlink" title="3.编写一个程序，读取一个java源代码文件，打印出所有注释"></a>3.编写一个程序，读取一个java源代码文件，打印出所有注释</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">package com.lhsjohn.pr.<span class="keyword">string</span>;</span><br><span class="line"><span class="comment">/* testtest</span></span><br><span class="line"><span class="comment"> * 测试www</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">import</span> java.util.regex.Matcher;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.Pattern;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class Ex17  &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">String</span> fileName=<span class="string">"F:\\Study\\java\\DesignerPattern\\PracticeString\\src\\com\\lhsjohn\\pr\\string\\Ex17.java"</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) throws Exception &#123;</span><br><span class="line">		Pattern p = Pattern.compile(<span class="string">"(//\\s.+)|(/\\*\\s+.+)|(\\*\\s+.+)"</span>);</span><br><span class="line">		<span class="comment">// Iterate through the lines of the input file:</span></span><br><span class="line">		<span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">		Matcher m = p.matcher(<span class="string">""</span>); <span class="comment">// creates emtpy Matcher object</span></span><br><span class="line">		System.out.<span class="built_in">println</span>(fileName + <span class="string">" comments: "</span>);</span><br><span class="line">		<span class="built_in">for</span>(<span class="keyword">String</span> <span class="built_in">line</span> : <span class="keyword">new</span> TextFile(fileName)) &#123;</span><br><span class="line">			m.reset(<span class="built_in">line</span>);</span><br><span class="line">			<span class="built_in">while</span>(m.<span class="built_in">find</span>())</span><br><span class="line">				System.out.<span class="built_in">println</span>(index++ + <span class="string">": "</span> + m.group());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试结果：</p>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">F:<span class="symbol">\S</span>tudy<span class="symbol">\j</span>ava<span class="symbol">\D</span>esignerPattern<span class="symbol">\P</span>racticeString<span class="symbol">\s</span>rc<span class="symbol">\c</span>om<span class="symbol">\l</span>hsjohn<span class="symbol">\p</span>r<span class="symbol">\s</span>tring<span class="symbol">\E</span>x17.java comments: </span><br><span class="line">0: /* testtest</span><br><span class="line">1: * 测试www</span><br><span class="line">2: // Iterate through the lines of the input file:</span><br><span class="line">3: // creates emtpy Matcher object</span><br></pre></td></tr></table></figure>
+<h2 id="4-编写一个程序-读取一个java源代码文件，打印出代码中所有的普通字符串。"><a href="#4-编写一个程序-读取一个java源代码文件，打印出代码中所有的普通字符串。" class="headerlink" title="4.编写一个程序,读取一个java源代码文件，打印出代码中所有的普通字符串。"></a>4.编写一个程序,读取一个java源代码文件，打印出代码中所有的普通字符串。</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">package com.lhsjohn.pr.<span class="keyword">string</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.regex.Matcher;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.Pattern;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class Ex18  &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">String</span> fileName=<span class="string">"F:\\Study\\java\\DesignerPattern\\PracticeString\\src\\com\\lhsjohn\\pr\\string\\Ex17.java"</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">		Pattern p = Pattern.compile(<span class="string">"\".*\""</span>);</span><br><span class="line">		System.out.<span class="built_in">println</span>(fileName + <span class="string">" string literals:"</span>);</span><br><span class="line">		<span class="comment">// Iterate through the lines of the input file:</span></span><br><span class="line">		<span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">		Matcher m = p.matcher(<span class="string">""</span>); <span class="comment">// creates emtpy Matcher object</span></span><br><span class="line">		<span class="built_in">for</span>(<span class="keyword">String</span> <span class="built_in">line</span> : <span class="keyword">new</span> TextFile(fileName)) &#123;</span><br><span class="line">			m.reset(<span class="built_in">line</span>);</span><br><span class="line">			<span class="built_in">while</span>(m.<span class="built_in">find</span>())</span><br><span class="line">				System.out.<span class="built_in">println</span>(index++ + <span class="string">": "</span> + m.group());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">F:<span class="symbol">\S</span>tudy<span class="symbol">\j</span>ava<span class="symbol">\D</span>esignerPattern<span class="symbol">\P</span>racticeString<span class="symbol">\s</span>rc<span class="symbol">\c</span>om<span class="symbol">\l</span>hsjohn<span class="symbol">\p</span>r<span class="symbol">\s</span>tring<span class="symbol">\E</span>x17.java string literals:</span><br><span class="line">0: "F:<span class="symbol">\\</span>Study<span class="symbol">\\</span>java<span class="symbol">\\</span>DesignerPattern<span class="symbol">\\</span>PracticeString<span class="symbol">\\</span>src<span class="symbol">\\</span>com<span class="symbol">\\</span>lhsjohn<span class="symbol">\\</span>pr<span class="symbol">\\</span>string<span class="symbol">\\</span>Ex17.java"</span><br><span class="line">1: "(//<span class="symbol">\\</span>s.+)|(/<span class="symbol">\\</span>*<span class="symbol">\\</span>s+.+)|(<span class="symbol">\\</span>*<span class="symbol">\\</span>s+.+)"</span><br><span class="line">2: ""</span><br><span class="line">3: " comments: "</span><br><span class="line">4: ": "</span><br></pre></td></tr></table></figure>
+<h2 id="5-编写一个程序，输出java源代码中用到的所有类的名字。"><a href="#5-编写一个程序，输出java源代码中用到的所有类的名字。" class="headerlink" title="5.编写一个程序，输出java源代码中用到的所有类的名字。"></a>5.编写一个程序，输出java源代码中用到的所有类的名字。</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">package com.lhsjohn.pr.<span class="keyword">string</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.regex.Matcher;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.Pattern;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class Ex19  &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">String</span> fileName=<span class="string">"F:\\Study\\java\\DesignerPattern\\PracticeString\\src\\com\\lhsjohn\\pr\\string\\Ex17.java"</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) throws Exception &#123;</span><br><span class="line">	</span><br><span class="line">		<span class="comment">// we want all class names:</span></span><br><span class="line">		Pattern p = Pattern.compile(<span class="string">"class \\w+\\s+"</span>);</span><br><span class="line">		<span class="comment">// not including those in comment lines:</span></span><br><span class="line">		Pattern q = Pattern.compile(<span class="string">"^(//|/\\*|\\*)"</span>);</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="string">"classes in "</span> + fileName + <span class="string">":"</span>);</span><br><span class="line">		<span class="comment">// Iterate through the lines of the input file:</span></span><br><span class="line">		<span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">		Matcher m = p.matcher(<span class="string">""</span>); <span class="comment">// creates emtpy Matcher object</span></span><br><span class="line">		Matcher n = q.matcher(<span class="string">""</span>);</span><br><span class="line">		<span class="built_in">for</span>(<span class="keyword">String</span> <span class="built_in">line</span> : <span class="keyword">new</span> TextFile(fileName)) &#123;</span><br><span class="line">			m.reset(<span class="built_in">line</span>);</span><br><span class="line">			n.reset(<span class="built_in">line</span>);</span><br><span class="line">			<span class="built_in">while</span>(m.<span class="built_in">find</span>() &amp;&amp; !n.<span class="built_in">find</span>())</span><br><span class="line">				System.out.<span class="built_in">println</span>(index++ + <span class="string">": "</span> + m.group());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">classes in F:<span class="symbol">\S</span>tudy<span class="symbol">\j</span>ava<span class="symbol">\D</span>esignerPattern<span class="symbol">\P</span>racticeString<span class="symbol">\s</span>rc<span class="symbol">\c</span>om<span class="symbol">\l</span>hsjohn<span class="symbol">\p</span>r<span class="symbol">\s</span>tring<span class="symbol">\E</span>x17.java:</span><br><span class="line">0: class Ex17</span><br></pre></td></tr></table></figure>
+<h2 id="6-扫描输入-分词操作"><a href="#6-扫描输入-分词操作" class="headerlink" title="6.扫描输入+分词操作"></a>6.扫描输入+分词操作</h2><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lhsjohn.pr.string;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class SimpleRead &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">BufferedReader</span> input = <span class="keyword">new</span> <span class="keyword">BufferedReader</span>(</span><br><span class="line">    <span class="keyword">new</span> StringReader(<span class="string">"Sir Robin of lhsjohn\n20 1.61803"</span>));</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      System.out.<span class="built_in">println</span>(<span class="string">"What is your name?"</span>);</span><br><span class="line">      <span class="keyword">String</span> name = input.readLine();</span><br><span class="line">      System.out.<span class="built_in">println</span>(name);</span><br><span class="line">      System.out.<span class="built_in">println</span>(</span><br><span class="line">        <span class="string">"How old are you? What is your favorite double?"</span>);</span><br><span class="line">      System.out.<span class="built_in">println</span>(<span class="string">"(input: &lt;age&gt; &lt;double&gt;)"</span>);</span><br><span class="line">      <span class="keyword">String</span> numbers = input.readLine();</span><br><span class="line">      System.out.<span class="built_in">println</span>(numbers);</span><br><span class="line">      <span class="keyword">String</span>[] numArray = numbers.<span class="built_in">split</span>(<span class="string">" "</span>);</span><br><span class="line">      <span class="built_in">int</span> age = Integer.parseInt(numArray[<span class="number">0</span>]);</span><br><span class="line">      <span class="keyword">double</span> favorite = Double.parseDouble(numArray[<span class="number">1</span>]);</span><br><span class="line">      System.out.format(<span class="string">"Hi %s.\n"</span>, name);</span><br><span class="line">      System.out.format(<span class="string">"In 5 years you will be %d.\n"</span>,</span><br><span class="line">        age + <span class="number">5</span>);</span><br><span class="line">      System.out.format(<span class="string">"My favorite double is %f."</span>,</span><br><span class="line">        favorite / <span class="number">2</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span>(IOException e) &#123;</span><br><span class="line">      System.err.<span class="built_in">println</span>(<span class="string">"I/O exception"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">What <span class="keyword">is</span> your name?</span><br><span class="line">Sir Robin <span class="keyword">of</span> lhsjohn</span><br><span class="line">How old are you? What <span class="keyword">is</span> your favorite <span class="built_in">double</span>?</span><br><span class="line">(input: &lt;age&gt; &lt;<span class="built_in">double</span>&gt;)</span><br><span class="line"><span class="number">20</span> <span class="number">1.61803</span></span><br><span class="line">Hi Sir Robin <span class="keyword">of</span> lhsjohn.</span><br><span class="line"><span class="keyword">In</span> <span class="number">5</span> years you will be <span class="number">25.</span></span><br><span class="line">My favorite <span class="built_in">double</span> <span class="keyword">is</span> <span class="number">0.809015</span>.</span><br></pre></td></tr></table></figure>
+<h2 id="7-用Scanner更好地完成扫描输入"><a href="#7-用Scanner更好地完成扫描输入" class="headerlink" title="7.用Scanner更好地完成扫描输入"></a>7.用Scanner更好地完成扫描输入</h2><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">package com.lhsjohn.pr.<span class="keyword">string</span>;</span><br><span class="line">import java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BetterRead</span> &#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">    Scanner stdin = <span class="keyword">new</span> Scanner(SimpleRead.input);</span><br><span class="line">    System.<span class="keyword">out</span>.println(<span class="string">"What is your name?"</span>);</span><br><span class="line">    String name = stdin.nextLine();</span><br><span class="line">    System.<span class="keyword">out</span>.println(name);</span><br><span class="line">    System.<span class="keyword">out</span>.println(</span><br><span class="line">      <span class="string">"How old are you? What is your favorite double?"</span>);</span><br><span class="line">    System.<span class="keyword">out</span>.println(<span class="string">"(input: &lt;age&gt; &lt;double&gt;)"</span>);</span><br><span class="line">    <span class="keyword">int</span> age = stdin.nextInt();</span><br><span class="line">    <span class="keyword">double</span> favorite = stdin.nextDouble();</span><br><span class="line">    System.<span class="keyword">out</span>.println(age);</span><br><span class="line">    System.<span class="keyword">out</span>.println(favorite);</span><br><span class="line">    System.<span class="keyword">out</span>.format(<span class="string">"Hi %s.\n"</span>, name);</span><br><span class="line">    System.<span class="keyword">out</span>.format(<span class="string">"In 5 years you will be %d.\n"</span>,</span><br><span class="line">      age + <span class="number">5</span>);</span><br><span class="line">    System.<span class="keyword">out</span>.format(<span class="string">"My favorite double is %f."</span>,</span><br><span class="line">      favorite / <span class="number">2</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">What <span class="keyword">is</span> your name?</span><br><span class="line">Sir Robin <span class="keyword">of</span> lhsjohn</span><br><span class="line">How old are you? What <span class="keyword">is</span> your favorite <span class="built_in">double</span>?</span><br><span class="line">(input: &lt;age&gt; &lt;<span class="built_in">double</span>&gt;)</span><br><span class="line"><span class="number">20</span></span><br><span class="line"><span class="number">1.61803</span></span><br><span class="line">Hi Sir Robin <span class="keyword">of</span> lhsjohn.</span><br><span class="line"><span class="keyword">In</span> <span class="number">5</span> years you will be <span class="number">25.</span></span><br><span class="line">My favorite <span class="built_in">double</span> <span class="keyword">is</span> <span class="number">0.809015</span>.</span><br></pre></td></tr></table></figure>
+<h2 id="8-Scanner定界符"><a href="#8-Scanner定界符" class="headerlink" title="8.Scanner定界符"></a>8.Scanner定界符</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">package com.lhsjohn.pr.<span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ScannerDelimiter</span> &#123;</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Scanner scanner = <span class="keyword">new</span> Scanner(<span class="string">"12, 42, 78, 99, 42"</span>);</span><br><span class="line">    scanner.useDelimiter(<span class="string">"\\s*,\\s*"</span>);</span><br><span class="line">    <span class="keyword">while</span>(scanner.hasNextInt())</span><br><span class="line">      System.out.println(scanner.nextInt());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">12</span></span><br><span class="line"><span class="number">42</span></span><br><span class="line"><span class="number">78</span></span><br><span class="line"><span class="number">99</span></span><br><span class="line"><span class="number">42</span></span><br></pre></td></tr></table></figure>
+<h2 id="9-用正则表达式进行扫描"><a href="#9-用正则表达式进行扫描" class="headerlink" title="9.用正则表达式进行扫描"></a>9.用正则表达式进行扫描</h2><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lhsjohn.pr.string;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.*;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class ThreatAnalyzer &#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">String</span> threatData =</span><br><span class="line">    <span class="string">"58.27.82.161@09/01/2018\n"</span> +</span><br><span class="line">    <span class="string">"204.45.234.40@09/02/2018\n"</span> +</span><br><span class="line">    <span class="string">"58.27.82.161@09/03/2018\n"</span> +</span><br><span class="line">    <span class="string">"58.27.82.161@09/03/2018\n"</span> +</span><br><span class="line">    <span class="string">"58.27.82.161@09/03/2018\n"</span> +</span><br><span class="line">    <span class="string">"[Next log section with different data format]"</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">    Scanner scanner = <span class="keyword">new</span> Scanner(threatData);</span><br><span class="line">    <span class="keyword">String</span> pattern = <span class="string">"(\\d+[.]\\d+[.]\\d+[.]\\d+)@"</span> +</span><br><span class="line">      <span class="string">"(\\d&#123;2&#125;/\\d&#123;2&#125;/\\d&#123;4&#125;)"</span>;</span><br><span class="line">    <span class="keyword">while</span>(scanner.hasNext(pattern)) &#123;</span><br><span class="line">      scanner.next(pattern);</span><br><span class="line">      MatchResult <span class="built_in">match</span> = scanner.<span class="built_in">match</span>();</span><br><span class="line">      <span class="keyword">String</span> ip = <span class="built_in">match</span>.group(<span class="number">1</span>);</span><br><span class="line">      <span class="keyword">String</span> date = <span class="built_in">match</span>.group(<span class="number">2</span>);</span><br><span class="line">      System.out.format(<span class="string">"Threat on %s from %s\n"</span>, date,ip);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Threat on <span class="number">09</span>/<span class="number">01</span>/<span class="number">2018</span> from <span class="number">58.27</span><span class="number">.82</span><span class="number">.161</span></span><br><span class="line">Threat on <span class="number">09</span>/<span class="number">02</span>/<span class="number">2018</span> from <span class="number">204.45</span><span class="number">.234</span><span class="number">.40</span></span><br><span class="line">Threat on <span class="number">09</span>/<span class="number">03</span>/<span class="number">2018</span> from <span class="number">58.27</span><span class="number">.82</span><span class="number">.161</span></span><br><span class="line">Threat on <span class="number">09</span>/<span class="number">03</span>/<span class="number">2018</span> from <span class="number">58.27</span><span class="number">.82</span><span class="number">.161</span></span><br><span class="line">Threat on <span class="number">09</span>/<span class="number">03</span>/<span class="number">2018</span> from <span class="number">58.27</span><span class="number">.82</span><span class="number">.161</span></span><br></pre></td></tr></table></figure>
+<p>作者：lhsjohn</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/学习/" rel="tag"># 学习</a>
+          
+            <a href="/tags/Thinking-in-java/" rel="tag"># Thinking in java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/02/String 字符串 (二）Prac2/" rel="next" title="String 字符串 (二）Prac2">
+                <i class="fa fa-chevron-left"></i> String 字符串 (二）Prac2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!--MOB SHARE BEGIN-->
+<div class="-mob-share-ui-button -mob-share-open">分享</div>
+<div class="-mob-share-ui" style="display: none">
+<ul class="-mob-share-list">
+<li class="-mob-share-weibo"><p>新浪微博</p></li>
+<li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
+<li class="-mob-share-qzone"><p>QQ空间</p></li>
+<li class="-mob-share-qq"><p>QQ好友</p></li>
+<li class="-mob-share-renren"><p>人人网</p></li>
+<li class="-mob-share-kaixin"><p>开心网</p></li>
+<li class="-mob-share-douban"><p>豆瓣</p></li>
+<li class="-mob-share-facebook"><p>Facebook</p></li>
+<li class="-mob-share-twitter"><p>Twitter</p></li>
+</ul>
+<div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=276e66346840e"></script>
+<!--MOB SHARE END-->  
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="lhsjohn" />
+            
+              <p class="site-author-name" itemprop="name">lhsjohn</p>
+              <p class="site-description motion-element" itemprop="description">对未来的真正慷慨，是把一切献给现在</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+    
+    
+
+          <div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("07/28/2018 15:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+        </div>
+      </section>
+
+      
+
+      
+	  
+	  
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+<h3 class="widget-title">Tag Cloud</h3>
+<div id="myCanvasContainer" class="widget tagcloud">
+    <canvas width="250" height="250" id="resCanvas" style="width=100%">
+        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ActiveMQ/">ActiveMQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intercepter/">Intercepter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python环境搭建/">Python环境搭建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO单点登录/">SSO单点登录</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thinking-in-java/">Thinking in java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/">axios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastdfs/">fastdfs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solr-zookeeper/">solr+zookeeper</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/励志/">励志</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/反射机制/">反射机制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/喜剧/">喜剧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/影评/">影评</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心得/">心得</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂文/">杂文</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/段子/">段子</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">5</span></li></ul>
+    </canvas>
+</div>
+</div>
+
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lhsjohn</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">37.4k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+<div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+<!-- 页面点击小红心 -->
+ <script type="text/javascript" src="/js/src/clicklove.js"></script>
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'dILes8JxmVOKeMvXEeHzOlYs-gzGzoHsz',
+        appKey: 'LOd9oGKdW8Ag1emY5hQ3Of4B',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  undefined
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/chitose.model.json"},"display":{"position":"left","width":75,"height":180},"mobile":{"show":true},"log":false,"tagMode":false});</script></body>
+</html>
