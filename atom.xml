@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.lhsjohn.com/"/>
-  <updated>2018-09-03T09:00:58.205Z</updated>
+  <updated>2018-09-06T08:50:02.207Z</updated>
   <id>https://www.lhsjohn.com/</id>
   
   <author>
@@ -15,6 +15,63 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>TypeInfo (一) prac1</title>
+    <link href="https://www.lhsjohn.com/2018/09/06/TypeInfo%20(%E4%BA%8C)%20prac2/"/>
+    <id>https://www.lhsjohn.com/2018/09/06/TypeInfo (二) prac2/</id>
+    <published>2018-09-06T08:01:24.000Z</published>
+    <updated>2018-09-06T08:50:02.207Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;常见的RTTI的形式&quot;&gt;&lt;a href=&quot;#常见的RTTI的形式&quot; class=&quot;headerlink&quot; title=&quot;常见的RTTI的形式&quot;&gt;&lt;/a&gt;常见的RTTI的形式&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;传统的类型转换 例如(Shape).&lt;/li&gt;
+&lt;li&gt;代表对象的类型的Class对象。通过查询Class对象可以获取运行时所需的信息。&lt;/li&gt;
+&lt;li&gt;关键字instanceof。返回一个布尔值,来告诉我们对象是不是某个特定类型的实例。&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="java" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/"/>
+    
+    
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
+    
+      <category term="学习" scheme="https://www.lhsjohn.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="Thinking in java" scheme="https://www.lhsjohn.com/tags/Thinking-in-java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>TypeInfo (一) prac1</title>
+    <link href="https://www.lhsjohn.com/2018/09/06/TypeInfo%20(%E4%B8%80)%20prac1/"/>
+    <id>https://www.lhsjohn.com/2018/09/06/TypeInfo (一) prac1/</id>
+    <published>2018-09-06T07:30:24.000Z</published>
+    <updated>2018-09-06T08:06:26.520Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;RTTI&quot;&gt;&lt;a href=&quot;#RTTI&quot; class=&quot;headerlink&quot; title=&quot;RTTI&quot;&gt;&lt;/a&gt;RTTI&lt;/h2&gt;&lt;p&gt;通过运行时类型信息程序能够使用基类的引用或指针来检查，这些引用或者指针所指向的对象的实际派生类型。&lt;/p&gt;
+&lt;h2 id=&quot;1-使用RTTI-可以查询某个Shape引用所指向的对象的确切类型-然后选择或者剔除特例&quot;&gt;&lt;a href=&quot;#1-使用RTTI-可以查询某个Shape引用所指向的对象的确切类型-然后选择或者剔除特例&quot; class=&quot;headerlink&quot; title=&quot;1.使用RTTI,可以查询某个Shape引用所指向的对象的确切类型,然后选择或者剔除特例&quot;&gt;&lt;/a&gt;1.使用RTTI,可以查询某个Shape引用所指向的对象的确切类型,然后选择或者剔除特例&lt;/h2&gt;&lt;figure class=&quot;highlight scala&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;package&lt;/span&gt; com.lhsjohn.typeinfo.prac;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.util.&lt;span class=&quot;type&quot;&gt;Arrays&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.util.&lt;span class=&quot;type&quot;&gt;List&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Shape&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	void draw() &amp;#123;&lt;span class=&quot;type&quot;&gt;System&lt;/span&gt;.out.println(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;+&lt;span class=&quot;string&quot;&gt;&quot;.draw()&quot;&lt;/span&gt;);&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;abstract&lt;/span&gt; public &lt;span class=&quot;type&quot;&gt;String&lt;/span&gt; toString();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Circle&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Shape&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	public &lt;span class=&quot;type&quot;&gt;String&lt;/span&gt; toString() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;Circle&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Square&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Shape&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	public &lt;span class=&quot;type&quot;&gt;String&lt;/span&gt; toString() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;Square&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Triangle&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Shape&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	public &lt;span class=&quot;type&quot;&gt;String&lt;/span&gt; toString() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;Triangle&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Shapes&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public static void main(&lt;span class=&quot;type&quot;&gt;String&lt;/span&gt;[] args) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;type&quot;&gt;List&lt;/span&gt;&amp;lt;&lt;span class=&quot;type&quot;&gt;Shape&lt;/span&gt;&amp;gt; shapeList=&lt;span class=&quot;type&quot;&gt;Arrays&lt;/span&gt;.asList(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;Circle&lt;/span&gt;(),&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;Square&lt;/span&gt;(),&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;Triangle&lt;/span&gt;());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    	&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;type&quot;&gt;Shape&lt;/span&gt; shape:shapeList) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    		shape.draw();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="java" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/"/>
+    
+    
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
+    
+      <category term="学习" scheme="https://www.lhsjohn.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="Thinking in java" scheme="https://www.lhsjohn.com/tags/Thinking-in-java/"/>
+    
+  </entry>
   
   <entry>
     <title>String 字符串 (三) Prac3</title>
@@ -337,9 +394,9 @@
       <category term="ActiveMQ" scheme="https://www.lhsjohn.com/categories/%E9%A1%B9%E7%9B%AE/java/ActiveMQ/"/>
     
     
-      <category term="ActiveMQ" scheme="https://www.lhsjohn.com/tags/ActiveMQ/"/>
-    
       <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
+    
+      <category term="ActiveMQ" scheme="https://www.lhsjohn.com/tags/ActiveMQ/"/>
     
   </entry>
   
@@ -446,9 +503,9 @@
       <category term="Spring" scheme="https://www.lhsjohn.com/categories/Spring/"/>
     
     
-      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
-    
       <category term="Spring" scheme="https://www.lhsjohn.com/tags/Spring/"/>
+    
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
     
   </entry>
   
@@ -603,76 +660,6 @@
           &lt;figure class=&quot;highlight awk&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
         
       
-    
-    </summary>
-    
-      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="python" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/python/"/>
-    
-      <category term="爬虫" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/python/%E7%88%AC%E8%99%AB/"/>
-    
-    
-      <category term="python" scheme="https://www.lhsjohn.com/tags/python/"/>
-    
-      <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>设计模式思考(三)装饰者模式</title>
-    <link href="https://www.lhsjohn.com/2018/08/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%9D%E8%80%83(%E4%B8%89)-----%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
-    <id>https://www.lhsjohn.com/2018/08/02/设计模式思考(三)-----装饰者模式/</id>
-    <published>2018-08-02T14:09:03.000Z</published>
-    <updated>2018-08-31T13:32:23.487Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;装饰者模式的定义&quot;&gt;&lt;a href=&quot;#装饰者模式的定义&quot; class=&quot;headerlink&quot; title=&quot;装饰者模式的定义&quot;&gt;&lt;/a&gt;装饰者模式的定义&lt;/h1&gt;&lt;p&gt;装饰者模式动态地将责任附加到对象上，若要扩展功能，装饰者提供了比继承更有弹性的替代方案。&lt;/p&gt;
-&lt;p&gt;可以这么说：“装饰者模式给爱用继承的人一个全新的眼界”&lt;/p&gt;
-&lt;p&gt;下面来看一个装饰者模式的使用案例&lt;/p&gt;
-&lt;p&gt;对于一家咖啡店的订单系统，起初所有种类咖啡的类都是继承自饮料类的(Beverage),其中饮料类是一个抽象的类，内有description的实例变量，用来描述所做的饮料，有cost()方法来返回价钱。&lt;/p&gt;
-&lt;p&gt;但是我们都知道，咖啡的种类有很多很多种，加入的调料也不尽相同，比如说我们可以定制摩卡咖啡，奶泡咖啡等，且这些调料的价钱也是不尽相同的，或许我们最初想法是再将咖啡的种类根据调料来进行划分，派生出更多的子类出来，但是这种做法是不明智的，咖啡的种类有成千上百种，调料也有成千上百种，照这个思想进行下去的话，岂不是要派生出一大堆类出来，这对于系统的维护来说也将是一个棘手的事情。&lt;/p&gt;
-&lt;p&gt;那么，有没有其他的解决方案呢？&lt;/p&gt;
-&lt;p&gt;答案是肯定的，在这里就是需要用到一个经典的设计模式——装饰者模式。&lt;/p&gt;
-&lt;p&gt;在这个例子中，我们要以饮料为主体，然后在运行时以调料来装饰饮料。举个栗子，如果顾客想要一杯摩卡和奶泡深焙咖啡，我们要做的事情有&lt;/p&gt;
-&lt;p&gt;1.拿一个深焙咖啡(DarkRoast)对象&lt;/p&gt;
-&lt;p&gt;2.以摩卡(Mocha)对象装饰它&lt;/p&gt;
-&lt;p&gt;3.以奶泡(Whip)对象装饰它&lt;/p&gt;
-&lt;p&gt;4.调用cost()方法，并依赖委托将调料的价钱加上去&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="java" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/"/>
-    
-      <category term="设计模式" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
-    
-      <category term="设计模式" scheme="https://www.lhsjohn.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>urllib2爬虫初级 (二)</title>
-    <link href="https://www.lhsjohn.com/2018/08/01/urllib2%E7%88%AC%E8%99%AB%E5%88%9D%E7%BA%A7(%E4%BA%8C%EF%BC%89/"/>
-    <id>https://www.lhsjohn.com/2018/08/01/urllib2爬虫初级(二）/</id>
-    <published>2018-08-01T09:05:21.000Z</published>
-    <updated>2018-08-31T13:35:54.998Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;昨天用urllib模拟GET请求爬取了百度贴吧的一些内容，&lt;br&gt;但是现在网络上还有很多数据是通过POST请求获得的，更复杂的情况&lt;br&gt;是你要面临着如ajax的一些动态加载的数据，你所要获取的数据不能仅仅限于你在浏览器网页里看到的数据，所以在这里有几个处理的方法。&lt;/p&gt;
-&lt;h1 id=&quot;POST请求发送&quot;&gt;&lt;a href=&quot;#POST请求发送&quot; class=&quot;headerlink&quot; title=&quot;POST请求发送&quot;&gt;&lt;/a&gt;POST请求发送&lt;/h1&gt;&lt;p&gt;Request请求对象的里有data参数，它就是用在POST里的，我们要传送的数据就是这个参数data，data是一个字典，里面要匹配键值对&lt;/p&gt;
-&lt;p&gt;下面是流行的一个比较火的学习案例，通过POST请求模拟有道词典的翻译(之所以选择有道词典，是因为有些翻译词典发起的请求是GET的，这就很狗血了)&lt;/p&gt;
-&lt;p&gt;首先开启了我Chrome浏览器中的代理插件，要模仿有道词典翻译的工作我们需要得到有关的url以及data数据&lt;/p&gt;
-&lt;p&gt;这些数据的获取是我们通过抓包获取的&lt;/p&gt;
-&lt;p&gt;之前的博客写过我现在用的是Fiddler 来抓包的，功能还算比较强大用起来还是挺舒服的。&lt;/p&gt;
-&lt;p&gt;输入“我爱python” 的文字进行翻译，点击翻译按钮来发起一个请求，如下&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/2018-08-01-1.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;
     
     </summary>
     
