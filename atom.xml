@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.lhsjohn.com/"/>
-  <updated>2018-09-14T16:45:23.715Z</updated>
+  <updated>2018-09-16T17:02:38.729Z</updated>
   <id>https://www.lhsjohn.com/</id>
   
   <author>
@@ -15,6 +15,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Effective Java [笔记] ---- 通用程序设计(一)</title>
+    <link href="https://www.lhsjohn.com/2018/09/17/Effective%20Java%20%5B%E7%AC%94%E8%AE%B0%5D%20----%20%E9%80%9A%E7%94%A8%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1(%E4%B8%80)/"/>
+    <id>https://www.lhsjohn.com/2018/09/17/Effective Java [笔记] ---- 通用程序设计(一)/</id>
+    <published>2018-09-17T15:42:24.000Z</published>
+    <updated>2018-09-16T17:02:38.729Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;花了大概一周的时间读了一下&amp;lt;&lt;effective java=&quot;&quot;&gt;&amp;gt;这本书,作为一个初步涉猎Java开发的小白来说,确实这本书让眼界一亮,是一本浓缩了无数工程师经验的书籍。&lt;/effective&gt;&lt;/p&gt;
+&lt;p&gt;下面也将融合以下的内容&lt;br&gt;本篇内容主要介绍通用程序设计相关的主要内容&lt;/p&gt;
+&lt;h2 id=&quot;通用程序设计-一&quot;&gt;&lt;a href=&quot;#通用程序设计-一&quot; class=&quot;headerlink&quot; title=&quot;通用程序设计(一)&quot;&gt;&lt;/a&gt;通用程序设计(一)&lt;/h2&gt;&lt;p&gt;这里主要记录一下一些常见的“经验”&lt;/p&gt;
+&lt;h2 id=&quot;1-将局部变量的作用域最小化。&quot;&gt;&lt;a href=&quot;#1-将局部变量的作用域最小化。&quot; class=&quot;headerlink&quot; title=&quot;1.将局部变量的作用域最小化。&quot;&gt;&lt;/a&gt;1.将局部变量的作用域最小化。&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;将局部变量的作用域最小化,可以增强代码的可读性和可维护性。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;要使局部变量的作用域最小化,最有力的方法是在第一次使用它的地方声明。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;每个局部变量的声明都应该包含一个初始化表达式&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;2-for-each循环优先于传统的for循环&quot;&gt;&lt;a href=&quot;#2-for-each循环优先于传统的for循环&quot; class=&quot;headerlink&quot; title=&quot;2.for-each循环优先于传统的for循环&quot;&gt;&lt;/a&gt;2.for-each循环优先于传统的for循环&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;for-each循环不会有性能损失,甚至用于数组也是一样。比起普通for循环,它还稍有些性能优势,因为它对数组的索引的边界值只计算一次。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;对多个集合进行嵌入式迭代时,for-each优势会更加明显。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果采用传统方式，迭代器对外部集合调用太多的next方法,并且外部集合是内部集合大小的几倍–可能是因为它们是相同的集合循环会正常终止，产生预期之外的结果。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="java" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/"/>
+    
+      <category term="Effective Java" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/Effective-Java/"/>
+    
+    
+      <category term="Effective Java" scheme="https://www.lhsjohn.com/tags/Effective-Java/"/>
+    
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>用Solr实现后台搜索[笔记]</title>
@@ -592,9 +635,9 @@
       <category term="Spring" scheme="https://www.lhsjohn.com/categories/Spring/"/>
     
     
-      <category term="Spring" scheme="https://www.lhsjohn.com/tags/Spring/"/>
-    
       <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
+    
+      <category term="Spring" scheme="https://www.lhsjohn.com/tags/Spring/"/>
     
   </entry>
   
@@ -626,33 +669,6 @@
       <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
     
       <category term="设计模式" scheme="https://www.lhsjohn.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>一道算法题</title>
-    <link href="https://www.lhsjohn.com/2018/08/06/%E4%B8%80%E9%81%93%E7%AE%97%E6%B3%95%E9%A2%98/"/>
-    <id>https://www.lhsjohn.com/2018/08/06/一道算法题/</id>
-    <published>2018-08-06T08:59:01.000Z</published>
-    <updated>2018-08-06T09:01:02.079Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;算法题:请用js根据网站用户的内裤颜色调改变网站主题文字颜色。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/2018-08-06-2.jpg&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="段子" scheme="https://www.lhsjohn.com/categories/%E6%AE%B5%E5%AD%90/"/>
-    
-    
-      <category term="段子" scheme="https://www.lhsjohn.com/tags/%E6%AE%B5%E5%AD%90/"/>
     
   </entry>
   
