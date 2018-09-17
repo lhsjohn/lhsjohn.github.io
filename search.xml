@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Jsoup爬虫简单实例[笔记] ---- 爬取凤凰网一篇文章的内容]]></title>
+    <url>%2F2018%2F09%2F18%2FJsoup%E7%88%AC%E8%99%AB%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B%5B%E7%AC%94%E8%AE%B0%5D%20----%20%E7%88%AC%E5%8F%96%E5%87%A4%E5%87%B0%E7%BD%91%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E7%9A%84%E5%86%85%E5%AE%B9%2F</url>
+    <content type="text"><![CDATA[Jsoup 一款极其好用的Java爬虫神器jsoup 是一款Java 的HTML解析器，可直接解析某个URL地址、HTML文本内容。它提供了一套非常省力的API，可通过DOM，CSS以及类似于jQuery的操作方法来取出和操作数据。[中文文档]：http://www.open-open.com/jsoup/ 直接来一个小demo吧,很丑的代码,目前暂时只是测试Jsoup的功能 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172package com.lhsjohn.spider;import java.util.ArrayList;import java.util.List;import org.jsoup.Jsoup;import org.jsoup.nodes.Document;import org.jsoup.nodes.Element;import org.jsoup.nodes.Node;import org.jsoup.select.Elements;public class JsoupTest &#123; public static void main(String[] args) throws Exception &#123; String url = "https://www.ifeng.com/"; org.jsoup.nodes.Document doc = Jsoup.connect(url).get(); Elements topNews = doc.select("#headLineDefault .FNewMTopLis a[href]"); Element firstElement = topNews.first(); String firstTitle = topNews.first().text(); // 爬取&lt;&lt;重返爱的海洋&gt;&gt;文章的url String firstElementUrl = firstElement.attr("abs:href"); System.out.println(firstTitle); System.out.println(firstElementUrl); // 链接新的url进行爬取: Document document = Jsoup.connect(firstElementUrl).get(); Elements topicEl = document.select("#artical #artical_topic"); // 标题内容: String topic = topicEl.text(); Elements timeElement = document.select("#artical #artical_sth .p_time .ss01"); // 时间: String time = timeElement.text(); // 来源: Elements elements = document.select("#artical #artical_sth .p_time .ss03 a"); String text = elements.attr("abs:href"); Elements sourceElement = document.select("#artical #artical_sth .p_time .ss03"); String sourceName = sourceElement.text(); String sourceUrl = sourceElement.attr("abs:href"); // 文章内容 Elements mainContentEl = document.select("#artical #main_content p"); int size = mainContentEl.size(); Element currentElement = mainContentEl.first(); List&lt;String&gt; list = new ArrayList&lt;String&gt;(); String text2 = currentElement.text(); String s = ""; Element tmp = null; //遍历p元素节点,并将其的内容添加到List中保存 for (int i = 0; i &lt; size; i++) &#123; tmp = currentElement; s = tmp.text(); list.add(s); currentElement = tmp.nextElementSibling(); &#125; String Content = mainContentEl.text(); System.out.println("========标题========"); System.out.println(topic); System.out.println("========时间========"); System.out.println(time); System.out.println("========来源========"); System.out.println(text); System.out.println(sourceName + " " + sourceUrl); System.out.println("========文章内容========"); System.out.println(list.size()); for (String string : list) &#123; System.out.println(string); &#125; &#125; &#125; 运行结果 123456789101112131415161718重返爱的海洋http://news.ifeng.com/a/20180917/60071302_0.shtml========标题========重返爱的海洋========时间========2018年09月17日 19:38:51========来源========http://api.cportal.cctv.com/api/newsInsert/ywnr.html?id=ArtiJEDQsB91pCigjAa9OShw180917&amp;from=singlemessage央视新闻移动网 ========文章内容========7原标题【独家V观】重返爱的海洋前不久，位于俄罗斯远东城市符拉迪沃斯托克的“海洋”全俄儿童中心，迎来了一批阔别十年的中国青年。十年前，他们有一个共同的身份：赴俄疗养的四川汶川大地震灾区儿童。当年他们在俄罗斯朋友的精心照料下，逐渐抚平内心的创伤。十年后，他们重返故地寻找往日的故事和朋友。在这次难忘的重逢中，还有两位重要的来宾：中国国家主席习近平和俄罗斯总统普京。习主席在现场发表了令人难忘的讲话，他勉励这些已经长大成人的中国孩子：滴水之恩，当涌泉相报，希望他们用爱回报俄罗斯人民，回报“海洋”中心，回报祖国和人民。今天（17日）19:40，中央电视台综合频道和新闻频道将并机播出专题片《重返爱的海洋》，欢迎您到时收看。（央视记者：申勇、刘爱民、王鹏飞、 汤健、王斌、史伟、石伟明、钟锋、 荆伟、陈汉章、彭汉明、 沈忱、张誉耀、 顾鑫、 沃龙、朱兴建、 白璐、蒋林、牟亮、庞振、张成、黄珊、齐欢） 作者: lhsjohn]]></content>
+      <categories>
+        <category>学习</category>
+        <category>java</category>
+        <category>Joup</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Effective Java [笔记] ---- 通用程序设计(一)]]></title>
     <url>%2F2018%2F09%2F17%2FEffective%20Java%20%5B%E7%AC%94%E8%AE%B0%5D%20----%20%E9%80%9A%E7%94%A8%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1(%E4%B8%80)%2F</url>
     <content type="text"><![CDATA[花了大概一周的时间读了一下&lt;&gt;这本书,作为一个初步涉猎Java开发的小白来说,确实这本书让眼界一亮,是一本浓缩了无数工程师经验的书籍。 下面也将融合以下的内容本篇内容主要介绍通用程序设计相关的主要内容 通用程序设计(一)这里主要记录一下一些常见的“经验” 1.将局部变量的作用域最小化。 将局部变量的作用域最小化,可以增强代码的可读性和可维护性。 要使局部变量的作用域最小化,最有力的方法是在第一次使用它的地方声明。 每个局部变量的声明都应该包含一个初始化表达式 2.for-each循环优先于传统的for循环 for-each循环不会有性能损失,甚至用于数组也是一样。比起普通for循环,它还稍有些性能优势,因为它对数组的索引的边界值只计算一次。 对多个集合进行嵌入式迭代时,for-each优势会更加明显。 如果采用传统方式，迭代器对外部集合调用太多的next方法,并且外部集合是内部集合大小的几倍–可能是因为它们是相同的集合循环会正常终止，产生预期之外的结果。 下面则是这个Bug的一种体现，我们本想打印一对骰子的所有可能的滚法。12345678910111213141516171819202122package com.lhsjohn.effective;import java.util.Arrays;import java.util.Collection;import java.util.Iterator;public class Demo1 &#123; enum Face &#123; ONE, TWO, THREE, FOUR, FIVE, SIX &#125; public static void main(String[] args) &#123; Collection&lt;Face&gt; faces = Arrays.asList(Face.values()); for (Iterator&lt;Face&gt; i = faces.iterator(); i.hasNext();) &#123; for (Iterator&lt;Face&gt; j = faces.iterator(); j.hasNext();) &#123; System.out.println(i.next() + " " + j.next()); &#125; &#125; &#125;&#125; 运行结果123456ONE ONETWO TWOTHREE THREEFOUR FOURFIVE FIVESIX SIX 这个程序不会抛出异常,而是只打印6个重复的词，而不是预计的三十六种组合。 但是采用for-each方式便会很好地避免这个问题 3.了解和使用类库使用标准类库有四大好处 1.可以充分利用这些编写标准类库的专家的知识，以及在你之前的其他人的使用经验。 2.不必浪费时间为那些与工作不太相关的问题提供特别的解决方案。 3.它们的性能往往会随着时间的推移而不断的提高。 4.可以使自己的代码融入主流。 每个程序员都应该书序java.lang 、java.util 、java.io .关于其他类库的知识可以根据需要随时学习。 如果一些类库的工具不能满足我们的需要,那么就只能自己来实现这些功能，别无选择。 总而言之，不要重新发明轮子。 4.如果需要精确的答案，请避免使用float和double float和double类型尤其不适合用于货币计算 可以考虑使用BigDecimal试图作为一种解决方案 5.基本类型优先于装箱基本类型 Java类型系统包括两部分组成，包含基本类型如int、double、boolean和引用类型如String、List. 每个基本类型都有一个对应的引用类型,称作装箱基本类型。装箱基本类型中对应于int、double和boolean的是Integer、Double和Boolean。 Java1.5版本开始增加了自动装箱和自动拆箱. 基本类型和装箱基本类型之间有三个主要区别 基本类型只有值,装箱基本类型则具有与它们的值不同的同一性。 基本类型只有功能完备的值,装箱基本类型除了它对应的基本类型的所有功能值外,还有个非功能值:null 基本类型通常比装箱基本类型节省时间和空间 所有因为有了这些差别，在对数值进行比较的时候就应该要谨慎的使用包箱基本类型。 总之,当可以选择的时候,基本类型要优先于装箱基本类型。基本类型更加简单,也更加快速。当程序使用==操作符比较两个装箱基本类型的时候,它做了个同一性比较,这是我们不想看到的。当程序进行涉及装箱和拆箱基本类型的混合类型计算时,它会进行拆箱,当程序进行拆箱时,会抛出空指针异常。最后当程序装箱了基本类型的值时,会导致高开销和不必要的对象创建。 作者:lhsjohn]]></content>
@@ -10,8 +24,8 @@
         <category>Effective Java</category>
       </categories>
       <tags>
-        <tag>Effective Java</tag>
         <tag>java</tag>
+        <tag>Effective Java</tag>
       </tags>
   </entry>
   <entry>
@@ -300,8 +314,8 @@
         <category>爬虫</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>爬虫</tag>
+        <tag>python</tag>
         <tag>多线程</tag>
       </tags>
   </entry>
@@ -329,8 +343,8 @@
         <category>爬虫</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>爬虫</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -357,8 +371,8 @@
         <category>爬虫</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>爬虫</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -385,8 +399,8 @@
         <category>爬虫</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>爬虫</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>

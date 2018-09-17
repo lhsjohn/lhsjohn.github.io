@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.lhsjohn.com/"/>
-  <updated>2018-09-16T17:02:38.729Z</updated>
+  <updated>2018-09-17T16:34:41.364Z</updated>
   <id>https://www.lhsjohn.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Jsoup爬虫简单实例[笔记] ---- 爬取凤凰网一篇文章的内容</title>
+    <link href="https://www.lhsjohn.com/2018/09/18/Jsoup%E7%88%AC%E8%99%AB%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B%5B%E7%AC%94%E8%AE%B0%5D%20----%20%E7%88%AC%E5%8F%96%E5%87%A4%E5%87%B0%E7%BD%91%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E7%9A%84%E5%86%85%E5%AE%B9/"/>
+    <id>https://www.lhsjohn.com/2018/09/18/Jsoup爬虫简单实例[笔记] ---- 爬取凤凰网一篇文章的内容/</id>
+    <published>2018-09-17T16:30:24.000Z</published>
+    <updated>2018-09-17T16:34:41.364Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Jsoup-一款极其好用的Java爬虫神器&quot;&gt;&lt;a href=&quot;#Jsoup-一款极其好用的Java爬虫神器&quot; class=&quot;headerlink&quot; title=&quot;Jsoup  一款极其好用的Java爬虫神器&quot;&gt;&lt;/a&gt;Jsoup  一款极其好用的Java爬虫神器&lt;/h2&gt;&lt;p&gt;jsoup 是一款Java 的HTML解析器，可直接解析某个URL地址、HTML文本内容。它提供了一套非常省力的API，可通过DOM，CSS以及类似于jQuery的操作方法来取出和操作数据。&lt;br&gt;[中文文档]：&lt;a href=&quot;http://www.open-open.com/jsoup/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://www.open-open.com/jsoup/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;直接来一个小demo吧-很丑的代码-目前暂时只是测试Jsoup的功能&quot;&gt;&lt;a href=&quot;#直接来一个小demo吧-很丑的代码-目前暂时只是测试Jsoup的功能&quot; class=&quot;headerlink&quot; title=&quot;直接来一个小demo吧,很丑的代码,目前暂时只是测试Jsoup的功能&quot;&gt;&lt;/a&gt;直接来一个小demo吧,很丑的代码,目前暂时只是测试Jsoup的功能&lt;/h2&gt;
+    
+    </summary>
+    
+      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="java" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/"/>
+    
+      <category term="Joup" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/Joup/"/>
+    
+    
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
+    
+      <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>Effective Java [笔记] ---- 通用程序设计(一)</title>
@@ -53,9 +80,9 @@
       <category term="Effective Java" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/Effective-Java/"/>
     
     
-      <category term="Effective Java" scheme="https://www.lhsjohn.com/tags/Effective-Java/"/>
-    
       <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
+    
+      <category term="Effective Java" scheme="https://www.lhsjohn.com/tags/Effective-Java/"/>
     
   </entry>
   
@@ -638,37 +665,6 @@
       <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
     
       <category term="Spring" scheme="https://www.lhsjohn.com/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>设计模式思考(四)-----单件模式</title>
-    <link href="https://www.lhsjohn.com/2018/08/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%9D%E8%80%83(%E5%9B%9B)-----%E5%8D%95%E4%BB%B6%E6%A8%A1%E5%BC%8F/"/>
-    <id>https://www.lhsjohn.com/2018/08/07/设计模式思考(四)-----单件模式/</id>
-    <published>2018-08-07T09:40:24.000Z</published>
-    <updated>2018-08-31T13:32:31.190Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;单件模式的定义&quot;&gt;&lt;a href=&quot;#单件模式的定义&quot; class=&quot;headerlink&quot; title=&quot;单件模式的定义&quot;&gt;&lt;/a&gt;单件模式的定义&lt;/h1&gt;&lt;p&gt;确保一个类只有一个实例，并提供一个全局访问点。&lt;/p&gt;
-&lt;h1 id=&quot;类图&quot;&gt;&lt;a href=&quot;#类图&quot; class=&quot;headerlink&quot; title=&quot;类图&quot;&gt;&lt;/a&gt;类图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;/images/2018-08-07-1.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;1.其中uniqueInstance 变量持有唯一的单间实例&lt;/p&gt;
-&lt;p&gt;2.getInstance()方法是静态的，这意味着它是一个类方法，所以可以在代码的任何地方使用Singleton.getnstance()访问它。这样和访问全局变量一样，只是多了一个优点：单件可以延迟实例化。&lt;/p&gt;
-&lt;p&gt;3.单件模式的类也可以是一般的类，具有一般的数据和方法。&lt;/p&gt;
-&lt;p&gt;下面是一个单件模式的经典实现：&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="java" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/"/>
-    
-      <category term="设计模式" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
-    
-      <category term="设计模式" scheme="https://www.lhsjohn.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
