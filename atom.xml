@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.lhsjohn.com/"/>
-  <updated>2018-09-18T13:45:04.048Z</updated>
+  <updated>2018-09-20T15:47:29.783Z</updated>
   <id>https://www.lhsjohn.com/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Jsoup爬虫简单实例[笔记] ---- 根据URL爬取多篇凤凰网新闻内容(测试版本)</title>
+    <link href="https://www.lhsjohn.com/2018/09/20/Jsoup%E7%88%AC%E8%99%AB%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B%5B%E7%AC%94%E8%AE%B0%5D%20----%20%E6%A0%B9%E6%8D%AEURL%E7%88%AC%E5%8F%96%E5%A4%9A%E7%AF%87%E5%87%A4%E5%87%B0%E7%BD%91%E6%96%B0%E9%97%BB%E5%86%85%E5%AE%B9(%E6%B5%8B%E8%AF%95%E7%89%88%E6%9C%AC)/"/>
+    <id>https://www.lhsjohn.com/2018/09/20/Jsoup爬虫简单实例[笔记] ---- 根据URL爬取多篇凤凰网新闻内容(测试版本)/</id>
+    <published>2018-09-19T16:30:24.000Z</published>
+    <updated>2018-09-20T15:47:29.783Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;figure class=&quot;highlight processing&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="java" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/"/>
+    
+      <category term="Joup" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/Joup/"/>
+    
+    
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
+    
+      <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>Trie树的简单实现</title>
@@ -620,53 +652,6 @@
       <category term="solr+zookeeper" scheme="https://www.lhsjohn.com/tags/solr-zookeeper/"/>
     
       <category term="linux" scheme="https://www.lhsjohn.com/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>fastdfs</title>
-    <link href="https://www.lhsjohn.com/2018/08/11/fastdfs/"/>
-    <id>https://www.lhsjohn.com/2018/08/11/fastdfs/</id>
-    <published>2018-08-11T03:17:16.000Z</published>
-    <updated>2018-08-31T13:35:00.504Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;FastDFS是C语言开发，建议在linux上运行，下面使用Centos6.4作为安装环境。&lt;br&gt;安装FastDFS需要先将官网下载的源码进行编译，编译依赖gcc环境，如果没有gcc环境，需要安装gcc：yum install gcc-c++&lt;/p&gt;
-&lt;h2 id=&quot;安装libevent&quot;&gt;&lt;a href=&quot;#安装libevent&quot; class=&quot;headerlink&quot; title=&quot;安装libevent&quot;&gt;&lt;/a&gt;安装libevent&lt;/h2&gt;&lt;p&gt;FastDFS依赖libevent库，需要安装：&lt;/p&gt;
-&lt;p&gt;yum -y install libevent&lt;/p&gt;
-&lt;h2 id=&quot;安装libfastcommon&quot;&gt;&lt;a href=&quot;#安装libfastcommon&quot; class=&quot;headerlink&quot; title=&quot;安装libfastcommon&quot;&gt;&lt;/a&gt;安装libfastcommon&lt;/h2&gt;&lt;p&gt;libfastcommon是FastDFS官方提供的，libfastcommon包含了FastDFS运行所需要的一些基础库。&lt;br&gt;将libfastcommonV1.0.7.tar.gz拷贝至/usr/local/下&lt;/p&gt;
-&lt;p&gt;cd /usr/local&lt;/p&gt;
-&lt;p&gt;tar -zxvf  libfastcommonV1.0.7.tar.gz&lt;/p&gt;
-&lt;p&gt;cd libfastcommon-1.0.7&lt;br&gt;./make.sh&lt;/p&gt;
-&lt;p&gt;./make.sh install&lt;/p&gt;
-&lt;p&gt;注意：libfastcommon安装好后会自动将库文件拷贝至/usr/lib64下，由于FastDFS程序引用usr/lib目录所以需要将/usr/lib64下的库文件拷贝至/usr/lib下。&lt;/p&gt;
-&lt;h2 id=&quot;tracker编译安装&quot;&gt;&lt;a href=&quot;#tracker编译安装&quot; class=&quot;headerlink&quot; title=&quot;tracker编译安装&quot;&gt;&lt;/a&gt;tracker编译安装&lt;/h2&gt;&lt;p&gt;将FastDFS_v5.05.tar.gz拷贝至/usr/local/下&lt;/p&gt;
-&lt;p&gt;tar -zxvf FastDFS_v5.05.tar.gz&lt;/p&gt;
-&lt;p&gt;cd FastDFS&lt;/p&gt;
-&lt;p&gt;./make.sh&lt;/p&gt;
-&lt;p&gt;./make.sh install&lt;/p&gt;
-&lt;p&gt;安装成功将安装目录下的conf下的文件拷贝到/etc/fdfs/下。&lt;/p&gt;
-&lt;h2 id=&quot;配置&quot;&gt;&lt;a href=&quot;#配置&quot; class=&quot;headerlink&quot; title=&quot;配置&quot;&gt;&lt;/a&gt;配置&lt;/h2&gt;&lt;p&gt;安装成功后进入/etc/fdfs目录：&lt;br&gt;拷贝一份新的tracker配置文件：&lt;/p&gt;
-&lt;p&gt;cp tracker.conf.sample tracker.conf&lt;/p&gt;
-&lt;p&gt;修改tracker.conf&lt;br&gt;vi tracker.conf&lt;br&gt;base_path=/home/yuqing/FastDFS&lt;br&gt;改为：&lt;br&gt;base_path=/home/FastDFS&lt;/p&gt;
-&lt;h2 id=&quot;启动&quot;&gt;&lt;a href=&quot;#启动&quot; class=&quot;headerlink&quot; title=&quot;启动&quot;&gt;&lt;/a&gt;启动&lt;/h2&gt;&lt;p&gt;/usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf restart&lt;br&gt;启动的日志显示先停止5619进程（实际环境不是5619）&lt;/p&gt;
-&lt;h2 id=&quot;设置开机启动&quot;&gt;&lt;a href=&quot;#设置开机启动&quot; class=&quot;headerlink&quot; title=&quot;设置开机启动&quot;&gt;&lt;/a&gt;设置开机启动&lt;/h2&gt;
-    
-    </summary>
-    
-      <category term="项目" scheme="https://www.lhsjohn.com/categories/%E9%A1%B9%E7%9B%AE/"/>
-    
-      <category term="java" scheme="https://www.lhsjohn.com/categories/%E9%A1%B9%E7%9B%AE/java/"/>
-    
-      <category term="fastdfs" scheme="https://www.lhsjohn.com/categories/%E9%A1%B9%E7%9B%AE/java/fastdfs/"/>
-    
-    
-      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
-    
-      <category term="linux" scheme="https://www.lhsjohn.com/tags/linux/"/>
-    
-      <category term="fastdfs" scheme="https://www.lhsjohn.com/tags/fastdfs/"/>
     
   </entry>
   
