@@ -72,7 +72,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="java,爬虫," />
 
 
 
@@ -85,17 +85,20 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
 
 
 
-<meta name="description" content="对未来的真正慷慨，是把一切献给现在">
-<meta name="keywords" content="1+1=1">
-<meta property="og:type" content="website">
-<meta property="og:title" content="lhsjohn的博客">
-<meta property="og:url" content="https://www.lhsjohn.com/archives/2018/07/index.html">
+<meta name="description" content="这个方法缺点是速度慢，优点是暂时不用考虑数据共享的问题,但是单线程去爬虫还是有很大缺点的,暂时先写一个单线程的,下次再此基础上优化出多线程版本。">
+<meta name="keywords" content="java,爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jsoup爬取凤凰网2018-09-22日部分新闻[笔记] ---- 根据URL规律爬取多篇凤凰网新闻内容(测试单线程版本)">
+<meta property="og:url" content="https://www.lhsjohn.com/2018/09/22/Jsoup爬取凤凰网2018-09-22日部分新闻[笔记] ---- 根据URL规律爬取多篇凤凰网新闻内容(测试单线程版本)(1)/index.html">
 <meta property="og:site_name" content="lhsjohn的博客">
-<meta property="og:description" content="对未来的真正慷慨，是把一切献给现在">
+<meta property="og:description" content="这个方法缺点是速度慢，优点是暂时不用考虑数据共享的问题,但是单线程去爬虫还是有很大缺点的,暂时先写一个单线程的,下次再此基础上优化出多线程版本。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://www.lhsjohn.com/images/2018-09-22.jpg">
+<meta property="og:updated_time" content="2018-09-22T15:56:58.669Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="lhsjohn的博客">
-<meta name="twitter:description" content="对未来的真正慷慨，是把一切献给现在">
+<meta name="twitter:title" content="Jsoup爬取凤凰网2018-09-22日部分新闻[笔记] ---- 根据URL规律爬取多篇凤凰网新闻内容(测试单线程版本)">
+<meta name="twitter:description" content="这个方法缺点是速度慢，优点是暂时不用考虑数据共享的问题,但是单线程去爬虫还是有很大缺点的,暂时先写一个单线程的,下次再此基础上优化出多线程版本。">
+<meta name="twitter:image" content="https://www.lhsjohn.com/images/2018-09-22.jpg">
 
 
 
@@ -125,13 +128,13 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
 
 
 
-  <link rel="canonical" href="https://www.lhsjohn.com/archives/2018/07/"/>
+  <link rel="canonical" href="https://www.lhsjohn.com/2018/09/22/Jsoup爬取凤凰网2018-09-22日部分新闻[笔记] ---- 根据URL规律爬取多篇凤凰网新闻内容(测试单线程版本)(1)/"/>
 
 
 
 
 
-  <title>归档 | lhsjohn的博客</title>
+  <title>Jsoup爬取凤凰网2018-09-22日部分新闻[笔记] ---- 根据URL规律爬取多篇凤凰网新闻内容(测试单线程版本) | lhsjohn的博客</title>
   
 
 
@@ -150,7 +153,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
     
   
 
-  <div class="container sidebar-position-right page-archive">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband">
 	</div>
 		<a href="https://github.com/lhsjohn"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
@@ -290,188 +293,265 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
-        
-        
-         
-        
-        OK! 目前共计 38 篇日志。 继续努力。
-      </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lhsjohn.com/2018/09/22/Jsoup爬取凤凰网2018-09-22日部分新闻[笔记] ---- 根据URL规律爬取多篇凤凰网新闻内容(测试单线程版本)(1)/">
 
-      
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lhsjohn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lhsjohn的博客">
+    </span>
+
+    
+      <header class="post-header">
 
         
         
+          <h1 class="post-title" itemprop="name headline">Jsoup爬取凤凰网2018-09-22日部分新闻[笔记] ---- 根据URL规律爬取多篇凤凰网新闻内容(测试单线程版本)</h1>
         
 
-        
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-22T23:53:24+08:00">
+                2018-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/31/设计模式思考(二)-----观察者模式/" itemprop="url">
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
               
-                <span itemprop="name">设计模式思考(二)观察者模式</span>
+                <span class="post-meta-item-text">分类于</span>
               
-            </a>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习/java/Joup/" itemprop="url" rel="index">
+                    <span itemprop="name">Joup</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/22/Jsoup爬取凤凰网2018-09-22日部分新闻[笔记] ---- 根据URL规律爬取多篇凤凰网新闻内容(测试单线程版本)(1)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/09/22/Jsoup爬取凤凰网2018-09-22日部分新闻[笔记] ---- 根据URL规律爬取多篇凤凰网新闻内容(测试单线程版本)(1)/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+         
+     <span class="post-meta-divider">|</span>
+     <span id="busuanzi_value_page_pv"></span>次阅读
         
-      </h2>
+		  
+		  
+		  
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  367
+                </span>
+              
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-31T23:55:21+08:00"
-              content="2018-07-31" >
-          07-31
-        </time>
-      </div>
+              
+                <span class="post-meta-divider">|</span>
+              
 
-    </header>
-  </article>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
 
+          
 
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/31/urllib2爬虫初级/" itemprop="url">
-              
-                <span itemprop="name">urllib2爬虫初级 (一)</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-31T02:27:21+08:00"
-              content="2018-07-31" >
-          07-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/30/设计模式思考(一)-----策略模式(1)/" itemprop="url">
-              
-                <span itemprop="name">设计模式思考(一)策略模式</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-30T23:08:21+08:00"
-              content="2018-07-30" >
-          07-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p><img src="/images/2018-09-22.jpg" alt=""></p>
+<p>这个方法缺点是速度慢，优点是暂时不用考虑数据共享的问题,但是单线程去爬虫还是有很大缺点的,<br>暂时先写一个单线程的,下次再此基础上优化出多线程版本。</p>
+<a id="more"></a>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lhsjohn.spider;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.jsoup.Jsoup;</span><br><span class="line"><span class="keyword">import</span> org.jsoup.nodes.Element;</span><br><span class="line"><span class="keyword">import</span> org.jsoup.select.Elements;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class JsoupTest2 &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		<span class="built_in">int</span> index = <span class="number">118</span>;</span><br><span class="line">		<span class="keyword">String</span> Sindex = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">while</span> (index &lt;= <span class="number">999</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (index &lt;= <span class="number">9</span>) &#123;</span><br><span class="line">				Sindex = <span class="string">"00"</span> + index;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (index &gt; <span class="number">9</span> &amp;&amp; index &lt;= <span class="number">99</span>) &#123;</span><br><span class="line">				Sindex = <span class="string">"0"</span> + index;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (index &gt; <span class="number">99</span>) &#123;</span><br><span class="line">				Sindex = <span class="string">""</span> + index;</span><br><span class="line">			&#125;</span><br><span class="line">			index++;</span><br><span class="line">			System.out.<span class="built_in">println</span>(Sindex);</span><br><span class="line">			crawNews(Sindex);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> crawNews(<span class="keyword">String</span> index) <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		<span class="keyword">String</span> url = <span class="string">"http://news.ifeng.com/a/20180922/60080"</span> + index + <span class="string">"_0.shtml"</span>;</span><br><span class="line">		org.jsoup.nodes.Document document = Jsoup.connect(url).timeout(<span class="number">50000000</span>).<span class="built_in">get</span>();</span><br><span class="line">		<span class="keyword">String</span> selection = <span class="string">".yc_main.wrap"</span>;</span><br><span class="line">		Elements elements = document.select(selection);</span><br><span class="line">		<span class="comment">// if (!elements.isEmpty()) &#123;</span></span><br><span class="line">		<span class="comment">// Element element = elements.get(0);</span></span><br><span class="line">		<span class="comment">// &#125;</span></span><br><span class="line">		<span class="keyword">if</span>(elements.isEmpty()) &#123;</span><br><span class="line">			Elements elements2 = document.select(<span class="string">"#artical #artical_topic"</span>);</span><br><span class="line">			<span class="keyword">if</span>(!elements2.isEmpty()) &#123;</span><br><span class="line">				System.out.<span class="built_in">println</span>(elements2.<span class="built_in">get</span>(<span class="number">0</span>).<span class="built_in">text</span>());</span><br><span class="line">				<span class="keyword">return</span>;</span><br><span class="line">			&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">return</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		Element element = elements.<span class="built_in">get</span>(<span class="number">0</span>);</span><br><span class="line">		Elements elements2 = element.select(<span class="string">".yc_tit"</span>);</span><br><span class="line">		<span class="keyword">if</span> (!elements2.isEmpty()) &#123;</span><br><span class="line">			Element element2 = elements2.<span class="built_in">get</span>(<span class="number">0</span>);</span><br><span class="line">			Elements children = element2.children();</span><br><span class="line">			<span class="keyword">for</span> (Element element3 : children) &#123;</span><br><span class="line">				<span class="comment">// System.out.println(element3.tagName());</span></span><br><span class="line">				<span class="keyword">if</span> (element3.tagName().equals(<span class="string">"h1"</span>)) &#123;</span><br><span class="line">					System.out.<span class="built_in">println</span>(<span class="string">"标题:"</span> + element3.<span class="built_in">text</span>());</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span> (element3.tagName().equals(<span class="string">"p"</span>)) &#123;</span><br><span class="line">					Elements children2 = element3.children();</span><br><span class="line">					Element element4 = children2.<span class="built_in">get</span>(<span class="number">0</span>);</span><br><span class="line">					System.out.<span class="built_in">println</span>(<span class="string">"时间:"</span> + element4.<span class="built_in">text</span>());</span><br><span class="line">					Element element5 = children2.<span class="built_in">get</span>(<span class="number">1</span>);</span><br><span class="line">					System.out.<span class="built_in">println</span>(<span class="string">"来源:"</span> + element5.<span class="built_in">text</span>());</span><br><span class="line">					System.out.<span class="built_in">println</span>(<span class="string">"来源链接:"</span> + element5.attr(<span class="string">"href"</span>));</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>作者:lhsjohn</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/29/《西虹市首富》---爆笑与浪漫的融合体/" itemprop="url">
-              
-                <span itemprop="name">《西虹市首富》--爆笑与浪漫的融合体</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-29T18:39:09+08:00"
-              content="2018-07-29" >
-          07-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/20/Jsoup爬虫简单实例[笔记] ---- 根据URL爬取多篇凤凰网新闻内容(测试版本)/" rel="next" title="Jsoup爬虫简单实例[笔记] ---- 根据URL爬取多篇凤凰网新闻内容(测试版本)">
+                <i class="fa fa-chevron-left"></i> Jsoup爬虫简单实例[笔记] ---- 根据URL爬取多篇凤凰网新闻内容(测试版本)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2018/07/page/2/">2</a><a class="extend next" rel="next" href="/archives/2018/07/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+        <!--MOB SHARE BEGIN-->
+<div class="-mob-share-ui-button -mob-share-open">分享</div>
+<div class="-mob-share-ui" style="display: none">
+<ul class="-mob-share-list">
+<li class="-mob-share-weibo"><p>新浪微博</p></li>
+<li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
+<li class="-mob-share-qzone"><p>QQ空间</p></li>
+<li class="-mob-share-qq"><p>QQ好友</p></li>
+<li class="-mob-share-renren"><p>人人网</p></li>
+<li class="-mob-share-kaixin"><p>开心网</p></li>
+<li class="-mob-share-douban"><p>豆瓣</p></li>
+<li class="-mob-share-facebook"><p>Facebook</p></li>
+<li class="-mob-share-twitter"><p>Twitter</p></li>
+</ul>
+<div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=276e66346840e"></script>
+<!--MOB SHARE END-->  
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -479,6 +559,13 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -770,6 +857,10 @@ show_date_time();
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

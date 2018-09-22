@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.lhsjohn.com/"/>
-  <updated>2018-09-20T15:47:29.783Z</updated>
+  <updated>2018-09-22T15:56:58.669Z</updated>
   <id>https://www.lhsjohn.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Jsoup爬取凤凰网2018-09-22日部分新闻[笔记] ---- 根据URL规律爬取多篇凤凰网新闻内容(测试单线程版本)</title>
+    <link href="https://www.lhsjohn.com/2018/09/22/Jsoup%E7%88%AC%E5%8F%96%E5%87%A4%E5%87%B0%E7%BD%912018-09-22%E6%97%A5%E9%83%A8%E5%88%86%E6%96%B0%E9%97%BB%5B%E7%AC%94%E8%AE%B0%5D%20----%20%E6%A0%B9%E6%8D%AEURL%E8%A7%84%E5%BE%8B%E7%88%AC%E5%8F%96%E5%A4%9A%E7%AF%87%E5%87%A4%E5%87%B0%E7%BD%91%E6%96%B0%E9%97%BB%E5%86%85%E5%AE%B9(%E6%B5%8B%E8%AF%95%E5%8D%95%E7%BA%BF%E7%A8%8B%E7%89%88%E6%9C%AC)(1)/"/>
+    <id>https://www.lhsjohn.com/2018/09/22/Jsoup爬取凤凰网2018-09-22日部分新闻[笔记] ---- 根据URL规律爬取多篇凤凰网新闻内容(测试单线程版本)(1)/</id>
+    <published>2018-09-22T15:53:24.000Z</published>
+    <updated>2018-09-22T15:56:58.669Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;/images/2018-09-22.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这个方法缺点是速度慢，优点是暂时不用考虑数据共享的问题,但是单线程去爬虫还是有很大缺点的,&lt;br&gt;暂时先写一个单线程的,下次再此基础上优化出多线程版本。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="java" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/"/>
+    
+      <category term="Joup" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/Joup/"/>
+    
+    
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
+    
+      <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>Jsoup爬虫简单实例[笔记] ---- 根据URL爬取多篇凤凰网新闻内容(测试版本)</title>
@@ -618,40 +645,6 @@
       <category term="ActiveMQ" scheme="https://www.lhsjohn.com/tags/ActiveMQ/"/>
     
       <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SolrCloud，一个分布式搜索方案</title>
-    <link href="https://www.lhsjohn.com/2018/08/14/SolrCloud%EF%BC%8C%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E6%96%B9%E6%A1%88/"/>
-    <id>https://www.lhsjohn.com/2018/08/14/SolrCloud，一个分布式搜索方案/</id>
-    <published>2018-08-14T15:17:16.000Z</published>
-    <updated>2018-08-31T13:34:27.160Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近搞分布式搜索服务的实现，一直受到性能的瓶颈制约，单机版的solr服务对于少数用户体验还可以，但是涉及到几千的并发的时候，难免会造成性能的突然下降。&lt;/p&gt;
-&lt;p&gt;下面是一套利用solr和zookeeper实现的分布式搜索架构方案&lt;/p&gt;
-&lt;h1 id=&quot;Solr集群的系统架构&quot;&gt;&lt;a href=&quot;#Solr集群的系统架构&quot; class=&quot;headerlink&quot; title=&quot;Solr集群的系统架构&quot;&gt;&lt;/a&gt;Solr集群的系统架构&lt;/h1&gt;&lt;p&gt; &lt;img src=&quot;/images/2018-08-14-1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt; 三个Solr实例（ 每个实例包括两个Core），组成一个SolrCloud。&lt;/p&gt;
-&lt;p&gt; 索引集合包括两个Shard（shard1和shard2），shard1和shard2分别由三个Core组成，其中一个Leader两个Replication，Leader是由zookeeper选举产生，zookeeper控制每个shard上三个Core的索引数据一致，解决高可用问题。&lt;br&gt;用户发起索引请求分别从shard1和shard2上获取，解决高并发问题。&lt;/p&gt;
-&lt;p&gt;Collection在SolrCloud集群中是一个逻辑意义上的完整的索引结构。它常常被划分为一个或多个Shard（分片），它们使用相同的配置信息。&lt;br&gt;比如：针对商品信息搜索可以创建一个collection。&lt;br&gt; collection=shard1+shard2+….+shardX&lt;/p&gt;
-&lt;p&gt; 每个Core是Solr中一个独立运行单位，提供 索引和搜索服务。一个shard需要由一个Core或多个Core组成。由于collection由多个shard组成所以collection一般由多个core组成。&lt;/p&gt;
-&lt;p&gt; Master是master-slave结构中的主结点（通常说主服务器），Slave是master-slave结构中的从结点（通常说从服务器或备服务器）。同一个Shard下master和slave存储的数据是一致的，这是为了达到高可用目的。&lt;/p&gt;
-&lt;p&gt; Collection的逻辑分片。每个Shard被化成一个或者多个replication，通过选举确定哪个是Leader。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="项目" scheme="https://www.lhsjohn.com/categories/%E9%A1%B9%E7%9B%AE/"/>
-    
-      <category term="java" scheme="https://www.lhsjohn.com/categories/%E9%A1%B9%E7%9B%AE/java/"/>
-    
-    
-      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
-    
-      <category term="solr+zookeeper" scheme="https://www.lhsjohn.com/tags/solr-zookeeper/"/>
-    
-      <category term="linux" scheme="https://www.lhsjohn.com/tags/linux/"/>
     
   </entry>
   
