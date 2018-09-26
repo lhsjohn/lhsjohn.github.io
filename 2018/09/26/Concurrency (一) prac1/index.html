@@ -85,19 +85,16 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
 
 
 
-<meta name="description" content="并发多线程Demo清单1.定义任务,定义一个任务显示发射之前的倒计时1234567891011121314151617181920212223242526package com.lhsjohn.comcurrency.prac;public class LiftOff implements Runnable &amp;#123;	protected int countDown = 10;	private">
 <meta name="keywords" content="java,学习,Thinking in java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Concurrency (一) prac1">
 <meta property="og:url" content="https://www.lhsjohn.com/2018/09/26/Concurrency (一) prac1/index.html">
 <meta property="og:site_name" content="lhsjohn的博客">
-<meta property="og:description" content="并发多线程Demo清单1.定义任务,定义一个任务显示发射之前的倒计时1234567891011121314151617181920212223242526package com.lhsjohn.comcurrency.prac;public class LiftOff implements Runnable &amp;#123;	protected int countDown = 10;	private">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.lhsjohn.com/images/2018-09-26.jpg">
-<meta property="og:updated_time" content="2018-09-26T14:28:59.678Z">
+<meta property="og:updated_time" content="2018-09-26T14:34:15.603Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Concurrency (一) prac1">
-<meta name="twitter:description" content="并发多线程Demo清单1.定义任务,定义一个任务显示发射之前的倒计时1234567891011121314151617181920212223242526package com.lhsjohn.comcurrency.prac;public class LiftOff implements Runnable &amp;#123;	protected int countDown = 10;	private">
 <meta name="twitter:image" content="https://www.lhsjohn.com/images/2018-09-26.jpg">
 
 
@@ -455,6 +452,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
 
       
         <p><img src="/images/2018-09-26.jpg" alt=""></p>
+<a id="more"></a>
 <h2 id="并发多线程Demo清单"><a href="#并发多线程Demo清单" class="headerlink" title="并发多线程Demo清单"></a>并发多线程Demo清单</h2><h2 id="1-定义任务-定义一个任务显示发射之前的倒计时"><a href="#1-定义任务-定义一个任务显示发射之前的倒计时" class="headerlink" title="1.定义任务,定义一个任务显示发射之前的倒计时"></a>1.定义任务,定义一个任务显示发射之前的倒计时</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lhsjohn.comcurrency.prac;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LiftOff</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">int</span> countDown = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> taskCount = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> id = taskCount++;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">LiftOff</span><span class="params">()</span> </span>&#123;&#125;;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">LiftOff</span><span class="params">(<span class="keyword">int</span> countDown)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.countDown = countDown;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">status</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"#"</span> +id+<span class="string">"("</span>+(countDown &gt; <span class="number">0</span>?countDown:<span class="string">"liftOff"</span>)+<span class="string">"),"</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(countDown--&gt;<span class="number">0</span>) &#123;</span><br><span class="line">        	System.out.println(status());</span><br><span class="line">        	Thread.yield();</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>标识符id可以用来区分任务的多个实例,因为它是final的,一旦被初始化后就不希望被修改。</p>
 <p>在run()中对静态方法Thread.yield()的调用是对线程调度器的一种建议,它是Java线程机制的一部分,可以将CPU从一个线程转移给另外一个线程。</p>
