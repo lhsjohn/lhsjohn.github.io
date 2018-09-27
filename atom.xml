@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.lhsjohn.com/"/>
-  <updated>2018-09-26T14:34:15.603Z</updated>
+  <updated>2018-09-27T14:09:59.285Z</updated>
   <id>https://www.lhsjohn.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Jsoup爬取凤凰网2018-09-22日部分新闻[笔记] ---- 根据URL规律爬取多篇凤凰网新闻内容(测试单线程版本)</title>
+    <link href="https://www.lhsjohn.com/2018/09/27/Jsoup%E7%88%AC%E5%8F%96%E5%87%A4%E5%87%B0%E7%BD%912018-09-22%E6%97%A5%E9%83%A8%E5%88%86%E6%96%B0%E9%97%BB%5B%E7%AC%94%E8%AE%B0%5D%20----%20%E6%A0%B9%E6%8D%AEURL%E8%A7%84%E5%BE%8B%E7%88%AC%E5%8F%96%E5%A4%9A%E7%AF%87%E5%87%A4%E5%87%B0%E7%BD%91%E6%96%B0%E9%97%BB%E5%86%85%E5%AE%B9(%E6%B5%8B%E8%AF%95%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%89%88%E6%9C%AC)/"/>
+    <id>https://www.lhsjohn.com/2018/09/27/Jsoup爬取凤凰网2018-09-22日部分新闻[笔记] ---- 根据URL规律爬取多篇凤凰网新闻内容(测试多线程版本)/</id>
+    <published>2018-09-27T13:53:24.000Z</published>
+    <updated>2018-09-27T14:09:59.285Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;/images/2018-09-22.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;之前写了单线程版本的爬虫,但是性能可见并不是特别理想,这几天稍微看了一下多线程和并发,准备按照自己的思路简单的写一个多线程版本的爬虫,通过对比,速度确实提高了不少。&lt;/p&gt;
+&lt;p&gt;但是这个多线程版本也仅仅是测试版,一些可变参数都是用的硬编码的方式,并不是很严谨，仅供参考和记录。&lt;br&gt;需要逐步优化出适合自己程序的版本。&lt;/p&gt;
+&lt;p&gt;下面上代码:&lt;br&gt;
+    
+    </summary>
+    
+      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="java" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/"/>
+    
+      <category term="Joup" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/Joup/"/>
+    
+    
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
+    
+      <category term="爬虫" scheme="https://www.lhsjohn.com/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>Concurrency (一) prac1</title>
@@ -591,36 +620,6 @@
       <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
     
       <category term="Intercepter" scheme="https://www.lhsjohn.com/tags/Intercepter/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SSO单点登录</title>
-    <link href="https://www.lhsjohn.com/2018/08/19/SSO%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E5%A4%84%E7%90%86/"/>
-    <id>https://www.lhsjohn.com/2018/08/19/SSO单点登录处理/</id>
-    <published>2018-08-19T11:00:03.000Z</published>
-    <updated>2018-08-31T13:35:08.526Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;集群环境下的登录&lt;/p&gt;
-&lt;p&gt; &lt;img src=&quot;/images/2018-08-19-1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt; 在集群环境下可能会出现要求用户多次登录的情况(配置了负载均衡后无法实现Session共享)&lt;/p&gt;
-&lt;p&gt; 解决方案&lt;br&gt;   1.可以配置tomcat集群,配置tomcatSession复制，节点数不要超过5个&lt;br&gt;   2.可以使用Session服务器，保存Session信息，模拟Session.&lt;/p&gt;
-&lt;p&gt;   单点登录系统是使用redis模拟Session,实现Session的统一管理&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="项目" scheme="https://www.lhsjohn.com/categories/%E9%A1%B9%E7%9B%AE/"/>
-    
-      <category term="java" scheme="https://www.lhsjohn.com/categories/%E9%A1%B9%E7%9B%AE/java/"/>
-    
-      <category term="SSO单点登录" scheme="https://www.lhsjohn.com/categories/%E9%A1%B9%E7%9B%AE/java/SSO%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
-    
-    
-      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
-    
-      <category term="SSO单点登录" scheme="https://www.lhsjohn.com/tags/SSO%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
     
   </entry>
   

@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+
+<script type="text/javascript"
+color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/header.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java,爬虫," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="lhsjohn的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="之前写了单线程版本的爬虫,但是性能可见并不是特别理想,这几天稍微看了一下多线程和并发,准备按照自己的思路简单的写一个多线程版本的爬虫,通过对比,速度确实提高了不少。 但是这个多线程版本也仅仅是测试版,一些可变参数都是用的硬编码的方式,并不是很严谨，仅供参考和记录。需要逐步优化出适合自己程序的版本。 下面上代码:">
+<meta name="keywords" content="java,爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jsoup爬取凤凰网2018-09-22日部分新闻[笔记] ---- 根据URL规律爬取多篇凤凰网新闻内容(测试单线程版本)">
+<meta property="og:url" content="https://www.lhsjohn.com/2018/09/27/Jsoup爬取凤凰网2018-09-22日部分新闻[笔记] ---- 根据URL规律爬取多篇凤凰网新闻内容(测试多线程版本)/index.html">
+<meta property="og:site_name" content="lhsjohn的博客">
+<meta property="og:description" content="之前写了单线程版本的爬虫,但是性能可见并不是特别理想,这几天稍微看了一下多线程和并发,准备按照自己的思路简单的写一个多线程版本的爬虫,通过对比,速度确实提高了不少。 但是这个多线程版本也仅仅是测试版,一些可变参数都是用的硬编码的方式,并不是很严谨，仅供参考和记录。需要逐步优化出适合自己程序的版本。 下面上代码:">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://www.lhsjohn.com/images/2018-09-22.jpg">
+<meta property="og:updated_time" content="2018-09-27T14:09:59.285Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jsoup爬取凤凰网2018-09-22日部分新闻[笔记] ---- 根据URL规律爬取多篇凤凰网新闻内容(测试单线程版本)">
+<meta name="twitter:description" content="之前写了单线程版本的爬虫,但是性能可见并不是特别理想,这几天稍微看了一下多线程和并发,准备按照自己的思路简单的写一个多线程版本的爬虫,通过对比,速度确实提高了不少。 但是这个多线程版本也仅仅是测试版,一些可变参数都是用的硬编码的方式,并不是很严谨，仅供参考和记录。需要逐步优化出适合自己程序的版本。 下面上代码:">
+<meta name="twitter:image" content="https://www.lhsjohn.com/images/2018-09-22.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":10,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.lhsjohn.com/2018/09/27/Jsoup爬取凤凰网2018-09-22日部分新闻[笔记] ---- 根据URL规律爬取多篇凤凰网新闻内容(测试多线程版本)/"/>
+
+
+
+
+
+  <title>Jsoup爬取凤凰网2018-09-22日部分新闻[笔记] ---- 根据URL规律爬取多篇凤凰网新闻内容(测试单线程版本) | lhsjohn的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband">
+	</div>
+		<a href="https://github.com/lhsjohn"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lhsjohn的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">对未来的真正慷慨，是把一切献给现在</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于我">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lhsjohn.com/2018/09/27/Jsoup爬取凤凰网2018-09-22日部分新闻[笔记] ---- 根据URL规律爬取多篇凤凰网新闻内容(测试多线程版本)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lhsjohn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lhsjohn的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Jsoup爬取凤凰网2018-09-22日部分新闻[笔记] ---- 根据URL规律爬取多篇凤凰网新闻内容(测试单线程版本)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-27T21:53:24+08:00">
+                2018-09-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习/java/Joup/" itemprop="url" rel="index">
+                    <span itemprop="name">Joup</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/27/Jsoup爬取凤凰网2018-09-22日部分新闻[笔记] ---- 根据URL规律爬取多篇凤凰网新闻内容(测试多线程版本)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/09/27/Jsoup爬取凤凰网2018-09-22日部分新闻[笔记] ---- 根据URL规律爬取多篇凤凰网新闻内容(测试多线程版本)/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+         
+     <span class="post-meta-divider">|</span>
+     <span id="busuanzi_value_page_pv"></span>次阅读
+        
+		  
+		  
+		  
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  6,899
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  26
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/2018-09-22.jpg" alt=""></p>
+<p>之前写了单线程版本的爬虫,但是性能可见并不是特别理想,这几天稍微看了一下多线程和并发,准备按照自己的思路简单的写一个多线程版本的爬虫,通过对比,速度确实提高了不少。</p>
+<p>但是这个多线程版本也仅仅是测试版,一些可变参数都是用的硬编码的方式,并不是很严谨，仅供参考和记录。<br>需要逐步优化出适合自己程序的版本。</p>
+<p>下面上代码:<br><a id="more"></a></p>
+<h2 id="首先把爬虫和解析的任务放到一个类里面。并不推荐把两者放在在一起-因为这里的任务比较单一简单-所以就放一起了。"><a href="#首先把爬虫和解析的任务放到一个类里面。并不推荐把两者放在在一起-因为这里的任务比较单一简单-所以就放一起了。" class="headerlink" title="首先把爬虫和解析的任务放到一个类里面。并不推荐把两者放在在一起,因为这里的任务比较单一简单,所以就放一起了。"></a>首先把爬虫和解析的任务放到一个类里面。并不推荐把两者放在在一起,因为这里的任务比较单一简单,所以就放一起了。</h2><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> com.lhsjohn.spider;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.jsoup.Jsoup;</span><br><span class="line"><span class="keyword">import</span> org.jsoup.nodes.Element;</span><br><span class="line"><span class="keyword">import</span> org.jsoup.select.Elements;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class FhNewsSpider &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span>  <span class="keyword">void</span> crawNews(<span class="keyword">String</span> index) <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		<span class="keyword">String</span> url = <span class="string">"http://news.ifeng.com/a/20180922/60080"</span> + index + <span class="string">"_0.shtml"</span>;</span><br><span class="line">		org.jsoup.nodes.Document document = Jsoup.connect(url).timeout(<span class="number">50000000</span>).<span class="built_in">get</span>();</span><br><span class="line">		<span class="keyword">String</span> selection = <span class="string">".yc_main.wrap"</span>;</span><br><span class="line">		Elements elements = document.select(selection);</span><br><span class="line">		<span class="keyword">if</span>(elements.isEmpty()) &#123;</span><br><span class="line">			Elements elements2 = document.select(<span class="string">"#artical #artical_topic"</span>);</span><br><span class="line">			<span class="keyword">if</span>(!elements2.isEmpty()) &#123;</span><br><span class="line">				Element element_h1 = elements2.<span class="built_in">get</span>(<span class="number">0</span>);</span><br><span class="line">				System.out.<span class="built_in">println</span>(<span class="string">"文章标题:"</span>+element_h1.<span class="built_in">text</span>());</span><br><span class="line">				Element artical_sth_div = element_h1.nextElementSibling();</span><br><span class="line">				Elements children = artical_sth_div.children();</span><br><span class="line">				<span class="keyword">if</span>(!children.isEmpty()) &#123;</span><br><span class="line">					Element element_p_time = children.<span class="built_in">get</span>(<span class="number">0</span>);</span><br><span class="line">					Elements children2 = element_p_time.children();</span><br><span class="line">					<span class="keyword">if</span>(!children.isEmpty()) &#123;</span><br><span class="line">						System.out.<span class="built_in">println</span>(<span class="string">"时间: "</span>+children2.<span class="built_in">get</span>(<span class="number">0</span>).<span class="built_in">text</span>());</span><br><span class="line">						System.out.<span class="built_in">println</span>(<span class="string">"来源: "</span>+children2.<span class="built_in">get</span>(<span class="number">3</span>).<span class="built_in">text</span>());</span><br><span class="line">						System.out.<span class="built_in">println</span>(<span class="string">"来源Url: "</span>+children2.<span class="built_in">get</span>(<span class="number">3</span>).attr(<span class="string">"itemtype"</span>));</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				Elements elements_main_content = document.select(<span class="string">"#artical #main_content"</span>);</span><br><span class="line">				<span class="keyword">if</span>(!elements_main_content.isEmpty()) &#123;</span><br><span class="line">					Element element_main_div = elements_main_content.<span class="built_in">get</span>(<span class="number">0</span>);</span><br><span class="line">					Elements children2 = element_main_div.children();</span><br><span class="line">					<span class="comment">//新闻内容</span></span><br><span class="line">					<span class="keyword">String</span> content = <span class="string">""</span>;</span><br><span class="line">					<span class="keyword">if</span>(!children2.isEmpty()) &#123;</span><br><span class="line">						<span class="keyword">for</span> (Element element : children2) &#123;</span><br><span class="line">						    Elements element_img = element.select(<span class="string">"img"</span>);</span><br><span class="line">						    <span class="keyword">if</span>(!element_img.isEmpty()) &#123;</span><br><span class="line">						    	<span class="keyword">for</span> (Element element2 : element_img) &#123;</span><br><span class="line">									System.out.<span class="built_in">println</span>(<span class="string">"图片地址:"</span>+element2.attr(<span class="string">"src"</span>));</span><br><span class="line">								&#125;</span><br><span class="line">						    &#125;</span><br><span class="line">						    content+=element.<span class="built_in">text</span>();</span><br><span class="line">							<span class="comment">//System.out.println("111:"+element.text());</span></span><br><span class="line">						&#125;</span><br><span class="line">						System.out.<span class="built_in">println</span>(<span class="string">"新闻内容:"</span>+content);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">				</span><br><span class="line">				<span class="keyword">return</span>;</span><br><span class="line">			&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">return</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		Element element = elements.<span class="built_in">get</span>(<span class="number">0</span>);</span><br><span class="line">		Elements elements2 = element.select(<span class="string">".yc_tit"</span>);</span><br><span class="line">		<span class="keyword">if</span> (!elements2.isEmpty()) &#123;</span><br><span class="line">			Element element2 = elements2.<span class="built_in">get</span>(<span class="number">0</span>);</span><br><span class="line">			Elements children = element2.children();</span><br><span class="line">			<span class="keyword">for</span> (Element element3 : children) &#123;</span><br><span class="line">				<span class="comment">// System.out.println(element3.tagName());</span></span><br><span class="line">				<span class="keyword">if</span> (element3.tagName().equals(<span class="string">"h1"</span>)) &#123;</span><br><span class="line">					System.out.<span class="built_in">println</span>(<span class="string">"标题:"</span> + element3.<span class="built_in">text</span>());</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span> (element3.tagName().equals(<span class="string">"p"</span>)) &#123;</span><br><span class="line">					Elements children2 = element3.children();</span><br><span class="line">					Element element4 = children2.<span class="built_in">get</span>(<span class="number">0</span>);</span><br><span class="line">					System.out.<span class="built_in">println</span>(<span class="string">"时间:"</span> + element4.<span class="built_in">text</span>());</span><br><span class="line">					Element element5 = children2.<span class="built_in">get</span>(<span class="number">1</span>);</span><br><span class="line">					System.out.<span class="built_in">println</span>(<span class="string">"来源:"</span> + element5.<span class="built_in">text</span>());</span><br><span class="line">					System.out.<span class="built_in">println</span>(<span class="string">"来源链接:"</span> + element5.attr(<span class="string">"href"</span>));</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="创建一个线程任务-采用构造器传递爬取的范围参数。"><a href="#创建一个线程任务-采用构造器传递爬取的范围参数。" class="headerlink" title="创建一个线程任务,采用构造器传递爬取的范围参数。"></a>创建一个线程任务,采用构造器传递爬取的范围参数。</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lhsjohn.spider;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClawnNews</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> startIndex;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> endIndex;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ClawnNews</span><span class="params">(<span class="keyword">int</span> startIndex, <span class="keyword">int</span> endIndex)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.startIndex = startIndex;</span><br><span class="line">		<span class="keyword">this</span>.endIndex = endIndex;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		FhNewsSpider spider = <span class="keyword">new</span> FhNewsSpider();</span><br><span class="line">		String Sindex = <span class="string">""</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">		<span class="keyword">while</span> (startIndex &lt;= endIndex) &#123;</span><br><span class="line">			<span class="keyword">if</span> (startIndex &lt;= <span class="number">9</span>) &#123;</span><br><span class="line">				Sindex = <span class="string">"00"</span> + startIndex;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (startIndex &gt; <span class="number">9</span> &amp;&amp; startIndex &lt;= <span class="number">99</span>) &#123;</span><br><span class="line">				Sindex = <span class="string">"0"</span> + startIndex;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (startIndex &gt; <span class="number">99</span>) &#123;</span><br><span class="line">				Sindex = <span class="string">""</span> + startIndex;</span><br><span class="line">			&#125;</span><br><span class="line">			startIndex++;</span><br><span class="line">			System.out.println(Sindex);</span><br><span class="line">		</span><br><span class="line">			  spider.crawNews(Sindex);</span><br><span class="line">			&#125;</span><br><span class="line">		   &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">				</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		    Thread.yield();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="主线程采用FixedThreadPool-创建4个线程执行任务"><a href="#主线程采用FixedThreadPool-创建4个线程执行任务" class="headerlink" title="主线程采用FixedThreadPool 创建4个线程执行任务"></a>主线程采用FixedThreadPool 创建4个线程执行任务</h2><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lhsjohn.spider;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainThread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">		ExecutorService exec = Executors.<span class="keyword">new</span><span class="type">FixedThreadPool</span>(<span class="number">4</span>);</span><br><span class="line">		<span class="keyword">for</span>(int i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++) &#123;</span><br><span class="line">			<span class="keyword">switch</span>(i) &#123;</span><br><span class="line">			   <span class="keyword">case</span> <span class="number">0</span> : <span class="type">exec</span>.execute(<span class="keyword">new</span> <span class="type">ClawnNews</span>(<span class="number">140</span>, <span class="number">249</span>));</span><br><span class="line">			   <span class="keyword">case</span> <span class="number">1</span> : <span class="type">exec</span>.execute(<span class="keyword">new</span> <span class="type">ClawnNews</span>(<span class="number">250</span>,<span class="number">499</span>));</span><br><span class="line">			   <span class="keyword">case</span> <span class="number">2</span> : <span class="type">exec</span>.execute(<span class="keyword">new</span> <span class="type">ClawnNews</span>(<span class="number">500</span>,<span class="number">749</span>));</span><br><span class="line">			   <span class="keyword">case</span> <span class="number">3</span> : <span class="type">exec</span>.execute(<span class="keyword">new</span> <span class="type">ClawnNews</span>(<span class="number">750</span>,<span class="number">999</span>));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		exec.shutdown();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>爬取结果:</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">140</span></span><br><span class="line"><span class="number">250</span></span><br><span class="line"><span class="number">500</span></span><br><span class="line"><span class="number">750</span></span><br><span class="line"><span class="number">751</span></span><br><span class="line"><span class="number">501</span></span><br><span class="line"><span class="number">251</span></span><br><span class="line">文章标题<span class="symbol">:</span>荷兰国防部计划采购更多F-<span class="number">35</span>战机并将在<span class="number">2019</span>年接收<span class="number">8</span>架</span><br><span class="line">时间: <span class="number">2018</span>年09月<span class="number">22</span>日 <span class="number">13</span><span class="symbol">:</span><span class="number">40</span><span class="symbol">:</span><span class="number">58</span></span><br><span class="line">来源: 军事首条</span><br><span class="line">来源<span class="symbol">Url:</span> <span class="symbol">http:</span>/<span class="regexp">/schema.org/</span>Organization</span><br><span class="line">图片地址<span class="symbol">:http</span><span class="symbol">://p0</span>.ifengimg.com/pmop/<span class="number">2018</span>/0922/<span class="number">86</span>D04FDD0F37A231186D527A3BEFC7E27961F7F3_size334_w1200_h853.jpeg</span><br><span class="line">图片地址<span class="symbol">:http</span><span class="symbol">://p0</span>.ifengimg.com/pmop/<span class="number">2018</span>/0922/<span class="number">86</span>D04FDD0F37A231186D527A3BEFC7E27961F7F3_size334_w1200_h853.jpeg</span><br><span class="line">图片地址<span class="symbol">:http</span><span class="symbol">://p2</span>.ifengimg.com/a/<span class="number">2016</span>/081<span class="number">0</span>/<span class="number">204</span>c433878d5cf9size1_w16_h16.png</span><br><span class="line">新闻内容<span class="symbol">:</span>荷兰国防部长Ank Bijleveld取消了该国对F-<span class="number">35</span>购买的预算上限，开启了未来购买更多飞机的可能性。国防部发言人称这一举动“只是一种形式”，不需要议会批准，因为荷兰以<span class="number">47</span>亿欧元购买<span class="number">37</span>架洛克希德·马丁制造的喷F-<span class="number">35</span>战斗机的目标仍然存在。但发言人表示，这意味着“除了预算中已经设想的那些”之外，“我们可以选择购买新飞机”。荷兰空军正在调整，计划最终获得<span class="number">67</span>架F-<span class="number">35</span>战斗机，足以装备四个中队。最近发布的<span class="number">2019</span>年预算仍然反映了政府购买<span class="number">37</span>架F-<span class="number">35</span>战斗机的目标。但是，一旦订购的批次交付接近完成，此时预算上限的消除可能会在几年后为其他合同设定阶段。荷兰计划在意大利北部卡梅里组装大部分F-<span class="number">35</span>战机，意大利空军和海军F-<span class="number">35</span>已经在这里组装。荷兰将在<span class="number">2019</span>年接收<span class="number">8</span>架F-<span class="number">35</span>战斗机。此外还有已经生产的两架试飞机。第五代飞机的目的是取代该国<span class="number">60</span>架左右的F-<span class="number">16</span>战机，每年的飞机数量为<span class="number">6</span>至<span class="number">8</span>架飞机，直到达到目标数量<span class="number">37</span>架。该库存将允许荷兰为作战部署<span class="number">4</span>架F-<span class="number">35</span>，考虑到一定数量的飞机总是用于训练，进行维护或无法部署。“来自北约的压力很大，<span class="number">37</span>架F-<span class="number">35</span>战斗机还不够，荷兰国防部一直在谈论将这个数字增加到<span class="number">52</span>个。“与此同时，由于其开发价格和高成本，F-<span class="number">35</span>战斗机的购买在荷兰将面临一些阻力。 </span><br><span class="line"><span class="number">141</span></span><br><span class="line"><span class="number">752</span></span><br><span class="line"><span class="number">502</span></span><br><span class="line"><span class="number">252</span></span><br><span class="line">文章标题<span class="symbol">:</span>东西南北中 中秋习俗各不同</span><br><span class="line">时间: <span class="number">2018</span>年09月<span class="number">22</span>日 <span class="number">13</span><span class="symbol">:</span><span class="number">41</span><span class="symbol">:</span><span class="number">31</span></span><br><span class="line">来源: 楚天都市报</span><br><span class="line">来源<span class="symbol">Url:</span> <span class="symbol">http:</span>/<span class="regexp">/schema.org/</span>Organization</span><br><span class="line">图片地址<span class="symbol">:http</span><span class="symbol">://p2</span>.ifengimg.com/a/<span class="number">2018_38</span>/<span class="number">1191424</span>eb7e5472_size17_w530_h353.jpg</span><br><span class="line">图片地址<span class="symbol">:http</span><span class="symbol">://p2</span>.ifengimg.com/a/<span class="number">2016</span>/081<span class="number">0</span>/<span class="number">204</span>c433878d5cf9size1_w16_h16.png</span><br><span class="line">新闻内容<span class="symbol">:</span>中秋节是中华民族的传统节日。五里不同风，十里不同俗。全国各地群众在欢度中秋时也各有特色。昨日，楚天都市报记者联系了福建、云南、广东、黑龙江、江西等五省民俗专家，了解东西南北中五个地方的中秋习俗。福建“博饼”游戏别具一格在福建，中秋节的习俗独具特色。福建晋江市谱牒民俗学会周仪扬先生介绍，在福建多地，每逢中秋亲朋好友聚在一起时，经常玩“博饼”游戏，这种游戏很简单，用六粒骰子在一个大瓷碗里掷点数，用点数决定参与者的奖品。传统的奖品为大小不同的月饼，第一名可以得到最大的月饼。博饼游戏相传是郑成功为了鼓舞思乡将士，命令其下属发明此游戏。这种游戏是闽南地区几百年来独有的中秋传统活动。周仪扬先生还介绍，中秋节前后正是番薯芋成熟的时候，这个时候的芋头又香又松。“芋”在闽南话中和“路”“护”谐音。此外，芋头往往是一个大芋头周边连着很多小芋头，在闽南人看来这寓意着多子多孙。中秋团圆时吃芋，寄托着人丁兴旺大团圆的美好期盼。此外，还有一种说法是，郑成功当年在山中躲避敌人，缺少粮食，于是挖野芋头充饥，后人每逢中秋也以吃芋头纪念郑成功。“烧塔仔”“听香”等也是闽南地区流传至今的中秋习俗。周仪扬先生介绍，闽南孩童有烧塔仔的习俗。孩子们聚集在一起捡拾碎砖旧瓦，叠成塔的形状，把柴草放入其中点燃，火便从空隙吐射而出。相传，“烧塔仔”的习俗起源于元朝末年，是从农民中秋起义时举火为号这一举动流传下来的。广东中秋夜妇女孩童虔诚拜月汕头大学研究生导师林凯龙，曾下乡走访<span class="number">30</span>年记录研究潮汕古俗，著有《潮汕老屋》《潮汕古俗》等。说起潮汕中秋节习俗，作为土生土长的潮汕人，林凯龙再熟悉不过。“这一天民间习俗是下午奉神祭祖，夜晚拜月赏月。”林凯龙说，潮汕有“中秋小过年”之说，潮人称月亮为太阴娘，简称月娘，因此，潮汕有“男不祭月，女不祭灶”的俗谚。祭月的主角是妇女孩童，晚饭过后，妇女们换上新衣，带领孩子们安好香案，点燃香烛或者购买电子莲花灯，摆上琳琅满目的供品，开始对着挂在天边的月亮遥拜。拜月寄托了人们的美好愿望，如孩子将新买的书本和文具摆在供案的最前面，希望月娘保佑学童读书刻苦，成绩优秀；待出嫁姑娘拜月祈求月娘穿针引线，助自己与心上人结成良缘。拜月后，家人闲笑庭前，吃糕饼，喝功夫茶，赏月谈天。云南傣族祭月仪式盛大云南多民族聚居，民族文化荟萃，中秋节有着丰富的庆祝活动。云南楚雄师范学院杨荣昌老师对当地民俗颇有研究。他介绍，在傣族传说中，月亮是天皇第三个儿子岩尖变的。岩尖是个英勇刚强的青年，他曾率领傣族人民打败敌人，赢得了傣族乡亲的爱戴。他死后变成月亮，在黑暗中给傣族人民带来光明。因此每年中秋傣族人都会向传说中的英雄祭拜。参加祭月的人中选一名主祭，一名赞礼，若干执事，其他人均为从祭。祭月时在高台或场院里摆放上月饼、核桃、板栗等食物，并向月亮读祝文，祝文分四言、五言、七言，精短优美，仪式颇为庄重盛大。杨荣昌老师还介绍，楚雄彝族地区流行“偷月光菜”的习俗。相传，每当中秋月宫仙女都要降临凡间，洒甘露于人间，所有彝族人民在这天晚上纷纷出去享用洒有甘露的瓜果蔬菜。“偷月光菜”是一种象征吉祥的民间习俗，即使菜园主人遇到，也不会将其视为真正的小偷。有的地区在八月十五这天还可以随便到别人地里摘取瓜果，主人不会生气。江西除了吃月饼还要吃柚子江西省民俗社会学研究会会长梅联华介绍，每到中秋佳节，江西南部地区除了要吃月饼，还习惯吃柚子。因为在当地方言里，“柚子”与“有子”“佑子”谐音，中秋节吃柚子有着早生贵子的吉祥寓意。而在江西景德镇，中秋吃碱水粑则是窑工们必不可少的民俗项目。人们将包装瓷器的稻秆烧灰滤水代碱制成碱水，和大米一起磨浆，制成长条状。由于碱水粑食用方法多样，而且久储不坏，是窑工们外出必备的干粮。江西上饶附近的一些乡村，还有一套独特的中秋习俗。梅联华告诉记者，每到中秋前后，平常供在庙里的菩萨都要到村里行香，这也是一年之中仅有的一次，每到一户家中，老百姓都要拿出红包或捐出一些善款，以求得到降福。在江西湖口，每逢中秋佳节，家家户户都会忙着“做粑”庆祝，如今“湖口粑俗”也已被列为省级非物质文化遗产。梅联华介绍，从新石器时代晚期开始，湖口人就开始用陶臼制作糍粑。人们在做粑时，会印上福、禄、鲤鱼、喜鹊等纹饰，以示喜庆和吉祥。同时，“做粑”也象征着团圆，一大家人围在一起，有说有笑，分工协作，其乐融融。黑龙江祭月与赏月融合在一起在东北三省，有着充满独特地域特色的中秋习俗。黑龙江省著名民俗专家、省社科联研究员崔家善先生介绍，东北是满族的发祥地，因此在当地形成了和全国各地既类似又有区别的地域文化。满族中秋节亦称“八月节”，满语称“扎宫比亚业能业”，是满族传统岁时节日。满族先民有祭日、月、星辰的习俗，由于满汉长期杂居，特别是满族入关以后，两族人民在文化习俗上彼此影响，互相融合。满族的祭月活动，逐渐与汉族的赏月习俗融合在一起。东北有些满族人过中秋不叫赏月，而称供月，显然是祭月的遗风。在东北当地，很多家庭保留着中秋节给祖先上香的习俗。崔家善透露，供果摆放有讲究，不同水果摆放在一起，有着不同的寓意。桃和石榴摆放在一起，寓意多寿多福。柿子、苹果成对供，寓意“事事平安”。撒上一把桂圆，意在“贵在团圆”。崔家善表示，现在东北人过中秋节除了吃月饼，还会吃饺子，吃蒸芋头。他爱人昨日已经将芋头买好，准备过节吃。同时，还要吃杀猪菜、小鸡炖蘑菇、酸菜炖血肠、锅包肉、地三鲜等东北特色菜肴。另外，中秋节期间东北很多地方会举行丰富多彩的庙会，逛庙会也是当地人过节必不可少的活动。 </span><br><span class="line"><span class="number">142</span></span><br><span class="line">文章标题<span class="symbol">:</span>逢三千年未有之大变局，社会上陆续都出现了一些什么样的报刊？</span><br><span class="line">时间: <span class="number">2018</span>年09月<span class="number">22</span>日 <span class="number">13</span><span class="symbol">:</span><span class="number">41</span><span class="symbol">:</span><span class="number">56</span></span><br><span class="line">来源: 军官团</span><br><span class="line">来源<span class="symbol">Url:</span> <span class="symbol">http:</span>/<span class="regexp">/schema.org/</span>Organization</span><br><span class="line">图片地址<span class="symbol">:http</span><span class="symbol">://p0</span>.ifengimg.com/pmop/<span class="number">2018</span>/0922/<span class="number">98</span>F382F0EB568B3AC44991E190C1242AA8B28BA7_size97_w390_h566.jpeg</span><br><span class="line">图片地址<span class="symbol">:http</span><span class="symbol">://p0</span>.ifengimg.com/pmop/<span class="number">2018</span>/0922/FDDAC39A227D1C30922729EA8747BE9F80538C30_size108_w550_h549.jpeg</span><br><span class="line">图片地址<span class="symbol">:http</span><span class="symbol">://p0</span>.ifengimg.com/pmop/<span class="number">2018</span>/0922/<span class="number">6</span>EAABC0F7B38B8E353F98E9C418147078F15C8C5_size41_w280_h28<span class="number">0</span>.jpeg</span><br><span class="line">图片地址<span class="symbol">:http</span><span class="symbol">://p2</span>.ifengimg.com/a/<span class="number">2016</span>/081<span class="number">0</span>/<span class="number">204</span>c433878d5cf9size1_w16_h16.png</span><br><span class="line">新闻内容<span class="symbol">:</span>作者简介：解玺璋，知名评论家、学者、近代史研究者。季我努学社顾问、季我努沙龙讲演嘉宾。从事报刊编辑、图书编辑二十余年，曾获多种全国及北京市文艺评论奖，著有《梁启超传》、《一个人的阅读史》、《喧嚣与寂寞》、《雅俗》等。大部分是文言，也有用白话的。译作以长篇或中篇为多，作者有周瘦鹃、天虚我生（陈蝶仙）、李常觉、陈小蝶、叶匋、许指严、姜杏痴、包天白、罗韦士、程华魂、吴双热、吴绮缘、包柚斧、俞天愤、李东埜等。周瘦鹃当时，这一类刊物数量相当多，即鲁迅所说的“鸳鸯胡蝶式文学的极盛时期”， 除了《礼拜六》，还有王蕴章、恽铁樵编的《小说月报》，徐枕亚编的《小说丛报》，李定夷编的《小说新报》，包天笑编的《小说大观》《小说画报》，以及他与陈景韩合编的《小说时报》，再加上高剑华编的《眉语》，王钝根与天虚我生编的《游戏杂志》，胡寄尘编的《香艳小品》之类，据范伯群统计，总共有三十七种之多，真可谓洋洋大观。鲁迅这种消费性期刊的盛行，其社会基础是近代以来大都市崛起、发展所形成的正当需求，也是人性的自然需求之一。满足这种需求，则是文学应尽的职责。而且，清末剧烈的社会动荡，使传统读书人遭遇“三千年未有之大变局”。科举时代，读书人纵然有万般想法，走的仍是同一条仕途，然而，一九○五年科举制度的废除，对这些人来说，却无疑是石破天惊的大事件。《礼拜六》随着清王朝的被颠覆，实行了两千多年的帝制也因此终结，天下精英从此解除了与固有体制的契约关系。以前是学好文武艺，售与帝王家的，现在买方不在了，这些被原有轨道抛离出来的读书人只能另寻出路。其中一部分鲁迅所谓的“才子”，恰逢清末民初报刊业繁荣发展的大好时机，这些报刊就成为他们展露才华的舞台，他们也因此为自己的才学找到了用武之地。谢玺璋：《张恨水传》编辑：浙江大学近现代史硕士生 萧宸轩季我努学社青年会会员</span><br><span class="line"><span class="number">143</span></span><br><span class="line"><span class="number">144</span></span><br><span class="line"><span class="number">145</span></span><br><span class="line"><span class="number">753</span></span><br><span class="line">文章标题<span class="symbol">:</span>张恨水在文章中提到的的患难之交都是哪些人？</span><br><span class="line">时间: <span class="number">2018</span>年09月<span class="number">22</span>日 <span class="number">13</span><span class="symbol">:</span><span class="number">46</span><span class="symbol">:</span><span class="number">12</span></span><br><span class="line">来源: 军官团</span><br><span class="line">来源<span class="symbol">Url:</span> <span class="symbol">http:</span>/<span class="regexp">/schema.org/</span>Organization</span><br><span class="line">图片地址<span class="symbol">:http</span><span class="symbol">://p0</span>.ifengimg.com/pmop/<span class="number">2018</span>/0922/F829C52B4A29726E506BFDA909BAAC3311B681AF_size180_w714_h54<span class="number">0</span>.jpeg</span><br><span class="line">图片地址<span class="symbol">:http</span><span class="symbol">://p0</span>.ifengimg.com/pmop/<span class="number">2018</span>/0922/<span class="number">8</span>DFC28D95C19099DD616E2E90EA06C8B1AF36FFE_size50_w466_h367.jpeg</span><br><span class="line">图片地址<span class="symbol">:http</span><span class="symbol">://p0</span>.ifengimg.com/pmop/<span class="number">2018</span>/0922/E2DB20CF782FE472AB3A009E0580176F9B7978CB_size11_w162_h20<span class="number">0</span>.jpeg</span><br><span class="line">图片地址<span class="symbol">:http</span><span class="symbol">://p2</span>.ifengimg.com/a/<span class="number">2016</span>/081<span class="number">0</span>/<span class="number">204</span>c433878d5cf9size1_w16_h16.png</span><br><span class="line">新闻内容<span class="symbol">:</span>作者简介：解玺璋，知名评论家、学者、近代史研究者。季我努学社顾问、季我努沙龙讲演嘉宾。从事报刊编辑、图书编辑二十余年，曾获多种全国及北京市文艺评论奖，著有《梁启超传》、《一个人的阅读史》、《喧嚣与寂寞》、《雅俗》等。张恨水发在一九二二年八月二十一日芜湖《工商日报》副刊的《伤心人语（三）》一文，曾经提到平生的患难之交，“一族人张楚萍，一怀宁郝耕仁”， 如果加上张东野，恰好构成了张恨水早期朋友圈的基本格局，其中的核心人物便是郝耕仁。张恨水这三个人有个共同点，即都曾有过做革命党的经历，张东野与郝耕仁早年共读于江西讲武堂，因痛恨清政府的专制腐败，秘密加入了同盟会。辛亥革命爆发，他们都是陈其美的追随者，参加过上海起义中攻打制造局的战斗。张楚萍是安庆实业学堂的高才生，毕业后久寓上海，“与民党游，渐从事革命”， 后与张东野一起参加暗杀袁世凯密使的行动，不幸失败被捕，死于狱中。陈其美三个人中，郝耕仁最年长，生于清光绪十一年（<span class="number">1885</span>年），长张恨水十岁；其次是张东野，生于光绪十五年（<span class="number">1889</span>年），长张恨水六岁；张楚萍辈分虽大，年纪最小，生于光绪十七年（<span class="number">1891</span>年），长张恨水四岁。就性情而言，三个人都有点任侠之气，狂放不羁，慷慨豪迈；又有点才子风情，多愁善感，哀怨伤怀，概括言之，即所谓侠骨幽情，这是清末民初仁人志士特别喜欢标榜的一种心态。张恨水是将门之后，对其父祖的“生性任侠”，始终深怀敬意，而他自己，由于长时间埋首故纸堆中，则“豪气尽消，力且不足搏一鸡”，因而“大感有负先人激昂慷慨之风”，“反观先祖若父，则不免有惭色焉”。 于是，这几位至交的性情，对张恨水来说，未必不是一种心理上的补偿。张东野而且，他们都喜欢游历，喜欢作诗，不在意生活的清苦，颇能苦中作乐。民国四年（<span class="number">1915</span>年）在上海，他与张楚萍都贫困潦倒，“无以自存，乃相率赴杭，寄食友人处，终日无事，携干粮奔走湖上。游程虽苦，游兴正狂，饥渴终日，坦如也”。 这次西湖之游，给他留下了难忘的印象，一九三六年五月二日，他在《南京人报》副刊《南华经》发表《湖中快语记：二十年尘梦之一（水）》一文，还念念不忘：“二十年来，每一忆之，犹神往也。”谢玺璋：《张恨水传》编辑：浙江大学近现代史硕士生 萧宸轩季我努学社青年会会员</span><br><span class="line"><span class="number">146</span></span><br><span class="line">文章标题<span class="symbol">:</span>突发：伊朗阅兵式遭枪手袭击，流弹横飞，至少<span class="number">8</span>名革命卫队被打死</span><br><span class="line">时间: <span class="number">2018</span>年09月<span class="number">22</span>日 <span class="number">16</span><span class="symbol">:</span><span class="number">06</span><span class="symbol">:</span><span class="number">27</span></span><br><span class="line">来源: 鹰眼防务解读</span><br><span class="line">来源<span class="symbol">Url:</span> <span class="symbol">http:</span>/<span class="regexp">/schema.org/</span>Organization</span><br><span class="line">图片地址<span class="symbol">:http</span><span class="symbol">://p0</span>.ifengimg.com/pmop/<span class="number">2018</span>/0922/097D168697362E3EA6046484288E79B1DE526465_size94_w500_h281.jpeg</span><br><span class="line">图片地址<span class="symbol">:http</span><span class="symbol">://p0</span>.ifengimg.com/pmop/<span class="number">2018</span>/0922/<span class="number">7</span>A0CC7ABCF759081571646936F2285E24823CA1F_size207_w640_h426.jpeg</span><br><span class="line">图片地址<span class="symbol">:http</span><span class="symbol">://p0</span>.ifengimg.com/pmop/<span class="number">2018</span>/0922/B7608DB36A914F50C8B6A3DEFE622C1FE8946B8A_size202_w600_h39<span class="number">0</span>.jpeg</span><br><span class="line">图片地址<span class="symbol">:http</span><span class="symbol">://p0</span>.ifengimg.com/pmop/<span class="number">2018</span>/0922/E285FC6C11171BD5183C9424385C07BDF3E1CF27_size70_w400_h251.jpeg</span><br><span class="line">图片地址<span class="symbol">:http</span><span class="symbol">://p2</span>.ifengimg.com/a/<span class="number">2016</span>/081<span class="number">0</span>/<span class="number">204</span>c433878d5cf9size1_w16_h16.png</span><br><span class="line">新闻内容<span class="symbol">:</span>有一个基本规律很显然大多数人没有注意到，就是当一个国家经济衰退的时候，由于失业率提高，平均收入下降，不仅会导致治安恶化，而且长期被经济高速发展隐藏的政治和社会矛盾也会激化，导致社会动乱的产生，伊朗就是这样。事实上，早在美国单方面退出伊核协议之前，伊朗经济就已经出现大问题，巨额的石油收入并没有全被用来发展国内经济和提高民众福利，反而大部分被用到了海外扩张上，与沙特争夺伊斯兰世界领导权，对抗以色列。美国的制裁只是加剧了经济的恶化，最高革命领袖哈梅内伊也承认，是伊朗政府的错误政策导致经济衰退，陆续罢免了银行行长、劳工部长和经济部长等人，但经济依然没有任何起色。从去年年底开始，遍及伊朗各地的示威游行和罢工罢市就不断，年轻人高喊结束神权独裁的口号，中年人则要求政府从海外撤军，将更多的精力和资金用于恢复经济，抑制物价上涨，提升就业率，忠于哈梅内伊的革命卫队疲于奔命四处镇压。不仅是库尔德武装在西北部的叛乱，各路反对派也纷纷出现，包括巴列维王党、伊共、逊尼派阿拉伯人，甚至还包括被列为非法的伊朗妇女组织等，更可怕的是，伊朗军队出现了问题，部分被派往西北部镇压叛乱的军队倒戈加入库尔德武装一方，革命卫队力量有限，伊朗多年支持的胡赛、哈马斯和真主党等武装，纷纷进入伊朗境内参与镇压行动。突发消息，在伊朗今天举行的阅兵式上，突然遭到枪手袭击，现场枪声大作，至少<span class="number">8</span>名革命卫队成员被打死，现场大批人员趴在地上躲避榴弹，参与袭击的两名枪手被击毙，另有两人趁乱逃走，不由得让人想起埃及前总统萨达特，也是在阅兵式上被暗杀。伊朗已经出现了大问题，但由于严格的信息管制，外界对其了解十分有限，糊了内部问题，美国、以色列和沙特等国也已经联合起来，对抗伊朗的海外扩张，一旦伊朗也陷入内乱，恐怕不能指望俄罗斯再开辟一个战场来帮忙了。</span><br><span class="line"><span class="number">253</span></span><br><span class="line">文章标题<span class="symbol">:</span>《世界日报》刊载的诗中述说着张恨水与郝耕仁当年怎样的约定？</span><br><span class="line">时间: <span class="number">2018</span>年09月<span class="number">22</span>日 <span class="number">13</span><span class="symbol">:</span><span class="number">48</span><span class="symbol">:</span><span class="number">13</span></span><br><span class="line">来源: 军官团</span><br><span class="line">来源<span class="symbol">Url:</span> <span class="symbol">http:</span>/<span class="regexp">/schema.org/</span>Organization</span><br><span class="line">图片地址<span class="symbol">:http</span><span class="symbol">://p0</span>.ifengimg.com/pmop/<span class="number">2018</span>/0922/<span class="number">3</span>C43EA8A7C311A8593C339731AF1E7A38DC7F9CA_size233_w850_h1226.jpeg</span><br><span class="line">图片地址<span class="symbol">:http</span><span class="symbol">://p0</span>.ifengimg.com/pmop/<span class="number">2018</span>/0922/<span class="number">69360</span>DE22CC9A418635C06625E69DB5B59F6E449_size55_w303_h438.jpeg</span><br><span class="line">图片地址<span class="symbol">:http</span><span class="symbol">://p0</span>.ifengimg.com/pmop/<span class="number">2018</span>/0922/EE3FE2D65E2F2A32E1E54076F70ED3B2DFFFB7D0_size60_w300_h206.jpeg</span><br><span class="line">图片地址<span class="symbol">:http</span><span class="symbol">://p2</span>.ifengimg.com/a/<span class="number">2016</span>/081<span class="number">0</span>/<span class="number">204</span>c433878d5cf9size1_w16_h16.png</span><br><span class="line">新闻内容<span class="symbol">:</span>作者简介：解玺璋，知名评论家、学者、近代史研究者。季我努学社顾问、季我努沙龙讲演嘉宾。从事报刊编辑、图书编辑二十余年，曾获多种全国及北京市文艺评论奖，著有《梁启超传》、《一个人的阅读史》、《喧嚣与寂寞》、《雅俗》等。张恨水跟着郝耕仁，其言传身教，潜移默化，对他身上不时流露出来的才子气、名士气倒是一种矫正。郝耕仁是个有抱负的人，很想有所作为，却因那不苟且的脾气，始终都不得志。张恨水张恨水抗战期间创作《八十一梦》，其中一“梦”，遇到死后升天，做了灶神的郝耕仁，说他“一生革命，穷愁潦倒而死”， 是真知其人的肺腑之言。《八十一梦》民国六年（<span class="number">1917</span>年），张恨水离开文明话剧团后，一时间找不到事做，郝耕仁曾邀他回自己老家怀宁山区小住，在这里，他们甚至动了隐居青山绿水之间而专事著述的念头，地点就选在安徽贵池县境内，那里离九华山、黄山很近。一九二八年十二月二十七日《世界日报》副刊《明珠》刊载了张恨水的三首诗《偶怀兼示郝三》，其中就提到了当年他们的约定：冻云掩日古城寒，岁月匆匆似指弹。好饮不多成醉易，卖文过苦得诗难。微名愧自稗官得，慧业原当小道看。一个故人终不及，春江回去一渔竿。江南家住碧萝村，村外丛山绿到门。一别早忘猿鹤约，十年犹忆水云痕。风尘只剩贪茶癖，笔砚无从报国恩。欲问豪华何处去，半囊故纸葬诗魂。斗室围炉岁又阑，盆梅盘果对书摊。清贫志趣怜陶令，侥幸功名笑谢安。月缺月圆忙里过，花开花落静中看。诗心未敛浑闲事，怕向风尘拾坠欢。然而，隐居只能存在于他们的梦想之中，现实没有提供给他们隐居的物质条件，他们自己既要吃饭，而且都有家小要他们赡养，所以，他们最需要的其实是一份待遇丰厚的工作。不久，郝耕仁把《皖江报》的职位让给了张恨水，自己到广东去了。不料，他到广州后，邀他来此的粤军旅长季硕夫，已被桂军派人杀害了。他冒险料理了朋友的后事，拿了一笔钱，经香港、海南，下了南洋，直到钱花光了，才回到安庆，先在省公署里谋了一个公务员的职务，以后又转到中学教书，做了老师。《皖江报》张恨水在《皖江报》干了一年有余，则离开芜湖去了北京。对张恨水来说，这意味着旧时代的结束，新时代的开始。谢玺璋：《张恨水传》编辑：浙江大学近现代史硕士生 萧宸轩季我努学社青年会会员</span><br><span class="line"><span class="number">147</span></span><br><span class="line"><span class="number">148</span></span><br><span class="line"><span class="number">754</span></span><br><span class="line"></span><br><span class="line">....................................等等等</span><br></pre></td></tr></table></figure>
+<p>这样一来一个简单的多线程爬虫器就OK了！</p>
+<p>作者:lhsjohn</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/26/Concurrency (一) prac1/" rel="next" title="Concurrency (一) prac1">
+                <i class="fa fa-chevron-left"></i> Concurrency (一) prac1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!--MOB SHARE BEGIN-->
+<div class="-mob-share-ui-button -mob-share-open">分享</div>
+<div class="-mob-share-ui" style="display: none">
+<ul class="-mob-share-list">
+<li class="-mob-share-weibo"><p>新浪微博</p></li>
+<li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
+<li class="-mob-share-qzone"><p>QQ空间</p></li>
+<li class="-mob-share-qq"><p>QQ好友</p></li>
+<li class="-mob-share-renren"><p>人人网</p></li>
+<li class="-mob-share-kaixin"><p>开心网</p></li>
+<li class="-mob-share-douban"><p>豆瓣</p></li>
+<li class="-mob-share-facebook"><p>Facebook</p></li>
+<li class="-mob-share-twitter"><p>Twitter</p></li>
+</ul>
+<div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=276e66346840e"></script>
+<!--MOB SHARE END-->  
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="lhsjohn" />
+            
+              <p class="site-author-name" itemprop="name">lhsjohn</p>
+              <p class="site-description motion-element" itemprop="description">对未来的真正慷慨，是把一切献给现在</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+    
+    
+
+          <div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("07/28/2018 15:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+        </div>
+      </section>
+
+      
+
+      
+	  
+	  
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+<h3 class="widget-title">Tag Cloud</h3>
+<div id="myCanvasContainer" class="widget tagcloud">
+    <canvas width="250" height="250" id="resCanvas" style="width=100%">
+        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ActiveMQ/">ActiveMQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Effective-Java/">Effective Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intercepter/">Intercepter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python环境搭建/">Python环境搭建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO单点登录/">SSO单点登录</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thinking-in-java/">Thinking in java</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/">axios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastdfs/">fastdfs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solr-zookeeper/">solr+zookeeper</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/励志/">励志</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/反射机制/">反射机制</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/喜剧/">喜剧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/影评/">影评</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心得/">心得</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂文/">杂文</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/段子/">段子</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/音乐播放器/">音乐播放器</a><span class="tag-list-count">1</span></li></ul>
+    </canvas>
+</div>
+</div>
+
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lhsjohn</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">61.3k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+<div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+<!-- 页面点击小红心 -->
+ <script type="text/javascript" src="/js/src/clicklove.js"></script>
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'dILes8JxmVOKeMvXEeHzOlYs-gzGzoHsz',
+        appKey: 'LOd9oGKdW8Ag1emY5hQ3Of4B',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  undefined
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/chitose.model.json"},"display":{"position":"left","width":75,"height":180},"mobile":{"show":true},"log":false,"tagMode":false});</script></body>
+</html>
