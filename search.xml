@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[SCJP 知识点总结3----赋值]]></title>
+    <url>%2F2018%2F10%2F25%2FSCJP%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%933----%E8%B5%8B%E5%80%BC%2F</url>
+    <content type="text"><![CDATA[]]></content>
+      <categories>
+        <category>学习</category>
+        <category>java</category>
+        <category>SCJP</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>学习</tag>
+        <tag>SCJP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[一道题目来分析Java中的值传递和引用的传递]]></title>
     <url>%2F2018%2F10%2F24%2F%E4%B8%80%E9%81%93%E9%A2%98%E7%9B%AE%E6%9D%A5%E5%88%86%E6%9E%90Java%E4%B8%AD%E7%9A%84%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E7%94%A8%E7%9A%84%E4%BC%A0%E9%80%92%2F</url>
     <content type="text"><![CDATA[1234567891011121314private static void change(StringBuffer str11, StringBuffer str12) &#123; str12 = str11; str11 = new StringBuffer("new world"); str12.append("new world");&#125;public static void main(String[] args) &#123; StringBuffer str1 = new StringBuffer("good "); StringBuffer str2 = new StringBuffer("bad "); change(str1, str2); System.out.println(str1.toString()); System.out.println(str2.toString());&#125; 结果是什么呢？ 先给出这道题目的答案 **good new world bad** 下面画图来分析这个过程 1234567891011121314private static void change(StringBuffer str11, StringBuffer str12) &#123; str12 = str11;//2 str11 = new StringBuffer("new world");//3 str12.append("new world");//4&#125;//5public static void main(String[] args) &#123; StringBuffer str1 = new StringBuffer("good "); StringBuffer str2 = new StringBuffer("bad "); change(str1, str2);//1 System.out.println(str1.toString()); System.out.println(str2.toString());&#125; 执行到第一步的图： 执行到第二步的图，这里chage方法中的形参str11,str22是实参str1，str2的地址拷贝。 这里str11和str22是实参str1，str2的地址拷贝，接着执行第三步的图： 上图中str12地址指向了“good”，接着看第四步图： 上图中str11的地址指向了堆中新的对象”new world”,接着看第五步的图： 收藏自 一枝花算不算浪漫的博客]]></content>

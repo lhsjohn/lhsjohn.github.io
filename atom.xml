@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.lhsjohn.com/"/>
-  <updated>2018-10-24T06:36:43.856Z</updated>
+  <updated>2018-10-25T13:55:41.397Z</updated>
   <id>https://www.lhsjohn.com/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SCJP 知识点总结3----赋值</title>
+    <link href="https://www.lhsjohn.com/2018/10/25/SCJP%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%933----%E8%B5%8B%E5%80%BC/"/>
+    <id>https://www.lhsjohn.com/2018/10/25/SCJP 知识点总结3----赋值/</id>
+    <published>2018-10-25T13:54:24.000Z</published>
+    <updated>2018-10-25T13:55:41.397Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;/images/2018-10-25.png&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="java" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/"/>
+    
+      <category term="SCJP" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/SCJP/"/>
+    
+    
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
+    
+      <category term="学习" scheme="https://www.lhsjohn.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="SCJP" scheme="https://www.lhsjohn.com/tags/SCJP/"/>
+    
+  </entry>
   
   <entry>
     <title>一道题目来分析Java中的值传递和引用的传递</title>
@@ -560,36 +594,6 @@
       <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
     
       <category term="反射机制" scheme="https://www.lhsjohn.com/tags/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>&lt;&lt;本杰明·巴顿奇事&gt;&gt;经典台词收录</title>
-    <link href="https://www.lhsjohn.com/2018/08/25/%E6%9C%AC%E6%9D%B0%E6%98%8E%E5%B7%B4%E9%A1%BF%E5%A5%87%E4%BA%8B%E7%BB%8F%E5%85%B8%E5%8F%B0%E8%AF%8D/"/>
-    <id>https://www.lhsjohn.com/2018/08/25/本杰明巴顿奇事经典台词/</id>
-    <published>2018-08-25T09:29:24.000Z</published>
-    <updated>2018-08-25T09:52:51.116Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;终于抽出来时间看了这部想看了很久的电影，一部爱情奇幻类的影片，有创意和脑洞，布拉德皮特演绎的完美饰演赋予了这部电影生命。&lt;/p&gt;
-&lt;p&gt;像&amp;lt;&amp;lt;泰坦尼克号&amp;gt;&amp;gt;一样,倒叙的方式开场,本杰明留下的牛皮书作为线索，推动着对整个情节的叙述。&lt;/p&gt;
-&lt;p&gt;大体懵懵懂懂看了第一遍看完了，算不上理解的特别透彻，但是却很喜欢里面的一些经典台词。&lt;/p&gt;
-&lt;p&gt;下面是从网络上收集的一些比较经典的台词,这部电影的成功之处在于，当你听到类似的台词时，你肯定会毫不犹豫想到这部电影。&lt;/p&gt;
-&lt;p&gt;并非鸡汤化的台词，只是人性的缩影。&lt;br&gt;(突然发现,代码块不仅可以写代码，还可以装台词 苦笑、、、、、)&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="观后感" scheme="https://www.lhsjohn.com/categories/%E8%A7%82%E5%90%8E%E6%84%9F/"/>
-    
-      <category term="影评" scheme="https://www.lhsjohn.com/categories/%E8%A7%82%E5%90%8E%E6%84%9F/%E5%BD%B1%E8%AF%84/"/>
-    
-    
-      <category term="杂谈" scheme="https://www.lhsjohn.com/tags/%E6%9D%82%E8%B0%88/"/>
-    
-      <category term="影评" scheme="https://www.lhsjohn.com/tags/%E5%BD%B1%E8%AF%84/"/>
-    
-      <category term="生活" scheme="https://www.lhsjohn.com/tags/%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   
