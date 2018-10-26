@@ -305,6 +305,235 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lhsjohn.com/2018/09/17/Effective Java [笔记] ---- 通用程序设计(一)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lhsjohn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lhsjohn的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/17/Effective Java [笔记] ---- 通用程序设计(一)/" itemprop="url">Effective Java [笔记] ---- 通用程序设计(一)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-17T23:42:24+08:00">
+                2018-09-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习/java/Effective-Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Effective Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/17/Effective Java [笔记] ---- 通用程序设计(一)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/09/17/Effective Java [笔记] ---- 通用程序设计(一)/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+         
+		  
+		  
+		  
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,212
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>花了大概一周的时间读了一下&lt;<effective java="">&gt;这本书,作为一个初步涉猎Java开发的小白来说,确实这本书让眼界一亮,是一本浓缩了无数工程师经验的书籍。</effective></p>
+<p>下面也将融合以下的内容<br>本篇内容主要介绍通用程序设计相关的主要内容</p>
+<h2 id="通用程序设计-一"><a href="#通用程序设计-一" class="headerlink" title="通用程序设计(一)"></a>通用程序设计(一)</h2><p>这里主要记录一下一些常见的“经验”</p>
+<h2 id="1-将局部变量的作用域最小化。"><a href="#1-将局部变量的作用域最小化。" class="headerlink" title="1.将局部变量的作用域最小化。"></a>1.将局部变量的作用域最小化。</h2><ul>
+<li><p>将局部变量的作用域最小化,可以增强代码的可读性和可维护性。</p>
+</li>
+<li><p>要使局部变量的作用域最小化,最有力的方法是在第一次使用它的地方声明。</p>
+</li>
+<li><p>每个局部变量的声明都应该包含一个初始化表达式</p>
+</li>
+</ul>
+<h2 id="2-for-each循环优先于传统的for循环"><a href="#2-for-each循环优先于传统的for循环" class="headerlink" title="2.for-each循环优先于传统的for循环"></a>2.for-each循环优先于传统的for循环</h2><ul>
+<li><p>for-each循环不会有性能损失,甚至用于数组也是一样。比起普通for循环,它还稍有些性能优势,因为它对数组的索引的边界值只计算一次。</p>
+</li>
+<li><p>对多个集合进行嵌入式迭代时,for-each优势会更加明显。</p>
+</li>
+</ul>
+<p>如果采用传统方式，迭代器对外部集合调用太多的next方法,并且外部集合是内部集合大小的几倍–可能是因为它们是相同的集合循环会正常终止，产生预期之外的结果。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/17/Effective Java [笔记] ---- 通用程序设计(一)/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.lhsjohn.com/2018/09/14/用Solr实现后台搜索【笔记】/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -943,212 +1172,6 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lhsjohn.com/2018/09/06/TypeInfo (二) prac2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lhsjohn">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="lhsjohn的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/06/TypeInfo (二) prac2/" itemprop="url">TypeInfo (二) prac2</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-06T16:01:24+08:00">
-                2018-09-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习/" itemprop="url" rel="index">
-                    <span itemprop="name">学习</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/09/06/TypeInfo (二) prac2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/09/06/TypeInfo (二) prac2/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-         
-		  
-		  
-		  
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2,351
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  14
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="常见的RTTI的形式"><a href="#常见的RTTI的形式" class="headerlink" title="常见的RTTI的形式"></a>常见的RTTI的形式</h2><ol>
-<li>传统的类型转换 例如(Shape).</li>
-<li>代表对象的类型的Class对象。通过查询Class对象可以获取运行时所需的信息。</li>
-<li>关键字instanceof。返回一个布尔值,来告诉我们对象是不是某个特定类型的实例。</li>
-</ol>
-<h1 id="下面写一个Individual的继承体系"><a href="#下面写一个Individual的继承体系" class="headerlink" title="下面写一个Individual的继承体系"></a>下面写一个Individual的继承体系</h1><h2 id="Individual-java"><a href="#Individual-java" class="headerlink" title="Individual.java"></a>Individual.java</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> typeinfo.pets;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Individual</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Individual</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> counter = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> id = counter++;</span><br><span class="line">  <span class="keyword">private</span> String name;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Individual</span><span class="params">(String name)</span> </span>&#123; <span class="keyword">this</span>.name = name; &#125;</span><br><span class="line">  <span class="comment">// 'name' is optional:</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Individual</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getClass().getSimpleName() +</span><br><span class="line">      (name == <span class="keyword">null</span> ? <span class="string">""</span> : <span class="string">" "</span> + name);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">id</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> id; &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> o <span class="keyword">instanceof</span> Individual &amp;&amp;</span><br><span class="line">      id == ((Individual)o).id;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">17</span>;</span><br><span class="line">    <span class="keyword">if</span>(name != <span class="keyword">null</span>)</span><br><span class="line">      result = <span class="number">37</span> * result + name.hashCode();</span><br><span class="line">    result = <span class="number">37</span> * result + (<span class="keyword">int</span>)id;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Individual arg)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Compare by class name first:</span></span><br><span class="line">    String first = getClass().getSimpleName();</span><br><span class="line">    String argFirst = arg.getClass().getSimpleName();</span><br><span class="line">    <span class="keyword">int</span> firstCompare = first.compareTo(argFirst);</span><br><span class="line">    <span class="keyword">if</span>(firstCompare != <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> firstCompare;</span><br><span class="line">    <span class="keyword">if</span>(name != <span class="keyword">null</span> &amp;&amp; arg.name != <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">int</span> secondCompare = name.compareTo(arg.name);</span><br><span class="line">      <span class="keyword">if</span>(secondCompare != <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> secondCompare;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (arg.id &lt; id ? -<span class="number">1</span> : (arg.id == id ? <span class="number">0</span> : <span class="number">1</span>));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/06/TypeInfo (二) prac2/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1203,7 +1226,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="66" src="//cdn.bootcss.com/canv
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1292,7 +1315,7 @@ show_date_time();
 <h3 class="widget-title">Tag Cloud</h3>
 <div id="myCanvasContainer" class="widget tagcloud">
     <canvas width="250" height="250" id="resCanvas" style="width=100%">
-        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ActiveMQ/">ActiveMQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Effective-Java/">Effective Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intercepter/">Intercepter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python环境搭建/">Python环境搭建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SCJP/">SCJP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO单点登录/">SSO单点登录</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thinking-in-java/">Thinking in java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/">axios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastdfs/">fastdfs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">31</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solr-zookeeper/">solr+zookeeper</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/励志/">励志</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/反射机制/">反射机制</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/喜剧/">喜剧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/影评/">影评</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心得/">心得</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂文/">杂文</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/段子/">段子</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/音乐播放器/">音乐播放器</a><span class="tag-list-count">1</span></li></ul>
+        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ActiveMQ/">ActiveMQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Effective-Java/">Effective Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intercepter/">Intercepter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python环境搭建/">Python环境搭建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SCJP/">SCJP</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO单点登录/">SSO单点登录</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thinking-in-java/">Thinking in java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/">axios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastdfs/">fastdfs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">32</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solr-zookeeper/">solr+zookeeper</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/励志/">励志</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/反射机制/">反射机制</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/喜剧/">喜剧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/影评/">影评</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心得/">心得</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂文/">杂文</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/段子/">段子</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/音乐播放器/">音乐播放器</a><span class="tag-list-count">1</span></li></ul>
     </canvas>
 </div>
 </div>
