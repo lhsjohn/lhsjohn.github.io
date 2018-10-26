@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.lhsjohn.com/"/>
-  <updated>2018-10-25T13:55:41.397Z</updated>
+  <updated>2018-10-26T14:15:31.243Z</updated>
   <id>https://www.lhsjohn.com/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SCJP 知识点总结1----声明与访问控制</title>
+    <link href="https://www.lhsjohn.com/2018/10/26/SCJP%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%931----%E5%A3%B0%E6%98%8E%E4%B8%8E%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/"/>
+    <id>https://www.lhsjohn.com/2018/10/26/SCJP 知识点总结1----声明与访问控制/</id>
+    <published>2018-10-26T14:15:24.000Z</published>
+    <updated>2018-10-26T14:15:31.243Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;/images/2018-10-26-1.png&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="java" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/"/>
+    
+      <category term="SCJP" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/SCJP/"/>
+    
+    
+      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
+    
+      <category term="学习" scheme="https://www.lhsjohn.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="SCJP" scheme="https://www.lhsjohn.com/tags/SCJP/"/>
+    
+  </entry>
   
   <entry>
     <title>SCJP 知识点总结3----赋值</title>
@@ -568,32 +602,6 @@
       <category term="学习" scheme="https://www.lhsjohn.com/tags/%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="Thinking in java" scheme="https://www.lhsjohn.com/tags/Thinking-in-java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java的反射机制 (一）概念以及常见用法</title>
-    <link href="https://www.lhsjohn.com/2018/08/31/Java%E7%9A%84%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%20(%E4%B8%80%EF%BC%89%E6%A6%82%E5%BF%B5%E4%BB%A5%E5%8F%8A%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/"/>
-    <id>https://www.lhsjohn.com/2018/08/31/Java的反射机制 (一）概念以及常见用法/</id>
-    <published>2018-08-31T09:29:24.000Z</published>
-    <updated>2018-09-12T05:53:29.071Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;/images/2018-08-31-1.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="学习" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="java" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/"/>
-    
-      <category term="反射机制" scheme="https://www.lhsjohn.com/categories/%E5%AD%A6%E4%B9%A0/java/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/"/>
-    
-    
-      <category term="java" scheme="https://www.lhsjohn.com/tags/java/"/>
-    
-      <category term="反射机制" scheme="https://www.lhsjohn.com/tags/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/"/>
     
   </entry>
   
